@@ -42,6 +42,7 @@ class Router{
 
                 $controllerFile = ROOT.'/controllers/'.$controllerName.'.php';
 
+
                 if(file_exists($controllerFile)){
                     include_once($controllerFile);
                 }
@@ -52,6 +53,7 @@ class Router{
                 if($result != null){
                     break;
                 }
+
             }
         }
     }
