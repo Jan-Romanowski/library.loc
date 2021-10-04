@@ -19,46 +19,29 @@ class UserController{
 
             $errors = false;
 
-            if(User::checkName($name)){
-            //    echo '<br>$name - ok';
-            }
-            else{
+            if(!User::checkName($name))
                 $errors[] = 'Imię nie może być takie krótkie.';
-            }
 
-            if(User::chekSurname($surname)){
-            //    echo '<br>$surname - ok';
-            }
-            else{
+            if(!User::chekSurname($surname))
                 $errors[] = 'Nazwisko nie może być takie krótkie.';
-            }
 
-            if(User::chekEmail($email)){
-            //    echo '<br>$email - ok';
-            }
-            else{
+            if(!User::chekEmail($email))
                 $errors[] = 'Nieprawidłowy Email';
-            }
 
-            if(User::chekEmail($email)){
-            //    echo '<br>$email - ok';
-            }
-            else{
+            if(!User::chekEmail($email))
                 $errors[] = 'Nieprawidłowy Email';
-            }
 
-            if(User::chekPasswords($pass1,$pass2)){
-            //    echo '<br>Hasła są jednakowe';
-            }
-            else{
+            if(!User::chekPasswords($pass1,$pass2))
                 $errors[] = 'Hasła nie są jednakowe';
-            }
 
-            if(User::chekPassword($pass1,$pass2)){
-            //    echo '<br>Hasła są dobre';
-            }
-            else{
+            if(!User::chekPassword($pass1,$pass2))
                 $errors[] = 'Nieprawidłowe hasło';
+
+            if(User::checkEmailExists($email))
+                $errors[] = 'Taki email już jest zajęty.';
+
+            if($errors==false){
+                User::register($name, $surname, $email, $pass1, 1, 'admin');
             }
 
         }
