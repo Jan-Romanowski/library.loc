@@ -3,9 +3,11 @@
 <header>
 
 
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/template/css/style.css">
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Biblioteka Chóru Katedralnego</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +22,7 @@
                     <a class="nav-link" href="/songs/">Utwory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Teczki</a>
+                    <a class="nav-link" href="/folders/">Teczki</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Użytkowniki</a>
