@@ -28,9 +28,6 @@ class UserController{
             if(!User::chekEmail($email))
                 $errors[] = 'Nieprawidłowy Email';
 
-            if(!User::chekEmail($email))
-                $errors[] = 'Nieprawidłowy Email';
-
             if(!User::chekPasswords($pass1,$pass2))
                 $errors[] = 'Hasła nie są jednakowe';
 

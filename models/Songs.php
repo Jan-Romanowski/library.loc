@@ -64,4 +64,23 @@ class Songs{
 
         return $row['kek'];
     }
+
+    public static function checkCount($count_p){
+        if(($count_p)>0){
+            return true;
+        }
+        return false;
+    }
+
+    public static function checkName($name){
+        if(strlen($name)>5){
+            return true;
+        }
+        return false;
+    }
+
+    public static function addNewSong($name, $count_p, $author, $folder, $note){
+
+    }
+
 }

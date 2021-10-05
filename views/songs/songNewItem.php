@@ -25,7 +25,7 @@
                 </select>
             </div>
             <div class="input-group mb-4">
-                <span class="input-group-text">Notatki</span>
+                <span class="input-group-text">Notatki (opcjonalnie)</span>
                 <textarea class="form-control" name="notatki" aria-label="Notatki">
                 </textarea>
             </div>
