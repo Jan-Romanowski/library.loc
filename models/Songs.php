@@ -2,7 +2,7 @@
 
 class Songs{
 
-    const SHOW_BY_DEFAULT = 50;
+    const SHOW_BY_DEFAULT = 30;
 
     public static function getSongById($id){
         $id = intval($id);
@@ -54,10 +54,12 @@ class Songs{
 
     }
 
-    public static function getTotalSongs(){
+    public static function getTotalSongs($word){
         $db = Db::getConnection();
 
-        $result = $db->query('SELECT count(name_song) as kek from song');
+        $result = $db->query("SELECT count(name_song) as kek
+                                       FROM song
+                                       WHERE name_song LIKE '%".$word."%' OR author LIKE '%".$word."%'");
         $result -> setFetchMode(PDO::FETCH_ASSOC);
 
         $row = $result->fetch();

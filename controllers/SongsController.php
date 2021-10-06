@@ -15,6 +15,17 @@ class SongsController{
         }
     }
 
+    public function actionSearch(){
+
+        $word = $_POST['word'];
+
+        $_SESSION['word'] = $word;
+
+        header("Location: /songs");
+
+        return true;
+    }
+
     public function actionFilter($parameter = 'id_song'){
         if(0<$parameter && $parameter<7){
             switch ($parameter){
@@ -46,7 +57,7 @@ class SongsController{
 
     }
 
-    public function actionView($page = 1, $filter = ''){
+    public function actionView($page = 1){
 
         if(!isset($_SESSION['Sorting'])){
             $parameter = 'id_song';
@@ -55,10 +66,17 @@ class SongsController{
             $parameter = $_SESSION['Sorting'];
         }
 
+        if(!isset($_SESSION['word'])){
+            $filter = ' ';
+        }
+        else{
+            $filter = $_SESSION['word'];
+        }
+
         $songsList = array();
         $songsList = Songs::getSongsList($filter, $parameter, $page);
 
-        $total = Songs::getTotalSongs();
+        $total = Songs::getTotalSongs($filter);
 
         $pagination = new Pagination($total, $page, Songs::SHOW_BY_DEFAULT, 'page-');
 
