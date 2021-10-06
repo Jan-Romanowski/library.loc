@@ -13,12 +13,12 @@
                     Sortuj według
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Nazwy utwora (A-z)</a></li>
-                    <li><a class="dropdown-item" href="#">Nazwy utwora (z-A)</a></li>
-                    <li><a class="dropdown-item" href="#">Autora (A-z)</a></li>
-                    <li><a class="dropdown-item" href="#">Autora (z-A)</a></li>
-                    <li><a class="dropdown-item" href="#">Numeru teczki (Rosnąco)</a></li>
-                    <li><a class="dropdown-item" href="#">Numeru teczki (Malejąco)</a></li>
+                    <li><a class="dropdown-item" href="/songs/filter-1">Nazwy utwora (A-z)</a></li>
+                    <li><a class="dropdown-item" href="/songs/filter-2">Nazwy utwora (z-A)</a></li>
+                    <li><a class="dropdown-item" href="/songs/filter-3">Autora (A-z)</a></li>
+                    <li><a class="dropdown-item" href="/songs/filter-4">Autora (z-A)</a></li>
+                    <li><a class="dropdown-item" href="/songs/filter-5">Numeru teczki (Rosnąco)</a></li>
+                    <li><a class="dropdown-item" href="/songs/filter-6">Numeru teczki (Malejąco)</a></li>
                 </ul>
             </div>
         </div>

@@ -15,22 +15,54 @@ class SongsController{
         }
     }
 
-    public function actionView($page = 1, $word = '', $parameter = 'id_song'){
+    public function actionFilter($parameter = 'id_song'){
+        if(0<$parameter && $parameter<7){
+            switch ($parameter){
+                case 1:
+                    $parameter = 'name_song';
+                    break;
+                case 2:
+                    $parameter = 'name_song DESC';
+                    break;
+                case 3:
+                    $parameter = 'author';
+                    break;
+                case 4:
+                    $parameter = 'author DESC';
+                    break;
+                case 5:
+                    $parameter = 'id_song';
+                    break;
+                case 6:
+                    $parameter = 'id_song DESC';
+                    break;
+            }
+        }
+        $_SESSION['Sorting'] = $parameter;
+
+        header("Location: /songs");
+
+        return true;
+
+    }
+
+    public function actionView($page = 1, $filter = ''){
+
+        if(!isset($_SESSION['Sorting'])){
+            $parameter = 'id_song';
+        }
+        else{
+            $parameter = $_SESSION['Sorting'];
+        }
 
         $songsList = array();
-        $songsList = Songs::getSongsList($word, $parameter, $page);
+        $songsList = Songs::getSongsList($filter, $parameter, $page);
 
         $total = Songs::getTotalSongs();
 
         $pagination = new Pagination($total, $page, Songs::SHOW_BY_DEFAULT, 'page-');
 
         require_once(ROOT . '\views\songs\songList.php');
-
-        /*
-        echo '<pre>';
-        print_r($songsList);
-        echo '</pre>';
-        */
 
         return true;
     }
@@ -71,10 +103,6 @@ class SongsController{
         require_once(ROOT . '\views\songs\songNewItem.php');
 
         return true;
-    }
-
-    public function actionAddSong(){
-
     }
 
 }

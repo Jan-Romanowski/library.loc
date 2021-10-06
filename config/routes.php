@@ -4,6 +4,7 @@
         'songs/([0-9]+)' => 'songs/index/$1',
         'songs/page-([0-9]+)' => 'songs/view/$1',
         'songs/newSong' => 'songs/newSong',
+        'songs/filter-([0-9]+)' => 'songs/filter/$1',
         'songs' => 'songs/view',
         'folders' => 'folders/view',
         'user/register' => 'user/register',
