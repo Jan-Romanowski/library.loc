@@ -15,7 +15,7 @@ class SongsController{
         }
     }
 
-    public function actionView($page = 1, $word = '', $parameter = 'name_song'){
+    public function actionView($page = 1, $word = '', $parameter = 'id_song'){
 
         $songsList = array();
         $songsList = Songs::getSongsList($word, $parameter, $page);
@@ -42,39 +42,27 @@ class SongsController{
         $author = '';
         $folder = '';
         $note = '';
+        $result = false;
 
         if(isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-            $name = '';
-            $count_p = '';
-            $author = '';
-            $folder = '';
-            $note = '';
+            $name = $_POST['song_name'];
+            $count_p = $_POST['count_p'];
+            $author = $_POST['autor'];
+            $folder = $_POST['folders'];
+            $note = $_POST['notatki'];
 
             $errors = false;
 
-            if(!User::checkName($name))
-                $errors[] = 'Imię nie może być takie krótkie.';
+            if(!Songs::checkName($name))
+                $errors[] = 'Zakrótka nazwa utwora';
 
-            if(!User::chekSurname($surname))
-                $errors[] = 'Nazwisko nie może być takie krótkie.';
-
-            if(!User::chekEmail($email))
-                $errors[] = 'Nieprawidłowy Email';
-
-            if(!User::chekPasswords($pass1,$pass2))
-                $errors[] = 'Hasła nie są jednakowe';
-
-            if(!User::chekPassword($pass1,$pass2))
-                $errors[] = 'Nieprawidłowe hasło';
-
-            if(User::checkEmailExists($email))
-                $errors[] = 'Taki email już jest zajęty.';
+            if(!Songs::checkCount($count_p))
+                $errors[] = 'Ilość partytur nie może być ujemna';
 
             if($errors==false){
-                Songs::addNewSong($name, $count_p,$author,$folder, $note);
+                $result = Songs::addNewSong($name, $count_p, $author, $folder, $note);
             }
-
         }
 
         $foldersList = array();

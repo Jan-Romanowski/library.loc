@@ -81,6 +81,20 @@ class Songs{
 
     public static function addNewSong($name, $count_p, $author, $folder, $note){
 
+        $db = Db::getConnection();
+
+        $sql = 'INSERT INTO song(name_song, count_p, author, id_folder, note)
+            values (:name_song, :count_p, :author, :folder, :note)';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':name_song', $name, PDO::PARAM_STR);
+        $result->bindParam(':count_p', $count_p, PDO::PARAM_INT);
+        $result->bindParam(':author', $author, PDO::PARAM_STR);
+        $result->bindParam(':folder', $folder, PDO::PARAM_INT);
+        $result->bindParam(':note', $note, PDO::PARAM_STR);
+
+        return $result->execute();
+
     }
 
 }
