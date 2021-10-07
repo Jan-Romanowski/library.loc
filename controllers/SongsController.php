@@ -2,9 +2,13 @@
 
 class SongsController{
 
+    /** Get Song By Id
+     * @param $id
+     * @return bool|void
+     */
     public function actionIndex($id){
 
-            if($id){
+        if($id){
 
             $songsItem = array();
             $songsItem = Songs::getSongById($id);
@@ -15,6 +19,9 @@ class SongsController{
         }
     }
 
+    /** Search songs
+     * @return bool
+     */
     public function actionSearch(){
 
         $word = $_POST['word'];
@@ -26,6 +33,11 @@ class SongsController{
         return true;
     }
 
+
+    /** Sorting songs
+     * @param string $parameter
+     * @return bool
+     */
     public function actionFilter($parameter = 'id_song'){
         if(0<$parameter && $parameter<7){
             switch ($parameter){
@@ -49,6 +61,7 @@ class SongsController{
                     break;
             }
         }
+
         $_SESSION['Sorting'] = $parameter;
 
         header("Location: /songs");
@@ -57,6 +70,10 @@ class SongsController{
 
     }
 
+    /** Get all songs
+     * @param int $page
+     * @return bool
+     */
     public function actionView($page = 1){
 
         if(!isset($_SESSION['Sorting'])){
@@ -85,12 +102,17 @@ class SongsController{
         return true;
     }
 
+
+    /** Adding a new song
+     * @return bool
+     */
     public function actionNewSong(){
 
         $name = '';
         $count_p = '';
         $author = '';
-        $folder = '';
+        $folder_name = 'Wybierz teczkę';
+        $folder_id = 8;
         $note = '';
         $result = false;
 
@@ -118,9 +140,62 @@ class SongsController{
         $foldersList = array();
         $foldersList = Folders::getFolders();
 
+        $message = 'Nowy utwór';
+
         require_once(ROOT . '\views\songs\songNewItem.php');
 
         return true;
+    }
+
+    public function actionEditSong($id){
+
+        if($id) {
+
+            $songsItem = array();
+            $songsItem = Songs::getSongById($id);
+
+            $message = 'Edycja utworu - ' . $songsItem['name_song'];
+
+            $name = $songsItem['name_song'];
+            $count_p = $songsItem['count_p'];
+            $author = $songsItem['author'];
+            $folder_name = $songsItem['name_folder'];
+            $folder_id = $songsItem['id_folder'];
+            $note = $songsItem['note'];
+            $result = false;
+
+            if (isset($_POST['submit']) && !empty($_POST['submit'])) {
+
+                $name = $_POST['song_name'];
+                $count_p = $_POST['count_p'];
+                $author = $_POST['autor'];
+                $folder_name = $_POST['folders'];
+                //$folder_id = $_POST['id_folder'];
+                $note = $_POST['notatki'];
+
+                $errors = false;
+
+                if (!Songs::checkName($name))
+                    $errors[] = 'Zakrótka nazwa utwora';
+
+                if (!Songs::checkCount($count_p))
+                    $errors[] = 'Ilość partytur nie może być ujemna';
+
+                if ($errors == false) {
+                    $result = Songs::editSong($id, $name, $count_p, $author, $folder_name, $note);
+                    if($result)
+                        header("Location: /songs");
+                }
+            }
+
+            $foldersList = array();
+            $foldersList = Folders::getFolders();
+
+            require_once(ROOT . '\views\songs\songNewItem.php');
+
+            return true;
+        }
+
     }
 
 }

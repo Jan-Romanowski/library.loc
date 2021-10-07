@@ -99,4 +99,23 @@ class Songs{
 
     }
 
+    public static function editSong($id, $name, $count_p, $author, $folder, $note){
+
+        $db = Db::getConnection();
+
+        $sql = "UPDATE song 
+            SET 
+                name_song = '$name', 
+                count_p = '$count_p', 
+                author = '$author', 
+                id_folder = '$folder', 
+                note = '$note' 
+            WHERE id_song = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+
+    }
+
 }

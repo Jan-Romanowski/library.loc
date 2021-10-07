@@ -6,7 +6,7 @@
         else:
             ?>
         <form method="post" action="#">
-            <h2 class="mb-4 text-center">Nowy utwór</h2>
+            <h2 class="mb-4 text-center"><?php echo $message; ?></h2>
             <?php if(isset($errors) && is_array($errors)): ?>
                 <ul>
                     <?php foreach ($errors as $error): ?>
@@ -30,7 +30,7 @@
             <div class="mb-5">
                 <label for="exampleInputText4" class="form-label">Teczka</label>
                 <select class="form-select" name="folders" aria-label="Default select example">
-                    <option value="8" hidden selected>Wybierz teczkę</option>
+                    <option value="<?php echo $folder_id; ?>" hidden selected><?php echo $folder_name; ?></option>
                     <?php foreach ($foldersList as $foldersListItem): ?>
                     <option value="<?php echo $foldersListItem['id_folder']; ?>"><?php echo $foldersListItem['name_folder']; ?></option>
                     <?php endforeach; ?>
