@@ -12,8 +12,9 @@
             <?php if($songsItem['note']!=''){
                 echo 'Notatki: '.$songsItem['name_folder'];}?>
         </p>
+        <a href="editSong/<?php echo $songsItem['id_song'];?>">Edycja utworu</a><br>
+        <a href="delete/<?php echo $songsItem['id_song'];?>">Usunąć utwór</a>
     </div>
-
 </div>
 
 <?php

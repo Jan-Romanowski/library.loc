@@ -147,6 +147,11 @@ class SongsController{
         return true;
     }
 
+
+    /** Edit song
+     * @param $id
+     * @return bool|void
+     */
     public function actionEditSong($id){
 
         if($id) {
@@ -195,7 +200,16 @@ class SongsController{
 
             return true;
         }
+    }
 
+    public function actionDelete($id){
+        if($id){
+
+            $result = Songs::deleteSong($id);
+            if($result)
+                header("Location: /songs");
+        }
+        return true;
     }
 
 }

@@ -6,6 +6,7 @@
         'songs/newSong' => 'songs/newSong',
         'songs/editSong/([0-9]+)' => 'songs/editSong/$1',
         'songs/filter-([0-9]+)' => 'songs/filter/$1',
+        'songs/delete/([0-9]+)' => 'songs/delete/$1',
         'songs/search' => 'songs/search',
         'songs' => 'songs/view',
         'folders' => 'folders/view',

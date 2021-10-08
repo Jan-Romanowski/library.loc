@@ -2,7 +2,7 @@
 
 class Songs{
 
-    const SHOW_BY_DEFAULT = 30;
+    const SHOW_BY_DEFAULT = 50;
 
     public static function getSongById($id){
         $id = intval($id);
@@ -116,6 +116,17 @@ class Songs{
 
         return $result->execute();
 
+    }
+
+    public static function deleteSong($id){
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM song
+                WHERE id_song = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
     }
 
 }
