@@ -4,6 +4,10 @@ class Songs{
 
     const SHOW_BY_DEFAULT = 50;
 
+    /**
+     * @param $id
+     * @return mixed|void
+     */
     public static function getSongById($id){
         $id = intval($id);
 
@@ -24,6 +28,13 @@ class Songs{
         }
     }
 
+    /**
+     * @param $word
+     * @param $parameter
+     * @param int $page
+     * @param int $count
+     * @return array
+     */
     public static function getSongsList($word, $parameter, $page = 1, $count = self::SHOW_BY_DEFAULT){
         $db = Db::getConnection();
 
@@ -54,6 +65,10 @@ class Songs{
 
     }
 
+    /**
+     * @param $word
+     * @return mixed
+     */
     public static function getTotalSongs($word){
         $db = Db::getConnection();
 
@@ -67,6 +82,10 @@ class Songs{
         return $row['kek'];
     }
 
+    /**
+     * @param $count_p
+     * @return bool
+     */
     public static function checkCount($count_p){
         if(($count_p)>0){
             return true;
@@ -74,6 +93,10 @@ class Songs{
         return false;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public static function checkName($name){
         if(strlen($name)>5){
             return true;
@@ -81,6 +104,14 @@ class Songs{
         return false;
     }
 
+    /**
+     * @param $name
+     * @param $count_p
+     * @param $author
+     * @param $folder
+     * @param $note
+     * @return bool
+     */
     public static function addNewSong($name, $count_p, $author, $folder, $note){
 
         $db = Db::getConnection();
@@ -99,6 +130,15 @@ class Songs{
 
     }
 
+    /**
+     * @param $id
+     * @param $name
+     * @param $count_p
+     * @param $author
+     * @param $folder
+     * @param $note
+     * @return bool
+     */
     public static function editSong($id, $name, $count_p, $author, $folder, $note){
 
         $db = Db::getConnection();
@@ -118,6 +158,10 @@ class Songs{
 
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function deleteSong($id){
         $db = Db::getConnection();
 

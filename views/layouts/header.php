@@ -31,7 +31,7 @@
                     <a class="nav-link" href="/folders/">Teczki</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Użytkowniki</a>
+                    <a class="nav-link" href="/user/view/">Użytkowniki</a>
                 </li>
             </ul>
         </div>

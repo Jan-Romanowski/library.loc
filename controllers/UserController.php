@@ -2,6 +2,10 @@
 
 class UserController{
 
+
+    /** Registration new User
+     * @return bool
+     */
     public function actionRegister(){
 
         $name = '';
@@ -48,5 +52,16 @@ class UserController{
         return true;
     }
 
+
+    public function actionView(){
+
+        $userList = array();
+        $userList = User::getUsers();
+
+        require_once(ROOT . '\views\user\userList.php');
+
+        return true;
+
+    }
 
 }

@@ -9,7 +9,9 @@
         'songs/delete/([0-9]+)' => 'songs/delete/$1',
         'songs/search' => 'songs/search',
         'songs' => 'songs/view',
+        'folders/newFolder' => 'folders/newFolder',
         'folders' => 'folders/view',
         'user/register' => 'user/register',
+        'user/view' => 'user/view',
         '' => 'site/index',
     );

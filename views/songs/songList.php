@@ -23,7 +23,7 @@
                 </ul>
             </div>
 
-                <div class="col-2">
+                <div class="col-3">
                     <input type = "text" name="word" class="form-control" placeholder="Szukaj*"">
                 </div>
                 <div class="col-5">
@@ -56,3 +56,5 @@
         </div>
     </div>
 </div>
+
+<?php

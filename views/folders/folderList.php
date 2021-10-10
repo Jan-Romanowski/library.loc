@@ -1,6 +1,9 @@
 <?php include (ROOT.'/views/layouts/header.php'); ?>
 
-<div class="container p-3 gx-5 w-25">
+<div class="container p-3 gx-5 w-50">
+    <a href="/folders/newFolder" class = "col-2 btn btn-outline-secondary mb-3">
+        Nowa teczka
+    </a>
     <table class='table table-hover'>
         <tr class="bg-light"><td>Nazwa teczki</td><td></td>
         </tr>

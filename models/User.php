@@ -71,4 +71,29 @@ class User{
 
     }
 
+    public static function getUsers(){
+        $db = Db::getConnection();
+
+        $userList = array();
+
+        $result = $db->query("SELECT email, name, surname, ac_type, regist_date
+                                       FROM accounts 
+                             ");
+
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $i = 0;
+        while($row=$result->fetch()){
+            $userList[$i]['email'] = $row['email'];
+            $userList[$i]['name'] = $row['name'];
+            $userList[$i]['surname'] = $row['surname'];
+            $userList[$i]['ac_type'] = $row['ac_type'];
+            $userList[$i]['regist_date'] = $row['regist_date'];
+
+            $i++;
+        }
+
+        return $userList;
+    }
+
 }
