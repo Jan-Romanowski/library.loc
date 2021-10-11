@@ -10,6 +10,7 @@
         'songs/delete/([0-9]+)' => 'songs/delete/$1',
         'songs/search' => 'songs/search',
         'songs' => 'songs/view',
+        'folders/delete/([0-9]+)' => 'folders/delete/$1',
         'folders/newFolder' => 'folders/newFolder',
         'folders' => 'folders/view',
         'files/([0-9]+)/([0-9]+)/([A-z]+)([0-9]+)' => 'songs/downloadFile/$1/$2/$3',

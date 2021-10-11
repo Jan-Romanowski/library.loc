@@ -271,9 +271,7 @@ class SongsController{
     public function downloadFile($a, $b, $c){
 
         $filename = ROOT. '/files/'.$a.'/'.$b.'/'.$c;
-        echo '<pre>';
-        print_r($filename);
-        echo '</pre>';
+
         readfile($filename);
         return true;
     }
