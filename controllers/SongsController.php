@@ -13,6 +13,24 @@ class SongsController{
             $songsItem = array();
             $songsItem = Songs::getSongById($id);
 
+            $files = array();
+            $i = 0;
+
+            $folderName = getNameFolder($id);
+            $dir = ROOT.'/files/'.$folderName.'/'.$id;
+            $dwnlpath = '/files/'.$folderName.'/'.$id;
+            if (is_dir($dir)) {
+                if ($dh = opendir($dir)) {
+                    while (false !== ($file = readdir($dh))) {
+                        if ($file != "." && $file != "..") {
+                            $path = $dir . '/' . $file;
+                            $files[$i]['filename'] = $file;
+                            $files[$i]['dwnlpath'] = $dwnlpath.'/'.$file;
+                        }
+                    }
+                }
+            }
+
             require_once (ROOT . '\views\songs\songItem.php');
 
             return true;
@@ -202,6 +220,10 @@ class SongsController{
         }
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function actionDelete($id){
         if($id){
 
@@ -209,6 +231,50 @@ class SongsController{
             if($result)
                 header("Location: /songs");
         }
+        return true;
+    }
+
+    /**
+     * @param $id_folder
+     * @return bool
+     */
+    public function actionUploadFile($id_folder){
+
+        $folderName = getNameFolder($id_folder);
+
+        if(!is_dir(ROOT.'/files/'.$folderName)) {
+            mkdir(ROOT.'/files/'.$folderName, 0700);
+        }
+        if(!is_dir(ROOT.'/files/'.$folderName.'/'.$id_folder)) {
+            mkdir(ROOT.'/files/'.$folderName.'/'.$id_folder, 0700);
+        }
+
+        if( isset($_FILES['filename']['name'])) {
+
+            $total_files = count($_FILES['filename']['name']);
+
+            for($key = 0; $key < $total_files; $key++) {
+
+                if(isset($_FILES['filename']['name'][$key])
+                    && $_FILES['filename']['size'][$key] > 0) {
+
+                    $original_filename = $_FILES['filename']['name'][$key];
+                    $target = ROOT.'/files/'.$folderName.'/'.$id_folder.'/'.$_FILES['filename']['name'] . basename($original_filename);
+                    $tmp  = $_FILES['filename']['tmp_name'][$key];
+                    move_uploaded_file($tmp, $target);
+                }
+            }
+        }
+        return true;
+    }
+
+    public function downloadFile($a, $b, $c){
+
+        $filename = ROOT. '/files/'.$a.'/'.$b.'/'.$c;
+        echo '<pre>';
+        print_r($filename);
+        echo '</pre>';
+        readfile($filename);
         return true;
     }
 
