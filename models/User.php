@@ -2,6 +2,15 @@
 
 class User{
 
+    /**
+     * @param $name
+     * @param $surname
+     * @param $email
+     * @param $pass1
+     * @param $activated
+     * @param $ac_type
+     * @return bool
+     */
     public static function register($name, $surname, $email, $pass1, $activated, $ac_type){
         $db = Db::getConnection();
 
@@ -20,6 +29,10 @@ class User{
 
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public static function checkName($name){
         if(strlen($name) >= 3){
             return true;
@@ -27,6 +40,10 @@ class User{
         return false;
     }
 
+    /**
+     * @param $surname
+     * @return bool
+     */
     public static function chekSurname($surname){
         if(strlen($surname) >= 3){
             return true;
@@ -34,6 +51,10 @@ class User{
         return false;
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public static function chekEmail($email){
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             return true;
@@ -41,6 +62,11 @@ class User{
         return false;
     }
 
+    /**
+     * @param $pass1
+     * @param $pass2
+     * @return bool
+     */
     public static function chekPasswords($pass1, $pass2){
         if(strcasecmp($pass1, $pass2)==0){
             return true;
@@ -48,13 +74,21 @@ class User{
         return false;
     }
 
-    public static function chekPassword($pass1, $pass2){
-        if(strlen($pass1)>=6 && strlen($pass2)>=6){
+    /**
+     * @param $pass1
+     * @return bool
+     */
+    public static function chekPassword($pass1){
+        if(strlen($pass1)>=6){
             return true;
         }
         return false;
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public static function checkEmailExists($email){
         $db = Db::getConnection();
 
@@ -71,6 +105,9 @@ class User{
 
     }
 
+    /**
+     * @return array
+     */
     public static function getUsers(){
         $db = Db::getConnection();
 
@@ -94,6 +131,38 @@ class User{
         }
 
         return $userList;
+    }
+
+    /**
+     * @param $email
+     * @param $pass
+     * @return false|mixed
+     */
+    public static function checkUserData($email, $pass){
+        $db = Db::getConnection();
+
+        $sql = "SELECT * FROM accounts 
+                WHERE email = :email
+                AND ac_password = :pas";
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->bindParam(':pas', $pass, PDO::PARAM_STR);
+
+        $result->execute();
+
+        $user = $result->fetch();
+
+        if($user){
+            return $user['id_account'];
+        }
+
+        return false;
+    }
+
+    public static function auth($userId){
+        session_start();
+        $_SESSION['user'] = $userId;
     }
 
 }

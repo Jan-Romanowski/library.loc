@@ -8,7 +8,7 @@ class FoldersController{
      * @return bool
      */
     public function actionView(){
-        
+
         $foldersList = array();
         $foldersList = Folders::getFolders();
 
@@ -27,15 +27,15 @@ class FoldersController{
         $result[$i]['id_song'] = $songsList['id_song'];
         $result[$i]['name_song'] = $songsList['name_song'];
         endforeach;
-
-
         */
-
 
         return true;
 
     }
 
+    /**
+     * @return bool
+     */
     public function actionNewFolder(){
 
         $result = '';

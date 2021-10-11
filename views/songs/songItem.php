@@ -12,14 +12,17 @@
             <?php if($songsItem['note']!=''){
                 echo 'Notatki: '.$songsItem['name_folder'];}?>
         </p>
-        <a href="editSong/<?php echo $songsItem['id_song'];?>">Edycja utworu</a><br>
-        <a href="delete/<?php echo $songsItem['id_song'];?>">Usunąć utwór</a>
+        <p class="fs-5">
+            <a href="editSong/<?php echo $songsItem['id_song'];?>">Edycja utworu</a><br>
+            <a href="delete/<?php echo $songsItem['id_song'];?>">Usunąć utwór</a>
+        </p>
     </div>
     <div class="p-5 mt-4 border bg-light">
-        <p class="fs-4">
+        <h2>Pliki</h2>
+        <p class="fs-5">
             <?php
             foreach ($files as $filesItem): ?>
-                <a href="<?php echo $filesItem['dwnlpath'];?>" download=""><?php echo $filesItem['filename'];?></a>
+               <a href="<?php echo $filesItem['dwnlpath'];?>" download=""><?php echo $filesItem['filename'];?></a><br>
             <?php endforeach;
             ?>
         </p>

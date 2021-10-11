@@ -26,6 +26,7 @@ class SongsController{
                             $path = $dir . '/' . $file;
                             $files[$i]['filename'] = $file;
                             $files[$i]['dwnlpath'] = $dwnlpath.'/'.$file;
+                            $i++;
                         }
                     }
                 }

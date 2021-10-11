@@ -53,6 +53,44 @@ class UserController{
     }
 
 
+    public function actionLogin(){
+
+        $email = '';
+        $pass = '';
+
+        if(isset($_POST['submit'])){
+            $email = $_POST['email'];
+            $pass = $_POST['pass'];
+
+            $errors = false;
+
+            if(!User::chekEmail($email))
+                $errors[] = 'Nieprawidłowy email';
+
+            if(!User::chekPassword($pass))
+                $errors[] = 'Hasło ma być nie któtrze niż 6 symboli';
+
+            $userId = User::checkUserData($email, $pass);
+
+            if($userId == false){
+                $errors[] = 'Nieprawidłowe dane dla logowania';
+            }
+            else{
+                User::auth($userId);
+                echo $userId;
+                //header("Location: /cabinet");
+            }
+
+        }
+
+        require_once(ROOT . '\views\user\login.php');
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
     public function actionView(){
 
         $userList = array();

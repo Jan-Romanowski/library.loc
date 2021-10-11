@@ -15,6 +15,8 @@
         'folders' => 'folders/view',
         'files/([0-9]+)/([0-9]+)/([A-z]+)([0-9]+)' => 'songs/downloadFile/$1/$2/$3',
         'user/register' => 'user/register',
+        'user/login' => 'user/login',
         'user/view' => 'user/view',
+        'cabinet' => 'cabinet/index',
         '' => 'site/index',
     );
