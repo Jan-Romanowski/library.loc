@@ -35,7 +35,7 @@ class UserController{
             if(!User::chekPasswords($pass1,$pass2))
                 $errors[] = 'Hasła nie są jednakowe';
 
-            if(!User::chekPassword($pass1,$pass2))
+            if(!User::chekPassword($pass1))
                 $errors[] = 'Nieprawidłowe hasło';
 
             if(User::checkEmailExists($email))
@@ -101,6 +101,15 @@ class UserController{
 
         return true;
 
+    }
+
+    public function actionLogout(){
+        session_abort();
+        session_destroy();
+
+        header("Location: /user/login");
+
+        return true;
     }
 
 }

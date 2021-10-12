@@ -165,20 +165,64 @@ class User{
 
     }
 
+    /**
+     * @param $userData
+     */
     public static function auth($userData){
-        session_start();
+        //session_start();
         $_SESSION['user'] = $userData['id_account'];
         $_SESSION['name'] = $userData['name'];
         $_SESSION['surname'] = $userData['surname'];
         $_SESSION['email'] = $userData['email'];
         $_SESSION['ac_type'] = $userData['ac_type'];
+
     }
 
+    /**
+     * @return bool
+     */
     public static function isLogin(){
         if(isset($_SESSION['user']) && $_SESSION['user']!=' '){
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param $pass
+     * @return bool
+     */
+    public static function isGoodPassword($pass){
+        //session_start(); // Хрен знает почему, но без сессии тут работать не будет
+        $db = Db::getConnection();
+
+        $sql = 'SELECT COUNT(*) FROM accounts WHERE ac_password = :pas AND id_account = :id;';
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':pas', $pass,PDO::PARAM_STR);
+        $result->bindParam(':id', $_SESSION['user'],PDO::PARAM_STR);
+        $result->execute();
+
+        if($result->fetchColumn())
+            return true;
+
+        return false;
+    }
+
+    public static function changePassword($pass){
+        //session_start();
+        $db = Db::getConnection();
+        $id = $_SESSION['user'];
+
+        $sql = "UPDATE accounts 
+            SET 
+                ac_password = '$pass'
+            WHERE id_account = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+
     }
 
 }

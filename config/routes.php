@@ -17,6 +17,7 @@
         'user/register' => 'user/register',
         'user/login' => 'user/login',
         'user/view' => 'user/view',
+        'user/logout' => 'user/logout',
         'cabinet' => 'cabinet/index',
         '' => 'site/index',
     );
