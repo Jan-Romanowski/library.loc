@@ -42,9 +42,14 @@
                 <label for="exampleInputText2" class="form-label">Hasło</label>
                 <input type="password" class="form-control" name="pass" value="<?php echo $pass; ?>">
             </div>
-            <div class="mb-4">
+            <div class="mb-3">
                 <div class="container-fluid" style="text-align: center">
                     <input type="submit" class="btn btn-outline-secondary" name="submit"  value="Zaloguj">
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="container-fluid" style="text-align: center">
+                    <a href="/user/register/">Załóż konto</a>
                 </div>
             </div>
         </div>

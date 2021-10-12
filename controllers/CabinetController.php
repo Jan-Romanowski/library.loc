@@ -12,20 +12,42 @@ class CabinetController
             $new_pass1 = $_POST['new_pass1'];
             $new_pass2 = $_POST['new_pass2'];
 
-            $errors = false;
+            $errors_pass = false;
 
             if (!User::isGoodPassword($old_pass))
-                $errors[] = "Nieprawidłowe stare hasło";
+                $errors_pass[] = "Nieprawidłowe stare hasło";
 
             if (!User::chekPassword($new_pass1))
-                $errors[] = "Hasło ma być nie krótrze niż 6 symboli";
+                $errors_pass[] = "Hasło ma być nie krótrze niż 6 symboli";
 
             if (!User::chekPasswords($new_pass1, $new_pass2))
-                $errors[] = "Hasła nie są jednakowe";
+                $errors_pass[] = "Hasła nie są jednakowe";
 
-            if ($errors == false) {
+            if ($errors_pass == false) {
                 if (User::changePassword($new_pass1)) ;
-                $message = 'Hasło zostało pomyślnie zmienione';
+                $message_pass = 'Hasło zostało pomyślnie zmienione';
+            }
+        }
+
+        else if (isset($_POST['submit_data'])) {
+            $email = $_POST['mail'];
+            $name = $_POST['name'];
+            $surname = $_POST['surname'];
+
+            $errors_data = false;
+
+            if (!User::checkEmailExists($email))
+                $errors_data[] = "Taki email już jest zajęty";
+
+            if (!User::checkName($name))
+                $errors_data[] = "Nieprawidłowe imię";
+
+            if (!User::chekSurname($surname))
+                $errors_data[] = "Nieprawidłowe nazwisko";
+
+            if ($errors_data == false) {
+                if (User::changeData($name,$surname,$email)) ;
+                $message_data = 'Dane zostały pomyślnie zmienione<br>Zaloguj się ponownie, aby zmiany zaczęły obowiązywać';
             }
         }
 

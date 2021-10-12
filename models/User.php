@@ -79,10 +79,29 @@ class User{
      * @return bool
      */
     public static function chekPassword($pass1){
-        if(strlen($pass1)>=6){
+        /*if(strlen($pass1)>=6 && ){
             return true;
         }
-        return false;
+        return false; */
+
+        $errors = false;
+
+        if (strlen($pass1) < 8) {
+            $errors[] = "Password too short!";
+        }
+
+        if (!preg_match("#[0-9]+#", $pass1)) {
+            $errors[] = "Password must include at least one number!";
+        }
+
+        if (!preg_match("#[a-zA-Z]+#", $pass1)) {
+            $errors[] = "Password must include at least one letter!";
+        }
+
+        if($errors){
+           return false;
+        }
+        return true;
     }
 
     /**
@@ -92,13 +111,14 @@ class User{
     public static function checkEmailExists($email){
         $db = Db::getConnection();
 
-        $sql = 'SELECT COUNT(*) FROM accounts WHERE email = :email';
+        $result = $db->query("SELECT COUNT(*) FROM accounts 
+                WHERE email = '$email'");
 
-        $result = $db->prepare($sql);
-        $result->bindParam(':email', $email,PDO::PARAM_STR);
-        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
 
-        if($result->fetchColumn())
+        $row=$result->fetch();
+
+        if($row)
             return true;
 
         return false;
@@ -193,7 +213,7 @@ class User{
      * @return bool
      */
     public static function isGoodPassword($pass){
-        //session_start(); // Хрен знает почему, но без сессии тут работать не будет
+
         $db = Db::getConnection();
 
         $sql = 'SELECT COUNT(*) FROM accounts WHERE ac_password = :pas AND id_account = :id;';
@@ -209,8 +229,12 @@ class User{
         return false;
     }
 
+    /**
+     * @param $pass
+     * @return bool
+     */
     public static function changePassword($pass){
-        //session_start();
+
         $db = Db::getConnection();
         $id = $_SESSION['user'];
 
@@ -223,6 +247,23 @@ class User{
 
         return $result->execute();
 
+    }
+
+    public static function changeData($name, $surname, $email){
+
+        $db = Db::getConnection();
+        $id = $_SESSION['user'];
+
+        $sql = "UPDATE accounts 
+            SET 
+                name = '$name',
+                surname = '$surname',
+                email = '$email'
+            WHERE id_account = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
     }
 
 }

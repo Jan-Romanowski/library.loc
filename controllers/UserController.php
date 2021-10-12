@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class UserController{
 
@@ -78,7 +79,6 @@ class UserController{
             }
             else{
                 User::auth($userData);
-
                 header("Location: /songs");
             }
 
@@ -104,8 +104,9 @@ class UserController{
     }
 
     public function actionLogout(){
-        session_abort();
+        session_unset();
         session_destroy();
+
 
         header("Location: /user/login");
 
