@@ -141,28 +141,44 @@ class User{
     public static function checkUserData($email, $pass){
         $db = Db::getConnection();
 
-        $sql = "SELECT * FROM accounts 
-                WHERE email = :email
-                AND ac_password = :pas";
+        $userData = array();
 
-        $result = $db->prepare($sql);
-        $result->bindParam(':email', $email, PDO::PARAM_STR);
-        $result->bindParam(':pas', $pass, PDO::PARAM_STR);
+        $result = $db->query("SELECT * FROM accounts 
+                WHERE email = '$email'
+                AND ac_password = '$pass'");
 
-        $result->execute();
+        $result->setFetchMode(PDO::FETCH_ASSOC);
 
-        $user = $result->fetch();
+        while($row=$result->fetch()) {
+            $userData['id_account'] = $row['id_account'];
+            $userData['name'] = $row['name'];
+            $userData['surname'] = $row['surname'];
+            $userData['email'] = $row['email'];
+            $userData['ac_type'] = $row['ac_type'];
+        }
 
-        if($user){
-            return $user['id_account'];
+        if($userData){
+            return $userData;
         }
 
         return false;
+
     }
 
-    public static function auth($userId){
+    public static function auth($userData){
         session_start();
-        $_SESSION['user'] = $userId;
+        $_SESSION['user'] = $userData['id_account'];
+        $_SESSION['name'] = $userData['name'];
+        $_SESSION['surname'] = $userData['surname'];
+        $_SESSION['email'] = $userData['email'];
+        $_SESSION['ac_type'] = $userData['ac_type'];
+    }
+
+    public static function isLogin(){
+        if(isset($_SESSION['user']) && $_SESSION['user']!=' '){
+            return true;
+        }
+        return false;
     }
 
 }

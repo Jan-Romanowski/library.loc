@@ -70,15 +70,16 @@ class UserController{
             if(!User::chekPassword($pass))
                 $errors[] = 'Hasło ma być nie któtrze niż 6 symboli';
 
-            $userId = User::checkUserData($email, $pass);
+            $userData = array();
+            $userData = User::checkUserData($email, $pass);
 
-            if($userId == false){
+            if($userData == false){
                 $errors[] = 'Nieprawidłowe dane dla logowania';
             }
             else{
-                User::auth($userId);
-                echo $userId;
-                //header("Location: /cabinet");
+                User::auth($userData);
+
+                header("Location: /songs");
             }
 
         }
