@@ -1,4 +1,4 @@
-<?php include (ROOT.'/views/layouts/header.php'); ?>
+<?php include(ROOT . '/views/headers/header.php'); ?>
 
 <div class='container gx-3' style='min-height: 100vh';>
 

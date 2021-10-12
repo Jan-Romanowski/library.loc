@@ -1,3 +1,3 @@
 <?php
 
-include (ROOT.'/views/layouts/header.php');
+include(ROOT . '/views/headers/header.php');

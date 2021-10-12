@@ -1,4 +1,4 @@
-<?php include (ROOT.'/views/layouts/header.php'); ?>
+<?php include(ROOT . '/views/headers/header.php'); ?>
 
     <div class='container-sm gx-5 mt-4 w-50 ';>
         <?php if($result):
@@ -21,10 +21,16 @@
             <div class="mb-3">
                 <label for="exampleInputText2" class="form-label">Ilość partytur</label>
                 <input type="number" required class="form-control" name="count_p" value="<?php echo $count_p; ?>">
+                <div id="passwordHelpBlock" class="form-text">
+                    Nie może być ujemna.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputText3" class="form-label">Autor</label>
                 <input type="text" required class="form-control" name="autor" value="<?php echo $author; ?>">
+                <div id="passwordHelpBlock" class="form-text">
+                    Pole Autor ma byc w postaci 'Nazwisko. I.'
+                </div>
             </div>
 
             <div class="mb-5">

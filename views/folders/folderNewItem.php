@@ -1,4 +1,4 @@
-<?php include (ROOT.'/views/layouts/header.php');
+<?php include(ROOT . '/views/headers/header.php');
 
   if($result):
       echo '<p class="text-center">Nowa teczka została pomyślnie dodana do biblioteki !</p>';

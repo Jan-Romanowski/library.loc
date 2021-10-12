@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/layouts/header.php');
+<?php include(ROOT . '/views/headers/header.php');
 
 ?>
 
@@ -30,14 +30,23 @@
                                 <div class="mb-3">
                                     <label for="exampleInputText1" class="form-label">Stare hasło</label>
                                     <input type="password" class="form-control" name="old_pass" value="">
+                                    <div id="passwordHelpBlock" class="form-text">
+                                        Wpisz aktualne hasło.
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputText2" class="form-label">Nowe hasło</label>
                                     <input type="text" class="form-control" name="new_pass1" value="">
+                                    <div id="passwordHelpBlock" class="form-text">
+                                        Twoje hasło musi mieć 8-20 znaków, zawierać litery i cyfry oraz nie może zawierać spacji, znaków specjalnych ani emotikonów.
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputText2" class="form-label">Powtórz hasło</label>
                                     <input type="text" class="form-control" name="new_pass2" value="">
+                                    <div id="passwordHelpBlock" class="form-text">
+                                        Twoje hasło musi mieć 8-20 znaków, zawierać litery i cyfry oraz nie może zawierać spacji, znaków specjalnych ani emotikonów.
+                                    </div>
                                 </div>
                                 <div class="mb-4">
                                     <div class="container-fluid" style="text-align: center">
@@ -68,15 +77,18 @@
                                 <?php endif; ?>
                                 <div class="mb-3">
                                     <label for="exampleInputText1" class="form-label">Poczta</label>
-                                    <input type="email" class="form-control disabled" name="mail" value="">
+                                    <input type="email" class="form-control disabled" name="mail" value="<?php echo $_SESSION['email']; ?>">
+                                    <div id="passwordHelpBlock" class="form-text">
+                                        Twój e-mail powinien być w formie example@gmail.com
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputText2" class="form-label">Imię</label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control" name="name" value="<?php echo $_SESSION['name']; ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputText2" class="form-label">Nazwisko</label>
-                                    <input type="text" class="form-control" name="surname" value="">
+                                    <input type="text" class="form-control" name="surname" value="<?php echo $_SESSION['surname']; ?>">
                                 </div>
                                 <div class="mb-4">
                                     <div class="container-fluid" style="text-align: center">

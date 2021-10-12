@@ -19,5 +19,6 @@
         'user/view' => 'user/view',
         'user/logout' => 'user/logout',
         'cabinet' => 'cabinet/index',
+        'main' => 'main/index',
         '' => 'site/index',
     );

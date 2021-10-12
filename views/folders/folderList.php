@@ -1,4 +1,4 @@
-<?php include (ROOT.'/views/layouts/header.php'); ?>
+<?php include(ROOT . '/views/headers/header.php'); ?>
 
 <div class="container p-3 gx-5 w-50">
     <a href="/folders/newFolder" class = "col-2 btn btn-outline-secondary mb-3">
