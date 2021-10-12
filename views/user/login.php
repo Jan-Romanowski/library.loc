@@ -26,7 +26,7 @@
     <form method="post" action="#">
         <h2 class="mb-5 mt-4 text-center">Witamy w wirtualnej bibliotece Chóru Katedralnego w Siedlcach im. ks. A. Hoffmana</h2>
         <?php if(isset($errors) && is_array($errors)): ?>
-            <ul>
+            <ul style="color: red">
                 <?php foreach ($errors as $error): ?>
                     <li> - <?php echo $error; ?></li>
                 <?php endforeach; ?>

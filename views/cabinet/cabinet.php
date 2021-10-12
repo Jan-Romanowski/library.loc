@@ -6,18 +6,18 @@
         <div class="p-5 mt-4 border bg-light">
             <h2>Cabinet</h2>
             <p class="fs-5"><?php echo $_SESSION['name'].' '.$_SESSION['surname']; ?></p>
-                <?php if(isset($message)) echo $message; ?>
+                <?php if(isset($message)) echo $message.'<br>'; ?>
             <p>
                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Zmiana hasła</a>
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Zmiana danych</button>
             </p>
             <div class="row">
                 <div class="col">
-                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <div class="collapse w-50 multi-collapse <?php if(isset($errors)) echo 'show'; ?>" id="multiCollapseExample1">
                         <div class="card card-body">
                             <form action="#" method="post">
+                                <h3 class="text-center">Zmiana hasła</h3><br>
                                 <?php if(isset($errors) && is_array($errors)): ?>
-                                    <ul>
+                                    <ul style="color: red">
                                         <?php foreach ($errors as $error): ?>
                                             <li> - <?php echo $error; ?></li>
                                         <?php endforeach; ?>
@@ -41,13 +41,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="collapse multi-collapse" id="multiCollapseExample2">
-                        <div class="card card-body">
-                            Некоторое содержимое заполнителя для второго компонента сворачивания в этом примере множественного сворачивания. Эта панель по умолчанию скрыта, но открывается, когда пользователь активирует соответствующий триггер.
                         </div>
                     </div>
                 </div>

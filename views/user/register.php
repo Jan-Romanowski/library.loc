@@ -25,15 +25,16 @@
 <div class="container-md w-50">
     <form method="post" action="#">
         <h2 class="mb-5 mt-4 text-center">Witamy w wirtualnej bibliotece Chóru Katedralnego w Siedlcach im. ks. A. Hoffmana</h2>
-        <?php if(isset($errors) && is_array($errors)): ?>
-        <ul>
-            <?php foreach ($errors as $error): ?>
-            <li> - <?php echo $error; ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <?php endif; ?>
-
         <div class="container-md w-75">
+            <div class="mb-3">
+            <?php if(isset($errors) && is_array($errors)): ?>
+                <ul style="color: red">
+                    <?php foreach ($errors as $error): ?>
+                        <li> - <?php echo $error; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            </div>
             <div class="mb-3">
                 <label for="exampleInputText1" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
