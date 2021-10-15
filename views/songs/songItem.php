@@ -22,7 +22,7 @@
         <p class="fs-5">
             <?php
             foreach ($files as $filesItem): ?>
-               <a href="<?php echo $filesItem['dwnlpath'];?>" download=""><?php echo $filesItem['filename'];?></a><br>
+                <a href="<?php echo $filesItem['dwnlpath'];?>" download=""><?php echo $filesItem['filename'];?></a><a class="float-end" href="/songs/deleteFile/<?php echo $songsItem['id_song'].'/'.$filesItem['filename']; ?>">Usunąć</a><br>
             <?php endforeach;
             ?>
         </p>

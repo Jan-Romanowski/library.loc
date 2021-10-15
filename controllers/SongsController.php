@@ -224,7 +224,7 @@ class SongsController{
     /**
      * @param $id
      * @return bool
-     */
+    */
     public function actionDelete($id){
         if($id){
 
@@ -234,6 +234,7 @@ class SongsController{
         }
         return true;
     }
+
 
     /**
      * @param $id_folder
@@ -268,13 +269,44 @@ class SongsController{
         }
         return true;
     }
-
+    /*
     public function downloadFile($a, $b, $c){
 
         $filename = ROOT. '/files/'.$a.'/'.$b.'/'.$c;
 
         readfile($filename);
         return true;
+    }*/
+
+    public function actionDeleteFile($id, $filename){
+
+        $folderName = getNameFolder($id);
+        $dir = ROOT.'/files/'.$folderName.'/'.$id;
+
+        if (is_dir($dir)) {
+            if ($dh = opendir($dir)) {
+                while (false !== ($file = readdir($dh))) {
+                    if ($file != "." && $file != "..") {
+                        if($file)
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        if(unlink($path)){
+            echo "file was deleted";
+        }
+        else{
+            echo "file was not deleted";
+        }
+        header('Location: /songs/'.$id);
+
+        return true;
     }
+
 
 }
