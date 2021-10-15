@@ -260,51 +260,37 @@ class SongsController{
                 if(isset($_FILES['filename']['name'][$key])
                     && $_FILES['filename']['size'][$key] > 0) {
 
-                    $original_filename = $_FILES['filename']['name'][$key];
-                    $target = ROOT.'/files/'.$folderName.'/'.$id_folder.'/'.$_FILES['filename']['name'] . basename($original_filename);
+                    $original_filename = strval($_FILES['filename']['name'][$key]);
+
+                    $target = ROOT.'/files/'.$folderName.'/'.$id_folder.'/'.basename($original_filename);
                     $tmp  = $_FILES['filename']['tmp_name'][$key];
+
                     move_uploaded_file($tmp, $target);
+
+                    header("Location: /songs/".$id_folder);
                 }
             }
         }
         return true;
     }
-    /*
-    public function downloadFile($a, $b, $c){
-
-        $filename = ROOT. '/files/'.$a.'/'.$b.'/'.$c;
-
-        readfile($filename);
-        return true;
-    }*/
 
     public function actionDeleteFile($id, $filename){
-
+        echo 'lel';
         $folderName = getNameFolder($id);
         $dir = ROOT.'/files/'.$folderName.'/'.$id;
-
+        $pathFile = $dir.'/'.$filename;
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {
                 while (false !== ($file = readdir($dh))) {
                     if ($file != "." && $file != "..") {
-                        if($file)
+                        if(strcmp($file, $filename) == 0){
+                            unlink($pathFile);
+                            header('Location: /songs/'.$id);
+                        }
                     }
                 }
             }
         }
-
-
-
-
-
-        if(unlink($path)){
-            echo "file was deleted";
-        }
-        else{
-            echo "file was not deleted";
-        }
-        header('Location: /songs/'.$id);
-
         return true;
     }
 
