@@ -10,7 +10,7 @@
         <?php
         foreach ($foldersList as $foldersListItem): ?>
                 <div class="col-sm-4">
-                    <div class="card m-2">
+                    <div class="card m-2 bg-light">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $foldersListItem['name_folder'] ?></h5>
                             <p class="card-text">Utworów w teczce: <?php echo Folders::countSongsInFolder($foldersListItem['id_folder']) ?></p>

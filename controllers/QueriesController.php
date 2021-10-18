@@ -2,5 +2,5 @@
 session_start();
 
 class QueriesControllerController{
-    
+
 }
