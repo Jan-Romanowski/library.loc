@@ -94,10 +94,9 @@ class Folders
 
         $songsList = array();
 
-        $result = $db->query("SELECT id_song, name_song, folder.name_folder
-                                        FROM song 
-                                            LEFT JOIN folder ON song.id_folder = folder.id_folder
-                                                WHERE id_folder = '$id_folder'");
+        $result = $db->query("SELECT id_song, name_song, id_folder
+                                       FROM song 
+                                       WHERE id_folder = '$id_folder'");
         //$result -> setFetchMode(PDO::FETCH_ASSOC);
 
         $i = 0;

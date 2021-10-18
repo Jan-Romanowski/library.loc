@@ -34,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/user/view/">Użytkowniki</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="?section=queries">Wnioski <span class="badge bg-secondary">'.$num.'</span></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/logout/">Wyloguj</a>
                     </li>

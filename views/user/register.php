@@ -22,6 +22,14 @@
     </nav>
 </header>
 
+<p class="fs-5 mt-5 text-center" style="color: green">
+    <?php
+        if(isset($message)):
+            echo 'Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.<br><br>';
+        echo "<a href='/user/login/'>Zaloguj</a>";
+        else:
+    ?>
+</p>
 <div class="container-md w-50">
     <form method="post" action="#">
         <h2 class="mb-5 mt-4 text-center">Biblioteka Chóru Katedralnego w Siedlcach im. ks. A. Hoffmana</h2>
@@ -75,3 +83,4 @@
 </div>
 
 <?php
+endif;

@@ -11,19 +11,17 @@ class User{
      * @param $ac_type
      * @return bool
      */
-    public static function register($name, $surname, $email, $pass1, $activated, $ac_type){
+    public static function register($name, $surname, $email, $pass1){
         $db = Db::getConnection();
 
-        $sql = 'INSERT INTO accounts (email, ac_password, name, surname, activated, ac_type)'
-                .'VALUES (:email, :ac_password, :name, :surname, :activated, :ac_type)';
+        $sql = 'INSERT INTO queries (email, ac_password, name, surname)'
+                .'VALUES (:email, :ac_password, :name, :surname)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':surname', $surname, PDO::PARAM_STR);
         $result->bindParam(':ac_password', $pass1, PDO::PARAM_STR);
-        $result->bindParam(':activated', $activated, PDO::PARAM_INT);
-        $result->bindParam(':ac_type', $ac_type, PDO::PARAM_STR);
 
         return $result->execute();
 
@@ -118,11 +116,11 @@ class User{
 
         $row=$result->fetch();
 
-        if($row)
+        if($row==1)
             return true;
-
-        return false;
-
+        else{
+            return false;
+        }
     }
 
     /**

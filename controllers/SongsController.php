@@ -275,7 +275,6 @@ class SongsController{
     }
 
     public function actionDeleteFile($id, $filename){
-        echo 'lel';
         $folderName = getNameFolder($id);
         $dir = ROOT.'/files/'.$folderName.'/'.$id;
         $pathFile = $dir.'/'.$filename;

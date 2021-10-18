@@ -5,29 +5,31 @@
     <div class="container-fluid p-3">
         <div class="row align-items-start mb-3">
             <form class="row" method="post" action="/songs/search">
-            <a href="/songs/newSong" class = "col-2 btn btn-outline-secondary">
-                Nowy utwór
-            </a>
+                <div class="d-flex justify-content-evenly">
+                    <a href="/songs/newSong" class = "btn btn-outline-secondary px-3">
+                        Nowy utwór
+                    </a>
 
-            <div class="col-2 dropdown">
-                <button class="btn btn-outline-secondary px-3 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sortuj według
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/songs/filter-1">Nazwy utwora (A-z)</a></li>
-                    <li><a class="dropdown-item" href="/songs/filter-2">Nazwy utwora (z-A)</a></li>
-                    <li><a class="dropdown-item" href="/songs/filter-3">Autora (A-z)</a></li>
-                    <li><a class="dropdown-item" href="/songs/filter-4">Autora (z-A)</a></li>
-                    <li><a class="dropdown-item" href="/songs/filter-5">Numeru teczki (Rosnąco)</a></li>
-                    <li><a class="dropdown-item" href="/songs/filter-6">Numeru teczki (Malejąco)</a></li>
-                </ul>
-            </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle px-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sortuj według
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/songs/filter-1">Nazwy utwora (A-z)</a></li>
+                            <li><a class="dropdown-item" href="/songs/filter-2">Nazwy utwora (z-A)</a></li>
+                            <li><a class="dropdown-item" href="/songs/filter-3">Autora (A-z)</a></li>
+                            <li><a class="dropdown-item" href="/songs/filter-4">Autora (z-A)</a></li>
+                            <li><a class="dropdown-item" href="/songs/filter-5">Numeru teczki (Rosnąco)</a></li>
+                            <li><a class="dropdown-item" href="/songs/filter-6">Numeru teczki (Malejąco)</a></li>
+                        </ul>
+                    </div>
 
-                <div class="col-3">
-                    <input type = "text" name="word" class="form-control" placeholder="Szukaj*"">
-                </div>
-                <div class="col-5">
-                    <input type="submit" name="submit" class="btn btn-outline-secondary w-25">
+                        <div class="px-3">
+                            <input type = "text" name="word" class="form-control" placeholder="Szukaj*"">
+                        </div>
+                        <div class="px-3">
+                            <input type="submit" name="submit" class="btn btn-outline-secondary">
+                        </div>
                 </div>
             </form>
         </div>

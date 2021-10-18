@@ -43,7 +43,9 @@ class UserController{
                 $errors[] = 'Taki email już jest zajęty.';
 
             if($errors==false){
-                User::register($name, $surname, $email, $pass1, 1, 'admin');
+                if(User::register($name, $surname, $email, $pass1)){
+                    $message = 'Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.';
+                }
             }
 
         }
