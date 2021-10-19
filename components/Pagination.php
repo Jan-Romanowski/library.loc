@@ -80,12 +80,12 @@ class Pagination
         # Получаем ограничения для цикла
         $limits = $this->limits();
 
-        $html = '<ul class="pagination" style="display: flex; padding-left: 0; list-style: none; align-content: space-around; justify-content: space-around;" >';
+        $html = '<nav aria-label="Page navigation example"><ul class="pagination">';
         # Генерируем ссылки
         for ($page = $limits[0]; $page <= $limits[1]; $page++) {
             # Если текущая это текущая страница, ссылки нет и добавляется класс active
             if ($page == $this->current_page) {
-                $links .= '<li class="active px-3" style="background-color: #e1dcdc"><a href="#"> ' . $page . '</a></li>';
+                $links .= '<li class="page-item active"><a class="page-link" href="#"> ' . $page . '</a></li>';
             } else {
                 # Иначе генерируем ссылку
                 $links .= $this->generateHtml($page);
@@ -97,15 +97,15 @@ class Pagination
             # Если текущая страница не первая
             if ($this->current_page > 1)
             # Создаём ссылку "На первую"
-                $links = $this->generateHtml(1, '&lt;') . $links;
+                $links = $this->generateHtml(1, 'Pierwsza') . $links;
 
             # Если текущая страница не первая
             if ($this->current_page < $this->amount)
             # Создаём ссылку "На последнюю"
-                $links .= $this->generateHtml($this->amount, '&gt;');
+                $links .= $this->generateHtml($this->amount, 'Ostatnia');
         }
 
-        $html .= $links . '</ul>';
+        $html .= $links . '</ul></nav>';
 
         # Возвращаем html
         return $html;
@@ -128,7 +128,7 @@ class Pagination
         $currentURI = preg_replace('~/page-[0-9]+~', '', $currentURI);
         # Формируем HTML код ссылки и возвращаем
         return
-                '<li><a style="margin-left: 7px; margin-right: 7px; " href="' . $currentURI . $this->index . $page . '">' . $text . '</a></li>';
+                '<li><a class="page-link" href="' . $currentURI . $this->index . $page . '">' . $text . '</a></li>';
     }
 
     /**

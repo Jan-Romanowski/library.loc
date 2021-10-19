@@ -1,6 +1,5 @@
 <?php
     return array(
-
         'songs/([0-9]+)' => 'songs/index/$1',
         'songs/page-([0-9]+)' => 'songs/view/$1',
         'songs/newSong' => 'songs/newSong',
@@ -21,6 +20,7 @@
         'user/login' => 'user/login',
         'user/view' => 'user/view',
         'user/logout' => 'user/logout',
+        'user/changeRights/([0-9]+)/([A-z]+)' => 'user/changeRights/$1/$2',
         'cabinet' => 'cabinet/index',
         'main' => 'main/index',
         '' => 'site/index',

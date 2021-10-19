@@ -3,6 +3,8 @@
 <header>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/template/css/style.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="/template/js/javascript.js" type="text/javascript"></script>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">

@@ -53,9 +53,10 @@
                 </tr>
             <?php endforeach;  ?>
         </table>
-        <div class="container text-center px-5 pt-3 pb-3 gx-5">
+        <div class="container-fluid mt-4 d-flex justify-content-evenly">
             <?php echo $pagination->get(); ?>
         </div>
+
     </div>
 </div>
 

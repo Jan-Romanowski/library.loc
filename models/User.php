@@ -131,7 +131,7 @@ class User{
 
         $userList = array();
 
-        $result = $db->query("SELECT email, name, surname, ac_type, regist_date
+        $result = $db->query("SELECT id_account, email, name, surname, ac_type, regist_date
                                        FROM accounts 
                              ");
 
@@ -139,6 +139,7 @@ class User{
 
         $i = 0;
         while($row=$result->fetch()){
+            $userList[$i]['id_account'] = $row['id_account'];
             $userList[$i]['email'] = $row['email'];
             $userList[$i]['name'] = $row['name'];
             $userList[$i]['surname'] = $row['surname'];
@@ -247,6 +248,12 @@ class User{
 
     }
 
+    /**
+     * @param $name
+     * @param $surname
+     * @param $email
+     * @return bool
+     */
     public static function changeData($name, $surname, $email){
 
         $db = Db::getConnection();
@@ -257,6 +264,19 @@ class User{
                 name = '$name',
                 surname = '$surname',
                 email = '$email'
+            WHERE id_account = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+    }
+
+    public static function changeRights($id, $rights){
+        $db = Db::getConnection();
+
+        $sql = "UPDATE accounts 
+            SET 
+                ac_type = '$rights'
             WHERE id_account = '$id'";
 
         $result = $db->prepare($sql);

@@ -115,4 +115,20 @@ class UserController{
         return true;
     }
 
+    public function actionChangeRights($id, $rights){
+
+        if($id && $rights){
+            if(User::changeRights($id, $rights)){
+                $result = true;
+            }
+            else{
+                $result = false;
+            }
+        }
+
+        header("Location: /user/view/");
+
+        return true;
+    }
+
 }

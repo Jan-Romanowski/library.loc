@@ -7,7 +7,7 @@
             <h2>Konto</h2>
             <p class="fs-5 mb-2"><?php echo $_SESSION['name'].' '.$_SESSION['surname']; ?></p>
             <p class="fs-5 mb-2"><?php echo $_SESSION['email']; ?></p>
-            <p class="fs-5 mb-2"><?php echo $_SESSION['ac_type']; ?></p>
+            <p class="fs-5 mb-2"><?php echo translateRights($_SESSION['ac_type']); ?></p>
 
             <p class="fs-5 mb-5" style="color: green"><?php if(isset($message_data)) echo $message_data; ?></p>
             <p class="fs-5 mb-5" style="color: green"><?php if(isset($message_pass)) echo $message_pass; ?></p>

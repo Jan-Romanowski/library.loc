@@ -32,7 +32,7 @@
 </p>
 <div class="container-md w-50">
     <form method="post" action="#">
-        <h2 class="mb-5 mt-4 text-center">Biblioteka Chóru Katedralnego w Siedlcach im. ks. A. Hoffmana</h2>
+        <h2 class="mb-5 mt-4 text-center">Załórz Konto</h2>
         <div class="container-md w-75">
             <div class="mb-3">
             <?php if(isset($errors) && is_array($errors)): ?>
