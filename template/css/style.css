@@ -2,14 +2,17 @@ a{
     text-decoration: none;
 }
 .main_body{
-    font-family: 'Montserrat', sans-serif;
-
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    background-image: url("/template/images/Chor/10.jpg");
-
-    background-repeat: no-repeat, repeat;
-    background-attachment: fixed;
-    background-size: cover;
-
+    background-image: url("/template/images/Chor/10.jpg") !important;
+    background-color: rgba(0,0,0, 0.4) !important;
+    background-repeat: no-repeat, repeat !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+}
+.main-template-body-center-text{
+    text-align: center;
+    font-size: 53px;
+    text-shadow: 2px 2px 14px black, 0 0 1em black;
+    color: white;
 }
