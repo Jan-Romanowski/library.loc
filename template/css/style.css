@@ -2,9 +2,14 @@ a{
     text-decoration: none;
 }
 .main_body{
-    background: url(/template/images/Chor/10.jpg);
-    background-color: rgba(1,1,1, 0.6);
+    font-family: 'Montserrat', sans-serif;
+
+    height: 100%;
+    width: 100%;
+    background-image: url("/template/images/Chor/10.jpg");
+
     background-repeat: no-repeat, repeat;
     background-attachment: fixed;
     background-size: cover;
+
 }

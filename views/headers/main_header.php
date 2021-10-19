@@ -2,17 +2,23 @@
 
 ?>
 <header>
-<link rel="stylesheet" href="/template/css/style.css">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="script.js"></script>
-        <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style1.css">
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/template/css/style.css">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/template/fonts/Montserrat-Black.otf">
         <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
+</header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
         <div class="container-fluid">
-            <img src="/template/images/Logo/chk%20-%20logo%20-%20pionowe%20-%20białe%20-%20svg.svg" width="95"/>
+            <object class="m-0 p-0"
+                    type = "image/svg+xml"
+                    height="55px;"
+                    data = "/template/images/Logo/logo.svg">
+                <img class="m-0 p-0" src = "/template/images/Logo/logo.svg"/>
+            </object>
+
             <a class="navbar-brand" href="#">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -24,5 +24,5 @@
         'user/changeRights/([0-9]+)/([A-z]+)' => 'user/changeRights/$1/$2',
         'cabinet' => 'cabinet/index',
         'main' => 'main/index',
-        '' => 'site/index',
+        '' => 'main/index',
     );
