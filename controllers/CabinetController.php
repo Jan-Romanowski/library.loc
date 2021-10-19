@@ -4,6 +4,9 @@ session_start();
 class CabinetController
 {
 
+    /**
+     * @return bool
+     */
     function actionIndex()
     {
 

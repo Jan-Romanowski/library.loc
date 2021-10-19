@@ -2,6 +2,9 @@
 
  class Queries{
 
+     /**
+      * @return array
+      */
      public static function getQueries(){
          $db = Db::getConnection();
 
@@ -27,6 +30,9 @@
          return $queriesList;
      }
 
+     /**
+      * @return mixed
+      */
      public static function getCountQueries()
      {
          $db = Db::getConnection();
@@ -40,6 +46,10 @@
          return $row['kek'];
      }
 
+     /**
+      * @param $id
+      * @return bool
+      */
      public static function deleteQuery($id){
          $db = Db::getConnection();
 
@@ -51,6 +61,11 @@
          return $result->execute();
      }
 
+     /**
+      * @param $id
+      * @param $ac_type
+      * @return bool
+      */
      public static function transferQuery($id, $ac_type){
          $db = Db::getConnection();
 

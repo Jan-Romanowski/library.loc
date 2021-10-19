@@ -3,6 +3,9 @@ session_start();
 
 class QueriesController{
 
+    /**
+     * @return bool
+     */
     function actionQueriesView(){
 
         $queriesList = array();
@@ -13,6 +16,10 @@ class QueriesController{
         return true;
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     function actionDeleteQuery($id){
 
         if($id)
@@ -23,6 +30,10 @@ class QueriesController{
         return true;
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     function actionTransferQuery($id){
 
         $ac_type = $_POST['ac_type'];

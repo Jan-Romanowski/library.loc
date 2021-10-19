@@ -271,6 +271,11 @@ class User{
         return $result->execute();
     }
 
+    /**
+     * @param $id
+     * @param $rights
+     * @return bool
+     */
     public static function changeRights($id, $rights){
         $db = Db::getConnection();
 

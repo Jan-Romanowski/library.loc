@@ -7,6 +7,7 @@
             Numer teczki: <?php echo $songsItem['id_song']; ?><br>
             Ilość partytur: <?php echo $songsItem['count_p']; ?><br>
             Autor: <?php echo $songsItem['author']; ?><br>
+            Typ utworu: <?php echo $typeSong; ?><br>
             Teczka: <?php echo $songsItem['name_folder']; ?><br>
 
             <?php if($songsItem['note']!=''){

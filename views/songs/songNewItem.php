@@ -33,6 +33,23 @@
                 </div>
             </div>
 
+
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="typeSong" id="typeSong1" value="two" checked>
+                    <label class="form-check-label" for="typeSong1">
+                        Utwór wielogłosowy
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="typeSong" id="typeSong2" value="one">
+                    <label class="form-check-label" for="typeSong2">
+                        Utwór jednogłosowy
+                    </label>
+                </div>
+            </div>
+
+
             <div class="mb-5">
                 <label for="exampleInputText4" class="form-label">Teczka</label>
                 <select class="form-select" name="folders" aria-label="Default select example">

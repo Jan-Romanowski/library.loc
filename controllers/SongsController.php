@@ -13,6 +13,11 @@ class SongsController{
             $songsItem = array();
             $songsItem = Songs::getSongById($id);
 
+            if($songsItem['one_voice']==0)
+                $typeSong = 'Wielogłosowy';
+            else
+                $typeSong = 'Jednogłosowy';
+
             $files = array();
             $i = 0;
 
@@ -57,29 +62,36 @@ class SongsController{
      * @param string $parameter
      * @return bool
      */
-    public function actionFilter($parameter = 'id_song'){
+    public function actionPriorityFilter($parameter = 'id_song'){
         if(0<$parameter && $parameter<7){
             switch ($parameter){
                 case 1:
                     $parameter = 'name_song';
+                    $_SESSION['Sorting_label'] = 'Nazwy utwora (A-z)';
                     break;
                 case 2:
                     $parameter = 'name_song DESC';
+                    $_SESSION['Sorting_label'] = 'Nazwy utwora (z-A)';
                     break;
                 case 3:
                     $parameter = 'author';
+                    $_SESSION['Sorting_label'] = 'Autora (A-z)';
                     break;
                 case 4:
                     $parameter = 'author DESC';
+                    $_SESSION['Sorting_label'] = 'Autora (z-A)';
                     break;
                 case 5:
                     $parameter = 'id_song';
+                    $_SESSION['Sorting_label'] = 'Numeru teczki (Rosnąco)';
                     break;
                 case 6:
                     $parameter = 'id_song DESC';
+                    $_SESSION['Sorting_label'] = 'Numeru teczki (Malejąco)';
                     break;
             }
         }
+
 
         $_SESSION['Sorting'] = $parameter;
 
@@ -88,6 +100,42 @@ class SongsController{
         return true;
 
     }
+
+
+    /**
+     * @param $parameter
+     * @return bool
+     */
+    function actionSongsFilter($parameter){
+
+        if(0<$parameter && $parameter<4){
+            switch ($parameter){
+                case 1:
+                    $parameter = 2;
+                    $_SESSION['Sorting_songs_label'] = 'Wszystkie utwory';
+                    break;
+                case 2:
+                    $parameter = 0;
+                    $_SESSION['Sorting_songs_label'] = 'Wielogłosowe';
+                    break;
+                case 3:
+                    $parameter = 1;
+                    $_SESSION['Sorting_songs_label'] = 'Jednogłosowe';
+                    break;
+            }
+        }
+
+
+        $_SESSION['Song_Filter'] = $parameter;
+
+        header("Location: /songs");
+
+        return true;
+
+
+        return true;
+    }
+
 
     /** Get all songs
      * @param int $page
@@ -109,10 +157,17 @@ class SongsController{
             $filter = $_SESSION['word'];
         }
 
-        $songsList = array();
-        $songsList = Songs::getSongsList($filter, $parameter, $page);
+        if(!isset($_SESSION['Song_Filter'])){
+            $songsFilter = '';
+        }
+        else{
+            $songsFilter = $_SESSION['Song_Filter'];
+        }
 
-        $total = Songs::getTotalSongs($filter);
+        $songsList = array();
+        $songsList = Songs::getSongsList($filter, $parameter, $songsFilter, $page);
+
+        $total = Songs::getTotalSongs($filter, $songsFilter);
 
         $pagination = new Pagination($total, $page, Songs::SHOW_BY_DEFAULT, 'page-');
 
@@ -143,6 +198,14 @@ class SongsController{
             $folder = $_POST['folders'];
             $note = $_POST['notatki'];
 
+
+            if(isset($_POST['typeSong']) && $_POST['typeSong']=='one')
+                $songType = 1;
+            else if(isset($_POST['typeSong']) && $_POST['typeSong']=='two')
+                $songType = 0;
+            else
+                $songType = 0;
+
             $errors = false;
 
             if(!Songs::checkName($name))
@@ -152,7 +215,7 @@ class SongsController{
                 $errors[] = 'Ilość partytur nie może być ujemna';
 
             if($errors==false){
-                $result = Songs::addNewSong($name, $count_p, $author, $folder, $note);
+                $result = Songs::addNewSong($name, $count_p, $author, $songType, $folder, $note);
             }
         }
 
@@ -194,7 +257,12 @@ class SongsController{
                 $count_p = $_POST['count_p'];
                 $author = $_POST['autor'];
                 $folder_name = $_POST['folders'];
-                //$folder_id = $_POST['id_folder'];
+                if(isset($_POST['typeSong']) && $_POST['typeSong']=='one')
+                    $songType = 1;
+                else if(isset($_POST['typeSong']) && $_POST['typeSong']=='two')
+                    $songType = 0;
+                else
+                    $songType = 0;
                 $note = $_POST['notatki'];
 
                 $errors = false;
@@ -206,7 +274,7 @@ class SongsController{
                     $errors[] = 'Ilość partytur nie może być ujemna';
 
                 if ($errors == false) {
-                    $result = Songs::editSong($id, $name, $count_p, $author, $folder_name, $note);
+                    $result = Songs::editSong($id, $name, $count_p, $author, $songType, $folder_name, $note);
                     if($result)
                         header("Location: /songs");
                 }
@@ -274,6 +342,11 @@ class SongsController{
         return true;
     }
 
+    /**
+     * @param $id
+     * @param $filename
+     * @return bool
+     */
     public function actionDeleteFile($id, $filename){
         $folderName = getNameFolder($id);
         $dir = ROOT.'/files/'.$folderName.'/'.$id;

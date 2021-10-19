@@ -74,6 +74,10 @@ class Folders
         return false;
     }
 
+    /**
+     * @param $id_folder
+     * @return mixed
+     */
     public static function countSongsInFolder($id_folder){
         $db = Db::getConnection();
 
@@ -109,6 +113,9 @@ class Folders
         return $songsList;
     }
 
+    /**
+     * @return array
+     */
     public static function getIdFolders(){
         $db = Db::getConnection();
 

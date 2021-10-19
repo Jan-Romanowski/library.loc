@@ -19,14 +19,8 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/cabinet/">Konto</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Utwory
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/songs/">Wielogłosowe</a></li>
-                                <li><a class="dropdown-item" href="#">Jednogłosowe</a></li>
-                            </ul>
+                        <li class="nav-item">
+                             <a class="nav-link" href="/songs/">Utwory</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/folders/">Teczki</a>

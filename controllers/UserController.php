@@ -56,6 +56,9 @@ class UserController{
     }
 
 
+    /**
+     * @return bool
+     */
     public function actionLogin(){
 
         $email = '';
@@ -105,6 +108,9 @@ class UserController{
 
     }
 
+    /**
+     * @return bool
+     */
     public function actionLogout(){
         session_unset();
         session_destroy();
@@ -115,6 +121,11 @@ class UserController{
         return true;
     }
 
+    /**
+     * @param $id
+     * @param $rights
+     * @return bool
+     */
     public function actionChangeRights($id, $rights){
 
         if($id && $rights){
