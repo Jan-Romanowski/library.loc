@@ -4,9 +4,9 @@
 <header>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="/template/css/style.css">
-        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
 
         <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 </header>
@@ -15,8 +15,8 @@
             <object class="m-0 p-0"
                     type = "image/svg+xml"
                     height="55px;"
-                    data = "/template/images/Logo/logo.svg">
-                <img class="m-0 p-0" src = "/template/images/Logo/logo.svg"/>
+                    data = "/images/Logo/logo.svg">
+                <img class="m-0 p-0" src = "/images/Logo/logo.svg"/>
             </object>
 
             <a class="navbar-brand" href="#">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>

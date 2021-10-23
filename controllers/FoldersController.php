@@ -1,8 +1,6 @@
 <?php
 
-
 class FoldersController{
-
 
     /** Get all folders
      * @return bool
@@ -57,7 +55,7 @@ class FoldersController{
             }
         }
 
-        require_once(ROOT . '\views\folders\folderNewItem.php');
+        require_once(ROOT . '/views/folders/folderNewItem.php');
 
         return true;
     }

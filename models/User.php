@@ -161,12 +161,15 @@ class User{
         $db = Db::getConnection();
 
         $userData = array();
-
-        $result = $db->query("SELECT * FROM accounts 
+				
+				$SQL = "SELECT * FROM accounts 
                 WHERE email = '$email'
-                AND ac_password = '$pass'");
-
-        $result->setFetchMode(PDO::FETCH_ASSOC);
+                AND ac_password = '$pass'";
+				$result = $db->query($SQL);
+				
+				echo var_dump($result);
+				
+				$result->setFetchMode(PDO::FETCH_ASSOC);
 
         while($row=$result->fetch()) {
             $userData['id_account'] = $row['id_account'];

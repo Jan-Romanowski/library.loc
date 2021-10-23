@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
 <header>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/template/css/style.css">
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
         <div class="container-fluid">
             <object class="m-0 p-0"
                     type = "image/svg+xml"
                     height="55px;"
-                    data = "/template/images/Logo/logo.svg">
-                <img class="m-0 p-0" src = "/template/images/Logo/logo.svg"/>
+                    data = "/images/Logo/logo.svg">
+                <img class="m-0 p-0" src = "/images/Logo/logo.svg"/>
             </object>
             <a class="navbar-brand" href="#">Biblioteka Chóru Katedralnego</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
