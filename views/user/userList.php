@@ -19,7 +19,7 @@
                 <td>
                     <div class="dropdown">
                         <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo translateRights($userListItem['ac_type']); ?>
+                            <?php echo ComFun::translateRights($userListItem['ac_type']); ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li><a class="dropdown-item" href="/user/changeRights/<?php echo $userListItem['id_account']; ?>/admin">Administrator</a></li>

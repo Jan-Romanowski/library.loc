@@ -282,7 +282,7 @@ class SongsController{
             $foldersList = array();
             $foldersList = Folders::getFolders();
 
-            require_once(ROOT . '\views\songs\songNewItem.php');
+            require_once(ROOT . '/views/songs/songNewItem.php');
 
             return true;
         }
@@ -365,5 +365,17 @@ class SongsController{
         return true;
     }
 
+	function getNameFolder ($id) {
+		$min = 0;
+		$max = 100;
+		while (true) {
+			if ($min < $id && $id < $max) {
+				return "0".$min.($min==0 ? "00" : "");
 
+			} else {
+				$min += 100;
+				$max += 100;
+			}
+		}
+	}
 }

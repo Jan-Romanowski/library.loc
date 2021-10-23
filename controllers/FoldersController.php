@@ -10,7 +10,7 @@ class FoldersController{
         $foldersList = array();
         $foldersList = Folders::getFolders();
 
-        require_once(ROOT . '\views\folders\folderList.php');
+        require_once(ROOT . '/views/folders/folderList.php');
 
         /*
         $foldersList = array();
