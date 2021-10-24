@@ -21,7 +21,7 @@ class SongsController{
             $files = array();
             $i = 0;
 
-            $folderName = getNameFolder($id);
+            $folderName = SongsController::getNameFolder($id);
             $dir = ROOT.'/files/'.$folderName.'/'.$id;
             $dwnlpath = '/files/'.$folderName.'/'.$id;
             if (is_dir($dir)) {
@@ -365,7 +365,7 @@ class SongsController{
         return true;
     }
 
-	function getNameFolder ($id) {
+	function getNameFolder($id) {
 		$min = 0;
 		$max = 100;
 		while (true) {

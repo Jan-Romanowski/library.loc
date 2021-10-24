@@ -4,6 +4,5 @@ return array(
     'host' => 'localhost',
     'dbname' => 'library',
     'user' => 'library',
-    'password' => 'library',
-
+    'password' => '99Library19',
 );
