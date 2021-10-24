@@ -14,23 +14,7 @@ class FoldersController{
 
         require_once(ROOT . '\views\folders\folderList.php');
 
-        /*
-        $foldersList = array();
-        $foldersList = Folders::countSongsInFolder();
-
-        $result = array();
-        $i = 0;
-        foreach ($foldersList as $kek):
-        $songsList = array();
-        $result[$i]['Folder'] = $kek;
-        $songsList = Folders::getSongsFromFolder($kek);
-        $result[$i]['id_song'] = $songsList['id_song'];
-        $result[$i]['name_song'] = $songsList['name_song'];
-        endforeach;
-        */
-
         return true;
-
     }
 
     /**
