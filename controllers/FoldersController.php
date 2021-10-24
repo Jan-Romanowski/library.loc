@@ -1,8 +1,6 @@
 <?php
 
-
 class FoldersController{
-
 
     /** Get all folders
      * @return bool
@@ -12,7 +10,7 @@ class FoldersController{
         $foldersList = array();
         $foldersList = Folders::getFolders();
 
-        require_once(ROOT . '\views\folders\folderList.php');
+        require_once(ROOT . '/views/folders/folderList.php');
 
         return true;
     }
@@ -41,7 +39,7 @@ class FoldersController{
             }
         }
 
-        require_once(ROOT . '\views\folders\folderNewItem.php');
+        require_once(ROOT . '/views/folders/folderNewItem.php');
 
         return true;
     }

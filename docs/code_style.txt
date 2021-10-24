@@ -1,0 +1,2 @@
+1. Use Tab instead of Spaces
+2. No cyrillic symbols in comments to code

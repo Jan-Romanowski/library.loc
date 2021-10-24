@@ -1,8 +1,6 @@
 <?php
-session_start();
 
 class UserController{
-
 
     /** Registration new User
      * @return bool
@@ -89,7 +87,7 @@ class UserController{
 
         }
 
-        require_once(ROOT . '\views\user\login.php');
+        require_once(ROOT . '/views/user/login.php');
 
         return true;
     }
@@ -102,7 +100,7 @@ class UserController{
         $userList = array();
         $userList = User::getUsers();
 
-        require_once(ROOT . '\views\user\userList.php');
+        require_once(ROOT . '/views/user/userList.php');
 
         return true;
 
