@@ -1,54 +1,52 @@
-<?php
-
-?>
 <header>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
+	<script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/jquery-3.6.0.min.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
-
-        <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
+	<title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 </header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
-        <div class="container-fluid">
-            <object class="m-0 p-0"
-                    type = "image/svg+xml"
-                    height="55px;"
-                    data = "/images/Logo/logo.svg">
-                <img class="m-0 p-0" src = "/images/Logo/logo.svg"/>
-            </object>
 
-            <a class="navbar-brand" href="#">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Aktualności</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Zarząd Chóru</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/login">Biblioteka</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="?section=info" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            O chórze
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Dyrygent</a></li>
-                            <li><a class="dropdown-item" href="#">II Dyrygent</a></li>
-                            <li><a class="dropdown-item" href="#">Ks. A. Hoffman</a></li>
-                            <li><a class="dropdown-item" href="#">Historia chóru</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?section=info&action=kontakt">Kontakt</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
+	<div class="container-fluid">
+		<object class="m-0 p-0"
+						type = "image/svg+xml"
+						height="55px;"
+						data = "/images/Logo/logo.svg">
+				<img class="m-0 p-0" src = "/images/Logo/logo.svg"/>
+		</object>
+
+		<a class="navbar-brand" href="#">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+						<a class="nav-link" href="#">Aktualności</a>
+				</li>
+				<li>
+						<a class="nav-link" href="#">Zarząd Chóru</a>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link" href="/user/login">Biblioteka</a>
+				</li>
+				<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="?section=info" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								O chórze
+						</a>
+						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+								<li><a class="dropdown-item" href="#">Dyrygent</a></li>
+								<li><a class="dropdown-item" href="#">II Dyrygent</a></li>
+								<li><a class="dropdown-item" href="#">Ks. A. Hoffman</a></li>
+								<li><a class="dropdown-item" href="#">Historia chóru</a></li>
+						</ul>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link" href="?section=info&action=kontakt">Kontakt</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
