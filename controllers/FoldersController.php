@@ -52,10 +52,16 @@ class FoldersController{
     public function actionDelete($id){
 
         $result = Folders::countSongsInFolder($id);
+        echo $result;
 
-        echo '<pre>';
-        print_r($result);
-        echo '</pre>';
+        if($result==0){
+            if(Folders::deleteFolderById($id)){
+                echo "Teczka pomyślnie usunięta";
+            }
+        }
+        else{
+            echo 'Teczka zawiera utwory!';
+        }
 
         return true;
     }

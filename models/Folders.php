@@ -122,7 +122,7 @@ class Folders
         $songsList = array();
 
         $result = $db->query("SELECT id_folder, name_folder
-                                       FROM folders");
+                                       FROM folder");
         //$result -> setFetchMode(PDO::FETCH_ASSOC);
 
         $i = 0;
@@ -132,6 +132,17 @@ class Folders
             $i++;
         }
         return $songsList;
+    }
+
+    public static function deleteFolderById($id){
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM folder
+                WHERE id_folder = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
     }
 
 }
