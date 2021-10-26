@@ -38,20 +38,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <p><br>
-                                <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample<?php echo $foldersListItem['id_folder'] ?>" aria-expanded="false" aria-controls="collapseExample">
-                                    Pokarz utwory
-                                </button>
-                            </p>
-                            <div class="collapse" id="collapseExample<?php echo $foldersListItem['id_folder'] ?>">
-                                <div class="card card-body">
-                                    <?php
+                            <div class="accordion accordion-flush mt-2" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo $foldersListItem['id_folder'] ?>" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Pokarz utwory
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse<?php echo $foldersListItem['id_folder'] ?>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="card card-body">
+                                            <?php
 
-                                    $songList = Folders::getSongsFromFolder($foldersListItem['id_folder']);
-                                    foreach ($songList as $song){
-                                        echo "<a href='/songs/".$song['id_song']."'>".$song['name_song']."</a><br>";
-                                    }
-                                    ?>
+                                            $songList = Folders::getSongsFromFolder($foldersListItem['id_folder']);
+                                            foreach ($songList as $song){
+                                                echo "<a href='/songs/".$song['id_song']."'>".$song['name_song']."</a><br>";
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
