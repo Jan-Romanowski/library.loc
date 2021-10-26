@@ -51,7 +51,6 @@
                                     foreach ($songList as $song){
                                         echo "<a href='/songs/".$song['id_song']."'>".$song['name_song']."</a><br>";
                                     }
-
                                     ?>
                                 </div>
                             </div>

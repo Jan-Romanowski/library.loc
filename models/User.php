@@ -107,6 +107,10 @@ class User{
      * @return bool
      */
     public static function checkEmailExists($email){
+
+        if(strcmp($email, $_SESSION["email"])==0)
+            return false;
+
         $db = Db::getConnection();
 
         $result = $db->query("SELECT COUNT(*) FROM accounts 

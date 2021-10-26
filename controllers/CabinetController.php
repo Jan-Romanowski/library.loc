@@ -38,7 +38,7 @@ class CabinetController
 
             $errors_data = false;
 
-            if (!User::checkEmailExists($email))
+            if (User::checkEmailExists($email))
                 $errors_data[] = "Taki email już jest zajęty";
 
             if (!User::checkName($name))
