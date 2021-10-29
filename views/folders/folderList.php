@@ -5,7 +5,6 @@
         Nowa teczka
     </a>
 
-
     <div class="d-flex align-content-around flex-wrap">
         <?php
         foreach ($foldersList as $foldersListItem): ?>

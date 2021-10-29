@@ -37,6 +37,9 @@
 					<li>
 							<a class="nav-link" href="/queries/">Wnioski <span class="badge bg-secondary"><?php echo Queries::getCountQueries(); ?></span></a>
 					</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/view/">Zarządzanie stroną</a>
+                    </li>
 					<li class="nav-item">
 							<a class="nav-link" href="/user/logout/">Wyloguj</a>
 					</li>
