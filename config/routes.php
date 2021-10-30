@@ -25,5 +25,6 @@
         'cabinet' => 'cabinet/index',
         'main' => 'main/index',
         'news/newItem' => 'news/newItem',
+        'news' => 'news',
         '' => 'main/index',
     );

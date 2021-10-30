@@ -7,7 +7,7 @@
 	<script src="/js/javascript.js" type="text/javascript"></script>
 	<script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 fixed-top">
 		<div class="container-fluid">
 			<object class="m-0 p-0"
 							type = "image/svg+xml"
@@ -38,7 +38,7 @@
 							<a class="nav-link" href="/queries/">Wnioski <span class="badge bg-secondary"><?php echo Queries::getCountQueries(); ?></span></a>
 					</li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/view/">Zarządzanie stroną</a>
+                        <a class="nav-link" href="/user/view/">Aktualnośći</a>
                     </li>
 					<li class="nav-item">
 							<a class="nav-link" href="/user/logout/">Wyloguj</a>

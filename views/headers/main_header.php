@@ -8,7 +8,7 @@
 	<title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 </header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 fixed-top">
 	<div class="container-fluid">
 		<object class="m-0 p-0"
 						type = "image/svg+xml"
