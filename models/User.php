@@ -15,7 +15,7 @@ class User{
         $db = Db::getConnection();
 
         $sql = 'INSERT INTO queries (email, ac_password, name, surname)'
-                .'VALUES (:email, :ac_password, :name, :surname)';
+                .'VALUES (:email, MD5(:ac_password), :name, :surname)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
@@ -168,7 +168,7 @@ class User{
 				
 				$SQL = "SELECT * FROM accounts 
                 WHERE email = '$email'
-                AND ac_password = '$pass'";
+                AND ac_password = MD5('$pass')";
 				$result = $db->query($SQL);
 				
 				echo var_dump($result);
@@ -222,7 +222,7 @@ class User{
 
         $db = Db::getConnection();
 
-        $sql = 'SELECT COUNT(*) FROM accounts WHERE ac_password = :pas AND id_account = :id;';
+        $sql = 'SELECT COUNT(*) FROM accounts WHERE ac_password = MD5(:pas) AND id_account = :id;';
 
         $result = $db->prepare($sql);
         $result->bindParam(':pas', $pass,PDO::PARAM_STR);
@@ -246,7 +246,7 @@ class User{
 
         $sql = "UPDATE accounts 
             SET 
-                ac_password = '$pass'
+                ac_password = MD5('$pass')
             WHERE id_account = '$id'";
 
         $result = $db->prepare($sql);
