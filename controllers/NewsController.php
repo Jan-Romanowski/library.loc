@@ -4,6 +4,10 @@ class NewsController{
 
     public function actionIndex(){
 
+        $newsList = array();
+        $newsList = News::getNewsList();
+
+        require_once(ROOT . '/views/news/newsList.php');
 
         return true;
     }
@@ -35,5 +39,9 @@ class NewsController{
         }
 
         require_once(ROOT . '/views/news/newsNewItem.php');
+
+        return true;
+
     }
+
 }

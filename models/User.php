@@ -168,7 +168,7 @@ class User{
 				
 				$SQL = "SELECT * FROM accounts 
                 WHERE email = '$email'
-                AND ac_password = MD5('$pass')";
+                AND ac_password = '$pass'";
 				$result = $db->query($SQL);
 				
 				echo var_dump($result);

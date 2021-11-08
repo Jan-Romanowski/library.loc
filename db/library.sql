@@ -181,7 +181,7 @@ CREATE TABLE `song` (
 --
 
 INSERT INTO `song` (`id_song`, `name_song`, `count_p`, `author`, `id_folder`, `one_voice`, `note`) VALUES
-(1, 'BÃ³g siÄ™ rodzi', 87, 'Szulik M.R. ', 1, 0, ''),
+(1, 'Bóg siÄ™ rodzi', 87, 'Szulik M.R. ', 1, 0, ''),
 (2, 'Jasna Panna', 98, 'Maklakiewicz J.', 1, 0, NULL),
 (3, 'Pan z nieba', 86, 'Stuligrosz S.', 2, 0, NULL),
 (4, 'Popule Meus', 48, 'de Victoria T.L.', 3, 0, ''),

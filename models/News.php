@@ -70,5 +70,25 @@ class News{
 
     public static function getNewsList(){
 
+        $db = Db::getConnection();
+        $newsList = array();
+
+        $result = $db->query("SELECT id_news, header, text, date_news, autor
+                                       FROM news;");
+
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $i = 0;
+        while($row=$result->fetch()){
+            $newsList[$i]['id_news'] = $row['id_news'];
+            $newsList[$i]['header'] = $row['header'];
+            $newsList[$i]['text'] = $row['text'];
+            $newsList[$i]['date_news'] = $row['date_news'];
+            $newsList[$i]['autor'] = $row['autor'];
+
+            $i++;
+        }
+        return $newsList;
+
     }
 }

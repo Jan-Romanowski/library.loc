@@ -113,7 +113,6 @@ class UserController{
         session_unset();
         session_destroy();
 
-
         header("Location: /user/login");
 
         return true;
