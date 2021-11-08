@@ -91,4 +91,16 @@ class News{
         return $newsList;
 
     }
+
+    public static function deleteNews($id){
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM song
+                WHERE id_song = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+    }
+
 }

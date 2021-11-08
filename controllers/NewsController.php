@@ -14,7 +14,6 @@ class NewsController{
 
     public function actionNewItem(){
 
-
         $header = '';
         $text = '';
         $author = '';
@@ -39,6 +38,16 @@ class NewsController{
         }
 
         require_once(ROOT . '/views/news/newsNewItem.php');
+
+        return true;
+
+    }
+
+    public function actionDelete($id){
+        if($id)
+            $result = News::deleteNews($id);
+
+        header("Location: /news");
 
         return true;
 

@@ -24,6 +24,7 @@
         'user/changeRights/([0-9]+)/([A-z]+)' => 'user/changeRights/$1/$2',
         'cabinet' => 'cabinet/index',
         'main' => 'main/index',
+        'news/deleteNews/([0-9]+)' => 'news/deleteNews/$1',
         'news/newItem' => 'news/newItem',
         'news' => 'news/index',
         '' => 'main/index',
