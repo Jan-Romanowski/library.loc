@@ -1,7 +1,8 @@
 <?php include(ROOT . '/views/headers/header.php'); ?>
 
     <div class='container-sm gx-5 mt-4 w-50 ';>
-        <?php if($result):
+        <?php
+        if($result):
             echo '<p class="text-center">Nowy utwór został pomyślnie dodany do biblioteki !</p>';
         else:
             ?>

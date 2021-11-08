@@ -69,6 +69,9 @@ class News{
     }
 
     public static function getNewsList(){
+        $db = Db::getConnection();
 
+        $result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
+                                       FROM news");
     }
 }

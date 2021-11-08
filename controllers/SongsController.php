@@ -130,9 +130,6 @@ class SongsController{
         header("Location: /songs");
 
         return true;
-
-
-        return true;
     }
 
 
