@@ -7,6 +7,8 @@ class QueriesController{
      */
     function actionQueriesView(){
 
+        User::isModerator();
+
         $queriesList = array();
         $queriesList = Queries::getQueries();
 
@@ -21,6 +23,8 @@ class QueriesController{
      */
     function actionDeleteQuery($id){
 
+        User::isModerator();
+
         if($id)
         Queries::deleteQuery($id);
 
@@ -34,6 +38,8 @@ class QueriesController{
      * @return bool
      */
     function actionTransferQuery($id){
+
+        User::isModerator();
 
         $ac_type = $_POST['ac_type'];
 

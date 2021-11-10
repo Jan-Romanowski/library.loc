@@ -8,6 +8,8 @@ class SongsController{
      */
     public function actionIndex($id){
 
+        User::isLogin();
+
         if($id){
 
             $songsItem = array();
@@ -48,6 +50,8 @@ class SongsController{
      */
     public function actionSearch(){
 
+        User::isLogin();
+
         $word = $_POST['word'];
 
         $_SESSION['word'] = $word;
@@ -62,6 +66,9 @@ class SongsController{
      * @return bool
      */
     public function actionPriorityFilter($parameter = 'id_song'){
+
+        User::isLogin();
+
         if(0<$parameter && $parameter<7){
             switch ($parameter){
                 case 1:
@@ -107,6 +114,8 @@ class SongsController{
      */
     function actionSongsFilter($parameter){
 
+        User::isLogin();
+
         if(0<$parameter && $parameter<4){
             switch ($parameter){
                 case 1:
@@ -131,8 +140,6 @@ class SongsController{
 
         return true;
 
-
-        return true;
     }
 
 
@@ -141,6 +148,8 @@ class SongsController{
      * @return bool
      */
     public function actionView($page = 1){
+
+        User::isLogin();
 
         if(!isset($_SESSION['Sorting'])){
             $parameter = 'id_song';
@@ -180,6 +189,8 @@ class SongsController{
      * @return bool
      */
     public function actionNewSong(){
+
+        User::isModerator();
 
         $name = '';
         $count_p = '';
@@ -234,6 +245,8 @@ class SongsController{
      * @return bool|void
      */
     public function actionEditSong($id){
+
+        User::isModerator();
 
         if($id) {
 
@@ -293,6 +306,9 @@ class SongsController{
      * @return bool
     */
     public function actionDelete($id){
+
+        User::isModerator();
+
         if($id){
 
             $result = Songs::deleteSong($id);
@@ -307,12 +323,15 @@ class SongsController{
      * @param $id_folder
      * @return bool
      */
-    public function actionUploadFile($id_folder){
+    public function actionUploadFile($id_folder){ // МАКИ НЕ ЗНАЮТ ЧТО ТАКОЕ mkdir !!!!!!!!!!!!!!!!!!!!!!!!!
 
-        $folderName = getNameFolder($id_folder);
+        User::isModerator();
+
+        $folderName = self::getNameFolder($id_folder);
 
         if(!is_dir(ROOT.'/files/'.$folderName)) {
             mkdir(ROOT.'/files/'.$folderName, 0700);
+
         }
         if(!is_dir(ROOT.'/files/'.$folderName.'/'.$id_folder)) {
             mkdir(ROOT.'/files/'.$folderName.'/'.$id_folder, 0700);
@@ -347,7 +366,10 @@ class SongsController{
      * @return bool
      */
     public function actionDeleteFile($id, $filename){
-        $folderName = getNameFolder($id);
+
+        User::isModerator();
+
+        $folderName = self::getNameFolder($id);
         $dir = ROOT.'/files/'.$folderName.'/'.$id;
         $pathFile = $dir.'/'.$filename;
         if (is_dir($dir)) {

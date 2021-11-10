@@ -8,6 +8,7 @@ class CabinetController
      */
     function actionIndex()
     {
+        User::isLogin();
 
         if (isset($_POST['submit_pass'])) {
             $old_pass = $_POST['old_pass'];
@@ -26,32 +27,33 @@ class CabinetController
                 $errors_pass[] = "Hasła nie są jednakowe";
 
             if ($errors_pass == false) {
-                if (User::changePassword($new_pass1)) ;
-                $message_pass = 'Hasło zostało pomyślnie zmienione';
+                if(User::changePassword($new_pass1)) ;
+                    $message_pass = 'Hasło zostało pomyślnie zmienione';
+                }
             }
-        }
 
-        else if (isset($_POST['submit_data'])) {
-            $email = $_POST['mail'];
-            $name = $_POST['name'];
-            $surname = $_POST['surname'];
+            else if (isset($_POST['submit_data'])) {
+                $email = $_POST['mail'];
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
 
-            $errors_data = false;
+                $errors_data = false;
 
-            if (User::checkEmailExists($email))
-                $errors_data[] = "Taki email już jest zajęty";
+                if (User::checkEmailExists($email))
+                    $errors_data[] = "Taki email już jest zajęty";
 
-            if (!User::checkName($name))
-                $errors_data[] = "Nieprawidłowe imię";
+                if (!User::checkName($name))
+                    $errors_data[] = "Nieprawidłowe imię";
 
-            if (!User::chekSurname($surname))
-                $errors_data[] = "Nieprawidłowe nazwisko";
+                if (!User::chekSurname($surname))
+                    $errors_data[] = "Nieprawidłowe nazwisko";
 
-            if ($errors_data == false) {
-                if (User::changeData($name,$surname,$email)) ;
-                $message_data = 'Dane zostały pomyślnie zmienione<br>Zaloguj się ponownie, aby zmiany zaczęły obowiązywać';
+                if ($errors_data == false) {
+                    if (User::changeData($name,$surname,$email)) ;
+                    $message_data = 'Dane zostały pomyślnie zmienione<br>Zaloguj się ponownie, aby zmiany zaczęły obowiązywać';
+                }
+
             }
-        }
 
         require_once ROOT . '/views/cabinet/cabinet.php';
 

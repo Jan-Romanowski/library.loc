@@ -97,6 +97,8 @@ class UserController{
      */
     public function actionView(){
 
+        User::isModerator();
+
         $userList = array();
         $userList = User::getUsers();
 
@@ -124,6 +126,8 @@ class UserController{
      * @return bool
      */
     public function actionChangeRights($id, $rights){
+
+        User::isAdmin();
 
         if($id && $rights){
             if(User::changeRights($id, $rights)){

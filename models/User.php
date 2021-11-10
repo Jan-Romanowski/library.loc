@@ -171,8 +171,6 @@ class User{
                 AND ac_password = '$pass'";
 				$result = $db->query($SQL);
 				
-				echo var_dump($result);
-				
 				$result->setFetchMode(PDO::FETCH_ASSOC);
 
         while($row=$result->fetch()) {
@@ -189,29 +187,6 @@ class User{
 
         return false;
 
-    }
-
-    /**
-     * @param $userData
-     */
-    public static function auth($userData){
-        //session_start();
-        $_SESSION['user'] = $userData['id_account'];
-        $_SESSION['name'] = $userData['name'];
-        $_SESSION['surname'] = $userData['surname'];
-        $_SESSION['email'] = $userData['email'];
-        $_SESSION['ac_type'] = $userData['ac_type'];
-
-    }
-
-    /**
-     * @return bool
-     */
-    public static function isLogin(){
-        if(isset($_SESSION['user']) && $_SESSION['user']!=' '){
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -294,6 +269,55 @@ class User{
         $result = $db->prepare($sql);
 
         return $result->execute();
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isLogin(){
+        if(isset($_SESSION['user']) &&
+                 $_SESSION['user']!=' ' &&
+                 isset($_SESSION['ac_type'])){
+            return true;
+        }
+        die("Zabroniono w dostępie. Musisz się zalogować.");
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isModerator(){
+        if(self::isLogin()){
+            if(strcasecmp( $_SESSION['ac_type'], "moder")==0 ||
+                strcasecmp( $_SESSION['ac_type'], "admin")==0){
+                return true;
+            }
+        }
+        die("Zabroniono w dostępie, nie masz uprawnień.");
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isAdmin(){
+        if(self::isLogin()){
+            if(strcasecmp( $_SESSION['ac_type'], "admin")==0)
+                return true;
+        }
+        die("Zabroniono w dostępie, nie masz uprawnień.");
+    }
+
+    /**
+     * @param $userData
+     */
+    public static function auth($userData){
+        //session_start();
+        $_SESSION['user'] = $userData['id_account'];
+        $_SESSION['name'] = $userData['name'];
+        $_SESSION['surname'] = $userData['surname'];
+        $_SESSION['email'] = $userData['email'];
+        $_SESSION['ac_type'] = $userData['ac_type'];
+
     }
 
 }

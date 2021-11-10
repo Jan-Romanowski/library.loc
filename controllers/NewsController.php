@@ -2,7 +2,12 @@
 
 class NewsController{
 
+    /**
+     * @return bool
+     */
     public function actionIndex(){
+
+        User::isModerator();
 
         $newsList = array();
         $newsList = News::getNewsList();
@@ -12,7 +17,12 @@ class NewsController{
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function actionNewItem(){
+
+        User::isModerator();
 
         $header = '';
         $text = '';
@@ -43,7 +53,14 @@ class NewsController{
 
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function actionDelete($id){
+
+        User::isModerator();
+
         if($id)
             $result = News::deleteNews($id);
 
