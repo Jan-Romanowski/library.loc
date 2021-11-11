@@ -108,8 +108,10 @@ class User{
      */
     public static function checkEmailExists($email){
 
-        if(strcmp($email, $_SESSION["email"])==0)
-            return false;
+        if(isset($_SESSION["email"])){
+            if(strcmp($email, $_SESSION["email"])==0)
+                return false;
+        }
 
         $db = Db::getConnection();
 
@@ -307,6 +309,20 @@ class User{
         die("Zabroniono w dostępie, nie masz uprawnień.");
     }
 
+    public static function isUser(){
+        if(self::isLogin()){
+            if(strcasecmp($_SESSION['ac_type'], "user")==0)
+                return true;
+        }
+        die("Zabroniono w dostępie, nie masz uprawnień.");
+    }
+
+    public static function checkRoot($root){
+        if(strcasecmp($_SESSION['ac_type'],$root)==0)
+            return true;
+        return false;
+    }
+
     /**
      * @param $userData
      */
@@ -317,7 +333,18 @@ class User{
         $_SESSION['surname'] = $userData['surname'];
         $_SESSION['email'] = $userData['email'];
         $_SESSION['ac_type'] = $userData['ac_type'];
-
     }
+
+    public static function deleteUser($id){
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM accounts
+                WHERE id_account = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+    }
+
 
 }

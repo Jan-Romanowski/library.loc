@@ -20,6 +20,7 @@
         'user/register' => 'user/register',
         'user/login' => 'user/login',
         'user/view' => 'user/view',
+        'user/deleteUser/([0-9]+)' => 'user/deleteUser/$1',
         'user/logout' => 'user/logout',
         'user/changeRights/([0-9]+)/([A-z]+)' => 'user/changeRights/$1/$2',
         'cabinet' => 'cabinet/index',

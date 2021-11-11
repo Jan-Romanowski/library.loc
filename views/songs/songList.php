@@ -5,8 +5,7 @@
     <div class="container-fluid p-3">
         <div class="row align-items-start mb-3">
 
-
-            <div class="accordion accordion-flush col-5" id="accordionFlushExample">
+            <div class="accordion accordion-flush col-4" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">

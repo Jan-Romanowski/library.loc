@@ -14,7 +14,7 @@
                 echo 'Notatki: ' . $songsItem['name_folder'];
             } ?>
         </p>
-
+        <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
         <button class="btn btn-outline-primary mb-1" onclick=document.location="editSong/<?php echo $songsItem['id_song']; ?>">
             Edycja utworu
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill"
@@ -23,6 +23,7 @@
             </svg>
         </button>
         <br><br>
+
         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Usunąć utwór
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"
@@ -47,6 +48,7 @@
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
         <div class="p-5 mt-4 border bg-light mb-3">
             <h2>Pliki</h2>
@@ -57,7 +59,7 @@
                 <?php endforeach;
                 ?>
             </p>
-
+            <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
             <div class="container-fluid d-flex flex-column justify-content-center w-50">
                 <div class="mb-3 lg-3">
                     <form action="uploadFile/<?php echo $songsItem['id_song']; ?>" method="post" class="" enctype="multipart/form-data" style="margin-top: 30px;">
@@ -72,6 +74,7 @@
                     </form>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
 </div>
 

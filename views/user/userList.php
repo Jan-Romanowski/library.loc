@@ -13,7 +13,7 @@
         foreach ($userList as $userListItem): ?>
             <tr>
                 <td><?php echo $userListItem['email'] ?></td>
-                <td><?php echo $userListItem['name'] ?></td>
+                <td><?php echo $userListItem['id_account'] ?></td>
                 <td><?php echo $userListItem['surname'] ?></td>
 
                 <td>
@@ -29,6 +29,31 @@
                     </div>
                 </td>
                 <td><?php echo $userListItem['regist_date'] ?></td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $userListItem['id_account']; ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"
+                             viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </button>
+                    <div class="modal fade" id="staticBackdrop<?php echo $userListItem['id_account']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Napewno chcesz usunąć to konto ? Id = <?php echo $userListItem['id_account']; ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn btn-outline-danger w-25"
+                                            onclick=document.location="/user/deleteUser/<?php echo $userListItem['id_account']; ?>">Tak
+                                    </button>
+                                    <button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         <?php endforeach;  ?>
     </table>

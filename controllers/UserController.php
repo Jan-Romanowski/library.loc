@@ -143,4 +143,15 @@ class UserController{
         return true;
     }
 
+    public function actionDeleteUser($id){
+        User::isAdmin();
+
+        if($id){
+            User::deleteUser($id);
+        }
+
+        header("Location: /user/view/");
+        return true;
+    }
+
 }
