@@ -133,7 +133,6 @@ class SongsController{
             }
         }
 
-
         $_SESSION['Song_Filter'] = $parameter;
 
         header("Location: /songs");

@@ -8,6 +8,7 @@
             <td>Nazwisko</td>
             <td>Typ Konta</td>
             <td>Data rejestracji</td>
+            <td></td>
         </tr>
         <?php
         foreach ($userList as $userListItem): ?>
@@ -41,7 +42,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Napewno chcesz usunąć to konto ? Id = <?php echo $userListItem['id_account']; ?></h5>
+                                    <h5 class="modal-title" id="staticBackdropLabel">Napewno chcesz usunąć konto <?php echo $userListItem['name']." ".$userListItem['surname']; ?> ?</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-footer">

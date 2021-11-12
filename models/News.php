@@ -39,7 +39,7 @@ class News{
      * @param $text
      * @return bool
      */
-    public static function checkTexT($text){
+    public static function checkText($text){
         if(strlen($text)>299){
             return true;
         }

@@ -32,7 +32,7 @@
                                 </ul>
                             </div><br>
                             <div class="dropdown">
-                                Sortowanie wg.:
+                                Sortowanie wg:
                                 <button class="btn btn-outline-dark dropdown-toggle px-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     <?php
 
@@ -59,7 +59,7 @@
             </div>
 
             <div class="col-5">
-                <form class="row" method="post">
+                <form class="row" action="/songs/search/" method="post">
                     <div class="col-11 x-3">
                         <input type = "text" name="word" class="form-control" placeholder="Szukaj*" value="<?php if(isset($_SESSION['word'])) echo $_SESSION['word'];?>">
                     </div>

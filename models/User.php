@@ -188,7 +188,6 @@ class User{
         }
 
         return false;
-
     }
 
     /**
@@ -335,6 +334,10 @@ class User{
         $_SESSION['ac_type'] = $userData['ac_type'];
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function deleteUser($id){
         $db = Db::getConnection();
 

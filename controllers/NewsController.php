@@ -57,6 +57,26 @@ class NewsController{
      * @param $id
      * @return bool
      */
+    public function actionView($id){
+
+        User::isAdmin();
+
+        if($id){
+
+            $newsItem = array();
+            $newsItem = News::getNewsItemById($id);
+
+            require_once(ROOT . '/views/news/newsItem.php');
+
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
     public function actionDelete($id){
 
         User::isModerator();

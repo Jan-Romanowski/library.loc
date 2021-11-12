@@ -1,7 +1,7 @@
 <?php include(ROOT . '/views/headers/header.php'); ?>
 
 <div class="container p-3 gx-4 w-75">
-    <a href="/folders/newFolder" class = "col-2 btn btn-outline-secondary mb-3">
+    <a href="/folders/newFolder" class = "col-2 btn btn-outline-dark mb-3">
         Nowa teczka
     </a>
 

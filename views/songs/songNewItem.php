@@ -32,8 +32,6 @@
                     Pole Autor ma byc w postaci 'Nazwisko. I.'
                 </div>
             </div>
-
-
             <div class="mb-3">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="typeSong" id="typeSong1" value="two" checked>
@@ -48,8 +46,6 @@
                     </label>
                 </div>
             </div>
-
-
             <div class="mb-5">
                 <label for="exampleInputText4" class="form-label">Teczka</label>
                 <select class="form-select" name="folders" aria-label="Default select example">
