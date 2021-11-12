@@ -2,15 +2,28 @@
 
 class NewsController{
 
+    /**
+     * @return bool
+     */
     public function actionIndex(){
 
+        User::isModerator();
+
+        $newsList = array();
+        $newsList = News::getNewsList();
+
+        require_once(ROOT . '/views/news/newsList.php');
 
 
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function actionNewItem(){
 
+        User::isModerator();
 
         $header = '';
         $text = '';
@@ -36,5 +49,26 @@ class NewsController{
         }
 
         require_once(ROOT . '/views/news/newsNewItem.php');
+
+        return true;
+
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function actionDelete($id){
+
+        User::isModerator();
+
+        if($id)
+            $result = News::deleteNews($id);
+
+        header("Location: /news");
+
+        return true;
+
+    }
+
 }

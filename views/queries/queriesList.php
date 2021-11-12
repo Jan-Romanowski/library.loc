@@ -35,10 +35,9 @@
                                             Zaznacz typ konta
                                             <div class="text-center mt-3">
                                                 <select class="form-select mb-3" name="ac_type" aria-label=".form-select-lg example">
-                                                    <option selected hidden value="guest">Typ konta</option>
-                                                    <option value="user">Chórzysta</option>
-                                                    <option value="guest">Gość</option>
-                                                    <option value="moderator">Moderator</option>
+                                                    <option selected hidden value="user">Typ konta</option>
+                                                    <option value="user">Użytkownik</option>
+                                                    <?php if(User::isAdmin()){ ?> <option value="moder">Moderator</option><option value="admin">Administrator</option> <?php } ?>
                                                 </select>
                                             </div>
                                         </div>

@@ -17,7 +17,7 @@
 				<img class="m-0 p-0" src = "/images/Logo/logo.svg"/>
 		</object>
 
-		<a class="navbar-brand" href="#">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
+		<a class="navbar-brand" href="/">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 		</button>

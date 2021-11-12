@@ -7,6 +7,8 @@ class FoldersController{
      */
     public function actionView(){
 
+        User::isLogin();
+
         $foldersList = array();
         $foldersList = Folders::getFolders();
 
@@ -19,6 +21,8 @@ class FoldersController{
      * @return bool
      */
     public function actionNewFolder(){
+
+        User::isModerator();
 
         $result = '';
         $name_folder = '';
@@ -50,6 +54,8 @@ class FoldersController{
     }
 
     public function actionDelete($id){
+
+        User::isModerator();
 
         $result = Folders::countSongsInFolder($id);
         echo $result;

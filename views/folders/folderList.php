@@ -13,7 +13,8 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $foldersListItem['name_folder'] ?></h5>
                             <p class="card-text">Utworów w teczce: <?php echo Folders::countSongsInFolder($foldersListItem['id_folder']) ?></p>
-                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $foldersListItem['id_folder']; ?>">
+                            <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $foldersListItem['id_folder']; ?>">
                                 Usunąć teczkę
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"
                                      viewBox="0 0 16 16">
@@ -29,15 +30,16 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary w-25"
+                                            <button type="button" class="btn btn-outline-danger w-25"
                                                     onclick=document.location="delete/<?php echo $foldersListItem['id_folder']; ?>">Tak
                                             </button>
-                                            <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Nie</button>
+                                            <button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion accordion-flush mt-2" id="accordionFlushExample">
+                            <?php endif; ?>
+                            <div class="accordion accordion mt-2" id="accordionFlushExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo $foldersListItem['id_folder'] ?>" aria-expanded="false" aria-controls="flush-collapseOne">

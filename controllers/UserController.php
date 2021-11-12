@@ -97,6 +97,8 @@ class UserController{
      */
     public function actionView(){
 
+        User::isModerator();
+
         $userList = array();
         $userList = User::getUsers();
 
@@ -113,7 +115,6 @@ class UserController{
         session_unset();
         session_destroy();
 
-
         header("Location: /user/login");
 
         return true;
@@ -126,6 +127,8 @@ class UserController{
      */
     public function actionChangeRights($id, $rights){
 
+        User::isAdmin();
+
         if($id && $rights){
             if(User::changeRights($id, $rights)){
                 $result = true;
@@ -137,6 +140,17 @@ class UserController{
 
         header("Location: /user/view/");
 
+        return true;
+    }
+
+    public function actionDeleteUser($id){
+        User::isAdmin();
+
+        if($id){
+            User::deleteUser($id);
+        }
+
+        header("Location: /user/view/");
         return true;
     }
 

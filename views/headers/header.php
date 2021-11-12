@@ -19,30 +19,44 @@
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 			</button>
-			
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
 				<ul class="navbar-nav">
-					<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="/cabinet/">Konto</a>
-					</li>
-					<li class="nav-item">
-							 <a class="nav-link" href="/songs/">Utwory</a>
-					</li>
-					<li class="nav-item">
-							<a class="nav-link" href="/folders/">Teczki</a>
-					</li>
-					<li class="nav-item">
-							<a class="nav-link" href="/user/view/">Użytkowniki</a>
-					</li>
-					<li>
-							<a class="nav-link" href="/queries/">Wnioski <span class="badge bg-secondary"><?php echo Queries::getCountQueries(); ?></span></a>
-					</li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/view/">Aktualnośći</a>
-                    </li>
-					<li class="nav-item">
-							<a class="nav-link" href="/user/logout/">Wyloguj</a>
-					</li>
+                        <?php if(User::checkRoot("admin") || User::checkRoot("moder")): ?><!-- FOR ADMIN AND MODERATOR -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/cabinet/">Konto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/songs/">Utwory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/folders/">Teczki</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/view/">Użytkowniki</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/queries/">Wnioski <span class="badge bg-secondary"><?php echo Queries::getCountQueries(); ?></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/news/">Aktualnośći</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/logout/">Wyloguj</a>
+                        </li>
+                    <?php else: ?> <!-- FOR USER -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/cabinet/">Konto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/songs/">Utwory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/folders/">Teczki</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/logout/">Wyloguj</a>
+                        </li>
+                    <?php endif; ?>
 				</ul>
 			</div>
 		</div>

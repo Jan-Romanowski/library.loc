@@ -15,7 +15,7 @@ class User{
         $db = Db::getConnection();
 
         $sql = 'INSERT INTO queries (email, ac_password, name, surname)'
-                .'VALUES (:email, :ac_password, :name, :surname)';
+                .'VALUES (:email, MD5(:ac_password), :name, :surname)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
@@ -108,8 +108,10 @@ class User{
      */
     public static function checkEmailExists($email){
 
-        if(strcmp($email, $_SESSION["email"])==0)
-            return false;
+        if(isset($_SESSION["email"])){
+            if(strcmp($email, $_SESSION["email"])==0)
+                return false;
+        }
 
         $db = Db::getConnection();
 
@@ -171,8 +173,6 @@ class User{
                 AND ac_password = '$pass'";
 				$result = $db->query($SQL);
 				
-				echo var_dump($result);
-				
 				$result->setFetchMode(PDO::FETCH_ASSOC);
 
         while($row=$result->fetch()) {
@@ -192,29 +192,6 @@ class User{
     }
 
     /**
-     * @param $userData
-     */
-    public static function auth($userData){
-        //session_start();
-        $_SESSION['user'] = $userData['id_account'];
-        $_SESSION['name'] = $userData['name'];
-        $_SESSION['surname'] = $userData['surname'];
-        $_SESSION['email'] = $userData['email'];
-        $_SESSION['ac_type'] = $userData['ac_type'];
-
-    }
-
-    /**
-     * @return bool
-     */
-    public static function isLogin(){
-        if(isset($_SESSION['user']) && $_SESSION['user']!=' '){
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * @param $pass
      * @return bool
      */
@@ -222,7 +199,7 @@ class User{
 
         $db = Db::getConnection();
 
-        $sql = 'SELECT COUNT(*) FROM accounts WHERE ac_password = :pas AND id_account = :id;';
+        $sql = 'SELECT COUNT(*) FROM accounts WHERE ac_password = MD5(:pas) AND id_account = :id;';
 
         $result = $db->prepare($sql);
         $result->bindParam(':pas', $pass,PDO::PARAM_STR);
@@ -246,7 +223,7 @@ class User{
 
         $sql = "UPDATE accounts 
             SET 
-                ac_password = '$pass'
+                ac_password = MD5('$pass')
             WHERE id_account = '$id'";
 
         $result = $db->prepare($sql);
@@ -295,5 +272,79 @@ class User{
 
         return $result->execute();
     }
+
+    /**
+     * @return bool
+     */
+    public static function isLogin(){
+        if(isset($_SESSION['user']) &&
+                 $_SESSION['user']!=' ' &&
+                 isset($_SESSION['ac_type'])){
+            return true;
+        }
+        die("Zabroniono w dostępie. Musisz się zalogować.");
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isModerator(){
+        if(self::isLogin()){
+            if(strcasecmp( $_SESSION['ac_type'], "moder")==0 ||
+                strcasecmp( $_SESSION['ac_type'], "admin")==0){
+                return true;
+            }
+        }
+        die("Zabroniono w dostępie, nie masz uprawnień.");
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isAdmin(){
+        if(self::isLogin()){
+            if(strcasecmp( $_SESSION['ac_type'], "admin")==0)
+                return true;
+        }
+        die("Zabroniono w dostępie, nie masz uprawnień.");
+    }
+
+    public static function isUser(){
+        if(self::isLogin()){
+            if(strcasecmp($_SESSION['ac_type'], "user")==0)
+                return true;
+        }
+        die("Zabroniono w dostępie, nie masz uprawnień.");
+    }
+
+    public static function checkRoot($root){
+        if(strcasecmp($_SESSION['ac_type'],$root)==0)
+            return true;
+        return false;
+    }
+
+    /**
+     * @param $userData
+     */
+    public static function auth($userData){
+        //session_start();
+        $_SESSION['user'] = $userData['id_account'];
+        $_SESSION['name'] = $userData['name'];
+        $_SESSION['surname'] = $userData['surname'];
+        $_SESSION['email'] = $userData['email'];
+        $_SESSION['ac_type'] = $userData['ac_type'];
+    }
+
+    public static function deleteUser($id){
+        $db = Db::getConnection();
+
+        $sql = "DELETE FROM accounts
+                WHERE id_account = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+    }
+
 
 }
