@@ -32,7 +32,7 @@ class NewsController{
 
             $header = $_POST['header'];
             $text = $_POST['text'];
-            $author = $_SESSION['surname']." ".$_SESSION['name'];
+            $author = $_SESSION['name']." ".$_SESSION['surname'];
 
             $errors = false;
 
@@ -59,7 +59,7 @@ class NewsController{
      */
     public function actionView($id){
 
-        User::isAdmin();
+        User::isModerator();
 
         if($id){
 
@@ -82,12 +82,51 @@ class NewsController{
         User::isModerator();
 
         if($id)
-            $result = News::deleteNews($id);
+            News::deleteNews($id);
 
         header("Location: /news");
 
         return true;
 
+    }
+
+    public function actionEditNews($id){
+
+        User::isModerator();
+
+        if($id){
+
+            $newsItem = array();
+            $newsItem = News::getNewsItemById($id);
+
+            $header = $newsItem['header'];
+            $text = $newsItem['text'];
+            $author = $newsItem['autor'];
+            $resulf = false;
+
+            if(isset($_POST['submit']) && !empty($_POST['submit'])){
+                $header = $_POST['header'];
+                $text = $_POST['text'];
+                $author = $_POST['autor'];
+
+                $errors = false;
+
+                if(News::checkHeader($header))
+                    $errors[] = 'Zadługi nagłówek (Ma byc do 30 symboli)';
+
+                if(News::checkText($text))
+                    $errors[] = 'Zadługi tekst (Ma być do 300 symboli)';
+
+                if($errors==false){
+                    $result = News::updateNews($id, $header, $text);
+                }
+
+            }
+
+        }
+
+
+        return true;
     }
 
 }

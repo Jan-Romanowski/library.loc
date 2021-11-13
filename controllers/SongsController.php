@@ -268,6 +268,7 @@ class SongsController{
                 $count_p = $_POST['count_p'];
                 $author = $_POST['autor'];
                 $folder_name = $_POST['folders'];
+
                 if(isset($_POST['typeSong']) && $_POST['typeSong']=='one')
                     $songType = 1;
                 else if(isset($_POST['typeSong']) && $_POST['typeSong']=='two')
@@ -322,7 +323,7 @@ class SongsController{
      * @param $id_folder
      * @return bool
      */
-    public function actionUploadFile($id_folder){ // МАКИ НЕ ЗНАЮТ ЧТО ТАКОЕ mkdir !!!!!!!!!!!!!!!!!!!!!!!!!
+    public function actionUploadFile($id_folder){ // не работает mkdir !!!!!!!!!!!!!!!!!!!!!!!!!
 
         User::isModerator();
 
@@ -386,7 +387,11 @@ class SongsController{
         return true;
     }
 
-	function getNameFolder($id) {
+    /**
+     * @param $id
+     * @return string
+     */
+    function getNameFolder($id) {
 		$min = 0;
 		$max = 100;
 		while (true) {

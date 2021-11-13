@@ -68,6 +68,9 @@ class News{
 
     }
 
+    /**
+     * @return array
+     */
     public static function getNewsList(){
 
         $db = Db::getConnection();
@@ -92,11 +95,35 @@ class News{
 
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function deleteNews($id){
         $db = Db::getConnection();
 
-        $sql = "DELETE FROM song
-                WHERE id_song = '$id'";
+        $sql = "DELETE FROM news
+                WHERE id_news = '$id'";
+
+        $result = $db->prepare($sql);
+
+        return $result->execute();
+    }
+
+    /**
+     * @param $id
+     * @param $header
+     * @param $text
+     * @return bool
+     */
+    public static function updateNews($id, $header, $text){
+        $db = Db::getConnection();
+
+        $sql = "UPDATE news 
+            SET 
+                header = '$header', 
+                text = '$text', 
+            WHERE id_news = '$id'";
 
         $result = $db->prepare($sql);
 

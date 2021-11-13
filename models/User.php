@@ -170,7 +170,7 @@ class User{
 				
 				$SQL = "SELECT * FROM accounts 
                 WHERE email = '$email'
-                AND ac_password = '$pass'";
+                AND ac_password = MD5('$pass')";
 				$result = $db->query($SQL);
 				
 				$result->setFetchMode(PDO::FETCH_ASSOC);

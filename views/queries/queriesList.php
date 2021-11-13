@@ -20,7 +20,7 @@
                     <h6 class="card-text ">Email: <?php echo $queriesListItem["email"]; ?></h6>
                     <h6 class="card-text ">Data: <?php echo $queriesListItem["regist_date"]; ?></h6>
                     <div class="container text-center mt-4">
-                        <button type="button" class="btn btn-success w-25" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button type="button" class="btn btn-outline-success w-25" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Akceptować
                         </button>
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -35,23 +35,26 @@
                                             Zaznacz typ konta
                                             <div class="text-center mt-3">
                                                 <select class="form-select mb-3" name="ac_type" aria-label=".form-select-lg example">
-                                                    <option selected hidden value="user">Typ konta</option>
-                                                    <option value="user">Użytkownik</option>
-                                                    <?php if(User::isAdmin()){ ?> <option value="moder">Moderator</option><option value="admin">Administrator</option> <?php } ?>
+                                                    <option selected value="user">Użytkownik</option>
+                                                    <?php if(User::checkRoot("admin")){ ?> <option value="moder">Moderator</option><option value="admin">Administrator</option> <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary w-25">Udostępnić</button>
-                                            <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Confij</button>
+                                            <button type="submit" class="btn btn-outline-success w-25">Udostępnić</button>
+                                            <button type="button" class="btn btn-outline-secondary w-25" data-bs-dismiss="modal">Confij</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger w-25" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-outline-danger w-25" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Usunąć
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"
+                                 viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                            </svg>
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,8 +65,10 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary w-25" onclick=document.location="/queries/deleteQuery/<?php echo $queriesListItem["id_query"]; ?>">Tak</button>
-                                        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Nie</button>
+                                        <button type="button" class="btn btn-outline-danger w-25" onclick=document.location="/queries/deleteQuery/<?php echo $queriesListItem["id_query"]; ?>">
+                                            Tak
+                                        </button>
+                                        <button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
                                     </div>
                                 </div>
                             </div>

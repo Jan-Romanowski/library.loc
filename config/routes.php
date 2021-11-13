@@ -31,7 +31,7 @@
         'main/history' => 'main/history',
         'main' => 'main/mainPage',
         'news/view/([0-9]+)' => 'news/view/$1',
-        'news/deleteNews/([0-9]+)' => 'news/deleteNews/$1',
+        'news/delete/([0-9]+)' => 'news/delete/$1',
         'news/newItem' => 'news/newItem',
         'news' => 'news/index',
         '' => 'main/index',

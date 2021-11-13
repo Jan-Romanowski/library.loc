@@ -69,13 +69,6 @@
                 </form>
             </div>
 
-
-
-
-
-
-
-
         <table class='table table-hover p-3'>
             <tr class="bg-light"><td>Numer teczki</td>
                 <td>Nazwa utworu</td>
