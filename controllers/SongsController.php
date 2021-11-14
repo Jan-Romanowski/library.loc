@@ -327,6 +327,9 @@ class SongsController{
 
         User::isModerator();
 
+        $processUser = posix_getpwuid(posix_geteuid());
+        echo($processUser['name']);
+
         $folderName = self::getNameFolder($id_folder);
 
         if(!is_dir(ROOT.'/files/'.$folderName)) {
@@ -353,7 +356,7 @@ class SongsController{
 
                     move_uploaded_file($tmp, $target);
 
-                    header("Location: /songs/".$id_folder);
+                   // header("Location: /songs/".$id_folder);
                 }
             }
         }
