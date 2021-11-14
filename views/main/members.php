@@ -1,0 +1,1 @@
+<?php include_once(ROOT . '/views/headers/main_header.php'); ?>

@@ -170,7 +170,7 @@ class User{
 				
 				$SQL = "SELECT * FROM accounts 
                 WHERE email = '$email'
-                AND ac_password = '$pass'";
+                AND ac_password = MD5('$pass')";
 				$result = $db->query($SQL);
 				
 				$result->setFetchMode(PDO::FETCH_ASSOC);
@@ -188,7 +188,6 @@ class User{
         }
 
         return false;
-
     }
 
     /**
@@ -335,6 +334,10 @@ class User{
         $_SESSION['ac_type'] = $userData['ac_type'];
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function deleteUser($id){
         $db = Db::getConnection();
 

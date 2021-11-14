@@ -23,7 +23,7 @@
 				<ul class="navbar-nav">
                         <?php if(User::checkRoot("admin") || User::checkRoot("moder")): ?><!-- FOR ADMIN AND MODERATOR -->
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/cabinet/">Konto</a>
+                            <a class="nav-link" aria-current="page" href="/cabinet/">Ustawienia</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/songs/">Utwory</a>
@@ -32,10 +32,7 @@
                             <a class="nav-link" href="/folders/">Teczki</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/user/view/">Użytkowniki</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="/queries/">Wnioski <span class="badge bg-secondary"><?php echo Queries::getCountQueries(); ?></span></a>
+                            <a class="nav-link" href="/user/view/">Użytkowniki <span class="badge bg-danger"><?php if(Queries::getCountQueries()) echo Queries::getCountQueries(); ?></span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/news/">Aktualnośći</a>
@@ -45,7 +42,7 @@
                         </li>
                     <?php else: ?> <!-- FOR USER -->
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/cabinet/">Konto</a>
+                            <a class="nav-link" aria-current="page" href="/cabinet/">Ustawienia</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/songs/">Utwory</a>
