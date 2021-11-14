@@ -8,8 +8,9 @@ class Get {
     const TYPE_INT = 'int';
     const TYPE_FLOAT = 'float';
     const TYPE_STR = 'string';
+		const TYPE_TRIM_STR = 'trim_string';
     const TYPE_ISSET = 'isset';
-
+		
     function __construct() {
 
     }
@@ -23,7 +24,7 @@ class Get {
      * @return string
      */
     static function get($name = '', $def = false, $type = ''){
-        if(!is_string($name) || !$name)
+        if (!is_string($name) || !$name)
             return false;
         $data = isset($_GET[$name]) ? $_GET[$name] : $def;
 
@@ -36,7 +37,7 @@ class Get {
                 break;
             case self::TYPE_STR:
                 $data = get::escape($data);
-            case 'trim_string':
+            case self::TYPE_TRIM_STR:
                 $data = trim(get::escape($data));
                 break;
             case self::TYPE_ISSET:
@@ -67,7 +68,7 @@ class Get {
             case self::TYPE_STR:
                 $data = get::escape($data);
                 break;
-            case 'trim_string':
+            case self::TYPE_TRIM_STR:
                 $data = trim(get::escape($data));
                 break;
             case 'array_of_int':

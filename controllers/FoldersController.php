@@ -2,73 +2,72 @@
 
 class FoldersController{
 
-    /** Get all folders
-     * @return bool
-     */
-    public function actionView(){
+	/** Get all folders
+	 * @return bool
+	 */
+	public function actionView(){
+		User::isLogin();
 
-        User::isLogin();
+		$foldersList = array();
+		$foldersList = Folders::getFolders();
 
-        $foldersList = array();
-        $foldersList = Folders::getFolders();
+		require_once (ROOT.'/views/folders/folderList.php');
+		return true;
+	}
 
-        require_once(ROOT . '/views/folders/folderList.php');
+	/**
+	 * @return bool
+	 */
+	public function actionNewFolder () {
+		User::isModerator();
 
-        return true;
-    }
+		$result = '';
+		$name_folder = '';
+		$note = '';
 
-    /**
-     * @return bool
-     */
-    public function actionNewFolder(){
+		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-        User::isModerator();
+			$name_folder = GET::post('name_folder', '');
+			$note = GET::post('note', '');
 
-        $result = '';
-        $name_folder = '';
-        $note = '';
+			$errors = false;
 
-        if(isset($_POST['submit']) && !empty($_POST['submit'])) {
+			if (!Folders::checkNameFolder($name_folder)) {
+				$_SESSION["msg"] = 'Taka teczka już istnieje';
+			}
 
-            $name_folder = $_POST['name_folder'];
-            $note = $_POST['note'];
+			if ($errors == false) {
+				if (Folders::newFolder($name_folder, $note)) {
+					$_SESSION["msg"] = "Nowa teczka została pomyślnie dodana do biblioteki !";
+				} else {
+					$_SESSION["msg"] = "Something wrong!";
+				}
+			}
+			header('Location: /folders/newFolder');
+			return true;
+		}
+		
+		require_once (ROOT.'/views/folders/folderNewItem.php');
+		return true;
+	}
 
-            $errors = false;
+	public function actionEdit ($id) {
+		return true;
+	}
 
-            if(!Folders::checkNameFolder($name_folder))
-                $errors[] = 'Taka teczka już istnieje';
+	public function actionDelete ($id) {
+		User::isModerator();
 
-            if($errors==false){
-                $result = Folders::newFolder($name_folder, $note);
-            }
-        }
-
-        require_once(ROOT . '/views/folders/folderNewItem.php');
-
-        return true;
-    }
-
-    public function actionEdit($id){
-
-        return true;
-    }
-
-    public function actionDelete($id){
-
-        User::isModerator();
-
-        $result = Folders::countSongsInFolder($id);
-        echo $result;
-
-        if($result==0){
-            if(Folders::deleteFolderById($id)){
-                echo "Teczka pomyślnie usunięta";
-            }
-        }
-        else{
-            echo 'Teczka zawiera utwory!';
-        }
-
-        return true;
-    }
+		$result = Folders::countSongsInFolder($id);
+		
+		if($result==0 && Folders::deleteFolderById($id)){
+			$_SESSION["msg"] = "Teczka pomyślnie usunięta";
+		}
+		else{
+			$_SESSION["msg"] = "Teczka zawiera utwory!";
+		}
+		
+		header('Location: /folders/');
+		return true;
+	}
 }

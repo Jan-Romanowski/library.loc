@@ -31,48 +31,49 @@ class Folders
 
     }
 
-    /**
-     * @param $name_folder
-     * @param $note
-     * @return bool
-     */
-    public static function newFolder($name_folder, $note){
+	/**
+	 * @param $name_folder
+	 * @param $note
+	 * @return bool
+	 */
+	public static function newFolder($name_folder, $note){
+		$db = Db::getConnection();
 
-        $db = Db::getConnection();
+		$sql = 'INSERT INTO folder (name_folder, note)'
+				.'VALUES (:name_folder, :note)';
 
-        $sql = 'INSERT INTO folder (name_folder, note)'
-            .'VALUES (:name_folder, :note)';
+		$result = $db->prepare($sql);
+		$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
+		$result->bindParam(':note', $note, PDO::PARAM_STR);
 
-        $result = $db->prepare($sql);
-        $result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
-        $result->bindParam(':note', $note, PDO::PARAM_STR);
+		try {
+			return $result->execute();
+		} catch (Exception $e) {
+			return false;
+		}
+	}
 
-        return $result->execute();
+	/**
+	 * @param $name_folder
+	 * @return bool
+	 */
+	public static function checkNameFolder($name_folder){
+		$db = Db::getConnection();
 
-    }
-
-    /**
-     * @param $name_folder
-     * @return bool
-     */
-    public static function checkNameFolder($name_folder){
-
-        $db = Db::getConnection();
-
-        if(($name_folder)>0){
-
-            $result = $db->query("SELECT count(name_folder) as kek
-                                           FROM folder where name_folder = '$name_folder'");
-            $result -> setFetchMode(PDO::FETCH_ASSOC);
-
-            $row = $result->fetch();
-
-            if($row['kek']==0){
-                return true;
-            }
-        }
-        return false;
-    }
+		if ($name_folder) {
+			$result = $db->prepare("SELECT count(name_folder) AS cnt
+														FROM folder
+														WHERE name_folder = :name_folder");
+			$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
+			$result->setFetchMode(PDO::FETCH_ASSOC);
+			
+			$row = $result->fetch();
+			if ($row['cnt'] == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
 
     /**
      * @param $id_folder
@@ -134,15 +135,16 @@ class Folders
         return $songsList;
     }
 
-    public static function deleteFolderById($id){
-        $db = Db::getConnection();
+	public static function deleteFolderById($id){
+		$db = Db::getConnection();
 
-        $sql = "DELETE FROM folder
-                WHERE id_folder = '$id'";
+		$sql = "DELETE FROM folder
+						WHERE id_folder = :id";
 
-        $result = $db->prepare($sql);
+		$result = $db->prepare($sql);
+		$result->bindParam(':id', $id, PDO::PARAM_INT);
 
-        return $result->execute();
-    }
+		return $result->execute();
+	}
 
 }
