@@ -34,5 +34,5 @@
         'news/delete/([0-9]+)' => 'news/delete/$1',
         'news/newItem' => 'news/newItem',
         'news' => 'news/index',
-        '' => 'main/index',
+        '' => 'main/mainPage',
     );
