@@ -317,47 +317,50 @@ class SongsController{
         return true;
     }
 
+	/**
+	 * @param $id_folder
+	 * @return bool
+	 */
+	public function actionUploadFile($id_folder){ // не работает mkdir !!!!!!!!!!!!!!!!!!!!!!!!!
+		User::isModerator();
+		
+		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
+			$_SESSION["msg"] = 'No file!';
+			header("Location: /songs/".$id_folder);
+		}
+		
+		$folderName = self::getNameFolder($id_folder);
+		if (!is_dir(ROOT_WEB.'/files/')) {
+			mkdir(ROOT_WEB.'/files', 0700);
+		}
+		if (!is_dir(ROOT_WEB.'/files/'.$folderName)) {
+			mkdir(ROOT_WEB.'/files/'.$folderName, 0700);
+		}
+		if (!is_dir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder)) {
+			mkdir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder, 0700);
+		}
 
-    /**
-     * @param $id_folder
-     * @return bool
-     */
-    public function actionUploadFile($id_folder){ // не работает mkdir !!!!!!!!!!!!!!!!!!!!!!!!!
+		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
+//			$total_files = count($_FILES['filename']['name']);
 
-        User::isModerator();
+//			for ($key = 0; $key < $total_files; $key++) {
 
-        $folderName = self::getNameFolder($id_folder);
+//				if (isset($_FILES['filename']['name'][$key])
+//					&& $_FILES['filename']['size'][$key] > 0) {
 
-        if(!is_dir(ROOT.'/files/'.$folderName)) {
-            mkdir(ROOT.'/files/'.$folderName, 0700);
+					$original_filename = strval($_FILES['filename']['name']);
 
-        }
-        if(!is_dir(ROOT.'/files/'.$folderName.'/'.$id_folder)) {
-            mkdir(ROOT.'/files/'.$folderName.'/'.$id_folder, 0700);
-        }
+					$target = ROOT_WEB.'/files/'.$folderName.'/'.$id_folder.'/'.basename($original_filename);
+					$tmp  = $_FILES['filename']['tmp_name'];
 
-        if( isset($_FILES['filename']['name'])) {
-
-            $total_files = count($_FILES['filename']['name']);
-
-            for($key = 0; $key < $total_files; $key++) {
-
-                if(isset($_FILES['filename']['name'][$key])
-                    && $_FILES['filename']['size'][$key] > 0) {
-
-                    $original_filename = strval($_FILES['filename']['name'][$key]);
-
-                    $target = ROOT.'/files/'.$folderName.'/'.$id_folder.'/'.basename($original_filename);
-                    $tmp  = $_FILES['filename']['tmp_name'][$key];
-
-                    move_uploaded_file($tmp, $target);
-
-                    header("Location: /songs/".$id_folder);
-                }
-            }
-        }
-        return true;
-    }
+					move_uploaded_file($tmp, $target);
+					$_SESSION["msg"] = 'File uploaded!';
+					header("Location: /songs/".$id_folder);
+//				}
+//			}
+		}
+		return true;
+	}
 
     /**
      * @param $id

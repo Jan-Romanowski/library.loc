@@ -66,7 +66,7 @@
                         <div class="container-fluid mb-3">
                             <label for="formFile" class="form-label">Wgraj plik</label>
                             <input type="text" name="id_folder" value="<?php echo $songsItem['id_song']; ?>" hidden>
-                            <input class="form-control" type="file" multiple accept=".wav,.pdf,.mp3" aria-label="browser" name="filename[]" id="formFile">
+                            <input class="form-control" type="file" multiple accept=".wav,.pdf,.mp3" aria-label="browser" name="filename" id="formFile">
                         </div>
                         <div class="mb-3 text-center">
                             <button type="submit" class="btn btn-outline-dark px-5 mt-3">Wyślij</button>
