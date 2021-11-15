@@ -1,6 +1,4 @@
-<?php include(ROOT . '/views/headers/header.php');
-
-?>
+<?php include(ROOT . '/views/headers/header.php'); ?>
 
     <div class='container w-50 gx-5' style='min-height: 100vh';>
         <div class="p-5 mt-4 border bg-light">
