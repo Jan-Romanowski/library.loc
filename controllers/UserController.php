@@ -131,10 +131,10 @@ class UserController{
 
         if($id && $rights){
             if(User::changeRights($id, $rights)){
-                $result = true;
+                $_SESSION["msg"] = "Uprawnienia zostały pomyślnie zmienione.";
             }
             else{
-                $result = false;
+				$_SESSION["msg"] = "Nie udało się zmienić uprawnień.";
             }
         }
 
@@ -147,7 +147,8 @@ class UserController{
         User::isAdmin();
 
         if($id){
-            User::deleteUser($id);
+            if(User::deleteUser($id))
+				$_SESSION["msg"] = "Konto zostało usunięte.";;
         }
 
         header("Location: /user/view/");
