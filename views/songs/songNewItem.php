@@ -1,11 +1,6 @@
 <?php include(ROOT . '/views/headers/header.php'); ?>
 
     <div class='container-sm gx-5 mt-4 w-50 ';>
-        <?php
-        if($result):
-            echo '<p class="text-center">Nowy utwór został pomyślnie dodany do biblioteki !</p>';
-        else:
-            ?>
         <form method="post" action="#">
             <h2 class="mb-4 text-center"><?php echo $message; ?></h2>
             <?php if(isset($errors) && is_array($errors)): ?>
@@ -67,6 +62,5 @@
             </div>
 
         </form>
-        <?php endif; ?>
     </div>
 <?php

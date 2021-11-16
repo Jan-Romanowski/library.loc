@@ -60,19 +60,18 @@ class Folders
 	public static function checkNameFolder($name_folder){
 		$db = Db::getConnection();
 
-		if ($name_folder) {
-			$result = $db->prepare("SELECT count(name_folder) AS cnt
-														FROM folder
-														WHERE name_folder = :name_folder");
-			$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
-			$result->setFetchMode(PDO::FETCH_ASSOC);
-			
-			$row = $result->fetch();
-			if ($row['cnt'] == 0) {
-				return true;
-			}
-		}
-		return false;
+		$result = $db->prepare("SELECT COUNT(*) AS cnt
+										FROM folder
+										WHERE name_folder = :name_folder");
+
+		$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
+		$row = $result->setFetchMode(PDO::FETCH_ASSOC);
+		echo $row['cnt'];
+
+		if ($row == 1)
+			return true;
+		else
+			return false;
 	}
 
     /**

@@ -32,7 +32,8 @@ class FoldersController{
 
 			$errors = false;
 
-			if (!Folders::checkNameFolder($name_folder)) {
+			if (Folders::checkNameFolder($name_folder) == true) {
+				$errors = true;
 				$_SESSION["msg"] = 'Taka teczka już istnieje';
 			}
 
@@ -40,7 +41,7 @@ class FoldersController{
 				if (Folders::newFolder($name_folder, $note)) {
 					$_SESSION["msg"] = "Nowa teczka została pomyślnie dodana do biblioteki !";
 				} else {
-					$_SESSION["msg"] = "Something wrong!";
+					$_SESSION["msg"] = "Wystąpił błąd.";
 				}
 			}
 			header('Location: /folders/newFolder');

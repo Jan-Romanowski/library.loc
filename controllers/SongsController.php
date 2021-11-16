@@ -98,7 +98,6 @@ class SongsController{
             }
         }
 
-
         $_SESSION['Sorting'] = $parameter;
 
         header("Location: /songs");
@@ -120,7 +119,7 @@ class SongsController{
             switch ($parameter){
                 case 1:
                     $parameter = 2;
-                    $_SESSION['Sorting_songs_label'] = 'Wszystkie utwory';
+                    $_SESSION['Sorting_songs_label'] = 'Wszystkie';
                     break;
                 case 2:
                     $parameter = 0;
@@ -223,7 +222,8 @@ class SongsController{
                 $errors[] = 'Ilość partytur nie może być ujemna';
 
             if($errors==false){
-                $result = Songs::addNewSong($name, $count_p, $author, $songType, $folder, $note);
+                Songs::addNewSong($name, $count_p, $author, $songType, $folder, $note);
+				$_SESSION["msg"] = "Nowy utwór został pomyślnie dodany do biblioteki.";
             }
         }
 
@@ -285,9 +285,8 @@ class SongsController{
                     $errors[] = 'Ilość partytur nie może być ujemna';
 
                 if ($errors == false) {
-                    $result = Songs::editSong($id, $name, $count_p, $author, $songType, $folder_name, $note);
-                    if($result)
-                        header("Location: /songs");
+					Songs::editSong($id, $name, $count_p, $author, $songType, $folder_name, $note);
+					$_SESSION["msg"] = "Dane zostały zaktualizowane.";
                 }
             }
 
@@ -312,6 +311,7 @@ class SongsController{
 
             $result = Songs::deleteSong($id);
             if($result)
+				$_SESSION["msg"] = "Utwór został pomyślnie usunięty.";
                 header("Location: /songs");
         }
         return true;
