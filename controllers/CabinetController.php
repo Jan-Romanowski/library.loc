@@ -11,9 +11,10 @@ class CabinetController
         User::isLogin();
 
         if (isset($_POST['submit_pass'])) {
-            $old_pass = $_POST['old_pass'];
-            $new_pass1 = $_POST['new_pass1'];
-            $new_pass2 = $_POST['new_pass2'];
+
+			$old_pass = GET::post('old_pass', '');
+			$new_pass1 = GET::post('new_pass1', '');
+			$new_pass2 = GET::post('new_pass2', '');
 
             $errors_pass = false;
 

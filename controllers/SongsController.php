@@ -199,12 +199,11 @@ class SongsController{
 
         if(isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-            $name = $_POST['song_name'];
-            $count_p = $_POST['count_p'];
-            $author = $_POST['autor'];
-            $folder = $_POST['folders'];
-            $note = $_POST['notatki'];
-
+			$name = GET::post('song_name', '');
+			$count_p = GET::post('count_p', 0);
+			$author = GET::post('autor', '');
+			$folder = GET::post('folders', '');
+			$note = GET::post('notatki', '');
 
             if(isset($_POST['typeSong']) && $_POST['typeSong']=='one')
                 $songType = 1;
@@ -263,10 +262,10 @@ class SongsController{
 
             if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-                $name = $_POST['song_name'];
-                $count_p = $_POST['count_p'];
-                $author = $_POST['autor'];
-                $folder_name = $_POST['folders'];
+				$name = GET::post('song_name', '');
+				$count_p = GET::post('count_p', '');
+				$author = GET::post('autor', '');
+				$folder_name = GET::post('folders', '');
 
                 if(isset($_POST['typeSong']) && $_POST['typeSong']=='one')
                     $songType = 1;

@@ -41,7 +41,7 @@ class QueriesController{
 
         User::isModerator();
 
-        $ac_type = $_POST['ac_type'];
+		$ac_type = GET::post('ac_type', '');
 
         if(Queries::transferQuery($id, $ac_type))
             header('Location: /users/view');

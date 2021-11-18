@@ -1,6 +1,6 @@
 <?php
 
-class UserController{
+class UsersController{
 
     /** Registration new User
      * @return bool
@@ -14,11 +14,12 @@ class UserController{
         $pass2 = '';
 
         if(isset($_POST['submit']) && !empty($_POST['submit'])) {
-            $name = $_POST['name'];
-            $surname = $_POST['surname'];
-            $email = $_POST['email'];
-            $pass1 = $_POST['pass1'];
-            $pass2 = $_POST['pass2'];
+
+			$name = GET::post('name', '');
+			$surname = GET::post('surname', '');
+			$email = GET::post('email', '');
+			$pass1 = GET::post('pass1', '');
+			$pass2 = GET::post('pass2', '');
 
             $errors = false;
 
@@ -63,8 +64,9 @@ class UserController{
         $pass = '';
 
         if(isset($_POST['submit'])){
-            $email = $_POST['email'];
-            $pass = $_POST['pass'];
+
+			$email = GET::post('email', '');
+			$pass = GET::post('pass', '');
 
             $errors = false;
 

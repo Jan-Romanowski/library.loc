@@ -31,8 +31,9 @@ class NewsController{
 
         if(isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-            $header = $_POST['header'];
-            $text = $_POST['text'];
+			$header = GET::post('header', '');
+			$text = GET::post('text', '');
+
             $author = $_SESSION['name']." ".$_SESSION['surname'];
 
             $errors = false;
@@ -106,9 +107,10 @@ class NewsController{
             $resulf = false;
 
             if(isset($_POST['submit']) && !empty($_POST['submit'])){
-                $header = $_POST['header'];
-                $text = $_POST['text'];
-                $author = $_POST['autor'];
+
+				$header = GET::post('header', '');
+				$text = GET::post('text', '');
+				$author = GET::post('autor', '');
 
                 $errors = false;
 

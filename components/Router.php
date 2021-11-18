@@ -22,12 +22,10 @@ class Router{
     public function run(){
         $uri = $this->getURI();
 
-        // проверить наличие такого запроса в routes.php
         foreach ($this->routes as $uriPattern => $path){
-            // Сравниваем $uriPattern и $uri
+
             if(preg_match("~$uriPattern~", $uri)){
 
-                // Получаем внутренний путь из внешнего согласно правилу
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
                 $segments = explode('/', $internalRoute);
