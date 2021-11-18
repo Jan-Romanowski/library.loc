@@ -115,20 +115,20 @@ class SongsController{
 
         User::isLogin();
 
-        if(0<$parameter && $parameter<4){
+        if(0<$parameter && $parameter<5){
             switch ($parameter){
-                case 1:
+                case 1: // Wszystkie
                     $parameter = 2;
-                    $_SESSION['Sorting_songs_label'] = 'Wszystkie';
                     break;
-                case 2:
+                case 2: // Wielogłosowe
                     $parameter = 0;
-                    $_SESSION['Sorting_songs_label'] = 'Wielogłosowe';
                     break;
-                case 3:
+                case 3: // Jednogłosowe
                     $parameter = 1;
-                    $_SESSION['Sorting_songs_label'] = 'Jednogłosowe';
                     break;
+				case 4: // Nijakie
+					$parameter = 4;
+					break;
             }
         }
 

@@ -52,7 +52,7 @@ class Songs{
                                        LIMIT ".$count." 
                                        OFFSET ".$offset.";");
         }
-        else{
+        else if($songsFilter == 1 || $songsFilter == 0){
             $result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
                                        FROM song 
                                        LEFT JOIN folder ON song.id_folder = folder.id_folder
@@ -62,6 +62,16 @@ class Songs{
                                        LIMIT ".$count." 
                                        OFFSET ".$offset.";");
         }
+		else{
+			$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
+                                       FROM song 
+                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
+                                       WHERE (name_song LIKE '%".$word."%' OR author LIKE '%".$word."%')
+                                       AND (one_voice = '$songsFilter') 
+                                       ORDER BY ".$parameter." 
+                                       LIMIT ".$count." 
+                                       OFFSET ".$offset.";");
+		}
 
 
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -93,12 +103,18 @@ class Songs{
                                        FROM song
                                        WHERE name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%'");
         }
-        else{
+		else if($songsFilter == 1 || $songsFilter == 0){
             $result = $db->query("SELECT count(name_song) as kek
                                        FROM song
                                        WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')
                                        AND (one_voice = '$songsFilter')");
         }
+		else{
+			$result = $db->query("SELECT count(name_song) as kek
+                                       FROM song
+                                       WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')
+                                       AND (one_voice = '$songsFilter')");
+		}
         $result -> setFetchMode(PDO::FETCH_ASSOC);
 
         $row = $result->fetch();

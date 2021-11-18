@@ -38,4 +38,21 @@ class ComFun {
     }
 	}
 
+	static function rootColor($root){
+		switch ($root){
+			case 'user':
+				return '#2548f7';
+				break;
+			case 'moder':
+				return '#9900ff';
+				break;
+			case 'admin':
+				return '#ff6f00';
+				break;
+			default:
+				return '#5e5e5e';
+				break;
+		}
+	}
+
 }

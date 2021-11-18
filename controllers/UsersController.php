@@ -43,7 +43,8 @@ class UsersController{
 
             if($errors==false){
                 if(User::register($name, $surname, $email, $pass1)){
-                    $message = 'Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.';
+					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.
+					 <strong><a href='/users/login/'>Zaloguj</a></strong>";
                 }
             }
 
@@ -117,7 +118,7 @@ class UsersController{
         session_unset();
         session_destroy();
 
-        header("Location: /user/login");
+        header("Location: /users/login");
 
         return true;
     }
@@ -140,7 +141,7 @@ class UsersController{
             }
         }
 
-        header("Location: /user/view/");
+        header("Location: /users/view/");
 
         return true;
     }
@@ -153,7 +154,7 @@ class UsersController{
 				$_SESSION["msg"] = "Konto zostało usunięte.";;
         }
 
-        header("Location: /user/view/");
+        header("Location: /users/view/");
         return true;
     }
 

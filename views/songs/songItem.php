@@ -1,6 +1,6 @@
 <?php include(ROOT . '/views/headers/header.php'); ?>
 
-<div class='container gx-5 w-50' style='min-height: 100vh';>
+<div class='container gx-5 w-50' style='min-height: 100vh'>
     <div class="p-5 mt-4 border bg-light">
         <h1><?php echo $songsItem['name_song']; ?></h1><br>
         <p class="fs-4">
@@ -80,4 +80,4 @@
 
 
 
-<?php
+<?php include(ROOT . '/views/headers/footer.php');

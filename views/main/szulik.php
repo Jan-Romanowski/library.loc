@@ -54,3 +54,4 @@ W roku 2005 uzyskał w Akademii Muzycznej w Poznaniu tytuł doktora sztuki muzyc
         </div>
 </div>
 </body>
+<?php include(ROOT . '/views/headers/footer.php');

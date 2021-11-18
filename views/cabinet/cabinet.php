@@ -5,11 +5,7 @@
             <h2>Konto</h2>
             <p class="fs-5 mb-2"><?php echo $_SESSION['name'].' '.$_SESSION['surname']; ?></p>
             <p class="fs-5 mb-2"><?php echo $_SESSION['email']; ?></p>
-            <p class="fs-5 mb-2"><?php echo ComFun::translateRights($_SESSION['ac_type']); ?></p>
-
-            <p class="fs-5 mb-5" style="color: green"><?php if(isset($message_data)) echo $message_data; ?></p>
-            <p class="fs-5 mb-5" style="color: green"><?php if(isset($message_pass)) echo $message_pass; ?></p>
-
+            <p class="fs-5 mb-2" style="color: <?php echo ComFun::rootColor($_SESSION['ac_type']); ?>"><?php echo ComFun::translateRights($_SESSION['ac_type']); ?></p>
 
             <div class="accordion" id="accordionFlushExample">
                 <div class="accordion-item">
@@ -97,23 +93,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
         </div>
     </div>
 
-<?php
-
-/*
-$_SESSION['user']
-$_SESSION['name']
-$_SESSION['surname']
-$_SESSION['email']
-$_SESSION['ac_type']
-*/
+<?php include(ROOT . '/views/headers/footer.php');

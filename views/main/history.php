@@ -106,3 +106,5 @@
 </div>
 </div>
 </body>
+
+<?php include(ROOT . '/views/headers/footer.php');

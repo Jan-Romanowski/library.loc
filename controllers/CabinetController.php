@@ -28,15 +28,16 @@ class CabinetController
                 $errors_pass[] = "Hasła nie są jednakowe";
 
             if ($errors_pass == false) {
-                if(User::changePassword($new_pass1)) ;
-                    $message_pass = 'Hasło zostało pomyślnie zmienione';
+                if(User::changePassword($new_pass1));
+					$_SESSION["msg"] = "Hasło zostało pomyślnie zmienione";
                 }
             }
 
             else if (isset($_POST['submit_data'])) {
-                $email = $_POST['mail'];
-                $name = $_POST['name'];
-                $surname = $_POST['surname'];
+
+				$email = GET::post('mail', '');
+				$name = GET::post('name', '');
+				$surname = GET::post('surname', '');
 
                 $errors_data = false;
 
@@ -51,7 +52,7 @@ class CabinetController
 
                 if ($errors_data == false) {
                     if (User::changeData($name,$surname,$email)) ;
-                    $message_data = 'Dane zostały pomyślnie zmienione<br>Zaloguj się ponownie, aby zmiany zaczęły obowiązywać';
+					$_SESSION["msg"] = "Dane zostały pomyślnie zmienione. Zaloguj się ponownie, aby zmiany zaczęły obowiązywać";
                 }
 
             }

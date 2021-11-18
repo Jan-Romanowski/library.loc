@@ -19,13 +19,14 @@
 
                 <td>
                     <div class="dropdown">
-                        <a class="btn btn-outline-dark dropdown-toggle <?php if(!User::checkRoot('admin')) echo 'disabled'; ?>" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="btn btn-outline-dark dropdown-toggle <?php if(!User::checkRoot('admin')) echo 'disabled'; ?>" href="#"
+                           role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo ComFun::translateRights($userListItem['ac_type']); ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="/user/changeRights/<?php echo $userListItem['id_account']; ?>/admin">Administrator</a></li>
-                            <li><a class="dropdown-item" href="/user/changeRights/<?php echo $userListItem['id_account']; ?>/moder">Moderator</a></li>
-                            <li><a class="dropdown-item" href="/user/changeRights/<?php echo $userListItem['id_account']; ?>/user">Użytkownik</a></li>
+                            <li><a class="dropdown-item" href="/users/changeRights/<?php echo $userListItem['id_account']; ?>/admin">Administrator</a></li>
+                            <li><a class="dropdown-item" href="/users/changeRights/<?php echo $userListItem['id_account']; ?>/moder">Moderator</a></li>
+                            <li><a class="dropdown-item" href="/users/changeRights/<?php echo $userListItem['id_account']; ?>/user">Użytkownik</a></li>
                         </ul>
                     </div>
                 </td>
@@ -47,7 +48,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn btn-outline-danger w-25"
-                                            onclick=document.location="/user/deleteUser/<?php echo $userListItem['id_account']; ?>">Tak
+                                            onclick=document.location="/users/deleteUser/<?php echo $userListItem['id_account']; ?>">Tak
                                     </button>
                                     <button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
                                 </div>
@@ -62,4 +63,4 @@
 
 </div>
 
-<?php
+<?php include(ROOT . '/views/headers/footer.php');

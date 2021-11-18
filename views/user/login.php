@@ -22,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <div class="container-fluid" style="text-align: center">
-                    <a href="/user/register/">Załóż konto</a>
+                    <a href="/users/register/">Załóż konto</a>
                 </div>
             </div>
             <div class="mb-3">

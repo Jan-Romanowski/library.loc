@@ -53,3 +53,4 @@
         </div>
     </div>
 </div>
+<?php include(ROOT . '/views/headers/footer.php');

@@ -18,4 +18,4 @@ tel. (025) 633 31 92
   </div>
 </div>
 </body>
-<?php
+<?php include(ROOT . '/views/headers/footer.php');

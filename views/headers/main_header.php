@@ -35,7 +35,7 @@
 						<a class="nav-link" href="#">Zarząd Chóru</a>
 				</li>
 				<li class="nav-item">
-						<a class="nav-link" href="/user/login">Biblioteka</a>
+						<a class="nav-link" href="/users/login">Biblioteka</a>
 				</li>
 				<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="?section=info" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

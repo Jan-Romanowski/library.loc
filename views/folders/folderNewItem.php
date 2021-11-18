@@ -1,6 +1,6 @@
 <?php include(ROOT . '/views/headers/header.php'); ?>
 
-<div class='container-sm gx-5 mt-4 w-50 '>
+<div class='container-sm gx-5 mt-4 w-50' style='min-height: 100vh'>
 	<form method="post" action="#">
 		<div class="container-md w-75">
 			<h2 class="mb-4 text-center">Nowa teczka</h2>
@@ -18,4 +18,5 @@
 		</div>
 	</form>
 </div>
+<?php include(ROOT . '/views/headers/footer.php');
 
