@@ -55,4 +55,11 @@ class ComFun {
 		}
 	}
 
+	static function checked($checkbox){
+		if(isset($_SESSION[$checkbox]) && $_SESSION[$checkbox] == true)
+			return true;
+		else
+			return false;
+	}
+
 }

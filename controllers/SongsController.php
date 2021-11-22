@@ -61,10 +61,6 @@ class SongsController{
         return true;
     }
 
-    /** Sorting songs
-     * @param string $parameter
-     * @return bool
-     */
     public function actionPriorityFilter($parameter = 'id_song'){
 
         User::isLogin();
@@ -107,37 +103,39 @@ class SongsController{
     }
 
 
-    /**
-     * @param $parameter
-     * @return bool
-     */
-    function actionSongsFilter($parameter){
+	/**
+	 * @return bool
+	 */
+	public function actionApplyFilters(){
 
-        User::isLogin();
+		User::isLogin();
 
-        if(0<$parameter && $parameter<5){
-            switch ($parameter){
-                case 1: // Wszystkie
-                    $parameter = 2;
-                    break;
-                case 2: // Wielogłosowe
-                    $parameter = 0;
-                    break;
-                case 3: // Jednogłosowe
-                    $parameter = 1;
-                    break;
-				case 4: // Nijakie
-					$parameter = 4;
-					break;
-            }
-        }
+		if(isset($_POST['checkBoxJ']) &&
+			$_POST['checkBoxJ'] != '')
+		{
+			$_SESSION["oneVoise"] = true;
+		}
+		else
+		{
+			$_SESSION["oneVoise"] = false;
+		}
 
-        $_SESSION['Song_Filter'] = $parameter;
+		if(isset($_POST['checkBoxW']) &&
+			$_POST['checkBoxW'] != '')
+		{
+			$_SESSION["multiVoise"] = true;
+		}
+		else
+		{
+			$_SESSION["multiVoise"] = false;
+		}
 
-        header("Location: /songs");
 
-        return true;
-    }
+
+		header("Location: /songs");
+
+		return true;
+	}
 
 
     /** Get all songs
@@ -148,31 +146,30 @@ class SongsController{
 
         User::isLogin();
 
-        if(!isset($_SESSION['Sorting'])){
+        if(!isset($_SESSION['Sorting']))		// Сортировка
             $parameter = 'id_song';
-        }
-        else{
+        else
             $parameter = $_SESSION['Sorting'];
-        }
 
-        if(!isset($_SESSION['word'])){
+        if(!isset($_SESSION['word']))			// Поисковик
             $filter = ' ';
-        }
-        else{
+        else
             $filter = $_SESSION['word'];
-        }
 
-        if(!isset($_SESSION['Song_Filter'])){
-            $songsFilter = '';
-        }
-        else{
-            $songsFilter = $_SESSION['Song_Filter'];
-        }
+        if(!isset($_SESSION['oneVoise']))		// Одноголосные
+            $oneVoise = false;
+        else
+			$oneVoise = $_SESSION['oneVoise'];
+
+		if(!isset($_SESSION['multiVoise'])) 	// Многоголосные
+			$multiVoise = false;
+		else
+			$multiVoise = $_SESSION['multiVoise'];
 
         $songsList = array();
-        $songsList = Songs::getSongsList($filter, $parameter, $songsFilter, $page);
+        $songsList = Songs::getSongsList($filter, $parameter, $oneVoise, $multiVoise, $page);
 
-        $total = Songs::getTotalSongs($filter, $songsFilter);
+        $total = Songs::getTotalSongs($filter, $oneVoise, $multiVoise);
 
         $pagination = new Pagination($total, $page, Songs::SHOW_BY_DEFAULT, 'page-');
 

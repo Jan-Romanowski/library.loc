@@ -35,7 +35,7 @@ class Songs{
      * @param int $count
      * @return array
      */
-    public static function getSongsList($word, $parameter, $songsFilter, $page = 1, $count = self::SHOW_BY_DEFAULT){
+    public static function getSongsList($word, $parameter, $oneVoise, $multiVoise, $page = 1, $count = self::SHOW_BY_DEFAULT){
         $db = Db::getConnection();
 
         $page = intval($page);
@@ -43,35 +43,28 @@ class Songs{
         $offset = ( $page - 1 ) * $count;
         $songsList = array();
 
-        if($songsFilter == 2){
-            $result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
-                                       FROM song 
-                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
-                                       WHERE (name_song LIKE '%".$word."%' OR author LIKE '%".$word."%')
-                                       ORDER BY ".$parameter." 
-                                       LIMIT ".$count." 
-                                       OFFSET ".$offset.";");
-        }
-        else if($songsFilter == 1 || $songsFilter == 0){
-            $result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
-                                       FROM song 
-                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
-                                       WHERE (name_song LIKE '%".$word."%' OR author LIKE '%".$word."%')
-                                       AND (one_voice = '$songsFilter') 
-                                       ORDER BY ".$parameter." 
-                                       LIMIT ".$count." 
-                                       OFFSET ".$offset.";");
-        }
-		else{
-			$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
-                                       FROM song 
-                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
-                                       WHERE (name_song LIKE '%".$word."%' OR author LIKE '%".$word."%')
-                                       AND (one_voice = '$songsFilter') 
-                                       ORDER BY ".$parameter." 
-                                       LIMIT ".$count." 
-                                       OFFSET ".$offset.";");
+		if($oneVoise == false && $multiVoise == true){
+			$voises = "AND (one_voice = 0)";
 		}
+		else if($oneVoise == true && $multiVoise == false){
+			$voises = "AND (one_voice = 1)";
+		}
+		else if($oneVoise == false && $multiVoise == false){
+			$voises = "AND (one_voice = 3)";
+		}
+		else{
+			$voises = "";
+		}
+
+		$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
+                                       FROM song 
+                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
+                                       WHERE (name_song LIKE '%".$word."%' OR author LIKE '%".$word."%')"
+                                       .$voises."
+                                       ORDER BY ".$parameter." 
+                                       LIMIT ".$count." 
+                                       OFFSET ".$offset.";");
+
 
 
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -95,26 +88,27 @@ class Songs{
      * @param $word
      * @return mixed
      */
-    public static function getTotalSongs($word, $songsFilter){
+    public static function getTotalSongs($word, $oneVoise, $multiVoise){
         $db = Db::getConnection();
 
-        if($songsFilter == 2) {
-            $result = $db->query("SELECT count(name_song) as kek
-                                       FROM song
-                                       WHERE name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%'");
-        }
-		else if($songsFilter == 1 || $songsFilter == 0){
-            $result = $db->query("SELECT count(name_song) as kek
-                                       FROM song
-                                       WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')
-                                       AND (one_voice = '$songsFilter')");
-        }
-		else{
-			$result = $db->query("SELECT count(name_song) as kek
-                                       FROM song
-                                       WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')
-                                       AND (one_voice = '$songsFilter')");
+		if($oneVoise == false && $multiVoise == true){
+			$voises = "AND (one_voice = 0)";
 		}
+		else if($oneVoise == true && $multiVoise == false){
+			$voises = "AND (one_voice = 1)";
+		}
+		else if($oneVoise == false && $multiVoise == false){
+			$voises = "AND (one_voice = 3)";
+		}
+		else{
+			$voises = "";
+		}
+
+		$result = $db->query("SELECT count(name_song) as kek
+                                       FROM song
+                                       WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')
+                                       ".$voises.";");
+
         $result -> setFetchMode(PDO::FETCH_ASSOC);
 
         $row = $result->fetch();

@@ -6,7 +6,7 @@
         'songs/editSong/([0-9]+)' => 'songs/editSong/$1',
         'songs/uploadFile/([0-9]+)' => 'songs/uploadFile/$1',
         'songs/priorityFilter-([0-9]+)' => 'songs/priorityFilter/$1',
-        'songs/songsFilter-([0-9]+)' => 'songs/songsFilter/$1',
+		'songs/applyFilters' => 'songs/applyFilters',
         'songs/deleteFile/([0-9]+)/([.]+)' => 'songs/deleteFile/$1/$2',
         'songs/delete/([0-9]+)' => 'songs/delete/$1',
         'songs/search' => 'songs/search',

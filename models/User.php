@@ -332,6 +332,7 @@ class User{
         $_SESSION['surname'] = $userData['surname'];
         $_SESSION['email'] = $userData['email'];
         $_SESSION['ac_type'] = $userData['ac_type'];
+		$_SESSION["multiVoise"] = true;
     }
 
     /**
