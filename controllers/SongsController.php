@@ -327,13 +327,13 @@ class SongsController{
 		
 		$folderName = self::getNameFolder($id_folder);
 		if (!is_dir(ROOT_WEB.'/files/')) {
-			mkdir(ROOT_WEB.'/files', 0700);
+			mkdir(ROOT_WEB.'/files', 0700, true);
 		}
 		if (!is_dir(ROOT_WEB.'/files/'.$folderName)) {
-			mkdir(ROOT_WEB.'/files/'.$folderName, 0700);
+			mkdir(ROOT_WEB.'/files/'.$folderName, 0700, true);
 		}
 		if (!is_dir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder)) {
-			mkdir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder, 0700);
+			mkdir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder, 0700, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {

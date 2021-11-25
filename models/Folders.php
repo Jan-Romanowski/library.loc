@@ -60,15 +60,20 @@ class Folders
 	public static function checkNameFolder($name_folder){
 		$db = Db::getConnection();
 
-		$result = $db->prepare("SELECT COUNT(*) AS cnt
+		$result = $db->prepare("SELECT COUNT(*) as cnt
 										FROM folder
 										WHERE name_folder = :name_folder");
 
 		$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
-		$row = $result->setFetchMode(PDO::FETCH_ASSOC);
-		echo $row['cnt'];
+		$row[] = $result->setFetchMode(PDO::FETCH_ASSOC);
 
-		if ($row == 1)
+		echo "<pre>";
+		print_r($name_folder);
+		print_r($row["cnt"]);
+		echo "</pre>";
+
+
+		if ($row > 0)
 			return true;
 		else
 			return false;

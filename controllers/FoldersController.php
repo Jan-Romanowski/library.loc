@@ -44,8 +44,7 @@ class FoldersController{
 					$_SESSION["msg"] = "Wystąpił błąd.";
 				}
 			}
-			header('Location: /folders/newFolder');
-			return true;
+			//header('Location: /folders/newFolder');
 		}
 		
 		require_once (ROOT.'/views/folders/folderNewItem.php');
