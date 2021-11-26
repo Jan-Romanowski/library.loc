@@ -65,16 +65,12 @@ class Folders
 										WHERE name_folder = :name_folder");
 
 		$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
-		$row[] = $result->setFetchMode(PDO::FETCH_ASSOC);
 
-		echo "<pre>";
-		print_r($name_folder);
-		print_r($row["cnt"]);
-		echo "</pre>";
+		$result->execute();
 
-
-		if ($row > 0)
+		if ($result->fetchColumn() == 1)
 			return true;
+
 		else
 			return false;
 	}

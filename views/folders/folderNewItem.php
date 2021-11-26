@@ -7,9 +7,9 @@
         Powrót
     </a>
 
-<div class='container-sm gx-5 mt-4 w-50' style='min-height: 100vh'>
+<div class='container-sm gx-5 mt-4 w-75' style='min-height: 100vh'>
 	<form method="post" action="#">
-		<div class="container-md w-75">
+		<div class="container-md w-50 pt-4 border bg-light">
 			<h2 class="mb-4 text-center">Nowa teczka</h2>
 			<div class="mb-3">
 				<label for="exampleInputText1" class="form-label">Nazwa teczki</label>
@@ -19,8 +19,8 @@
 				<span class="input-group-text">Notatki (opcjonalnie)</span>
 				<textarea class="form-control" name="note" aria-label="Notatki"><?php echo $note; ?></textarea>
 			</div>
-			<div class="mb-3">
-				<input type="submit" name="submit" class="btn btn-outline-secondary w-25">
+			<div class="mb-3 text-center">
+                <input type="submit" class="btn btn-outline-dark" name="submit"  value="Dodaj teczkę">
 			</div>
 		</div>
 	</form>

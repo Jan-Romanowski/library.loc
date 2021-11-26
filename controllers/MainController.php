@@ -9,8 +9,6 @@ class MainController{
 
         require_once ROOT.'/views/main/main.php';
 
-        require_once ROOT.'/db/upgrade.php';
-
         return true;
     }
 

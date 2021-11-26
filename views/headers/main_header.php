@@ -1,14 +1,10 @@
 <header>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
-	<script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="/js/jquery-3.6.0.min.js"></script>
-
-    <link href="/textillate/animate.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="/textillate/jquery.lettering.js"></script>
-    <script src="/textillate/jquery.textillate.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="/js/javascript.js" type="text/javascript"></script>
+    <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 </header>

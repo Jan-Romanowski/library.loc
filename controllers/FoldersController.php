@@ -40,11 +40,15 @@ class FoldersController{
 			if ($errors == false) {
 				if (Folders::newFolder($name_folder, $note)) {
 					$_SESSION["msg"] = "Nowa teczka została pomyślnie dodana do biblioteki !";
+
+					$result = '';
+					$name_folder = '';
+					$note = '';
+
 				} else {
 					$_SESSION["msg"] = "Wystąpił błąd.";
 				}
 			}
-			//header('Location: /folders/newFolder');
 		}
 		
 		require_once (ROOT.'/views/folders/folderNewItem.php');
