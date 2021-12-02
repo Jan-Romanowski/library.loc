@@ -14,6 +14,10 @@ class MainController{
 
     public function actionMembers(){
 
+		require_once ROOT.'/views/main/members.php';
+
+		return true;
+
     }
 
     public function actionHistory(){
@@ -43,4 +47,18 @@ class MainController{
 
         return true;
     }
+
+	public function actionIza(){
+
+		require_once ROOT.'/views/main/iza.php';
+
+		return true;
+	}
+
+	public function actionNews(){
+
+		require_once ROOT.'/views/main/news.php';
+
+		return true;
+	}
 }

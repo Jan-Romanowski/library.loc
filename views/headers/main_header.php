@@ -25,10 +25,10 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-						<a class="nav-link" href="#">Aktualności</a>
+						<a class="nav-link" href="/main/news/">Aktualności</a>
 				</li>
 				<li>
-						<a class="nav-link" href="#">Zarząd Chóru</a>
+						<a class="nav-link" href="/main/members/">Zarząd Chóru</a>
 				</li>
 				<li class="nav-item">
 						<a class="nav-link" href="/users/login">Biblioteka</a>
@@ -39,7 +39,7 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="/main/szulik/">Dyrygent</a></li>
-								<li><a class="dropdown-item" href="#">II Dyrygent</a></li>
+								<li><a class="dropdown-item" href="/main/iza/">II Dyrygent</a></li>
 								<li><a class="dropdown-item" href="/main/hoffman/">Ks. A. Hoffman</a></li>
 								<li><a class="dropdown-item" href="/main/history/">Historia chóru</a></li>
 						</ul>

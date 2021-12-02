@@ -29,6 +29,8 @@
         'main/contact' => 'main/contact',
         'main/hoffman' => 'main/hoffman',
         'main/history' => 'main/history',
+		'main/iza' => 'main/iza',
+		'main/news' => 'main/news',
         'main' => 'main/mainPage',
         'news/view/([0-9]+)' => 'news/view/$1',
         'news/delete/([0-9]+)' => 'news/delete/$1',
