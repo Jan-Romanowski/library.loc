@@ -99,7 +99,7 @@ class Folders
 
         $songsList = array();
 
-        $result = $db->query("SELECT id_song, name_song, id_folder
+        $result = $db->query("SELECT id_song, name_song, id_folder, author
                                        FROM song 
                                        WHERE id_folder = '$id_folder'");
         //$result -> setFetchMode(PDO::FETCH_ASSOC);
@@ -108,6 +108,7 @@ class Folders
         while($row=$result->fetch()){
             $songsList[$i]['id_song'] = $row['id_song'];
             $songsList[$i]['name_song'] = $row['name_song'];
+			$songsList[$i]['author'] = $row['author'];
 
             $i++;
         }

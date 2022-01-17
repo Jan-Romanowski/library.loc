@@ -1,11 +1,11 @@
 <?php include(ROOT . '/views/headers/header.php'); ?>
 
-    <div class='container w-50 gx-5' style='min-height: 100vh';>
-        <div class="p-5 mt-4 border bg-light">
+    <div class='container gx-2 pt-1 mt-5' style='min-height: 100vh'>
+        <div class="pt-5 px-2 pb-2 mt-5 border bg-light">
             <h2>Konto</h2>
-            <p class="fs-5 mb-2"><?php echo $_SESSION['name'].' '.$_SESSION['surname']; ?></p>
-            <p class="fs-5 mb-2"><?php echo $_SESSION['email']; ?></p>
-            <p class="fs-5 mb-2" style="color: <?php echo ComFun::rootColor($_SESSION['ac_type']); ?>"><?php echo ComFun::translateRights($_SESSION['ac_type']); ?></p>
+            <p class="fs-6 mb-2"><?php echo $_SESSION['name'].' '.$_SESSION['surname']; ?></p>
+            <p class="fs-6 mb-2"><?php echo $_SESSION['email']; ?></p>
+            <p class="fs-6 mb-2" style="color: <?php echo ComFun::rootColor($_SESSION['ac_type']); ?>"><?php echo ComFun::translateRights($_SESSION['ac_type']); ?></p>
 
             <div class="accordion" id="accordionFlushExample">
                 <div class="accordion-item">

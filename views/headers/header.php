@@ -15,7 +15,7 @@
 						data = "/images/Logo/logo.svg">
 				<img class="m-0 p-0" src = "/images/Logo/logo.svg"/>
 		</object>
-		<a class="navbar-brand" href="#">Biblioteka Chóru Katedralnego</a>
+		<a class="navbar-brand d-inline-block text-truncate" href="#">Biblioteka Chóru Katedralnego</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 		</button>
@@ -61,8 +61,8 @@
 
 
 <?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
-<div class="container m-3 gx-5">
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+<div class="container-fluid m-3 gx-5">
+    <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
 		<?php echo $_SESSION["msg"]; ?>
 		<?php $_SESSION["msg"] = null; ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

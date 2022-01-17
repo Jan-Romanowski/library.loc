@@ -70,3 +70,13 @@
         </div>
     </div>
 </nav>
+
+<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
+    <div class="container-fluid m-3 gx-5">
+        <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
+			<?php echo $_SESSION["msg"]; ?>
+			<?php $_SESSION["msg"] = null; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+<?php endif; ?>

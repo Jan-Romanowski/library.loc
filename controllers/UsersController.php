@@ -43,9 +43,14 @@ class UsersController{
 
             if($errors==false){
                 if(User::register($name, $surname, $email, $pass1)){
-					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.
-					 <strong><a href='/users/login/'>Zaloguj</a></strong>";
+					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.";
+					$_SESSION["stat"] = "alert-success";
+					header("Location: /users/login/");
                 }
+				else{
+					$_SESSION["msg"] = "Nie udało się założyć konta.";
+					$_SESSION["stat"] = "alert-danger";
+				}
             }
 
         }
@@ -135,9 +140,11 @@ class UsersController{
         if($id && $rights){
             if(User::changeRights($id, $rights)){
                 $_SESSION["msg"] = "Uprawnienia zostały pomyślnie zmienione.";
+				$_SESSION["stat"] = "alert-success";
             }
             else{
 				$_SESSION["msg"] = "Nie udało się zmienić uprawnień.";
+				$_SESSION["stat"] = "alert-danger";
             }
         }
 
@@ -150,11 +157,14 @@ class UsersController{
         User::isAdmin();
 
         if($id){
-            if(User::deleteUser($id))
-				$_SESSION["msg"] = "Konto zostało usunięte.";;
+            if(User::deleteUser($id)){
+				$_SESSION["msg"] = "Konto zostało usunięte.";
+				$_SESSION["stat"] = "alert-success";
+				header("Location: /users/view/");
+			}
         }
 
-        header("Location: /users/view/");
+
         return true;
     }
 

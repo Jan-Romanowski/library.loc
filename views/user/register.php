@@ -1,9 +1,9 @@
 <?php include(ROOT . '/views/headers/main_header.php'); ?>
 
-<div class="container-md w-50">
+<div class="container pt-5">
     <form method="post" action="#">
-        <h2 class="mb-5 mt-4 text-center">Załórz Konto</h2>
-        <div class="container-md w-75">
+        <h2 class="mb-5 mt-5 text-center">Załóż Konto</h2>
+        <div class="container w-lg-75">
             <div class="mb-3">
             <?php if(isset($errors) && is_array($errors)): ?>
                 <ul style="color: red">

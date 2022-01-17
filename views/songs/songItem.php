@@ -7,9 +7,9 @@
         Powrót
     </a>
 
-<div class='container gx-5 w-50' style='min-height: 100vh'>
-
-    <div class="p-5 mt-4 border bg-light">
+<div class='container' style='min-height: 100vh'>
+    <div class="row align-items-start">
+        <div class="p-5 mt-4 border bg-light">
         <h1><?php echo $songsItem['name_song']; ?></h1><br>
         <p class="fs-4">
             Numer teczki: <?php echo $songsItem['id_song']; ?><br>
@@ -84,6 +84,7 @@
             </div>
             <?php endif; ?>
         </div>
+    </div>
 </div>
 
 
