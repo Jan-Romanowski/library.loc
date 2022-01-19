@@ -1,6 +1,12 @@
 <?php include(ROOT . '/views/headers/header.php');?>
 
 <div class="container p-3 gx-4" style="min-height: 100vh;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/users/view/">Użytkowniki</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Wnioski</li>
+        </ol>
+    </nav>
     <h2 class="text-center mb-3 mt-3">Wnioski o rejestrację</h2>
         <div class="d-flex align-content-around flex-wrap">
             <?php

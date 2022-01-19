@@ -2,16 +2,15 @@
 
 class User{
 
-    /**
-     * @param $name
-     * @param $surname
-     * @param $email
-     * @param $pass1
-     * @param $activated
-     * @param $ac_type
-     * @return bool
-     */
-    public static function register($name, $surname, $email, $pass1){
+
+	/**
+	 * @param $name
+	 * @param $surname
+	 * @param $email
+	 * @param $pass1
+	 * @return bool
+	 */
+	public static function register($name, $surname, $email, $pass1){
         $db = Db::getConnection();
 
         $sql = 'INSERT INTO queries (email, ac_password, name, surname)'

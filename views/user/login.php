@@ -1,6 +1,6 @@
 <?php include(ROOT . '/views/headers/main_header.php'); ?>
 
-<div class="container-fluid pt-5 mt-5" style="margin: auto; min-height: 100vh;">
+<div class="container-fluid pt-5 mt-5 align-items-center" style="margin: auto; min-height: 100vh;">
     <form method="post" action="#">
         <h2 class="mb-5 mt-4 text-center">Zaloguj</h2>
         <?php if(isset($errors) && is_array($errors)): ?>
@@ -11,7 +11,7 @@
             </ul>
         <?php endif; ?>
 
-        <div class="container">
+        <div class="container col-lg-6 col-md-8 col-sm-12">
             <div class="mb-3">
                 <label for="exampleInputText1" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" value="<?php if(isset($email)) echo $email; ?>">

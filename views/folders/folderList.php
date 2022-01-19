@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             </h5>
-                        <p class="card-text">Utworów: <span class="badge bg-primary"><?php echo Folders::countSongsInFolder($foldersListItem['id_folder']) ?></span></p>
+                        <p class="card-text">Utworów: <span class="badge bg-secondary"><?php echo Folders::countSongsInFolder($foldersListItem['id_folder']) ?></span></p>
                             <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
 
                             <?php endif; ?>
