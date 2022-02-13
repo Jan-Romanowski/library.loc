@@ -164,7 +164,6 @@ class UsersController{
 			}
         }
 
-
         return true;
     }
 

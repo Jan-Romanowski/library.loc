@@ -16,7 +16,7 @@ class Songs{
             $db = Db::getConnection();
 
             $result = $db->query('
-            SELECT id_song, name_song, count_p, author, one_voice, song.id_folder, folder.name_folder, song.note 
+            SELECT id_song, name_song, count_p, author, one_voice, song.id_folder, folder.name_folder, actual, song.note 
             FROM song 
               LEFT JOIN folder ON song.id_folder = folder.id_folder 
             WHERE id_song = '.$id);
@@ -35,12 +35,13 @@ class Songs{
      * @param int $count
      * @return array
      */
-    public static function getSongsList($word, $parameter, $oneVoise, $multiVoise, $page = 1, $count = self::SHOW_BY_DEFAULT){
+    public static function getSongsList($word, $parameter, $oneVoise, $multiVoise, $page = 1, $actual, $count = self::SHOW_BY_DEFAULT){
         $db = Db::getConnection();
 
         $page = intval($page);
         $count = intval($count);
         $offset = ( $page - 1 ) * $count;
+
         $songsList = array();
 
 		if($oneVoise == false && $multiVoise == true){
@@ -56,11 +57,18 @@ class Songs{
 			$voises = "";
 		}
 
-		$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, folder.name_folder
+		if($actual == 1){
+			$act = "AND actual = 1";
+		}
+		else
+			$act = "";
+
+		$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, actual, folder.name_folder
                                        FROM song 
                                        LEFT JOIN folder ON song.id_folder = folder.id_folder
                                        WHERE (name_song LIKE '%".$word."%' OR author LIKE '%".$word."%')"
                                        .$voises."
+                                       ".$act."
                                        ORDER BY ".$parameter." 
                                        LIMIT ".$count." 
                                        OFFSET ".$offset.";");
@@ -76,6 +84,7 @@ class Songs{
             $songsList[$i]['count'] = $row['count_p'];
             $songsList[$i]['author'] = $row['author'];
             $songsList[$i]['one_voice'] = $row['one_voice'];
+			$songsList[$i]['actual'] = $row['actual'];
             $songsList[$i]['name_folder'] = $row['name_folder'];
 
             $i++;
@@ -88,7 +97,7 @@ class Songs{
      * @param $word
      * @return mixed
      */
-    public static function getTotalSongs($word, $oneVoise, $multiVoise){
+    public static function getTotalSongs($word, $oneVoise, $multiVoise, $actual){
         $db = Db::getConnection();
 
 		if($oneVoise == false && $multiVoise == true){
@@ -104,9 +113,16 @@ class Songs{
 			$voises = "";
 		}
 
+		if($actual == 1){
+			$act = "AND actual = 1";
+		}
+		else
+			$act = "";
+
 		$result = $db->query("SELECT count(name_song) as kek
                                        FROM song
                                        WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')
+                                       ".$act."
                                        ".$voises.";");
 
         $result -> setFetchMode(PDO::FETCH_ASSOC);
@@ -208,5 +224,44 @@ class Songs{
 
         return $result->execute();
     }
+
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public static function getActualById($id){
+		$db = Db::getConnection();
+
+		$result = $db->query("SELECT actual as act
+                                       FROM song
+                                       WHERE id_song = '$id';");
+
+		$result -> setFetchMode(PDO::FETCH_ASSOC);
+
+		$row = $result->fetch();
+
+		return $row['act'];
+	}
+
+
+	/**
+	 * @param $id
+	 * @param $status
+	 * @return bool
+	 */
+	public static function changeActual($id, $status){
+		$db = Db::getConnection();
+
+		$sql = "UPDATE song 
+            SET 
+                actual = '$status'
+            WHERE id_song = '$id'";
+
+		$result = $db->prepare($sql);
+
+		return $result->execute();
+
+	}
 
 }

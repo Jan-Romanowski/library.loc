@@ -7,8 +7,8 @@
 	<script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
 </header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 fixed-top">
-	<div class="container-fluid">
+<nav class="navbar navbar-expand-lg row navbar-dark bg-dark m-0 fixed-top">
+	<div class="container-fluid col-sm-12 col-md-10 col-lg-8">
 		<object class="m-0 p-0"
 						type = "image/svg+xml"
 						height="55px;"
@@ -59,13 +59,14 @@
 	</div>
 </nav>
 
-
-<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
-<div class="container-fluid m-3 gx-5">
-    <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
-		<?php echo $_SESSION["msg"]; ?>
-		<?php $_SESSION["msg"] = null; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+<div class="row mt-5">
+	<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
+        <div class="container-fluid col-sm-12 col-md-10 col-lg-8">
+            <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION["msg"]; ?>
+				<?php $_SESSION["msg"] = null; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+	<?php endif; ?>
 </div>
-<?php endif; ?>

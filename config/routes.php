@@ -4,6 +4,7 @@
         'songs/page-([0-9]+)' => 'songs/view/$1',
         'songs/newSong' => 'songs/newSong',
         'songs/editSong/([0-9]+)' => 'songs/editSong/$1',
+		'songs/changeActual/([0-9]+)' => 'songs/changeActual/$1',
         'songs/uploadFile/([0-9]+)' => 'songs/uploadFile/$1',
         'songs/priorityFilter-([0-9]+)' => 'songs/priorityFilter/$1',
 		'songs/applyFilters' => 'songs/applyFilters',

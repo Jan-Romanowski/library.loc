@@ -130,7 +130,15 @@ class SongsController{
 			$_SESSION["multiVoise"] = false;
 		}
 
-
+		if(isset($_POST['actual']) &&
+			$_POST['actual'] != '')
+		{
+			$_SESSION["actual"] = true;
+		}
+		else
+		{
+			$_SESSION["actual"] = false;
+		}
 
 		header("Location: /songs");
 
@@ -166,10 +174,15 @@ class SongsController{
 		else
 			$multiVoise = $_SESSION['multiVoise'];
 
-        $songsList = array();
-        $songsList = Songs::getSongsList($filter, $parameter, $oneVoise, $multiVoise, $page);
+		if(!isset($_SESSION['actual'])) 	// Многоголосные
+			$actual = false;
+		else
+			$actual = $_SESSION['actual'];
 
-        $total = Songs::getTotalSongs($filter, $oneVoise, $multiVoise);
+		$songsList = array();
+        $songsList = Songs::getSongsList($filter, $parameter, $oneVoise, $multiVoise, $page, $actual);
+
+        $total = Songs::getTotalSongs($filter, $oneVoise, $multiVoise, $actual);
 
         $pagination = new Pagination($total, $page, Songs::SHOW_BY_DEFAULT, 'page-');
 
@@ -401,5 +414,29 @@ class SongsController{
 				$max += 100;
 			}
 		}
+	}
+
+
+	/**
+	 * @param $id
+	 * @return bool
+	 */
+	public function actionChangeActual($id){
+		User::isModerator();
+
+		if(Songs::getActualById($id) == 0){
+			if(Songs::changeActual($id, 1)){
+				$_SESSION["msg"] = "Utwór został pomyślnie dodany do aktualnych";
+			}
+		}
+		else{
+			if(Songs::changeActual($id, 0)){
+				$_SESSION["msg"] = "Utwór został usunięty z aktualnych";
+			}
+		}
+
+		header("Location: /songs");
+
+		return true;
 	}
 }
