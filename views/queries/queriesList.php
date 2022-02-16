@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/headers/header.php');?>
+<?php include(ROOT . '/views/fragments/header.php');?>
 
 <div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
     <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
@@ -31,10 +31,10 @@
                                 <h6 class="card-text ">Email: <?php echo $queriesListItem["email"]; ?></h6>
                                 <h6 class="card-text ">Data: <?php echo $queriesListItem["regist_date"]; ?></h6>
                                 <div class="container text-center mt-4">
-                                    <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $queriesListItem["id_query"]; ?>">
                                         Akceptować
                                     </button>
-                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="staticBackdrop<?php echo $queriesListItem["id_query"]; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <form action="/queries/transferQuery/<?php echo $queriesListItem["id_query"]; ?>" method="post">
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                         <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-outline-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" class="btn btn-outline-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $queriesListItem["id_query"]; ?>">
                                             Usunąć
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"
                                                  viewBox="0 0 16 16">
@@ -68,7 +68,7 @@
                                             </svg>
                                         </button>
                                         <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal<?php echo $queriesListItem["id_query"]; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -99,4 +99,4 @@
 </div>
 
 
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

@@ -35,9 +35,6 @@
 							<a class="nav-link" href="/users/view/">Użytkowniki <span class="badge bg-danger"><?php if(Queries::getCountQueries()) echo Queries::getCountQueries(); ?></span></a>
 					</li>
 					<li class="nav-item">
-							<a class="nav-link" href="/news/">Aktualnośći</a>
-					</li>
-					<li class="nav-item">
 							<a class="nav-link" href="/users/logout/">Wyloguj</a>
 					</li>
 				<?php else: ?> <!-- FOR USER -->

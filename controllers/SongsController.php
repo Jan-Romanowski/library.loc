@@ -24,7 +24,7 @@ class SongsController{
             $i = 0;
 
             $folderName = SongsController::getNameFolder($id);
-            $dir = ROOT.'/files/'.$folderName.'/'.$id;
+            $dir = ROOT.'/public/files/'.$folderName.'/'.$id;
             $dwnlpath = '/files/'.$folderName.'/'.$id;
             if (is_dir($dir)) {
                 if ($dh = opendir($dir)) {
@@ -33,6 +33,7 @@ class SongsController{
                             $path = $dir . '/' . $file;
                             $files[$i]['filename'] = $file;
                             $files[$i]['dwnlpath'] = $dwnlpath.'/'.$file;
+							$files[$i]['filetype'] = pathinfo($dwnlpath.'/'.$file)['extension'];
                             $i++;
                         }
                     }
@@ -233,6 +234,7 @@ class SongsController{
             if($errors==false){
                 Songs::addNewSong($name, $count_p, $author, $songType, $folder, $note);
 				$_SESSION["msg"] = "Nowy utwór został pomyślnie dodany do biblioteki.";
+				$_SESSION["stat"] = "alert-success";
             }
         }
 
@@ -296,6 +298,7 @@ class SongsController{
                 if ($errors == false) {
 					Songs::editSong($id, $name, $count_p, $author, $songType, $folder_name, $note);
 					$_SESSION["msg"] = "Dane zostały zaktualizowane.";
+					$_SESSION["stat"] = "alert-success";
                 }
             }
 
@@ -321,6 +324,7 @@ class SongsController{
             $result = Songs::deleteSong($id);
             if($result)
 				$_SESSION["msg"] = "Utwór został pomyślnie usunięty.";
+				$_SESSION["stat"] = "alert-success";
                 header("Location: /songs");
         }
         return true;
@@ -335,18 +339,19 @@ class SongsController{
 		
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'No file!';
+			$_SESSION["stat"] = "alert-danger";
 			header("Location: /songs/".$id_folder);
 		}
 		
 		$folderName = self::getNameFolder($id_folder);
 		if (!is_dir(ROOT_WEB.'/files/')) {
-			mkdir(ROOT_WEB.'/files', 0700, true);
+			mkdir(ROOT_WEB.'/files', 0750, true);
 		}
 		if (!is_dir(ROOT_WEB.'/files/'.$folderName)) {
-			mkdir(ROOT_WEB.'/files/'.$folderName, 0700, true);
+			mkdir(ROOT_WEB.'/files/'.$folderName, 0750, true);
 		}
 		if (!is_dir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder)) {
-			mkdir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder, 0700, true);
+			mkdir(ROOT_WEB.'/files/'.$folderName.'/'.$id_folder, 0750, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
@@ -389,6 +394,8 @@ class SongsController{
                     if ($file != "." && $file != "..") {
                         if(strcmp($file, $filename) == 0){
                             unlink($pathFile);
+							$_SESSION["msg"] = "Plik został pomyślnie usunięty";
+							$_SESSION["stat"] = "alert-success";
                             header('Location: /songs/'.$id);
                         }
                     }
@@ -427,11 +434,13 @@ class SongsController{
 		if(Songs::getActualById($id) == 0){
 			if(Songs::changeActual($id, 1)){
 				$_SESSION["msg"] = "Utwór został pomyślnie dodany do aktualnych";
+				$_SESSION["stat"] = "alert-success";
 			}
 		}
 		else{
 			if(Songs::changeActual($id, 0)){
 				$_SESSION["msg"] = "Utwór został usunięty z aktualnych";
+				$_SESSION["stat"] = "alert-success";
 			}
 		}
 

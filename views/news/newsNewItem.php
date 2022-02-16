@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/headers/header.php'); ?>
+<?php include(ROOT . '/views/fragments/header.php'); ?>
 
     <div class='container-sm gx-5 mt-4 w-50 ';>
             <form method="post" action="#">
@@ -26,5 +26,5 @@
                 </div>
             </form>
     </div>
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');
 

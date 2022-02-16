@@ -1,6 +1,6 @@
-<?php include(ROOT . '/views/headers/header.php'); ?>
+<?php include(ROOT . '/views/fragments/header.php'); ?>
 
-<div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh';>
+<div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh'>
     <div class="container-fluid mt-5 mt-sm-2 row justify-content-center">
         <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
 
@@ -128,4 +128,4 @@
 </div>
 
 
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

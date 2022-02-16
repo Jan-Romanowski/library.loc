@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/headers/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
 <style>
     #hoffman_conteiner_first-image{
         width: 200px;
@@ -344,4 +344,4 @@
     });
 </script>
 
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/headers/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
     <style>
         #iza-container__image{
             animation: slidein 3s;
@@ -209,4 +209,4 @@
     $('#menu__chor__iza').addClass('active');
 </script>
 
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

@@ -25,8 +25,16 @@ class QueriesController{
 
         User::isModerator();
 
-        if($id)
-        Queries::deleteQuery($id);
+        if($id){
+			if(Queries::deleteQuery($id)){
+				$_SESSION["msg"] = "Wniosek został pomyślnie usunięty";
+				$_SESSION["stat"] = "alert-success";
+			}
+			else{
+				$_SESSION["msg"] = "Coś poszło nie tak..";
+				$_SESSION["stat"] = "alert-danger";
+			}
+		}
 
         header('Location: /queries/');
 
@@ -43,10 +51,16 @@ class QueriesController{
 
 		$ac_type = GET::post('ac_type', '');
 
-        if(Queries::transferQuery($id, $ac_type))
-            header('Location: /users/view');
-        else
-            header('Location: /queries');
+        if(Queries::transferQuery($id, $ac_type)){
+			$_SESSION["msg"] = "Użytkownik został pomyślnie dodany do biblioteki";
+			$_SESSION["stat"] = "alert-success";
+			header('Location: /users/view');
+		}
+        else{
+			$_SESSION["msg"] = "Coś poszło nie tak..";
+			$_SESSION["stat"] = "alert-danger";
+			header('Location: /queries');
+		}
         return true;
     }
 

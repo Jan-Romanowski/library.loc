@@ -30,6 +30,7 @@ class CabinetController
             if ($errors_pass == false) {
                 if(User::changePassword($new_pass1));
 					$_SESSION["msg"] = "Hasło zostało pomyślnie zmienione";
+					$_SESSION["stat"] = "alert-success";
                 }
             }
 
@@ -53,6 +54,7 @@ class CabinetController
                 if ($errors_data == false) {
                     if (User::changeData($name,$surname,$email)) ;
 					$_SESSION["msg"] = "Dane zostały pomyślnie zmienione. Zaloguj się ponownie, aby zmiany zaczęły obowiązywać";
+					$_SESSION["stat"] = "alert-success";
                 }
 
             }

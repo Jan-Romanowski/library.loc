@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/headers/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
 <header>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Estonia&family=Indie+Flower&family=M+PLUS+Code+Latin:wght@100&family=Montagu+Slab:wght@200&display=swap');
@@ -92,4 +92,4 @@
     $('#menu__chor__szulik').addClass('active');
 </script>
 
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

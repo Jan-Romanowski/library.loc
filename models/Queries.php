@@ -82,13 +82,13 @@
          $sql = "INSERT INTO accounts(email, name, surname, ac_password, ac_type)
                 values('$email', '$name', '$surname','$pas', '$ac_type');";
 
-         $result = $db->query($sql);
+         $result1 = $db->query($sql);
 
          $sql = "DELETE FROM queries WHERE id_query = '$id'";
 
-         $result = $db->query($sql);
+         $result2 = $db->query($sql);
 
-         if ($db->query($sql) === TRUE) {
+         if ($result1 && $result2) {
              return true;
          } else {
              return false;

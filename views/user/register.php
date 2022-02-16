@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/headers/main_header.php'); ?>
+<?php include(ROOT . '/views/fragments/main_header.php'); ?>
 
 <div class="container pt-5">
     <form method="post" action="#">
@@ -52,4 +52,4 @@
     </form>
 </div>
 
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/headers/header.php'); ?>
+<?php include(ROOT . '/views/fragments/header.php'); ?>
 
 <div class='container gx-3' style='min-height: 100vh';>
     <div class="container-fluid p-3">
@@ -53,4 +53,4 @@
         </div>
     </div>
 </div>
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');

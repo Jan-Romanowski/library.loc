@@ -35,11 +35,13 @@ class FoldersController{
 			if (Folders::checkNameFolder($name_folder) == true) {
 				$errors = true;
 				$_SESSION["msg"] = 'Taka teczka już istnieje';
+				$_SESSION["stat"] = "alert-danger";
 			}
 
 			if ($errors == false) {
 				if (Folders::newFolder($name_folder, $note)) {
 					$_SESSION["msg"] = "Nowa teczka została pomyślnie dodana do biblioteki !";
+					$_SESSION["stat"] = "alert-success";
 
 					$result = '';
 					$name_folder = '';
@@ -47,6 +49,7 @@ class FoldersController{
 
 				} else {
 					$_SESSION["msg"] = "Wystąpił błąd.";
+					$_SESSION["stat"] = "alert-danger";
 				}
 			}
 		}
@@ -65,10 +68,12 @@ class FoldersController{
 		$result = Folders::countSongsInFolder($id);
 		
 		if($result==0 && Folders::deleteFolderById($id)){
-			$_SESSION["msg"] = "Teczka pomyślnie usunięta";
+			$_SESSION["msg"] = "Teczka zostałą pomyślnie usunięta";
+			$_SESSION["stat"] = "alert-success";
 		}
 		else{
-			$_SESSION["msg"] = "Teczka zawiera utwory!";
+			$_SESSION["msg"] = "Teczka zawiera utwory! Nie da się jej usunąć!";
+			$_SESSION["stat"] = "alert-danger";
 		}
 		
 		header('Location: /folders/');

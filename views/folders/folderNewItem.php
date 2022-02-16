@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/headers/header.php'); ?>
+<?php include(ROOT . '/views/fragments/header.php'); ?>
 
 <div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
     <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
@@ -30,5 +30,5 @@
         </div>
     </div>
 </div>
-<?php include(ROOT . '/views/headers/footer.php');
+<?php include(ROOT . '/views/fragments/footer.php');
 
