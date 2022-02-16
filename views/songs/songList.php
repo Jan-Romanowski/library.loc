@@ -38,7 +38,7 @@
                                    onchange="form.submit()"
 								<?php if(ComFun::checked("actual")) echo "checked"; ?>
                             >
-                            <label class="form-check-label" for="checkBoxW">Tylko aktualne</label>
+                            <label class="form-check-label" for="actual">Tylko aktualne</label>
                         </div>
                     </form>
                 </div>
