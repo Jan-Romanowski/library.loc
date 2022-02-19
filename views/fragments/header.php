@@ -7,7 +7,7 @@
 	<script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
 </header>
 
-<nav class="navbar navbar-expand-lg row navbar-dark bg-dark m-0 fixed-top">
+<nav class="navbar navbar-expand-lg row navbar-dark bg-dark m-0 sticky-top">
 	<div class="container-fluid col-sm-12 col-md-10 col-lg-8">
 		<object class="m-0 p-0"
 						type = "image/svg+xml"

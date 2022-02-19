@@ -1,5 +1,6 @@
 <header>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
     <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -28,7 +29,7 @@
     </style>
 </header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 sticky-top">
     <div class="container-fluid">
         <object class="m-0 p-0"
                 type = "image/svg+xml"

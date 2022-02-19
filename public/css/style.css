@@ -6,11 +6,11 @@ a{
     width: 100%;
     background:
 
-    linear-gradient(
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0.35)
-    ),
-    url("/images/Chor/6.jpg");
+            linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.35)
+            ),
+            url("/images/Chor/6.jpg");
     background-repeat: no-repeat, repeat !important;
     background-attachment: fixed !important;
     background-size: cover !important;
@@ -22,7 +22,7 @@ a{
     color: white;
 }
 body{
-    padding-top: 70px;
+
 }
 
 .footer{
@@ -37,3 +37,4 @@ body{
 .h_anim:hover{
     cursor: pointer;
 }
+

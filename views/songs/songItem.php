@@ -120,17 +120,30 @@
 
                                 default: ?>
 
-
-
                                 <?php
                             }
                         ?>
                     </td>
                     <td>
-                        <a href="<?php echo $filesItem['dwnlpath'];?>" download=""><?php echo $filesItem['filename'];?></a>
+                        <a href="<?php echo $filesItem['dwnlpath'];?>" class="text-dark" download=""><?php echo $filesItem['filename'];?></a>
                     </td>
                     <td>
-                        <a class="float-end" href="/songs/deleteFile/<?php echo $songsItem['id_song'].'/'.$filesItem['filename']; ?>">Usunąć</a>
+                        <div class="dropdown">
+                            <a class="text-dark" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                </svg>
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" download="" href="<?php echo $filesItem['dwnlpath'];?>">Pobrać</a></li>
+                                <li><a class="dropdown-item" href="<?php echo $filesItem['dwnlpath'];?>">Otworzyć</a></li>
+						    <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
+                                <li><a class="dropdown-item" href="/songs/deleteFile/<?php echo $songsItem['id_song'].'/'.$filesItem['filename']; ?>">Usunąć</a></li>
+                            <?php endif; ?>
+
+                            </ul>
+                        </div>
                     </td>
                     </tr>
 					<?php endforeach;
