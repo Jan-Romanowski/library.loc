@@ -1,5 +1,6 @@
 <?php
     return array(
+		'songs/deleteFile/([0-9]+)/([\w+.(mp3|pdf|wave)])' => 'songs/deleteFile/$1/$2',
         'songs/([0-9]+)' => 'songs/index/$1',
         'songs/page-([0-9]+)' => 'songs/view/$1',
         'songs/newSong' => 'songs/newSong',
@@ -8,7 +9,6 @@
         'songs/uploadFile/([0-9]+)' => 'songs/uploadFile/$1',
         'songs/priorityFilter-([0-9]+)' => 'songs/priorityFilter/$1',
 		'songs/applyFilters' => 'songs/applyFilters',
-        'songs/deleteFile/([0-9]+)/([.]+)' => 'songs/deleteFile/$1/$2',
         'songs/delete/([0-9]+)' => 'songs/delete/$1',
         'songs/search' => 'songs/search',
         'songs' => 'songs/view',
@@ -30,6 +30,11 @@
         'main/contact' => 'main/contact',
         'main/hoffman' => 'main/hoffman',
         'main/history' => 'main/history',
+		'main/achivments' => 'main/achivments',
+		'main/galery' => 'main/galery',
+		'main/koncerty' => 'main/koncerty',
+		'main/wyjazdy' => 'main/wyjazdy',
+		'main/glosy' => 'main/glosy',
 		'main/iza' => 'main/iza',
 		'main/news' => 'main/news',
         'main' => 'main/mainPage',

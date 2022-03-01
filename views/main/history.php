@@ -24,51 +24,19 @@
             transition: all 0.8s;
         }
 
-        #history-container_image-second,
-        #history-container__content-main-1,
-        #history-container__content-main-2,
-        #history-container__content-part-1,
-        #history-container__content-part-2,
-        #history-container__content-part-3,
-        #history-container__content-part-4{
-            display: none;
-        }
 
-        .animation{
-            animation: animationText 1s;
-        }
-
-        @keyframes slidein {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes animationText {
-            0% {
-                opacity: 0;
-                transform: translateY(+100%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0%);
-            }
-        }
     </style>
 </header>
 <body class="main_body">
-<div class="container-fluid-sm text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%;">
+<div class="container-fluid-sm text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%; min-height: 100vh;">
     <div class="container-fluid p-5">
         <div style="text-align: center;">
             <h2 class="pt-2 mb-5">Chór w latach 1955 - 1994</h2>
         </div>
-        <div id="history-container__content-main-1">
+        <div class="container-fluid">
             <img id='history__image-first' src="/img/chor1962.gif" width="500px" class="img" style="float: left; margin: 2% 3% 2% 0" alt='Chór' title='Chór'>
 
-            <p align="justify" class="textilla">
+            <p>
                 Interesująca i niezwykle bogata historia chóru działającego przy
                 kościele p. w. Niepokalanego Poczęcia NMP w Siedlcach sięga lat dwudziestych
                 ubiegłego stulecia, w których działał Aleksander Gromek pierwszy organista
@@ -92,7 +60,7 @@
                 i inne pieśni wielkanocne".
             </p><hr>
         </div>
-        <div id="history-container__content-main-2">
+        <div class="container-fluid">
             <p align="justify">
                 Nowy dyrygent wprowadził szybko nowy styl pracy. Pierwszym tego przejawem były zeszyty
                 głosowe prowadzone w porządku tematycznym, następnym, wprowadzenie prób osobnych dla
@@ -119,7 +87,7 @@
                 diecezja takiego chóru nie posiada..."
             </p><hr>
         </div>
-        <div id='history-container__content-part-1'>
+        <div class="container-fluid">
             <p align="justify">
                 W ciągu 40 lat działalności pod batutą ks. Hoffmana Chór wziął udział w kilkudziesięciu
                 uroczystościach o zasięgu diecezjalnym, w katedrze i poza Siedlcami.
@@ -128,7 +96,7 @@
             </p><hr>
         </div>
 
-        <div id='history-container__content-part-2'>
+        <div class="container-fluid">
             <p align="justify">
                 W tym celu rozpoczął organizowanie w Katedrze Siedleckiej koncertów muzyki religijnej.
                 Pierwszy taki koncert odbył się 20 listopada 1955 i był to koncert ku czci św. Cecylii,
@@ -143,7 +111,7 @@
             </p><hr>
         </div>
 
-        <div id='history-container__content-part-3'>
+        <div class="container-fluid">
             <p align="justify">
                 Lata 60 - te i 70 - te XX wieku były okresem największego rozwoju zespołu. W tym czasie
                 liczył on około 80 śpiewaków. Chór Katedralny miał swoich własnych solistów i
@@ -158,11 +126,11 @@
             </p>
         </div>
 
-        <div id='history-container_image-second' class="rounded mx-auto d-block" style="text-align: center;">
+        <div class="container-fluid" class="rounded mx-auto d-block" style="text-align: center;">
             <img id='history__image-second' src="/img/hoffman3.jpeg">
         </div>
 
-        <div id='history-container__content-part-4'>
+        <div class="container-fluid">
             <p align="justify">
                 Przeżywającego swój rozkwit chóru nie omijały jednak trudności wynikające przede
                 wszystkim z ciężkiej sytuacji politycznej kraju. Ciągła inwigilacja dyrygenta i
@@ -183,47 +151,5 @@
 </div>
 </div>
 </body>
-<script>
-    $(document).ready(function() {
-
-        $('#history-container__content-main-1').addClass('animation');
-        $('#history-container__content-main-1').css('display', 'inline-block');
-
-        $('#history-container__content-main-2').addClass('animation');
-        $('#history-container__content-main-2').css('display', 'inline-block');
-
-        $(document).on('scroll', function(){
-            var screenTop = $(document).scrollTop();
-
-            if(screenTop > 200){
-                $('#history-container__content-part-1').addClass('animation');
-                $('#history-container__content-part-1').css('display', 'inline-block');
-            }
-
-            if(screenTop > 340){
-                $('#history-container__content-part-2').addClass('animation');
-                $('#history-container__content-part-2').css('display', 'inline-block');
-            }
-
-            if(screenTop > 390){
-                $('#history-container__content-part-3').addClass('animation');
-                $('#history-container__content-part-3').css('display', 'inline-block');
-            }
-
-            if(screenTop > 450){
-                $('#history-container_image-second').addClass('animation');
-                $('#history-container_image-second').css('display', 'inline-block');
-            }
-
-            if(screenTop > 490){
-                $('#history-container__content-part-4').addClass('animation');
-                $('#history-container__content-part-4').css('display', 'inline-block');
-            }
-        })
-
-        $('#menu__chor').addClass('active');
-        $('#menu__chor__history').addClass('active');
-    });
-</script>
 
 <?php include(ROOT . '/views/fragments/footer.php');

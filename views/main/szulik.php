@@ -14,24 +14,11 @@
             transition: all 0.8s;
         }
 
-        .szulik__change-font{
-            font-family: 'Indie Flower', cursive;
-            color: #FFDFD8;
-        }
-
-        @keyframes slidein {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
     </style>
 </header>
 <body class="main_body">
-<div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; padding-left: 10px; padding-right: 10px; margin-top: 20px; width: 100%;">
-    <div class="container-fluid text-center pt-5" >
+<div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%;">
+<div class="container-fluid text-center pt-5" >
         <h2 class="mb-5">Dyrygent Ks. Michał Roman Szulik</h2>
     </div>
 
@@ -87,9 +74,5 @@
     </div>
 </div>
 </body>
-<script>
-    $('#menu__chor').addClass('active');
-    $('#menu__chor__szulik').addClass('active');
-</script>
 
 <?php include(ROOT . '/views/fragments/footer.php');

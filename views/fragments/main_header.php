@@ -62,6 +62,8 @@
                         <li><a id='menu__chor__iza' class="dropdown-item" href="/main/iza/">II Dyrygent</a></li>
                         <li><a id='menu__chor__hoffman' class="dropdown-item" href="/main/hoffman/">Ks. A. Hoffman</a></li>
                         <li><a id='menu__chor__history' class="dropdown-item" href="/main/history/">Historia chóru</a></li>
+                        <li><a id='menu__chor__history' class="dropdown-item" href="/main/achivments/">Osiągnięcia</a></li>
+                        <li><a id='menu__chor__history' class="dropdown-item" href="/main/galery/">Galeria</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -72,12 +74,14 @@
     </div>
 </nav>
 
-<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
-    <div class="container-fluid m-3 gx-5">
-        <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
-			<?php echo $_SESSION["msg"]; ?>
-			<?php $_SESSION["msg"] = null; ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="row mt-5">
+	<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
+        <div class="container-fluid col-sm-12 col-md-10 col-lg-8">
+            <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
+				<?php echo $_SESSION["msg"]; ?>
+				<?php $_SESSION["msg"] = null; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         </div>
-    </div>
-<?php endif; ?>
+	<?php endif; ?>
+</div>

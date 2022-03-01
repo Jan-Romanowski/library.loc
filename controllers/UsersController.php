@@ -45,7 +45,13 @@ class UsersController{
                 if(User::register($name, $surname, $email, $pass1)){
 					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.";
 					$_SESSION["stat"] = "alert-success";
-					header("Location: /users/login/");
+
+					$name = '';
+					$surname = '';
+					$email = '';
+					$pass1 = '';
+					$pass2 = '';
+
                 }
 				else{
 					$_SESSION["msg"] = "Nie udało się założyć konta.";

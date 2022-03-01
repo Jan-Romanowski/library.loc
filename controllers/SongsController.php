@@ -386,7 +386,8 @@ class SongsController{
         User::isModerator();
 
         $folderName = self::getNameFolder($id);
-        $dir = ROOT.'/files/'.$folderName.'/'.$id;
+
+        $dir = ROOT.'/public/files/'.$folderName.'/'.$id;
         $pathFile = $dir.'/'.$filename;
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {

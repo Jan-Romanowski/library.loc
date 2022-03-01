@@ -325,7 +325,7 @@ class User{
      * @param $userData
      */
     public static function auth($userData){
-        //session_start();
+
         $_SESSION['user'] = $userData['id_account'];
         $_SESSION['name'] = $userData['name'];
         $_SESSION['surname'] = $userData['surname'];

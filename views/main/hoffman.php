@@ -34,55 +34,6 @@
         transition: all 0.8s;
     }
 
-    #container__content-part-1,
-    #container__content-part-2,
-    #container__content-part-3,
-    #container__content-part-4,
-    #container__content-part-5,
-    #container__content-part-6,
-    #container__content-part-7,
-    #container__content-part-8,
-    #container__content-part-9,
-    #container__content-part-10,
-    #container__content-part-11,
-    #container__content-part-12,
-    #container__content-part-13{
-        display: none;
-    }
-
-    #flex-container__content-part-6,
-    #flex-container__content-part-10{
-        flex-basis: 73%;
-    }
-
-    #flex-container__hoffman-page,
-    #flex-conteiner__image-third{
-        flex-basis: 28%;
-    }
-
-    .animation{
-        animation: animationText 1s;
-    }
-
-    @keyframes slidein {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-
-    @keyframes animationText {
-        0% {
-            opacity: 0;
-            transform: translateY(+100%);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0%);
-        }
-    }
 </style>
 <body class="main_body">
 <div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%;">
@@ -90,7 +41,7 @@
         <div style="text-align: center">
             <h2 class="mb-5">Ks. Alfred Jan Hoffman (1923 - 1994)</h2>
         </div>
-        <div id='container__content-part-1'>
+        <div class="container-fluid">
             <div class='hoffman_conteiner_first-image'>
                 <img id='firstImageHoffman' alt='Alfred Jan Hoffman' title='Alfred Jan Hoffman' src="/img/hoffman.jpeg" width="180px" class = "img" style="float: left; margin-right: 20px;">
             </div>
@@ -106,7 +57,7 @@
                     także szczególną troskę o tych, którzy są w potrzebie.
                 </p><hr>
         </div>
-        <div id='container__content-part-2'>
+        <div class="container-fluid">
             <p align="justify">
                 Pierwszą szkolę, a była to placówka kierowana przez jego ojca, ukończył 14 czerwca 1933
                 roku z wynikiem bardzo dobrym. Alfred już w wieku dziesięciu lat został wysłany przez
@@ -126,7 +77,7 @@
                 Matki Bożej Wspomożenia Wiernych w Oświęcimiu otrzymał świecenia kapłańskie.
             </p><hr>
         </div>
-        <div id='container__content-part-3'>
+        <div class="container-fluid">
             <p align="justify">
                 Cieszącego się dobrą opinią i zaufaniem przełożonych neoprezbitera skierowano najpierw
                 do pracy w domu nowicjackim w Kopcu k. Częstochowy, gdzie pracując przez rok pełnił
@@ -139,7 +90,7 @@
                 funkcję sprawował ks. Hoffman w latach 1952-1953.
             </p><hr>
         </div>
-        <div id='container__content-part-4'>
+        <div class="container-fluid">
             <p align="justify">
                 Lata 1953-1955 to okres bardzo trudny. Z przyczyn zdrowotnych ks. Alfred został
                 skierowany na dwuletni urlop do domu rodzinnego. W tym też czasie ks. infułat Julian
@@ -158,9 +109,7 @@
                 w sposób wzorowy.
             </p><hr>
         </div>
-        <div id='container__content-part-5'>
-            <div id='flex-container__content-part-6'>
-                <div id='container__content-part-6'>
+        <div class="container-fluid">
                     <p align="justify">
                         Jako muzyk zasłużony dla diecezji, ks. Hoffman zaangażował się w pracę w Diecezjalnej
                         Komisji Liturgicznej,
@@ -174,9 +123,7 @@
                         zajęcia zajmował się do końca życia, przygotowując wielu przyszłych muzyków do podjęcia
                         studiów.
                     </p><hr>
-                </div>
 
-                <div id='container__content-part-7'>
                     <p align="justify">
                         Z początkiem lat 80-tych, ubiegłego wieku został skierowany do nauczania muzyki w
                         Studentacie Filozoficznym Księży Salezjanów w Kutnie Woźniakowie, gdzie był także
@@ -187,14 +134,12 @@
                         ucząc gry na fortepianie oraz podstaw muzyki. Po śmierci ks. Władysława Pietrzaka,
                         objął także całość nauczania muzyki oraz prowadzenie chóru seminaryjnego.
                     </p><hr>
-                </div>
-            </div>
-            <div id='flex-container__hoffman-page'>
-                <img id='secondImageHoffman' title='Alfred Jan Hoffman' src="/img/hoffman2.jpeg" class="img" style="float: right; margin: 2s% 0 0 0">
+            <div class="container-fluid">
+                <img id='secondImageHoffman' title='Alfred Jan Hoffman' src="/img/hoffman2.jpeg" class="img p-3" style="float: right; margin: 2s% 0 0 0">
             </div>
         </div>
 
-        <div id='container__content-part-8'>
+        <div class="container-fluid">
             <p align="justify">
                 Największą jednak pasją, której poświęcił się bez reszty było prowadzenie Chóru
                 Katedralnego. Praca z zespołem przebiegała zawsze na dwóch płaszczyznach. Pierwszą
@@ -213,12 +158,12 @@
             </p>
         </div>
 
-        <div id='container__content-part-9'>
-            <div id='flex-conteiner__image-third'>
+        <div class="container-fluid">
+            <div class="container-fluid">
                 <img id='thirdImageHoffman' title='Alfred Jan Hoffman' src="/img/hoffman4.gif" class="img" style="float: left; margin: 20px 30px 20px 0">
             </div>
-            <div id='flex-container__content-part-10'>
-                <div id='container__content-part-10'>
+            <div class="container-fluid">
+                <div class="container-fluid">
                     <p align="justify">
                         Ks. Hoffman jako dyrygent nie ograniczał się tylko do pracy muzycznej. Był on dla
                         swoich chórzystów kapłanem, ojcem i przyjacielem. Jego życie związane było całkowicie
@@ -229,7 +174,7 @@
                         uczył dorosłych jak być autorytetem i wychowawcą dla młodych pokoleń.
                     </p><hr>
                 </div>
-                <div id='container__content-part-11'>
+                <div class="container-fluid">
                     <p align="justify">
                         Jego skromne mieszkanie w plebanii katedralnej zawsze wypełnione było ludźmi, którzy
                         potrzebowali przewodnika na swojej drodze życiowej. Dla wszystkich miał czas, otwarte
@@ -243,7 +188,7 @@
                 </div>
             </div>
         </div>
-        <div id='container__content-part-12'>
+        <div class="container-fluid">
             <p align="justify">
                 W ostatnich latach życia starał się jeszcze więcej
                 pracować, mówiąc, że czuje powoli chwilę odejścia, a tak wiele chciałby jeszcze
@@ -254,7 +199,7 @@
                 na pokornej służbie bliźnim.
             </p><hr>
         </div>
-        <div id='container__content-part-13'>
+        <div class="container-fluid">
             <p align="justify">
                 Pośmiertnie, w roku 1994 Ks. Alfred Hoffman został uhonorowany nagrodą im. Ludomira
                 Benedyktowicza za całokształt twórczości w dziedzinie muzyki sakralnej. W rok po
@@ -270,78 +215,5 @@
 </div>
 </div>
 </body>
-<script>
-    $(document).ready(function() {
-        $('#container__content-part-1').addClass('animation');
-        $('#container__content-part-1').css('display', 'inline-block');
-
-        $('#container__content-part-2').addClass('animation');
-        $('#container__content-part-2').css('display', 'inline-block');
-
-        $('#container__content-part-3').addClass('animation');
-        $('#container__content-part-3').css('display', 'inline-block');
-
-        $(document).on('scroll', function(){
-            var screenTop = $(document).scrollTop();
-            if(screenTop > 10){
-                $('#container__content-part-4').addClass('animation');
-                $('#container__content-part-4').css('display', 'inline-block');
-            }
-
-            if(screenTop > 160){
-                $('#container__content-part-5').addClass('animation');
-                $('#container__content-part-5').css({
-                    'display': 'flex',
-                    'flex-direction': 'row',
-                    'flex-wrap': 'nowrap'
-                });
-            }
-
-            if(screenTop > 180){
-                $('#container__content-part-6').addClass('animation');
-                $('#container__content-part-6').css('display', 'inline-block');
-            }
-
-            if(screenTop > 544){
-                $('#container__content-part-7').addClass('animation');
-                $('#container__content-part-7').css('display', 'inline-block');
-            }
-
-            if(screenTop > 730){
-                $('#container__content-part-8').addClass('animation');
-                $('#container__content-part-8').css('display', 'inline-block');
-            }
-
-            if(screenTop > 760){
-                $('#container__content-part-9').addClass('animation');
-                $('#container__content-part-9').css({
-                    'display': 'flex',
-                    'flex-direction': 'row',
-                    'flex-wrap': 'nowrap'
-                });
-                $('#container__content-part-10').addClass('animation');
-                $('#container__content-part-10').css('display', 'inline-block');
-            }
-
-            if(screenTop > 1120){
-                $('#container__content-part-11').addClass('animation');
-                $('#container__content-part-11').css('display', 'inline-block');
-            }
-
-            if(screenTop > 1340){
-                $('#container__content-part-12').addClass('animation');
-                $('#container__content-part-12').css('display', 'inline-block');
-            }
-
-            if(screenTop > 1430){
-                $('#container__content-part-13').addClass('animation');
-                $('#container__content-part-13').css('display', 'inline-block');
-            }
-        })
-
-        $('#menu__chor').addClass('active');
-        $('#menu__chor__hoffman').addClass('active');
-    });
-</script>
 
 <?php include(ROOT . '/views/fragments/footer.php');

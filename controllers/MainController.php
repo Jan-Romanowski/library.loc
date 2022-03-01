@@ -61,4 +61,44 @@ class MainController{
 
 		return true;
 	}
+
+	public function actionAchivments(){
+
+		require_once ROOT.'/views/main/achivments.php';
+
+		return true;
+
+	}
+
+	public function actionGalery(){
+
+		require_once ROOT.'/views/main/galery.php';
+
+		return true;
+
+	}
+
+	public function actionWyjazdy(){
+
+		require_once ROOT.'/views/main/wyjazdy.php';
+
+		return true;
+
+	}
+
+	public function actionKoncerty(){
+
+		require_once ROOT.'/views/main/koncerty.php';
+
+		return true;
+
+	}
+
+	public function actionGlosy(){
+
+		require_once ROOT.'/views/main/glosy.php';
+
+		return true;
+
+	}
 }

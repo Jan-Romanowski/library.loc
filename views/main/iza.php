@@ -10,33 +10,6 @@
             transform: scale(1.1);
             transition: all 0.8s;
         }
-
-        #iza-conteiner__part-1,
-        #iza-conteiner__part-2,
-        #iza-conteiner__part-3,
-        iza-conteiner__part-4,
-        part-4__item1,
-        part-4__item2,
-        part-4__item3,
-        part-4__item4,
-        part-4__item5{
-            display: none;
-        }
-
-        .animation{
-            animation: animationText 1s;
-        }
-
-        @keyframes animationText {
-            0% {
-                opacity: 0;
-                transform: translateY(+100%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0%);
-            }
-        }
     </style>
 	<body class="main_body">
 	<div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%;">
@@ -45,7 +18,7 @@
 				<h2 class="mb-5">Dyrygent Izabela Kiryluk</h2>
 			</div>
 
-        <div id="iza-conteiner__part-1">
+        <div class="container-fluid">
             <img id='iza-container__image' src="/img/iza.jpg" width="300px" style="margin: 0 0 2% 2%; float: right;">
 			<p>
 				Dyrygent, solistka, pedagog. Absolwentka Wydziału Dyrygentury Chóralnej, Edukacji Muzycznej i
@@ -66,8 +39,9 @@
 			<hr>
 		</div>
 
-		<div id="iza-conteiner__part-2">
-			<p>
+        <div class="container-fluid">
+            <img id='iza-container__image' class="m-4" src="/img/4.jpg" width="230px" style="margin: 0 0 2% 2%; float: left;">
+			<p class="m-3">
 				Jako solistka, chórzystka i dyrygentka brała udział w nagraniu płyt: „Muzyka w Katedrze Siedleckiej” i „Kultura
 				muzyczna Katedry Siedleckiej. Ludzie i Muzyka”, Płyta Jubileuszowa z okazji XX-lecia PSEG i XV-lecia PPSSW,„Kameralnie
 				to pięknie  i profesjonalnie”,  Płyta Jubileuszowa z okazji 50 – lecia pracy artystycznej prof. J. Gałęskiej – Tritt
@@ -78,7 +52,7 @@
 			<hr>
 		</div>
 
-		<div id="iza-conteiner__part-3">
+        <div class="container-fluid">
 			<p>
 				W ramach pracy dyrygenckiej z Chórem Katedralnym, Zespołem Kameralnym Chóru Katedralnego, Chórem PSM I st. oraz
 				Zespołem wokalnym PSM II st. brała udział w festiwalach muzyki chóralnej i zdobyła następujące nagrody i wyróżnienia:
@@ -86,9 +60,9 @@
 			<hr>
 		</div>
 
-		<div id="iza-conteiner__part-4">
+        <div class="container-fluid">
 			<ul>
-                <div id="part-4__item1">
+                <div class="container-fluid">
                     <li>w roku 2015 Srebrny dyplom na X Festiwalu Muzyki Sakralnej Mater Misericordiae w Ząbkach z Chórem Katedralnym
                         im. ks. Alfreda Hoffmana w Siedlcach,
                     </li>
@@ -97,7 +71,7 @@
                     </li>
                 </div>
 
-                <div id="part-4__item2">
+                <div class="container-fluid">
                     <li>w roku 2016 Złoty Dyplom na IV Festiwalu Chórów Szkół Muzycznych Regionu Mazowieckiego z Zespołem wokalnym PSM
                         II st. w Siedlcach,
                     </li>
@@ -109,7 +83,8 @@
                     </li>
                 </div>
 
-                <div id="part-4__item3">
+                <div class="container-fluid">
+                    <img id='iza-container__image' class="m-3" src="/img/7.jpg" width="300px" style="margin: 0 0 2% 2%; float: right;">
                     <li>w roku 2018 Grand Prix na X Festiwalu Kolęd i Pastorałek „Kolędowe Serce Mazowsza” w Siedlcach z Chórem Państwowej
                         Szkoły Muzycznej I st. w Siedlcach.
                     </li>
@@ -121,7 +96,7 @@
                     </li>
                 </div>
 
-                <div id="part-4__item4">
+                <div class="container-fluid">
                     <li>w roku 2018 Nagroda specjalna Prezydenta Miasta Siedlce za prawykonanie utworu o tematyce patriotycznej pt. "Hymn do
                         miłości Ojczyzny" autorstwa ks. Michała Romana Szulika na V Festiwalu Chórów Szkół Muzycznych Regionu Mazowieckiego
                         z Chórem PSM I st. w Siedlcach
@@ -134,7 +109,7 @@
                     </li>
                 </div>
 
-                <div id="part-4__item5">
+                <div class="container-fluid">
                     <li>w roku 2018 Nagroda Specjalna Dyrektora Radia Nadzieja dla najlepszego dyrygenta  na I Ogólnopolskim Konkursie Muzyki
                         Sakralnej “Nadzieja w Chórze” w Tykocinie z Chórem PSM I st. w Siedlcach.
                     </li>
@@ -147,66 +122,5 @@
 		</div>
 	</div>
 	</body>
-<script>
-    $(document).ready(function() {
-        $('#iza-conteiner__part-1').addClass('animation');
-        $('#iza-conteiner__part-1').css('display', 'inline-block');
-
-        $('#iza-conteiner__part-2').addClass('animation');
-        $('#iza-conteiner__part-2').css('display', 'inline-block');
-
-        $('#part-4__item1').css('display', 'none');
-        $('#part-4__item2').css('display', 'none');
-        $('#part-4__item3').css('display', 'none');
-        $('#part-4__item4').css('display', 'none');
-        $('#part-4__item5').css('display', 'none');
-
-        $(document).on('scroll', function() {
-            var screenTop = $(document).scrollTop();
-                if(screenTop > 50){
-                    $('#iza-conteiner__part-3').addClass('animation');
-                    $('#iza-conteiner__part-3').css('display', 'inline-block');
-                }
-
-                if(screenTop > 70){
-                    $('#part-4__item1').addClass('animation');
-                    $('#part-4__item1').css('display', 'inline-block');
-                    $('#part-4__item2').css('display', 'none');
-                    $('#part-4__item3').css('display', 'none');
-                    $('#part-4__item4').css('display', 'none');
-                    $('#part-4__item5').css('display', 'none');
-                }
-
-                if(screenTop > 100){
-                    $('#part-4__item2').addClass('animation');
-                    $('#part-4__item2').css('display', 'inline-block');
-                    $('#part-4__item3').css('display', 'none');
-                    $('#part-4__item4').css('display', 'none');
-                    $('#part-4__item5').css('display', 'none');
-                }
-
-                if(screenTop > 150){
-                    $('#part-4__item3').addClass('animation');
-                    $('#part-4__item3').css('display', 'inline-block');
-                    $('#part-4__item4').css('display', 'none');
-                    $('#part-4__item5').css('display', 'none');
-                }
-
-                if(screenTop > 220){
-                    $('#part-4__item4').addClass('animation');
-                    $('#part-4__item4').css('display', 'inline-block');
-                    $('#part-4__item5').css('display', 'none');
-                }
-
-                if(screenTop > 300){
-                    $('#part-4__item5').addClass('animation');
-                    $('#part-4__item5').css('display', 'inline-block');
-                }
-        });
-    });
-
-    $('#menu__chor').addClass('active');
-    $('#menu__chor__iza').addClass('active');
-</script>
 
 <?php include(ROOT . '/views/fragments/footer.php');
