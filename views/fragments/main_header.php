@@ -73,15 +73,3 @@
         </div>
     </div>
 </nav>
-
-<div class="row mt-5">
-	<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
-        <div class="container-fluid col-sm-12 col-md-10 col-lg-8">
-            <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">
-				<?php echo $_SESSION["msg"]; ?>
-				<?php $_SESSION["msg"] = null; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-	<?php endif; ?>
-</div>

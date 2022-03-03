@@ -19,32 +19,24 @@
                 Galeria
             </h1>
             <div class="row justify-content-center text-light">
-                <div class="card col-4 m-4 bg-dark" style="width: 18rem;">
+                <div class="card col-4 m-4 bg-dark pt-3" style="width: 18rem;">
                     <a href="/main/koncerty/">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="/img/koncert.jpg" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body text-center">
                         <h5 class="card-title">Koncerty</h5>
                     </div>
                 </div>
 
-                <div class="card col-4 m-4 bg-dark" style="width: 18rem;">
-                    <a href="/main/koncerty/">
-                        <img src="..." class="card-img-top" alt="...">
+                <div class="card col-4 m-4 bg-dark pt-3" style="width: 18rem;">
+                    <a href="/main/wyjazdy/">
+                        <img src="/img/wyhazd.jpg" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body text-center">
                         <h5 class="card-title">Wyjazdy</h5>
                     </div>
                 </div>
 
-                <div class="card col-4 m-4 bg-dark" style="width: 18rem;">
-                    <a href="/main/koncerty/">
-                        <img src="..." class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Głosy</h5>
-                    </div>
-                </div>
             </div>
 
 		</div>

@@ -2,12 +2,12 @@
     <body class="main_body">
     <style>
 
-        img{
+        .custom_img{
             animation: slidein 3s;
             border-radius: 10px;
             cursor: pointer;
         }
-        img:hover{
+        .custom_img:hover{
             transform: scale(1.1);
             transition: all 0.8s;
         }
@@ -22,7 +22,7 @@
             <!--        First-->
             <div class="container row justify-content-center">
                 <div class="container col-sm-12 col-md-12 col-lg-6">
-                    <img src="/img/chkk.jpeg" class="card-img-top m-2" alt="...">
+					<?php ComFun::crutch("/img/chkk.jpeg", 1); ?>
                 </div>
                 <div class="container col-sm-12 col-md-12 col-lg-6">
                     <p class="text-center fs-4" style="vertical-align: middle;">
@@ -54,8 +54,11 @@
             <!--        Second-->
             <div class="container row justify-content-center">
                 <div class="container col-sm-12 col-md-12 col-lg-6">
-                    <img src="/img/ktp.jpeg" class="card-img-top m-2" alt="...">
+
+                <?php ComFun::crutch("/img/ktp.jpeg", 2); ?>
+
                 </div>
+
                 <div class="container col-sm-12 col-md-12 col-lg-6">
                     <p class="text-center fs-4" style="vertical-align: middle;">Koncert Tota pulchra est Maria</p>
                     <p class="text-center text-light" style="vertical-align: middle;">7 grudnia 2019, Katedra siedlecka</p>
@@ -120,12 +123,15 @@
                         H.M. Górecki, J. Surzyński, J. Arcadelt, F. List, A. Guilmant, F. Peeters,<br> A. Bruckner, C. Franck
                     </p>
                 </div>
+
+                <!-- Button trigger modal -->
+
             </div>
             <hr class="m-5">
             <!--        Third-->
             <div class="container row justify-content-center">
                 <div class="container col-sm-12 col-md-12 col-lg-6">
-                    <img src="/img/galery1.jpeg" class="card-img-top m-2" alt="...">
+					<?php ComFun::crutch("/img/galery1.jpeg", 3); ?>
                 </div>
                 <div class="container col-sm-12 col-md-12 col-lg-6">
                     <p class="text-center fs-4" style="vertical-align: middle;">Uroczysty Koncert
@@ -180,4 +186,8 @@
     <script>
         $('#menu__contact').addClass('active');
     </script>
+
+
+
+
 <?php include(ROOT . '/views/fragments/footer.php');
