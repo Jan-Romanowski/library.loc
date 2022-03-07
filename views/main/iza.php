@@ -1,12 +1,11 @@
 <?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
     <style>
-        #iza-container__image{
+        img{
             animation: slidein 3s;
             border-radius: 10px;
             cursor: pointer;
         }
-
-        #iza-container__image:hover{
+        img:hover{
             transform: scale(1.1);
             transition: all 0.8s;
         }
@@ -19,7 +18,7 @@
 			</div>
 
         <div class="container-fluid">
-            <img id='iza-container__image' src="/img/iza.jpg" width="300px" style="margin: 0 0 2% 2%; float: right;">
+            <img src="/img/iza.jpg" width="300px" class="mx-3" style=" float: right;">
 			<p>
 				Dyrygent, solistka, pedagog. Absolwentka Wydziału Dyrygentury Chóralnej, Edukacji Muzycznej i
 				Muzyki Kościelnej w Akademii Muzycznej im. I.J. Paderewskiego w klasie dyrygentury prof. Magdaleny
@@ -40,7 +39,7 @@
 		</div>
 
         <div class="container-fluid">
-            <img id='iza-container__image' class="m-4" src="/img/4.jpg" width="230px" style="margin: 0 0 2% 2%; float: left;">
+            <img class="mx-3" src="/img/4.jpg" width="230px" style=" float: left;">
 			<p class="m-3">
 				Jako solistka, chórzystka i dyrygentka brała udział w nagraniu płyt: „Muzyka w Katedrze Siedleckiej” i „Kultura
 				muzyczna Katedry Siedleckiej. Ludzie i Muzyka”, Płyta Jubileuszowa z okazji XX-lecia PSEG i XV-lecia PPSSW,„Kameralnie
@@ -49,7 +48,6 @@
 				z okazji 20 – lecia Towarzystwa Muzycznego Schola Cantorum Posnaniensis oraz Płyty „Łacińska Muzyka na Boże Narodzenie”
 				z Chórami Państwowej Szkoły Muzycznej w Siedlcach.
 			</p>
-			<hr>
 		</div>
 
         <div class="container-fluid">

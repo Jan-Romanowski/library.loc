@@ -1,5 +1,7 @@
 <?php
     return array(
+		'admin/gallery' => 'admin/gallery',
+		'admin' => 'admin/index',
 		'songs/deleteFile/([0-9]+)/([\w+.(mp3|pdf|wave)])' => 'songs/deleteFile/$1/$2',
         'songs/([0-9]+)' => 'songs/index/$1',
         'songs/page-([0-9]+)' => 'songs/view/$1',
@@ -31,7 +33,7 @@
         'main/hoffman' => 'main/hoffman',
         'main/history' => 'main/history',
 		'main/achivments' => 'main/achivments',
-		'main/galery' => 'main/galery',
+		'main/gallery' => 'main/gallery',
 		'main/koncerty' => 'main/koncerty',
 		'main/wyjazdy' => 'main/wyjazdy',
 		'main/glosy' => 'main/glosy',

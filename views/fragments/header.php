@@ -32,7 +32,7 @@
 							<a class="nav-link" href="/folders/">Teczki</a>
 					</li>
 					<li class="nav-item">
-							<a class="nav-link" href="/users/view/">Użytkowniki <span class="badge bg-danger"><?php if(Queries::getCountQueries()) echo Queries::getCountQueries(); ?></span></a>
+							<a class="nav-link" href="/admin/">Zarządzanie <span class="badge bg-danger"><?php if(Queries::getCountQueries()) echo Queries::getCountQueries(); ?></span></a>
 					</li>
 					<li class="nav-item">
 							<a class="nav-link" href="/users/logout/">Wyloguj</a>

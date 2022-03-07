@@ -1,35 +1,12 @@
 <?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
 <style>
-    #hoffman_conteiner_first-image{
-        width: 200px;
-        height: 250px;
-        float: left;
-        margin-right: 20px;
-    }
 
-    #firstImageHoffman{
+    img{
         animation: slidein 3s;
         border-radius: 10px;
         cursor: pointer;
     }
-
-    #firstImageHoffman:hover{
-        transform: scale(1.1);
-        transition: all 0.8s;
-    }
-
-    #secondImageHoffman,
-    #thirdImageHoffman{
-        border-radius: 10px;
-        cursor: pointer;
-    }
-
-    #secondImageHoffman:hover{
-        transform: scale(1.1);
-        transition: all 0.8s;
-    }
-
-    #thirdImageHoffman:hover{
+    img:hover{
         transform: scale(1.1);
         transition: all 0.8s;
     }
@@ -110,33 +87,31 @@
             </p><hr>
         </div>
         <div class="container-fluid">
-                    <p align="justify">
-                        Jako muzyk zasłużony dla diecezji, ks. Hoffman zaangażował się w pracę w Diecezjalnej
-                        Komisji Liturgicznej,
-                        do której został
-                        powołany przez Biskupa Siedleckiego w 1968 r.
-                        Wraz z innymi księżmi, zaczął pracować nad doskonaleniem organistów, prowadząc
-                        rekolekcje dla organistów. Kiedy powołano do życia Studium Organistowskie, jako
-                        wykładowca prowadził część zajęć we własnym mieszkaniu, mieszczącym się w plebanii
-                        katedralnej przy ul. Kochanowskiego. Dla słuchaczy studium napisał ponad 530
-                        harmonizacji pieśni kościelnych. Pracą pedagogiczną, która obejmowała także prywatne
-                        zajęcia zajmował się do końca życia, przygotowując wielu przyszłych muzyków do podjęcia
-                        studiów.
-                    </p><hr>
+            <p align="justify">
+                Jako muzyk zasłużony dla diecezji, ks. Hoffman zaangażował się w pracę w Diecezjalnej
+                Komisji Liturgicznej,
+                do której został
+                powołany przez Biskupa Siedleckiego w 1968 r.
+                Wraz z innymi księżmi, zaczął pracować nad doskonaleniem organistów, prowadząc
+                rekolekcje dla organistów. Kiedy powołano do życia Studium Organistowskie, jako
+                wykładowca prowadził część zajęć we własnym mieszkaniu, mieszczącym się w plebanii
+                katedralnej przy ul. Kochanowskiego. Dla słuchaczy studium napisał ponad 530
+                harmonizacji pieśni kościelnych. Pracą pedagogiczną, która obejmowała także prywatne
+                zajęcia zajmował się do końca życia, przygotowując wielu przyszłych muzyków do podjęcia
+                studiów.
+            </p><hr>
 
-                    <p align="justify">
-                        Z początkiem lat 80-tych, ubiegłego wieku został skierowany do nauczania muzyki w
-                        Studentacie Filozoficznym Księży Salezjanów w Kutnie Woźniakowie, gdzie był także
-                        spowiednikiem kleryków i współbraci. Cotygodniowe dojazdy do Kutna kosztowały go wiele
-                        trudu i poświecenia, a także zdrowia, które było coraz słabsze.
-                        W roku 1984 na prośbę ówczesnego rektora Wyższego Seminarium Duchownego w Siedlcach,
-                        ks. dra Kazimierza Białeckiego objął zajęcia z utalentowanymi muzycznie klerykami,
-                        ucząc gry na fortepianie oraz podstaw muzyki. Po śmierci ks. Władysława Pietrzaka,
-                        objął także całość nauczania muzyki oraz prowadzenie chóru seminaryjnego.
-                    </p><hr>
-            <div class="container-fluid">
-                <img id='secondImageHoffman' title='Alfred Jan Hoffman' src="/img/hoffman2.jpeg" class="img p-3" style="float: right; margin: 2s% 0 0 0">
-            </div>
+            <p align="justify">
+                Z początkiem lat 80-tych, ubiegłego wieku został skierowany do nauczania muzyki w
+                Studentacie Filozoficznym Księży Salezjanów w Kutnie Woźniakowie, gdzie był także
+                spowiednikiem kleryków i współbraci. Cotygodniowe dojazdy do Kutna kosztowały go wiele
+                trudu i poświecenia, a także zdrowia, które było coraz słabsze.
+                W roku 1984 na prośbę ówczesnego rektora Wyższego Seminarium Duchownego w Siedlcach,
+                ks. dra Kazimierza Białeckiego objął zajęcia z utalentowanymi muzycznie klerykami,
+                ucząc gry na fortepianie oraz podstaw muzyki. Po śmierci ks. Władysława Pietrzaka,
+                objął także całość nauczania muzyki oraz prowadzenie chóru seminaryjnego.
+            </p><hr>
+            <img title='Alfred Jan Hoffman' src="/img/hoffman2.jpeg" class="img mx-3" style="float: right;">
         </div>
 
         <div class="container-fluid">
@@ -159,34 +134,26 @@
         </div>
 
         <div class="container-fluid">
-            <div class="container-fluid">
-                <img id='thirdImageHoffman' title='Alfred Jan Hoffman' src="/img/hoffman4.gif" class="img" style="float: left; margin: 20px 30px 20px 0">
-            </div>
-            <div class="container-fluid">
-                <div class="container-fluid">
-                    <p align="justify">
-                        Ks. Hoffman jako dyrygent nie ograniczał się tylko do pracy muzycznej. Był on dla
-                        swoich chórzystów kapłanem, ojcem i przyjacielem. Jego życie związane było całkowicie
-                        z życiem chórzystów. Razem z nimi przeżywał radości i smutki, był wszędzie tam, gdzie
-                        go potrzebowano. Pomagał rozwiązywać problemy, doradzał, podtrzymywał na duchu. Uczył
-                        zawsze zaufania do Pana Boga i miłości do Maryi Wspomożycielki Wiernych. Sam
-                        ukształtowany w duchu ks. Jana Bosko, wychowywał z wielką miłością dzieci i młodzież,
-                        uczył dorosłych jak być autorytetem i wychowawcą dla młodych pokoleń.
-                    </p><hr>
-                </div>
-                <div class="container-fluid">
-                    <p align="justify">
-                        Jego skromne mieszkanie w plebanii katedralnej zawsze wypełnione było ludźmi, którzy
-                        potrzebowali przewodnika na swojej drodze życiowej. Dla wszystkich miał czas, otwarte
-                        serce i rękę.
-                        Ks. Hoffman prowadził cichą i niewidoczną pracę charytatywną. Wielu potrzebujących
-                        znajdowało u niego pomoc. Wspierany przez swoich chórzystów rozdawał wszystko co
-                        miał, widząc w ubogich opuszczonego Jezusa.
-                        Pogarszający się stan zdrowia nie hamował pracy duszpasterskiej, artystycznej i
-                        pedagogicznej ks. Hoffmana.
-                    </p><hr>
-                </div>
-            </div>
+            <img title='Alfred Jan Hoffman' src="/img/hoffman4.gif" class="img mx-3" style="float: left;">
+                <p align="justify">
+                    Ks. Hoffman jako dyrygent nie ograniczał się tylko do pracy muzycznej. Był on dla
+                    swoich chórzystów kapłanem, ojcem i przyjacielem. Jego życie związane było całkowicie
+                    z życiem chórzystów. Razem z nimi przeżywał radości i smutki, był wszędzie tam, gdzie
+                    go potrzebowano. Pomagał rozwiązywać problemy, doradzał, podtrzymywał na duchu. Uczył
+                    zawsze zaufania do Pana Boga i miłości do Maryi Wspomożycielki Wiernych. Sam
+                    ukształtowany w duchu ks. Jana Bosko, wychowywał z wielką miłością dzieci i młodzież,
+                    uczył dorosłych jak być autorytetem i wychowawcą dla młodych pokoleń.
+                </p><hr>
+                <p align="justify">
+                    Jego skromne mieszkanie w plebanii katedralnej zawsze wypełnione było ludźmi, którzy
+                    potrzebowali przewodnika na swojej drodze życiowej. Dla wszystkich miał czas, otwarte
+                    serce i rękę.
+                    Ks. Hoffman prowadził cichą i niewidoczną pracę charytatywną. Wielu potrzebujących
+                    znajdowało u niego pomoc. Wspierany przez swoich chórzystów rozdawał wszystko co
+                    miał, widząc w ubogich opuszczonego Jezusa.
+                    Pogarszający się stan zdrowia nie hamował pracy duszpasterskiej, artystycznej i
+                    pedagogicznej ks. Hoffmana.
+                </p><hr>
         </div>
         <div class="container-fluid">
             <p align="justify">

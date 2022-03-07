@@ -3,8 +3,13 @@
 <div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh'>
     <div class="container-fluid mt-5 mt-sm-2 row justify-content-center">
     <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
-        <h1 class="text-center m-3"><strong>Lista użytkowników</strong></h1>
-    <a href="/queries/" class="btn btn-outline-dark mb-3">Wnioski <span class="badge bg-danger"><?php if(Queries::getCountQueries()) echo Queries::getCountQueries(); ?></span></a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/">Zarządzanie</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Lista użytkowników</li>
+            </ol>
+        </nav>
+        <h1 class="text-center m-5"><strong>Lista użytkowników</strong></h1>
     <table class='table table-hover p-3'>
         <tr class="bg-light"><td>Email</td>
             <td>Imię</td>

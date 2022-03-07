@@ -1,29 +1,16 @@
 <?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
 <header>
     <style>
-        #history__image-first{
+
+        img{
             animation: slidein 3s;
             border-radius: 10px;
             cursor: pointer;
         }
-
-        #history__image-first:hover{
+        img:hover{
             transform: scale(1.1);
             transition: all 0.8s;
         }
-
-        #history__image-second{
-            animation: slidein 3s;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 2% 0;
-        }
-
-        #history__image-second:hover{
-            transform: scale(1.1);
-            transition: all 0.8s;
-        }
-
 
     </style>
 </header>
@@ -34,7 +21,7 @@
             <h2 class="pt-2 mb-5">Chór w latach 1955 - 1994</h2>
         </div>
         <div class="container-fluid">
-            <img id='history__image-first' src="/img/chor1962.gif" width="500px" class="img" style="float: left; margin: 2% 3% 2% 0" alt='Chór' title='Chór'>
+            <img src="/img/chor1962.gif" width="500px" class="img mx-3" style="float: left;" alt='Chór' title='Chór'>
 
             <p>
                 Interesująca i niezwykle bogata historia chóru działającego przy
@@ -127,7 +114,7 @@
         </div>
 
         <div class="container-fluid" class="rounded mx-auto d-block" style="text-align: center;">
-            <img id='history__image-second' src="/img/hoffman3.jpeg">
+            <img src="/img/hoffman3.jpeg" class="m-3">
         </div>
 
         <div class="container-fluid">
