@@ -1,5 +1,7 @@
 <?php
     return array(
+		'admin/uploadPhoto' => 'admin/uploadPhoto',
+		'admin/deleteFileFromGallery/([A-z]+)/([\w+.(jpeg|jpg|png)])' => 'admin/deleteFileFromGallery/$1/$2',
 		'admin/gallery' => 'admin/gallery',
 		'admin' => 'admin/index',
 		'songs/deleteFile/([0-9]+)/([\w+.(mp3|pdf|wave)])' => 'songs/deleteFile/$1/$2',

@@ -334,11 +334,11 @@ class SongsController{
 	 * @param $id_folder
 	 * @return bool
 	 */
-	public function actionUploadFile($id_folder){ // не работает mkdir !!!!!!!!!!!!!!!!!!!!!!!!!
+	public function actionUploadFile($id_folder){
 		User::isModerator();
 		
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
-			$_SESSION["msg"] = 'No file!';
+			$_SESSION["msg"] = 'Nie znaleziono pliku!';
 			$_SESSION["stat"] = "alert-danger";
 			header("Location: /songs/".$id_folder);
 		}
@@ -368,7 +368,7 @@ class SongsController{
 					$tmp  = $_FILES['filename']['tmp_name'];
 
 					move_uploaded_file($tmp, $target);
-					$_SESSION["msg"] = 'File uploaded!';
+					$_SESSION["msg"] = 'Plik został pomyślnie wgrany!';
 					header("Location: /songs/".$id_folder);
 //				}
 //			}
@@ -389,6 +389,7 @@ class SongsController{
 
         $dir = ROOT.'/public/files/'.$folderName.'/'.$id;
         $pathFile = $dir.'/'.$filename;
+
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {
                 while (false !== ($file = readdir($dh))) {

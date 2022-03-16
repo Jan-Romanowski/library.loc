@@ -4,7 +4,7 @@
 		<div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
 			<div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-8">
 				<h1 class="text-center mb-5">Zarządzanie stroną</h1>
-                <div class="row justify-content-center">
+                <div class="row justify-content-start">
 
                     <div class="card m-3" style="width: 17rem;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" fill="currentColor" class="bi bi-people-fill mt-3 card-img-top" viewBox="0 0 16 16">

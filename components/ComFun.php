@@ -14,28 +14,28 @@
 class ComFun {
 
 	static function translateRights($word){
-    switch ($word){
-			case 'user':
-					return 'Użytkownik';
-					break;
-			case 'admin':
-					return 'Administrator';
-					break;
-			case 'moder':
-					return 'Moderator';
-					break;
-			case 'Użytkownik':
-					return 'user';
-					break;
-			case 'Administrator':
-					return 'admin';
-					break;
-			case 'Moderator':
-					return 'moder';
-					break;
-			default:
-					return false;
-    }
+		switch ($word){
+				case 'user':
+						return 'Użytkownik';
+						break;
+				case 'admin':
+						return 'Administrator';
+						break;
+				case 'moder':
+						return 'Moderator';
+						break;
+				case 'Użytkownik':
+						return 'user';
+						break;
+				case 'Administrator':
+						return 'admin';
+						break;
+				case 'Moderator':
+						return 'moder';
+						break;
+				default:
+						return false;
+		}
 	}
 
 	static function rootColor($root){
@@ -62,27 +62,29 @@ class ComFun {
 			return false;
 	}
 
-	static function crutch($link, $id){
+	static function crutch($link, $id, $filename, $chapter){
 		echo
 			'
-				
+				<div class="container">
+					<a href="/admin/deleteFileFromGallery/'.$chapter.'/'.$filename.'">Delete</a>
 					<img src="'.$link.'" data-bs-toggle="modal" data-bs-target="#exampleModal'.$id.'" class="custom_img card-img-top m-2" alt="...">
-				
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal'.$id.'" tabindex="-1" style="background-color: rgba(0,0,0, 0.6) !important;" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-xl p-0 bg-transparent">
-						<div class="modal-content bg-transparent">
-							<div class="modal-header">
-								<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body p-0">
-								<div class="container d-flex justify-content-center p-2 m-0">
-									<img src="'.$link.'" class="container p-0 m-2" style="max-width: 80%;" alt="...">
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal'.$id.'" tabindex="-1" style="background-color: rgba(0,0,0, 0.6) !important;" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-xl p-0 bg-transparent">
+							<div class="modal-content bg-transparent">
+								<div class="modal-header">
+									<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body p-0">
+									<div class="container d-flex justify-content-center p-2 m-0">
+										<img src="'.$link.'" class="container p-0 m-2" style="max-width: 80%;" alt="...">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+		
 			';
 	}
 }
