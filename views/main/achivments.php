@@ -4,7 +4,7 @@
 
 	</div>
 	</body>
-	<script>
-        $('#menu__contact').addClass('active');
-	</script>
+    <script>
+        $('#menu__chor').addClass('active');
+    </script>
 <?php include(ROOT . '/views/fragments/footer.php');

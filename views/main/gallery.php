@@ -20,7 +20,7 @@
             </h1>
             <div class="row justify-content-center text-light">
                 <div class="card col-4 m-4 bg-dark pt-3" style="width: 18rem;">
-                    <a href="/main/koncerty/">
+                    <a href="/main/concerts/">
                         <img src="/img/koncert.jpg" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body text-center">
@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	</body>
-	<script>
-        $('#menu__contact').addClass('active');
-	</script>
+    <script>
+        $('#menu__chor').addClass('active');
+    </script>
 <?php include(ROOT . '/views/fragments/footer.php');

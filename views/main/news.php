@@ -184,7 +184,7 @@
     </div>
     </body>
     <script>
-        $('#menu__contact').addClass('active');
+        $('#menu__aktualnosci').addClass('active');
     </script>
 
 

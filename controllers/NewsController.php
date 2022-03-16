@@ -14,7 +14,6 @@ class NewsController{
 
         require_once(ROOT . '/views/news/newsList.php');
 
-
         return true;
     }
 
@@ -46,6 +45,7 @@ class NewsController{
 
             if($errors==false){
                 $result = News::setNewsItem($header, $text, $author);
+
             }
         }
 

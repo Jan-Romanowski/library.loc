@@ -47,4 +47,8 @@
     </form>
 </div>
 
+    <script>
+        $('#menu__biblioteka').addClass('active');
+    </script>
+
 <?php include(ROOT . '/views/fragments/footer.php');

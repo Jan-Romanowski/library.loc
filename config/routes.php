@@ -36,7 +36,7 @@
         'main/history' => 'main/history',
 		'main/achivments' => 'main/achivments',
 		'main/gallery' => 'main/gallery',
-		'main/koncerty' => 'main/koncerty',
+		'main/concerts' => 'main/concerts',
 		'main/wyjazdy' => 'main/wyjazdy',
 		'main/glosy' => 'main/glosy',
 		'main/iza' => 'main/iza',

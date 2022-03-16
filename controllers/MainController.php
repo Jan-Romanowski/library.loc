@@ -70,9 +70,9 @@ class MainController{
 
 	}
 
-	public function actionGalery(){
+	public function actionGallery(){
 
-		require_once ROOT.'/views/main/galery.php';
+		require_once ROOT.'/views/main/gallery.php';
 
 		return true;
 
@@ -86,12 +86,40 @@ class MainController{
 
 	}
 
-	public function actionKoncerty(){
+	public function actionConcerts(){
 
-		require_once ROOT.'/views/main/koncerty.php';
+		$files = array();
+		$i = 0;
+
+		$dir = ROOT.'/public/gallery/concerts';
+		if (!is_dir(ROOT_WEB.'/gallery/concerts')) {
+			mkdir(ROOT_WEB.'/gallery/concerts', 0750, true);
+		}
+		else if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$path = $dir . '/' . $file;
+						$files[$i]['file'] = '/gallery/concerts/' . $file;
+						$files[$i]['chapter'] = 'concerts';
+						$files[$i]['filename'] = $file;
+						$i++;
+					}
+				}
+			}
+		}
+
+		require_once ROOT.'/views/main/concerts.php';
 
 		return true;
 
+	}
+
+	public function actionTrips(){
+
+		require_once ROOT.'/views/main/trips.php';
+
+		return true;
 	}
 
 	public function actionGlosy(){

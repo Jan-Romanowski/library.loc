@@ -117,7 +117,8 @@ class AdminController{
 
 			move_uploaded_file($tmp, $target);
 			$_SESSION["msg"] = 'Plik został pomyślnie wgrany!';
-			header("Location: /admin/gallery");
+			$_SESSION["stat"] = "alert-success";
+ 			header("Location: /admin/gallery");
 
 		}
 		return true;

@@ -58,7 +58,7 @@
                             <h5 class="card-title">Aktualności</h5>
                             <p class="card-text">Zarządzanie aktualnościami, edycja, usuwanie</p>
                             <div class="text-center">
-                                <a href="#" class="btn btn-primary">Zarządzaj</a>
+                                <a href="/news/" class="btn btn-primary">Zarządzaj</a>
                             </div>
                         </div>
                     </div>

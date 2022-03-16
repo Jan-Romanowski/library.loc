@@ -63,7 +63,7 @@
                         <li><a id='menu__chor__hoffman' class="dropdown-item" href="/main/hoffman/">Ks. A. Hoffman</a></li>
                         <li><a id='menu__chor__history' class="dropdown-item" href="/main/history/">Historia chóru</a></li>
                         <li><a id='menu__chor__history' class="dropdown-item" href="/main/achivments/">Osiągnięcia</a></li>
-                        <li><a id='menu__chor__history' class="dropdown-item" href="/main/galery/">Galeria</a></li>
+                        <li><a id='menu__chor__history' class="dropdown-item" href="/main/gallery/">Galeria</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

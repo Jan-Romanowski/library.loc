@@ -121,4 +121,8 @@
 	</div>
 	</body>
 
+    <script>
+        $('#menu__chor').addClass('active');
+    </script>
+
 <?php include(ROOT . '/views/fragments/footer.php');

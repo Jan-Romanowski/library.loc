@@ -11,10 +11,10 @@
             </nav>
             <h1 class="text-center mb-5">Galeria</h1>
 
-                <button type="button" class="btn btn-outline-dark m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-outline-dark m-3" data-bs-toggle="modal" data-bs-target="#static">
                     Dodaj zdjęcie
                 </button>
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropL" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <form action="/admin/uploadPhoto/" method="post" class="" enctype="multipart/form-data" style="margin-top: 30px;">
@@ -43,6 +43,7 @@
                 <?php
                 $i=1;
                 foreach ($files as $filesItem):
+
                     ?>
                     <div class="container col-sm-12 col-md-12 col-lg-6 mb-4">
 						<?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename'], $filesItem['chapter']); ?>

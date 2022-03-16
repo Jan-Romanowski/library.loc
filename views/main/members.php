@@ -89,4 +89,8 @@
 </div>
 </body>
 
+    <script>
+        $('#menu__zarzad').addClass('active');
+    </script>
+
 <?php include(ROOT . '/views/fragments/footer.php');
