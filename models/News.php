@@ -29,7 +29,7 @@ class News{
      * @return bool
      */
     public static function checkHeader($header){
-        if(strlen($header)>29){
+        if(strlen($header)>99){
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ class News{
      * @return bool
      */
     public static function checkText($text){
-        if(strlen($text)>299){
+        if(strlen($text)>2999){
             return true;
         }
         return false;

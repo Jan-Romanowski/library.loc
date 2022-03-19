@@ -24,6 +24,7 @@
         </div>
         <div class="container-fluid p-5" style="background-color: rgba(0,0,0, 0.5);">
             <div class="container text-white row justify-content-center col-12 fs-4">
+                <h1 class="text-center mb-5">O nas</h1>
                 <p class="col-10">
                     Chór Katedralny im ks. Alfreda Hoffmana jest zespołem, który wyrasta
                     z niemalże stuletniej tradycji chóralnej kościoła pod wezwaniem Niepokalanego Poczęcia

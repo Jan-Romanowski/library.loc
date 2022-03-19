@@ -1,9 +1,17 @@
 <?php include(ROOT . '/views/fragments/header.php'); ?>
 
-<div class='container gx-3' style='min-height: 100vh';>
-    <div class="container-fluid p-3">
-        <a class="btn btn-outline-dark mb-3" href="newItem">Nowa wiadomość</a>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+<div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
+    <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
+        <div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/">Zarządzanie</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Aktualnośći</li>
+                </ol>
+            </nav>
+            <h1 class="text-center mb-5"><strong>Aktualności</strong></h1>
+        <a class="btn btn-outline-dark mb-3" href="/news/newItem/">Nowa wiadomość</a>
+        <div class="row row-cols-1 row-cols-md-3 g---4">
 
             <?php
                 foreach ($newsList as $newsListItem):?>
@@ -13,7 +21,7 @@
 <!--                            <img src="..." class="card-img-top" alt="...">-->
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
-                                <p class="card-text"><?php echo $newsListItem['text']; ?></p>
+                                <p class="card-text text-truncate" style="max-height: 100px;"><?php echo $newsListItem['text']; ?></p>
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsListItem['date_news']; ?></h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsListItem['autor']; ?></h6>
                                 <a href="/news/view/<?php echo $newsListItem['id_news']; ?>" class="btn btn-outline-info">Szczegóły</a>
@@ -42,7 +50,6 @@
                                         </div>
                                     </div>
                                 </div>
-
 <!--                                <a href="/news/deleteNews/--><?php //echo $newsListItem['id_news']; ?><!--" class="btn btn-primary">Usunąć</a>-->
                             </div>
                         </div>
@@ -53,4 +60,5 @@
         </div>
     </div>
 </div>
+    </div>
 <?php include(ROOT . '/views/fragments/footer.php');

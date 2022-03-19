@@ -55,9 +55,52 @@ class MainController{
 		return true;
 	}
 
+	public function actionNewsItem($id){
+
+		if($id){
+
+			$newsItem = array();
+			$newsItem = News::getNewsItemById($id);
+
+			if (!is_dir(ROOT_WEB.'/news/')) {
+				mkdir(ROOT_WEB.'/news', 0750, true);
+			}
+
+			if (!is_dir(ROOT_WEB.'/news/'.$id)) {
+				mkdir(ROOT_WEB.'/news/'.$id, 0750, true);
+			}
+
+			$files = array();
+			$i = 0;
+
+			$dir = ROOT.'/public/news/'.$id;
+
+			if (is_dir($dir)) {
+				if ($dh = opendir($dir)) {
+					while (false !== ($file = readdir($dh))) {
+						if ($file != "." && $file != "..") {
+							$path = $dir . '/' . $file;
+							$files[$i]['file'] = '/news/'.$id.'/'.$file;
+							$files[$i]['filename'] = $file;
+							$i++;
+						}
+					}
+				}
+			}
+
+			require_once(ROOT . '/views/main/newsItem.php');
+
+		}
+
+		return true;
+	}
+
 	public function actionNews(){
 
-		require_once ROOT.'/views/main/news.php';
+		$newsList = array();
+		$newsList = News::getNewsList();
+
+		require_once(ROOT . '/views/main/news.php');
 
 		return true;
 	}
@@ -117,16 +160,32 @@ class MainController{
 
 	public function actionTrips(){
 
+		$files = array();
+		$i = 0;
+
+		$dir = ROOT.'/public/gallery/trips';
+		if (!is_dir(ROOT_WEB.'/gallery/trips')) {
+			mkdir(ROOT_WEB.'/gallery/trips', 0750, true);
+		}
+		else if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$path = $dir . '/' . $file;
+						$files[$i]['file'] = '/gallery/trips/' . $file;
+						$files[$i]['chapter'] = 'trips';
+						$files[$i]['filename'] = $file;
+						$i++;
+					}
+				}
+			}
+		}
+
 		require_once ROOT.'/views/main/trips.php';
 
 		return true;
 	}
 
-	public function actionGlosy(){
 
-		require_once ROOT.'/views/main/glosy.php';
 
-		return true;
-
-	}
 }

@@ -31,7 +31,7 @@
                                     </select>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success w-25">Wgraj plik</button>
+                                    <button type="submit" class="btn btn-outline-success w-25">Wgraj zdjęcie</button>
                                     <button type="button" class="btn btn-outline-secondary w-25" data-bs-dismiss="modal">Confij</button>
                                 </div>
                             </form>

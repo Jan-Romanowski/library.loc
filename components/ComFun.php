@@ -62,7 +62,7 @@ class ComFun {
 			return false;
 	}
 
-	static function crutch($link, $id, $filename, $chapter){
+	static function crutch($link, $id, $filename, $chapter, $path = '/admin/deleteFileFromGallery'){
 		echo
 			'
 				<div class="container border">
@@ -84,7 +84,7 @@ class ComFun {
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn btn-outline-danger w-25"
-											onclick=document.location="/admin/deleteFileFromGallery/'.$chapter.'/'.$filename.'">Tak
+											onclick=document.location="'.$path.'/'.$chapter.'/'.$filename.'">Tak
 									</button>
 									<button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
 								</div>

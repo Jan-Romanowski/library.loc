@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="card col-4 m-4 bg-dark pt-3" style="width: 18rem;">
-                    <a href="/main/wyjazdy/">
+                    <a href="/main/trips/">
                         <img src="/img/wyhazd.jpg" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body text-center">

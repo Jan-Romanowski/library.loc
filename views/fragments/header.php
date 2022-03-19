@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <header>
+    <link rel="shortcut icon" href="/images/Logo/logo_ico.png" type="image/png">
 	<link rel="stylesheet" href="/css/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="/js/javascript.js" type="text/javascript"></script>
 	<script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 </header>
 
 <nav class="navbar navbar-expand-lg row navbar-dark bg-dark m-0 sticky-top">
