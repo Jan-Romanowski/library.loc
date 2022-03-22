@@ -49,6 +49,8 @@ class NewsController{
 
             if($errors==false){
                 $result = News::setNewsItem($header, $text, $author);
+				$_SESSION["msg"] = 'Post został pomyslnie obuplikowany';
+				$_SESSION["stat"] = "alert-success";
 
             }
         }
@@ -109,12 +111,15 @@ class NewsController{
      * @param $id
      * @return bool
      */
-    public function actionDelete($id){
+    public function actionDelete($id){ // Нужна проверка есть ли в папке файлы, и удаление папки
 
         User::isModerator();
 
-        if($id)
-            News::deleteNews($id);
+        if($id){
+			News::deleteNews($id);
+			$_SESSION["msg"] = 'Post został pomyslnie usunięty';
+			$_SESSION["stat"] = "alert-success";
+		}
 
         header("Location: /news/index/");
 
@@ -195,7 +200,6 @@ class NewsController{
 		}
 		return true;
 
-		return true;
 	}
 
 }

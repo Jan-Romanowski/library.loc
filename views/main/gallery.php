@@ -3,9 +3,11 @@
     <style>
 
         img{
+            height: 230px;
             animation: slidein 3s;
             border-radius: 10px;
             cursor: pointer;
+            object-fit: cover;
         }
         img:hover{
             transform: scale(1.1);

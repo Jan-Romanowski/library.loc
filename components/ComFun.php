@@ -118,7 +118,7 @@ class ComFun {
 			'
 				<div class="container">
 					
-					<img src="'.$link.'" data-bs-toggle="modal" data-bs-target="#exampleModal'.$id.'" class="custom_img card-img-top m-2" alt="...">
+					<img src="'.$link.'" data-bs-toggle="modal" data-bs-target="#exampleModal'.$id.'" class="img custom_img card-img-top m-2" alt="...">
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal'.$id.'" tabindex="-1" style="background-color: rgba(0,0,0, 0.6) !important;" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-xl p-0 bg-transparent">

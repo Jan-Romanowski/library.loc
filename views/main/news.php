@@ -2,15 +2,16 @@
 
 <style>
 
-img{
-	animation: slidein 3s;
+    img{
+        animation: slidein 3s;
         border-radius: 10px;
         cursor: pointer;
+        object-fit: cover;
     }
 
     img:hover{
-	transform: scale(1.1);
-	transition: all 0.8s;
+        transform: scale(1.1);
+        transition: all 0.8s;
     }
 
 </style>
@@ -24,17 +25,39 @@ img{
 			<?php
 			foreach ($newsList as $newsListItem):?>
 
-				<div class="col">
-					<div class="card bg-dark mb-3">
-						<div class="card-body">
-							<h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
-							<p class="card-text text-truncate" style="max-height: 100px;"><?php echo $newsListItem['text']; ?></p>
-							<h6 class="card-subtitle mb-2 text-muted"><?php echo $newsListItem['date_news']; ?></h6>
-							<h6 class="card-subtitle mb-2 text-muted"><?php echo $newsListItem['autor']; ?></h6>
-                            <a href="/main/newsItem/<?php echo $newsListItem['id_news']; ?>" class="btn btn-outline-info">Szczegóły</a>
-					    </div>
-					</div>
-				</div>
+                <div class="card bg-dark mb-3" style="max-width: 600px; max-height: 300px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+
+                            <?php
+
+							$dir = ROOT.'/public/news/'.$newsListItem['id_news'];;
+
+							if (is_dir($dir)) {
+								if ($dh = opendir($dir)) {
+									while (false !== ($file = readdir($dh))) {
+										if ($file != "." && $file != "..") {
+											$path = $dir . '/' . $file;
+											$files = '/news/'.$newsListItem['id_news'].'/'.$file;
+										}
+									}
+								}
+							}
+                            ?>
+
+                            <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" height="300" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
+                                <p class="card-text text-truncate"><?php echo $newsListItem['text']; ?></p>
+                                <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
+                                <p class="card-text"><small class="text-muted"><?php echo $newsListItem['date_news']; ?></small></p>
+                                <a href="/main/newsItem/<?php echo $newsListItem['id_news']; ?>" class="btn btn-outline-info">Szczegóły</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 			<?php endforeach; ?>
 

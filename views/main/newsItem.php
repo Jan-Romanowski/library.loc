@@ -36,7 +36,7 @@
                                     aria-label="Slide <?php echo $i;?>">
                             </button>
                         <?php
-						endforeach;
+						    endforeach;
 						?>
                         </div>
                         <div class="carousel-inner" style="max-height: 500px;">
@@ -77,8 +77,5 @@
 	<script>
         $('#menu__aktualnosci').addClass('active');
 	</script>
-
-
-
 
 <?php include(ROOT . '/views/fragments/footer.php');
