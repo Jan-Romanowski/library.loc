@@ -1,9 +1,13 @@
 <?php
 return array(
-	'admin/uploadPhoto' => 'admin/uploadPhoto',
-	'admin/deleteFileFromGallery/([A-z]+)/([\w+.(jpeg|jpg|png)])' => 'admin/deleteFileFromGallery/$1/$2',
-	'admin/gallery' => 'admin/gallery',
+	'gallery/trips' => 'gallery/trips',
+	'gallery/concerts' => 'gallery/concerts',
+	'gallery/uploadPhoto' => 'gallery/uploadPhoto',
+	'gallery/deleteFileFromGallery/([A-z]+)/([\w+.(jpeg|jpg|png)])' => 'gallery/deleteFileFromGallery/$1/$2',
+	'gallery/index' => 'gallery/index',
+
 	'admin' => 'admin/index',
+
 	'songs/deleteFile/([0-9]+)/([\w+.(mp3|pdf|wave)])' => 'songs/deleteFile/$1/$2',
 	'songs/([0-9]+)' => 'songs/index/$1',
 	'songs/page-([0-9]+)' => 'songs/view/$1',
@@ -16,19 +20,24 @@ return array(
 	'songs/delete/([0-9]+)' => 'songs/delete/$1',
 	'songs/search' => 'songs/search',
 	'songs' => 'songs/view',
+
 	'folders/delete/([0-9]+)' => 'folders/delete/$1',
 	'folders/newFolder' => 'folders/newFolder',
 	'folders' => 'folders/view',
+
 	'queries/deleteQuery/([0-9]+)' => 'queries/deleteQuery/$1',
 	'queries/transferQuery/([0-9]+)' => 'queries/transferQuery/$1',
 	'queries' => 'queries/queriesView',
+
 	'users/register' => 'users/register',
 	'users/login' => 'users/login',
 	'users/view' => 'users/view',
 	'users/deleteUser/([0-9]+)' => 'users/deleteUser/$1',
 	'users/logout' => 'users/logout',
 	'users/changeRights/([0-9]+)/([A-z]+)' => 'users/changeRights/$1/$2',
+
 	'cabinet' => 'cabinet/index',
+
 	'main/szulik' => 'main/szulik',
 	'main/members' => 'main/members',
 	'main/contact' => 'main/contact',
@@ -43,6 +52,7 @@ return array(
 	'main/news' => 'main/news',
 	'main/newsItem/([0-9]+)' => 'main/newsItem/$1',
 	'main' => 'main/mainPage',
+
 	'news/uploadPhotoToNews/([0-9]+)' => 'news/uploadPhotoToNews/$1',
 	'news/view/([0-9]+)' => 'news/view/$1',
 	'news/delete/([0-9]+)' => 'news/delete/$1',

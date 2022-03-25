@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/fragments/header.php'); ?>
+<?php include(ROOT . '/views/fragments/libraryHeader.php'); ?>
 
 <div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
     <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
@@ -35,14 +35,49 @@
 						} ?>
                     </p>
 					<?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
+<!--                        <button class="btn btn-outline-primary mb-1" data-bs-toggle="modal" data-bs-target="#numberForm">-->
+<!--                            Zmiana numeru teczki-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill"-->
+<!--                                 viewBox="0 0 16 16">-->
+<!--                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>-->
+<!--                            </svg>-->
+<!--                        </button>-->
+<!--                        <div class="modal fade" id="numberForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
+<!--                             aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--                            <div class="modal-dialog modal-dialog-centered">-->
+<!--                                <div class="modal-content">-->
+<!--                                    <div class="modal-header">-->
+<!--                                        <h5 class="modal-title" id="staticBackdropLabel">Zmiana numeru teczki</h5>-->
+<!--                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-body">-->
+<!--                                        <h5>Aktualny numer teczki - --><?php //echo $songsItem['id_song']; ?><!--</h5><br>-->
+<!--                                        <label for="exampleInputText2" class="form-label">Numer teczki</label>-->
+<!--                                        <input type="number" required class="form-control" name="count_p"-->
+<!--                                               value="">-->
+<!--                                        <div id="passwordHelpBlock" class="form-text">-->
+<!--                                            Ma być unikalny-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-footer">-->
+<!--                                        <button type="button" class="btn btn btn-outline-danger w-25"-->
+<!--                                                onclick=document.location="">Tak-->
+<!--                                        </button>-->
+<!--                                        <button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <br>-->
+
                         <button class="btn btn-outline-primary mb-1" onclick=document.location="editSong/<?php echo $songsItem['id_song']; ?>">
-                            Edycja utworu
+                            Edycja danych utworu
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill"
                                  viewBox="0 0 16 16">
                                 <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                             </svg>
                         </button>
-                        <br><br>
+                        <br>
 
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Usunąć utwór

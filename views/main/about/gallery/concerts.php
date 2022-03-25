@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/siteHeader.php'); ?>
     <body class="main_body">
 <style>
 
@@ -24,18 +24,18 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/main/gallery/">Galeria</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Wyjazdy</li>
+                <li class="breadcrumb-item active" aria-current="page">Koncerty</li>
             </ol>
         </nav>
         <h1 class="text-center mb-5">
-            Wyjazdy
+            Koncerty
         </h1>
 			<?php
 			$i = 1;
 			foreach ($files as $filesItem):
 				?>
           <div class="container col-sm-12 col-md-12 col-lg-6 mb-4">
-						<?php ComFun::crutch_for_all($filesItem['file'], $i, $filesItem['filename'], 'trips'); ?>
+						<?php ComFun::crutch_for_all($filesItem['file'], $i, $filesItem['filename'], 'concerts'); ?>
           </div>
 				<?php
 				$i++;
@@ -43,9 +43,5 @@
 			?>
     </div>
 </div>
-
-<script>
-    $('#menu__chor').addClass('active');
-</script>
 
 <?php include(ROOT . '/views/fragments/footer.php');

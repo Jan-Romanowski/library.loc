@@ -13,7 +13,7 @@ class FoldersController
 		$foldersList = array();
 		$foldersList = Folders::getFolders();
 
-		require_once(ROOT . '/views/folders/folderList.php');
+		require_once(ROOT . '/views/folders/index.php');
 		return true;
 	}
 
@@ -57,7 +57,7 @@ class FoldersController
 			}
 		}
 
-		require_once(ROOT . '/views/folders/folderNewItem.php');
+		require_once(ROOT . '/views/folders/foldersForm.php');
 		return true;
 	}
 

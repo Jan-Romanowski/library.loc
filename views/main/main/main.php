@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/siteHeader.php'); ?>
     <style>
         .main_body {
             height: 100vh;

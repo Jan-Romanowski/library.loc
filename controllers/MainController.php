@@ -12,7 +12,7 @@ class MainController
 		$newsList = array();
 		$newsList = News::getNewsList();
 
-		require_once ROOT . '/views/main/main.php';
+		require_once ROOT . '/views/main/main/main.php';
 
 		return true;
 	}
@@ -20,7 +20,7 @@ class MainController
 	public function actionMembers()
 	{
 
-		require_once ROOT . '/views/main/members.php';
+		require_once ROOT . '/views/main/members/members.php';
 
 		return true;
 
@@ -29,7 +29,7 @@ class MainController
 	public function actionHistory()
 	{
 
-		require_once ROOT . '/views/main/history.php';
+		require_once ROOT . '/views/main/about/history/history.php';
 
 		return true;
 	}
@@ -37,7 +37,7 @@ class MainController
 	public function actionHoffman()
 	{
 
-		require_once ROOT . '/views/main/hoffman.php';
+		require_once ROOT . '/views/main/about/hoffmann/hoffman.php';
 
 		return true;
 	}
@@ -45,7 +45,7 @@ class MainController
 	public function actionContact()
 	{
 
-		require_once ROOT . '/views/main/contact.php';
+		require_once ROOT . '/views/main/contact/contact.php';
 
 		return true;
 	}
@@ -53,7 +53,7 @@ class MainController
 	public function actionSzulik()
 	{
 
-		require_once ROOT . '/views/main/szulik.php';
+		require_once ROOT . '/views/main/about/szulik/szulik.php';
 
 		return true;
 	}
@@ -61,7 +61,7 @@ class MainController
 	public function actionIza()
 	{
 
-		require_once ROOT . '/views/main/iza.php';
+		require_once ROOT . '/views/main/about/kiryluk/iza.php';
 
 		return true;
 	}
@@ -100,7 +100,7 @@ class MainController
 				}
 			}
 
-			require_once(ROOT . '/views/main/newsItem.php');
+			require_once(ROOT . '/views/main/news/newsItem.php');
 
 		}
 
@@ -113,7 +113,7 @@ class MainController
 		$newsList = array();
 		$newsList = News::getNewsList();
 
-		require_once(ROOT . '/views/main/news.php');
+		require_once(ROOT . '/views/main/news/news.php');
 
 		return true;
 	}
@@ -121,7 +121,7 @@ class MainController
 	public function actionAchivments()
 	{
 
-		require_once ROOT . '/views/main/achivments.php';
+		require_once ROOT . '/views/main/about/achievements/achievements.php';
 
 		return true;
 
@@ -130,7 +130,7 @@ class MainController
 	public function actionGallery()
 	{
 
-		require_once ROOT . '/views/main/gallery.php';
+		require_once ROOT . '/views/main/about/gallery/gallery.php';
 
 		return true;
 
@@ -168,7 +168,7 @@ class MainController
 			}
 		}
 
-		require_once ROOT . '/views/main/concerts.php';
+		require_once ROOT . '/views/main/about/gallery/concerts.php';
 
 		return true;
 
@@ -197,7 +197,7 @@ class MainController
 			}
 		}
 
-		require_once ROOT . '/views/main/trips.php';
+		require_once ROOT . '/views/main/about/gallery/trips.php';
 
 		return true;
 	}

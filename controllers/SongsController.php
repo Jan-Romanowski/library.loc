@@ -42,7 +42,7 @@ class SongsController
 				}
 			}
 
-			require_once(ROOT . '/views/songs/songItem.php');
+			require_once(ROOT . '/views/songs/songsItem.php');
 
 			return true;
 		}
@@ -184,7 +184,7 @@ class SongsController
 
 		$pagination = new Pagination($total, $page, Songs::SHOW_BY_DEFAULT, 'page-');
 
-		require_once(ROOT . '/views/songs/songList.php');
+		require_once(ROOT . '/views/songs/index.php');
 
 		return true;
 	}
@@ -230,9 +230,14 @@ class SongsController
 				$errors[] = 'Ilość partytur nie może być ujemna';
 
 			if ($errors == false) {
-				Songs::addNewSong($name, $count_p, $author, $songType, $folder, $note);
-				$_SESSION["msg"] = "Nowy utwór został pomyślnie dodany do biblioteki.";
-				$_SESSION["stat"] = "alert-success";
+				if(Songs::addNewSong($name, $count_p, $author, $songType, $folder, $note)){
+					$_SESSION["msg"] = "Nowy utwór został pomyślnie dodany do biblioteki.";
+					$_SESSION["stat"] = "alert-success";
+				}
+				else{
+					$_SESSION["msg"] = "Coś poszło nie tak..";
+					$_SESSION["stat"] = "alert-danger";
+				}
 			}
 		}
 
@@ -241,7 +246,7 @@ class SongsController
 
 		$message = 'Nowy utwór';
 
-		require_once(ROOT . '/views/songs/songNewItem.php');
+		require_once(ROOT . '/views/songs/songsForm.php');
 
 		return true;
 	}
@@ -304,7 +309,7 @@ class SongsController
 			$foldersList = array();
 			$foldersList = Folders::getFolders();
 
-			require_once(ROOT . '/views/songs/songNewItem.php');
+			require_once(ROOT . '/views/songs/songsForm.php');
 
 			return true;
 		}

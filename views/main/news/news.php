@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/siteHeader.php'); ?>
 
 <style>
 
@@ -21,14 +21,14 @@
 <div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
     <div class="container-fluid row justify-content-center p-5">
         <h2 class="mb-5 text-center">Aktualności</h2>
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 container-fluid mb-5">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-9 container-fluid mb-5">
 
 			<?php
 			foreach ($newsList as $newsListItem):?>
 
                 <div class="card bg-dark mb-3">
                     <div class="row g-0">
-                        <div class="col-4">
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-5 col-xl-5">
 
                             <?php
 
@@ -48,7 +48,7 @@
 
                             <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" alt="...">
                         </div>
-                        <div class="col-8">
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-7 col-xl-7">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
                                 <p class="card-text text-truncate" style="height: 100px"><?php echo $newsListItem['text']; ?></p>

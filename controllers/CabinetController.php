@@ -50,14 +50,14 @@ class CabinetController
 				$errors_data[] = "Nieprawidłowe nazwisko";
 
 			if ($errors_data == false) {
-				if (User::changeData($name, $surname, $email)) ;
-				$_SESSION["msg"] = "Dane zostały pomyślnie zmienione. Zaloguj się ponownie, aby zmiany zaczęły obowiązywać";
-				$_SESSION["stat"] = "alert-success";
+				if (User::changeData($name, $surname, $email)) {
+					$_SESSION["msg"] = "Dane zostały pomyślnie zmienione. Zaloguj się ponownie, aby zmiany zaczęły obowiązywać";
+					$_SESSION["stat"] = "alert-success";
+				}
 			}
-
 		}
 
-		require_once ROOT . '/views/cabinet/cabinet.php';
+		require_once ROOT . '/views/cabinet/index.php';
 
 		return true;
 	}

@@ -1,4 +1,4 @@
-<?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
+<?php include_once(ROOT . '/views/fragments/siteHeader.php'); ?>
     <header>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Estonia&family=Indie+Flower&family=M+PLUS+Code+Latin:wght@100&family=Montagu+Slab:wght@200&display=swap');

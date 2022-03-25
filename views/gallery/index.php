@@ -1,5 +1,21 @@
-<?php include(ROOT . '/views/fragments/header.php'); ?>
+<?php include(ROOT . '/views/fragments/libraryHeader.php'); ?>
 
+    <style>
+
+        img {
+            height: 230px;
+            animation: slidein 3s;
+            border-radius: 10px;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+            transition: all 0.8s;
+        }
+
+    </style>
     <div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
         <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
             <div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-8">
@@ -18,7 +34,7 @@
                      aria-labelledby="staticBackdropL" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <form action="/admin/uploadPhoto/" method="post" class="" enctype="multipart/form-data"
+                            <form action="/gallery/uploadPhoto/" method="post" class="" enctype="multipart/form-data"
                                   style="margin-top: 30px;">
                                 <div class="container-fluid mb-3">
                                     <h5 class="text-center">Nowe zdjęcie</h5>
@@ -45,18 +61,24 @@
                 </div>
 
                 <div class="row justify-content-center">
-									<?php
-									$i = 1;
-									foreach ($files as $filesItem):
+                    <div class="card col-4 m-4 pt-3" style="width: 18rem;">
+                        <a href="/gallery/concerts/">
+                            <img src="/img/koncert.jpg" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Koncerty</h5>
+                        </div>
+                    </div>
 
-										?>
-                      <div class="container col-sm-12 col-md-12 col-lg-6 mb-4">
-												<?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename'], $filesItem['chapter']); ?>
-                      </div>
-										<?php
-										$i++;
-									endforeach;
-									?>
+                    <div class="card col-4 m-4 pt-3" style="width: 18rem;">
+                        <a href="/gallery/trips/">
+                            <img src="/img/wyhazd.jpg" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Wyjazdy</h5>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

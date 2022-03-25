@@ -14,7 +14,7 @@ class NewsController
 		$newsList = array();
 		$newsList = News::getNewsList();
 
-		require_once(ROOT . '/views/news/newsList.php');
+		require_once(ROOT . '/views/news/index.php');
 
 		return true;
 	}
@@ -58,7 +58,7 @@ class NewsController
 			}
 		}
 
-		require_once(ROOT . '/views/news/newsNewItem.php');
+		require_once(ROOT . '/views/news/newsForm.php');
 
 		return true;
 

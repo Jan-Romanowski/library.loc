@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/fragments/header.php'); ?>
+<?php include(ROOT . '/views/fragments/libraryHeader.php'); ?>
 
     <div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
         <div class="container-fluid mt-5 pt-5 mx-auto row justify-content-center">

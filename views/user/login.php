@@ -1,4 +1,4 @@
-<?php include(ROOT . '/views/fragments/main_header.php'); ?>
+<?php include(ROOT . '/views/fragments/siteHeader.php'); ?>
 
     <div class="row mt-5">
 			<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>

@@ -14,7 +14,7 @@ class QueriesController
 		$queriesList = array();
 		$queriesList = Queries::getQueries();
 
-		require_once(ROOT . '/views/queries/queriesList.php');
+		require_once(ROOT . '/views/queries/index.php');
 
 		return true;
 	}
