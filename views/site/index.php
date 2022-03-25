@@ -1,6 +1,6 @@
 <?php
 
-    include(ROOT . '/views/fragments/header.php');
+include(ROOT . '/views/fragments/header.php');
 
 ?>
 

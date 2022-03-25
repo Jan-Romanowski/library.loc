@@ -2,18 +2,20 @@
     <body class="main_body">
     <style>
 
-        .custom_img{
+        .custom_img {
             animation: slidein 3s;
             border-radius: 10px;
             cursor: pointer;
         }
-        .custom_img:hover{
+
+        .custom_img:hover {
             transform: scale(1.1);
             transition: all 0.8s;
         }
 
     </style>
-    <div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
+    <div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5"
+         style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
         <div class="container-fluid row justify-content-center p-5">
             <h1 class="text-center mb-5">
                 Aktualności
@@ -22,7 +24,7 @@
             <!--        First-->
             <div class="container row justify-content-center">
                 <div class="container col-sm-12 col-md-12 col-lg-6">
-					<?php ComFun::crutch("/img/chkk.jpeg", 1); ?>
+									<?php ComFun::crutch("/img/chkk.jpeg", 1); ?>
                 </div>
                 <div class="container col-sm-12 col-md-12 col-lg-6">
                     <p class="text-center fs-4" style="vertical-align: middle;">
@@ -55,14 +57,15 @@
             <div class="container row justify-content-center">
                 <div class="container col-sm-12 col-md-12 col-lg-6">
 
-                <?php ComFun::crutch("/img/ktp.jpeg", 2); ?>
+									<?php ComFun::crutch("/img/ktp.jpeg", 2); ?>
 
                 </div>
 
                 <div class="container col-sm-12 col-md-12 col-lg-6">
                     <p class="text-center fs-4" style="vertical-align: middle;">Koncert Tota pulchra est Maria</p>
-                    <p class="text-center text-light" style="vertical-align: middle;">7 grudnia 2019, Katedra siedlecka</p>
-                    <p >
+                    <p class="text-center text-light" style="vertical-align: middle;">7 grudnia 2019, Katedra
+                        siedlecka</p>
+                    <p>
                         Wykonawcy
                     <ul class="fs-6">
                         <li>
@@ -120,7 +123,8 @@
                     <p>
                         W Programie:</p>
                     <p class="fs-6">
-                        H.M. Górecki, J. Surzyński, J. Arcadelt, F. List, A. Guilmant, F. Peeters,<br> A. Bruckner, C. Franck
+                        H.M. Górecki, J. Surzyński, J. Arcadelt, F. List, A. Guilmant, F. Peeters,<br> A. Bruckner, C.
+                        Franck
                     </p>
                 </div>
 
@@ -131,7 +135,7 @@
             <!--        Third-->
             <div class="container row justify-content-center">
                 <div class="container col-sm-12 col-md-12 col-lg-6">
-					<?php ComFun::crutch("/img/galery1.jpeg", 3); ?>
+									<?php ComFun::crutch("/img/galery1.jpeg", 3); ?>
                 </div>
                 <div class="container col-sm-12 col-md-12 col-lg-6">
                     <p class="text-center fs-4" style="vertical-align: middle;">Uroczysty Koncert
@@ -186,8 +190,6 @@
     <script>
         $('#menu__aktualnosci').addClass('active');
     </script>
-
-
 
 
 <?php include(ROOT . '/views/fragments/footer.php');

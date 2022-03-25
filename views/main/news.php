@@ -3,6 +3,7 @@
 <style>
 
     img{
+        height: 200px;
         animation: slidein 3s;
         border-radius: 10px;
         cursor: pointer;
@@ -25,9 +26,9 @@
 			<?php
 			foreach ($newsList as $newsListItem):?>
 
-                <div class="card bg-dark mb-3" style="max-width: 600px; max-height: 300px;">
+                <div class="card bg-dark mb-3">
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-4">
 
                             <?php
 
@@ -45,12 +46,12 @@
 							}
                             ?>
 
-                            <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" height="300" alt="...">
+                            <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" alt="...">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-8">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
-                                <p class="card-text text-truncate"><?php echo $newsListItem['text']; ?></p>
+                                <p class="card-text text-truncate" style="height: 100px"><?php echo $newsListItem['text']; ?></p>
                                 <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
                                 <p class="card-text"><small class="text-muted"><?php echo $newsListItem['date_news']; ?></small></p>
                                 <a href="/main/newsItem/<?php echo $newsListItem['id_news']; ?>" class="btn btn-outline-info">Szczegóły</a>

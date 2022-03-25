@@ -1,24 +1,27 @@
 <?php
 
-class FoldersController{
+class FoldersController
+{
 
 	/** Get all folders
 	 * @return bool
 	 */
-	public function actionView(){
+	public function actionView()
+	{
 		User::isLogin();
 
 		$foldersList = array();
 		$foldersList = Folders::getFolders();
 
-		require_once (ROOT.'/views/folders/folderList.php');
+		require_once(ROOT . '/views/folders/folderList.php');
 		return true;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function actionNewFolder () {
+	public function actionNewFolder()
+	{
 		User::isModerator();
 
 		$result = '';
@@ -53,29 +56,30 @@ class FoldersController{
 				}
 			}
 		}
-		
-		require_once (ROOT.'/views/folders/folderNewItem.php');
+
+		require_once(ROOT . '/views/folders/folderNewItem.php');
 		return true;
 	}
 
-	public function actionEdit ($id) {
+	public function actionEdit($id)
+	{
 		return true;
 	}
 
-	public function actionDelete ($id) {
+	public function actionDelete($id)
+	{
 		User::isModerator();
 
 		$result = Folders::countSongsInFolder($id);
-		
-		if($result==0 && Folders::deleteFolderById($id)){
+
+		if ($result == 0 && Folders::deleteFolderById($id)) {
 			$_SESSION["msg"] = "Teczka zostałą pomyślnie usunięta";
 			$_SESSION["stat"] = "alert-success";
-		}
-		else{
+		} else {
 			$_SESSION["msg"] = "Teczka zawiera utwory! Nie da się jej usunąć!";
 			$_SESSION["stat"] = "alert-danger";
 		}
-		
+
 		header('Location: /folders/');
 		return true;
 	}

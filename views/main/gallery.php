@@ -1,22 +1,24 @@
 <?php include_once(ROOT . '/views/fragments/main_header.php'); ?>
-	<body class="main_body">
+    <body class="main_body">
     <style>
 
-        img{
+        img {
             height: 230px;
             animation: slidein 3s;
             border-radius: 10px;
             cursor: pointer;
             object-fit: cover;
         }
-        img:hover{
+
+        img:hover {
             transform: scale(1.1);
             transition: all 0.8s;
         }
 
     </style>
-	<div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
-		<div class="container-fluid row justify-content-center p-5">
+    <div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5"
+         style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
+        <div class="container-fluid row justify-content-center p-5">
             <h1 class="text-center mb-5">
                 Galeria
             </h1>
@@ -41,9 +43,9 @@
 
             </div>
 
-		</div>
-	</div>
-	</body>
+        </div>
+    </div>
+    </body>
     <script>
         $('#menu__chor').addClass('active');
     </script>

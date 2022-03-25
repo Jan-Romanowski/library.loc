@@ -156,25 +156,30 @@
 				<?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
                     <div class="container-fluid d-flex flex-column justify-content-center">
                         <div class="mb-3">
-                            <form action="uploadFile/<?php echo $songsItem['id_song']; ?>" method="post" class="" enctype="multipart/form-data" style="margin-top: 30px;">
-                                <div class="container-fluid mb-3">
-                                    <label for="formFile" class="form-label">Wgraj plik</label>
-                                    <input type="text" name="id_folder" value="<?php echo $songsItem['id_song']; ?>" hidden>
-                                    <input class="form-control" type="file" multiple accept=".wav,.pdf,.mp3" aria-label="browser" name="filename" id="formFile">
+                            <button type="button" class="btn btn-outline-dark m-3" data-bs-toggle="modal" data-bs-target="#static">
+                                Dodaj plik
+                            </button>
+                            <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropL" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <form action="uploadFile/<?php echo $songsItem['id_song']; ?>" method="post" class="" enctype="multipart/form-data" style="margin-top: 30px;">
+                                            <div class="container-fluid mb-3">
+                                                <label for="formFile" class="form-label">Wgraj plik</label>
+                                                <input type="text" name="id_folder" value="<?php echo $songsItem['id_song']; ?>" hidden>
+                                                <input class="form-control" type="file" multiple accept=".wav,.pdf,.mp3" aria-label="browser" name="filename" id="formFile">
+                                            </div>
+                                            <div class="mb-3 text-center">
+                                                <button type="submit" class="btn btn-outline-success w-25">Wyślij</button>
+                                                <button type="button" class="btn btn-outline-secondary w-25" data-bs-dismiss="modal">Confij</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="mb-3 text-center">
-                                    <button type="submit" class="btn btn-outline-dark px-5 mt-3">Wyślij</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 				<?php endif; ?>
-
-
-
             </div>
-
-
         </div>
     </div>
 </div>
