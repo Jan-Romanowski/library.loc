@@ -1,7 +1,10 @@
 <?php
 return array(
-	'gallery/trips' => 'gallery/trips',
-	'gallery/concerts' => 'gallery/concerts',
+	'achievement/newAchievements' => 'achievement/newItem',
+	'achievement/index' => 'achievement/index',
+
+	'gallery/tripsShow' => 'gallery/trips',
+	'gallery/concertsShow' => 'gallery/concerts',
 	'gallery/uploadPhoto' => 'gallery/uploadPhoto',
 	'gallery/deleteFileFromGallery/([A-z]+)/([\w+.(jpeg|jpg|png)])' => 'gallery/deleteFileFromGallery/$1/$2',
 	'gallery/index' => 'gallery/index',

@@ -62,7 +62,7 @@
 
                 <div class="row justify-content-center">
                     <div class="card col-4 m-4 pt-3" style="width: 18rem;">
-                        <a href="/gallery/concerts/">
+                        <a href="/gallery/concertsShow/">
                             <img src="/img/koncert.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body text-center">
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="card col-4 m-4 pt-3" style="width: 18rem;">
-                        <a href="/gallery/trips/">
+                        <a href="/gallery/tripsShow/">
                             <img src="/img/wyhazd.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body text-center">

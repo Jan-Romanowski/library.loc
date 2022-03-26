@@ -1,6 +1,6 @@
 <?php
 
-class achievements{
+class Achievements{
 
 	/**
 	 * @return array
@@ -25,6 +25,24 @@ class achievements{
 			$i++;
 		}
 		return $achievementsList;
+	}
+
+	/**
+	 * @param $text
+	 * @return bool
+	 */
+	public static function setNewItem($text)
+	{
+		$db = Db::getConnection();
+
+		$sql = 'INSERT INTO achievements(text)
+            values (:text)';
+
+		$result = $db->prepare($sql);
+		$result->bindParam(':text', $text, PDO::PARAM_STR);
+
+		return $result->execute();
+
 	}
 
 
