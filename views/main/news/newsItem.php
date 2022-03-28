@@ -2,6 +2,9 @@
 	<body class="main_body">
 	<style>
 
+        a{
+            text-decoration: none;
+        }
         .custom_img{
             animation: slidein 3s;
             border-radius: 10px;
@@ -17,7 +20,12 @@
 		<div class="container-fluid row justify-content-center p-5">
 			<div class="container row justify-content-center">
 				<div class="container col-sm-12 col-md-12 col-lg-8">
-
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/main/news/">Aktualności</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Szczegóły</li>
+                        </ol>
+                    </nav>
                     <h1 class="text-center mt-4 mb-5"><strong>Szczegóły <?php echo $newsItem['header']; ?></strong></h1>
 
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">

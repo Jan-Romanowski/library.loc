@@ -175,13 +175,7 @@ class Songs
 		$result->bindParam(':folder', $folder, PDO::PARAM_INT);
 		$result->bindParam(':note', $note, PDO::PARAM_STR);
 
-		if($result->execute()){
-			$result = $result->insert_id;
-		}
-		else{
-			$result = false;
-		}
-		return $result;
+		return $result->execute();
 
 	}
 

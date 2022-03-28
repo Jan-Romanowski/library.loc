@@ -116,15 +116,31 @@ class NewsController
 	 * @return bool
 	 */
 	public function actionDelete($id)
-	{ // Нужна проверка есть ли в папке файлы, и удаление папки
+	{
 
 		User::isModerator();
+
+		$dir = ROOT . '/public/news/' . $id;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$path = $dir . '/' . $file;
+						unlink($path);
+					}
+				}
+			}
+		}
+
+		rmdir($dir);
 
 		if ($id) {
 			News::deleteNews($id);
 			$_SESSION["msg"] = 'Post został pomyslnie usunięty';
 			$_SESSION["stat"] = "alert-success";
 		}
+
 
 		header("Location: /news/index/");
 

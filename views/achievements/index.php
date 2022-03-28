@@ -5,12 +5,12 @@
 			<div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-8">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="/admin/">Zarządzanie</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Aktualnośći</li>
+						<li class="breadcrumb-item"><a href="/admin/index">Zarządzanie</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Osiągnięcia</li>
 					</ol>
 				</nav>
-				<h1 class="text-center mb-5"><strong>Aktualności</strong></h1>
-				<a class="btn btn-outline-dark mb-3" href="/news/newItem/">Nowa wiadomość</a>
+				<h1 class="text-center mb-5"><strong>Osiągnięcia</strong></h1>
+				<a class="btn btn-outline-dark mb-3" href="/achievement/newAchievements/">Nowa nagroda</a>
 				<div class="row row-cols-1 row-cols-md-3 g---4">
 
 					<?php
@@ -22,14 +22,14 @@
 
 									<?php
 
-									$dir = ROOT.'/public/news/'.$achievementsListItem['id'];
+									$dir = ROOT.'/public/achievements/'.$achievementsListItem['id'];
 
 									if (is_dir($dir)) {
 										if ($dh = opendir($dir)) {
 											while (false !== ($file = readdir($dh))) {
 												if ($file != "." && $file != "..") {
 													$path = $dir . '/' . $file;
-													$files = '/news/'.$achievementsListItem['id'].'/'.$file;
+													$files = '/achievements/'.$achievementsListItem['id'].'/'.$file;
 												}
 											}
 										}
@@ -41,7 +41,33 @@
 								<div>
 									<div class="card-body">
 										<p class="card-text text-truncate" style="height: 100px"><?php echo $achievementsListItem['text']; ?></p>
-
+                                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                                data-bs-target="#static">
+                                            Dodaj zdjęcie
+                                        </button>
+                                        <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false"
+                                             tabindex="-1" aria-labelledby="staticBackdropL" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <form action="/achievement/uploadPhoto/<?php echo $achievementsListItem['id']; ?>"
+                                                          method="post" class="p-3" enctype="multipart/form-data"
+                                                          style="margin-top: 30px;">
+                                                        <div class="container-fluid mb-3">
+                                                            <h5 class="text-center">Nowe zdjęcie</h5>
+                                                            <label for="formFile" class="form-label">Wgraj plik</label>
+                                                            <input class="form-control" type="file" multiple accept=".png,.jpg,.jpeg"
+                                                                   aria-label="browser" name="filename" id="formFile">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-outline-success">Wgraj zdjęcie</button>
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                    data-bs-dismiss="modal">Confij
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
 										<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
 														data-bs-target="#staticBackdrop<?php echo $achievementsListItem['id']; ?>">
 											Usunąć
@@ -64,7 +90,7 @@
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-outline-danger w-25"
-																		onclick=document.location="">
+																		onclick=document.location="/achievement/deleteAchievement/<?php echo $achievementsListItem['id']; ?>">
 															Tak
 														</button>
 														<button type="button" class="btn btn-outline-success w-25"

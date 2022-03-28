@@ -326,6 +326,23 @@ class SongsController
 
 		if ($id) {
 
+			$folderName = self::getNameFolder($id);
+
+			$dir = ROOT . '/public/files/' . $folderName.'/'.$id;
+
+			if (is_dir($dir)) {
+				if ($dh = opendir($dir)) {
+					while (false !== ($file = readdir($dh))) {
+						if ($file != "." && $file != "..") {
+							$path = $dir . '/' . $file;
+							unlink($path);
+						}
+					}
+				}
+			}
+
+			rmdir($dir);
+
 			$result = Songs::deleteSong($id);
 			if ($result)
 				$_SESSION["msg"] = "Utwór został pomyślnie usunięty.";

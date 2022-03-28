@@ -45,6 +45,16 @@ class Achievements{
 
 	}
 
+	public static function deleteAchievement($id)
+	{
+		$db = Db::getConnection();
 
+		$sql = "DELETE FROM achievements
+                WHERE id = '$id'";
+
+		$result = $db->prepare($sql);
+
+		return $result->execute();
+	}
 
 }

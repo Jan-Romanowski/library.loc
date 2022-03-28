@@ -80,18 +80,18 @@
                         </div>
 
                         <div class="row justify-content-center">
-													<?php
-													$i = 1;
-													foreach ($files as $filesItem):
+                            <?php
+                            $i = 1;
+                            foreach ($files as $filesItem):
 
-														?>
+                                ?>
                               <div class="container col-sm-12 col-md-12 col-lg-6 mb-4">
-																<?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename'], $path = '/news/' . $newsItem['id_news']); ?>
+                                    <?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename'], $path = '/news/' . $newsItem['id_news']); ?>
                               </div>
-														<?php
-														$i++;
-													endforeach;
-													?>
+                                    <?php
+                                    $i++;
+                                endforeach;
+                                ?>
                         </div>
 
                     </div>

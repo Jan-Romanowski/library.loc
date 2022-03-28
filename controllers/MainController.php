@@ -121,6 +121,23 @@ class MainController
 	public function actionAchivments()
 	{
 
+		$achievementsList = array();
+		$achievementsList = Achievements::getAchievements();
+
+		if (!is_dir(ROOT_WEB . '/achievements/')) {
+			mkdir(ROOT_WEB . '/achievements', 0750, true);
+		}
+
+		foreach ($achievementsList as $achievementsListItem):
+
+			$id = $achievementsListItem['id'];
+
+			if (!is_dir(ROOT_WEB . '/achievements/' . $id)) {
+				mkdir(ROOT_WEB . '/achievements/' . $id, 0750, true);
+			}
+
+		endforeach;
+
 		require_once ROOT . '/views/main/about/achievements/achievements.php';
 
 		return true;

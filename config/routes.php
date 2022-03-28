@@ -2,6 +2,8 @@
 return array(
 	'achievement/newAchievements' => 'achievement/newItem',
 	'achievement/index' => 'achievement/index',
+	'achievement/uploadPhoto/([0-9]+)' => 'achievement/uploadPhoto/$1',
+	'achievement/deleteAchievement/([0-9]+)' => 'achievement/deleteAchievement/$1',
 
 	'gallery/tripsShow' => 'gallery/trips',
 	'gallery/concertsShow' => 'gallery/concerts',
