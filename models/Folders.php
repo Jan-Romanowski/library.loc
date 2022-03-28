@@ -4,43 +4,45 @@
 class Folders
 {
 
-    /**
-     * @return array
-     */
-    public static function getFolders(){
+	/**
+	 * @return array
+	 */
+	public static function getFolders()
+	{
 
-        $db = Db::getConnection();
+		$db = Db::getConnection();
 
-        $foldersList = array();
+		$foldersList = array();
 
-        $result = $db->query("SELECT id_folder, name_folder, note 
+		$result = $db->query("SELECT id_folder, name_folder, note 
                         FROM folder 
                         ORDER BY name_folder");
 
 
-        $result->setFetchMode(PDO::FETCH_ASSOC);
+		$result->setFetchMode(PDO::FETCH_ASSOC);
 
-        $i = 0;
-        while($row=$result->fetch()){
-            $foldersList[$i]['id_folder'] = $row['id_folder'];
-            $foldersList[$i]['name_folder'] = $row['name_folder'];
+		$i = 0;
+		while ($row = $result->fetch()) {
+			$foldersList[$i]['id_folder'] = $row['id_folder'];
+			$foldersList[$i]['name_folder'] = $row['name_folder'];
 
-            $i++;
-        }
-        return $foldersList;
+			$i++;
+		}
+		return $foldersList;
 
-    }
+	}
 
 	/**
 	 * @param $name_folder
 	 * @param $note
 	 * @return bool
 	 */
-	public static function newFolder($name_folder, $note){
+	public static function newFolder($name_folder, $note)
+	{
 		$db = Db::getConnection();
 
 		$sql = 'INSERT INTO folder (name_folder, note)'
-				.'VALUES (:name_folder, :note)';
+			. 'VALUES (:name_folder, :note)';
 
 		$result = $db->prepare($sql);
 		$result->bindParam(':name_folder', $name_folder, PDO::PARAM_STR);
@@ -57,7 +59,8 @@ class Folders
 	 * @param $name_folder
 	 * @return bool
 	 */
-	public static function checkNameFolder($name_folder){
+	public static function checkNameFolder($name_folder)
+	{
 		$db = Db::getConnection();
 
 		$result = $db->prepare("SELECT COUNT(*) as cnt
@@ -75,67 +78,72 @@ class Folders
 			return false;
 	}
 
-    /**
-     * @param $id_folder
-     * @return mixed
-     */
-    public static function countSongsInFolder($id_folder){
-        $db = Db::getConnection();
+	/**
+	 * @param $id_folder
+	 * @return mixed
+	 */
+	public static function countSongsInFolder($id_folder)
+	{
+		$db = Db::getConnection();
 
-        $result = $db->query("SELECT count(*) as kek
+		$result = $db->query("SELECT count(*) as kek
                                            FROM song where id_folder = '$id_folder'");
-        $result -> setFetchMode(PDO::FETCH_ASSOC);
-        $row = $result->fetch();
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $result->fetch();
 
-        return $row['kek'];
-    }
+		return $row['kek'];
+	}
 
-    /**
-     * @param $id_folder
-     * @return array
-     */
-    public static function getSongsFromFolder($id_folder){
-        $db = Db::getConnection();
+	/**
+	 * @param $id_folder
+	 * @return array
+	 */
+	public static function getSongsFromFolder($id_folder)
+	{
+		$db = Db::getConnection();
 
-        $songsList = array();
+		$songsList = array();
 
-        $result = $db->query("SELECT id_song, name_song, id_folder
+		$result = $db->query("SELECT id_song, name_song, id_folder, author
                                        FROM song 
                                        WHERE id_folder = '$id_folder'");
-        //$result -> setFetchMode(PDO::FETCH_ASSOC);
+		//$result -> setFetchMode(PDO::FETCH_ASSOC);
 
-        $i = 0;
-        while($row=$result->fetch()){
-            $songsList[$i]['id_song'] = $row['id_song'];
-            $songsList[$i]['name_song'] = $row['name_song'];
+		$i = 0;
+		while ($row = $result->fetch()) {
+			$songsList[$i]['id_song'] = $row['id_song'];
+			$songsList[$i]['name_song'] = $row['name_song'];
+			$songsList[$i]['author'] = $row['author'];
 
-            $i++;
-        }
-        return $songsList;
-    }
+			$i++;
+		}
+		return $songsList;
+	}
 
-    /**
-     * @return array
-     */
-    public static function getIdFolders(){
-        $db = Db::getConnection();
+	/**
+	 * @return array
+	 */
+	public static function getIdFolders()
+	{
+		$db = Db::getConnection();
 
-        $songsList = array();
+		$songsList = array();
 
-        $result = $db->query("SELECT id_folder, name_folder
+		$result = $db->query("SELECT id_folder, name_folder
                                        FROM folder");
-        //$result -> setFetchMode(PDO::FETCH_ASSOC);
+		//$result -> setFetchMode(PDO::FETCH_ASSOC);
 
-        $i = 0;
-        while($row=$result->fetch()){
-            $songsList[$i]['id_folder'] = $row['id_folder'];
-            $songsList[$i]['name_folder'] = $row['name_folder'];
-            $i++;
-        }
-        return $songsList;
-    }
+		$i = 0;
+		while ($row = $result->fetch()) {
+			$songsList[$i]['id_folder'] = $row['id_folder'];
+			$songsList[$i]['name_folder'] = $row['name_folder'];
+			$i++;
+		}
+		return $songsList;
+	}
 
-	public static function deleteFolderById($id){
+	public static function deleteFolderById($id)
+	{
 		$db = Db::getConnection();
 
 		$sql = "DELETE FROM folder

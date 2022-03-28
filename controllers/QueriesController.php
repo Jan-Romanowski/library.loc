@@ -1,54 +1,70 @@
 <?php
 
-class QueriesController{
+class QueriesController
+{
 
-    /**
-     * @return bool
-     */
-    function actionQueriesView(){
+	/**
+	 * @return bool
+	 */
+	function actionQueriesView()
+	{
 
-        User::isModerator();
+		User::isModerator();
 
-        $queriesList = array();
-        $queriesList = Queries::getQueries();
+		$queriesList = array();
+		$queriesList = Queries::getQueries();
 
-        require_once(ROOT . '/views/queries/queriesList.php');
+		require_once(ROOT . '/views/queries/index.php');
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * @param $id
-     * @return bool
-     */
-    function actionDeleteQuery($id){
+	/**
+	 * @param $id
+	 * @return bool
+	 */
+	function actionDeleteQuery($id)
+	{
 
-        User::isModerator();
+		User::isModerator();
 
-        if($id)
-        Queries::deleteQuery($id);
+		if ($id) {
+			if (Queries::deleteQuery($id)) {
+				$_SESSION["msg"] = "Wniosek został pomyślnie usunięty";
+				$_SESSION["stat"] = "alert-success";
+			} else {
+				$_SESSION["msg"] = "Coś poszło nie tak..";
+				$_SESSION["stat"] = "alert-danger";
+			}
+		}
 
-        header('Location: /queries/');
+		header('Location: /queries/');
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * @param $id
-     * @return bool
-     */
-    function actionTransferQuery($id){
+	/**
+	 * @param $id
+	 * @return bool
+	 */
+	function actionTransferQuery($id)
+	{
 
-        User::isModerator();
+		User::isModerator();
 
 		$ac_type = GET::post('ac_type', '');
 
-        if(Queries::transferQuery($id, $ac_type))
-            header('Location: /users/view');
-        else
-            header('Location: /queries');
-        return true;
-    }
+		if (Queries::transferQuery($id, $ac_type)) {
+			$_SESSION["msg"] = "Użytkownik został pomyślnie dodany do biblioteki";
+			$_SESSION["stat"] = "alert-success";
+			header('Location: /users/view');
+		} else {
+			$_SESSION["msg"] = "Coś poszło nie tak..";
+			$_SESSION["stat"] = "alert-danger";
+			header('Location: /queries');
+		}
+		return true;
+	}
 
 
 }
