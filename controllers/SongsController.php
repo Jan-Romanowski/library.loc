@@ -26,7 +26,7 @@ class SongsController
 			$i = 0;
 
 			$folderName = SongsController::getNameFolder($id);
-			$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
+			$dir = ROOT . '/public/files/' . $folderName . '/' . $id;
 			$dwnlpath = '/files/' . $folderName . '/' . $id;
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -328,7 +328,7 @@ class SongsController
 
 			$folderName = self::getNameFolder($id);
 
-			$dir = ROOT . '/public_html/files/' . $folderName.'/'.$id;
+			$dir = ROOT . '/public/files/' . $folderName.'/'.$id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -411,7 +411,7 @@ class SongsController
 
 		$folderName = self::getNameFolder($id);
 
-		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
+		$dir = ROOT . '/public/files/' . $folderName . '/' . $id;
 		$pathFile = $dir . '/' . $filename;
 
 		if (is_dir($dir)) {

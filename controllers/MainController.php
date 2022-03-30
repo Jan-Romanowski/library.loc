@@ -85,7 +85,7 @@ class MainController
 			$files = array();
 			$i = 0;
 
-			$dir = ROOT . '/public_html/news/' . $id;
+			$dir = ROOT . '/public/news/' . $id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -168,7 +168,7 @@ class MainController
 		$files = array();
 		$i = 0;
 
-		$dir = ROOT . '/public_html/gallery/concerts';
+		$dir = ROOT . '/public/gallery/concerts';
 		if (!is_dir(ROOT_WEB . '/gallery/concerts')) {
 			mkdir(ROOT_WEB . '/gallery/concerts', 0750, true);
 		} else if (is_dir($dir)) {
@@ -197,7 +197,7 @@ class MainController
 		$files = array();
 		$i = 0;
 
-		$dir = ROOT . '/public_html/gallery/trips';
+		$dir = ROOT . '/public/gallery/trips';
 		if (!is_dir(ROOT_WEB . '/gallery/trips')) {
 			mkdir(ROOT_WEB . '/gallery/trips', 0750, true);
 		} else if (is_dir($dir)) {

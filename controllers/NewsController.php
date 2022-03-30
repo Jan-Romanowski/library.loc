@@ -89,7 +89,7 @@ class NewsController
 			$files = array();
 			$i = 0;
 
-			$dir = ROOT . '/public_html/news/' . $id;
+			$dir = ROOT . '/public/news/' . $id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -120,7 +120,7 @@ class NewsController
 
 		User::isModerator();
 
-		$dir = ROOT . '/public_html/news/' . $id;
+		$dir = ROOT . '/public/news/' . $id;
 
 		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {
