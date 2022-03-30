@@ -36,8 +36,13 @@
         <object class="m-0 p-0"
                 type="image/svg+xml"
                 height="55px;"
+<<<<<<< HEAD:views/fragments/siteHeader.php
                 data="/img/logo.svg">
             <img class="m-0 p-0" src="/img/logo.svg"/>
+=======
+                data="/images/Logo/logo.svg">
+            <img class="m-0 p-0" src="/images/Logo/logo.svg"/>
+>>>>>>> JR-changes:views/headers/main_header.php
         </object>
 
         <a class="navbar-brand" href="/main/">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>

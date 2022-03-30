@@ -15,8 +15,13 @@
         <object class="m-0 p-0"
                 type="image/svg+xml"
                 height="55px;"
+<<<<<<< HEAD
                 data="/img/logo.svg">
             <img class="m-0 p-0" src="/img/logo.svg"/>
+=======
+                data="/images/Logo/logo.svg">
+            <img class="m-0 p-0" src="/images/Logo/logo.svg"/>
+>>>>>>> JR-changes
         </object>
         <a class="navbar-brand d-inline-block text-truncate" href="#">Biblioteka Chóru Katedralnego</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

@@ -32,7 +32,11 @@
 
                             <?php
 
+<<<<<<< HEAD
 							$dir = ROOT.'/public_html/news/'.$newsListItem['id_news'];;
+=======
+							$dir = ROOT.'/public/news/'.$newsListItem['id_news'];;
+>>>>>>> JR-changes
 
 							if (is_dir($dir)) {
 								if ($dh = opendir($dir)) {
