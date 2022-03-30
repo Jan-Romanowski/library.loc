@@ -32,7 +32,7 @@
 
                             <?php
 
-							$dir = ROOT.'/public/news/'.$newsListItem['id_news'];;
+							$dir = ROOT.'/public_html/news/'.$newsListItem['id_news'];;
 
 							if (is_dir($dir)) {
 								if ($dh = opendir($dir)) {

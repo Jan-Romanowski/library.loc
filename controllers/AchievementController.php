@@ -91,7 +91,7 @@ class AchievementController{
 			mkdir(ROOT_WEB . '/achievements/' . $id, 0750, true);
 		}
 
-		$dir = ROOT . '/public/achievements/' . $id;
+		$dir = ROOT . '/public_html/achievements/' . $id;
 
 		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {
@@ -129,7 +129,7 @@ class AchievementController{
 
 		User::isModerator();
 
-		$dir = ROOT . '/public/achievements/' . $id;
+		$dir = ROOT . '/public_html/achievements/' . $id;
 
 		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {

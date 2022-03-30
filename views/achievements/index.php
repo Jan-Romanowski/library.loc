@@ -22,7 +22,7 @@
 
 									<?php
 
-									$dir = ROOT.'/public/achievements/'.$achievementsListItem['id'];
+									$dir = ROOT.'/public_html/achievements/'.$achievementsListItem['id'];
 
 									if (is_dir($dir)) {
 										if ($dh = opendir($dir)) {

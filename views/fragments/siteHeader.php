@@ -36,8 +36,8 @@
         <object class="m-0 p-0"
                 type="image/svg+xml"
                 height="55px;"
-                data="/images/Logo/logo.svg">
-            <img class="m-0 p-0" src="/images/Logo/logo.svg"/>
+                data="/img/logo.svg">
+            <img class="m-0 p-0" src="/img/logo.svg"/>
         </object>
 
         <a class="navbar-brand" href="/main/">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
