@@ -1,8 +1,8 @@
 <?php include(ROOT . '/views/fragments/libraryHeader.php'); ?>
 
-<div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
-    <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
-        <div class="container col-sm-12 col-md-10 col-lg-8 pt-3 row">
+    <div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh'>
+        <div class="container-fluid mt-5 mt-sm-2 row justify-content-center">
+            <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/songs/">Utwory</a></li>
@@ -160,7 +160,7 @@
                         ?>
                     </td>
                     <td>
-                        <a href="<?php echo $filesItem['dwnlpath'];?>" class="text-dark" download=""><?php echo $filesItem['filename'];?></a>
+                        <a href="<?php echo $filesItem['dwnlpath'];?>" class="text-dark"><?php echo $filesItem['filename'];?></a>
                     </td>
                     <td>
                         <div class="dropdown">

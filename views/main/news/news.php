@@ -46,7 +46,7 @@
 							}
                             ?>
 
-                            <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" alt="...">
+                            <img src="<?php echo $files; ?>" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-12 col-sm-8 col-md-8 col-lg-7 col-xl-7">
                             <div class="card-body">

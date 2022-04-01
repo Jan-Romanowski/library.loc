@@ -10,7 +10,8 @@
                     </ol>
                 </nav>
                 <h1 class="text-center m-5"><strong>Lista użytkowników</strong></h1>
-                <table class='table table-hover p-3'>
+                <div class="table-responsive">
+                    <table class='table table-hover mx-auto p-3'>
                     <tr class="bg-light">
                         <td>Email</td>
                         <td>Imię</td>
@@ -87,6 +88,7 @@
                       </tr>
 									<?php endforeach; ?>
                 </table>
+                </div>
             </div>
         </div>
     </div>
