@@ -30,8 +30,8 @@ class FoldersController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$name_folder = GET::post('name_folder', '');
-			$note = GET::post('note', '');
+			$name_folder = Get::post('name_folder', '');
+			$note = Get::post('note', '');
 
 			$errors = false;
 

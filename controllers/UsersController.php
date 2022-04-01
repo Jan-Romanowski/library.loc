@@ -17,11 +17,11 @@ class UsersController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$name = GET::post('name', '');
-			$surname = GET::post('surname', '');
-			$email = GET::post('email', '');
-			$pass1 = GET::post('pass1', '');
-			$pass2 = GET::post('pass2', '');
+			$name = Get::post('name', '');
+			$surname = Get::post('surname', '');
+			$email = Get::post('email', '');
+			$pass1 = Get::post('pass1', '');
+			$pass2 = Get::post('pass2', '');
 
 			$errors = false;
 
@@ -80,8 +80,8 @@ class UsersController
 
 		if (isset($_POST['submit'])) {
 
-			$email = GET::post('email', '');
-			$pass = GET::post('pass', '');
+			$email = Get::post('email', '');
+			$pass = Get::post('pass', '');
 
 			$errors = false;
 

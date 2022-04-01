@@ -33,8 +33,8 @@ class NewsController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$header = GET::post('header', '');
-			$text = GET::post('text', '');
+			$header = Get::post('header', '');
+			$text = Get::post('text', '');
 
 			$search = ["\n"];
 			$replace = ["<br>"];
@@ -89,7 +89,7 @@ class NewsController
 			$files = array();
 			$i = 0;
 
-			$dir = ROOT . '/public/news/' . $id;
+			$dir = ROOT . '/public_html/news/' . $id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -120,7 +120,7 @@ class NewsController
 
 		User::isModerator();
 
-		$dir = ROOT . '/public/news/' . $id;
+		$dir = ROOT . '/public_html/news/' . $id;
 
 		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {
@@ -165,9 +165,9 @@ class NewsController
 
 			if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-				$header = GET::post('header', '');
-				$text = GET::post('text', '');
-				$author = GET::post('autor', '');
+				$header = Get::post('header', '');
+				$text = Get::post('text', '');
+				$author = Get::post('autor', '');
 
 				$errors = false;
 
@@ -193,7 +193,7 @@ class NewsController
 
 		User::isModerator();
 
-		//$folder = GET::post('folder', '');
+		//$folder = Get::post('folder', '');
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';

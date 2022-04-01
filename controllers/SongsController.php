@@ -26,7 +26,7 @@ class SongsController
 			$i = 0;
 
 			$folderName = SongsController::getNameFolder($id);
-			$dir = ROOT . '/public/files/' . $folderName . '/' . $id;
+			$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
 			$dwnlpath = '/files/' . $folderName . '/' . $id;
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -208,11 +208,11 @@ class SongsController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$name = GET::post('song_name', '');
-			$count_p = GET::post('count_p', 0);
-			$author = GET::post('autor', '');
-			$folder = GET::post('folders', '');
-			$note = GET::post('notatki', '');
+			$name = Get::post('song_name', '');
+			$count_p = Get::post('count_p', 0);
+			$author = Get::post('autor', '');
+			$folder = Get::post('folders', '');
+			$note = Get::post('notatki', '');
 
 			if (isset($_POST['typeSong']) && $_POST['typeSong'] == 'one')
 				$songType = 1;
@@ -278,10 +278,10 @@ class SongsController
 
 			if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-				$name = GET::post('song_name', '');
-				$count_p = GET::post('count_p', '');
-				$author = GET::post('autor', '');
-				$folder_name = GET::post('folders', '');
+				$name = Get::post('song_name', '');
+				$count_p = Get::post('count_p', '');
+				$author = Get::post('autor', '');
+				$folder_name = Get::post('folders', '');
 
 				if (isset($_POST['typeSong']) && $_POST['typeSong'] == 'one')
 					$songType = 1;
@@ -328,7 +328,7 @@ class SongsController
 
 			$folderName = self::getNameFolder($id);
 
-			$dir = ROOT . '/public/files/' . $folderName.'/'.$id;
+			$dir = ROOT . '/public_html/files/' . $folderName.'/'.$id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -411,7 +411,7 @@ class SongsController
 
 		$folderName = self::getNameFolder($id);
 
-		$dir = ROOT . '/public/files/' . $folderName . '/' . $id;
+		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
 		$pathFile = $dir . '/' . $filename;
 
 		if (is_dir($dir)) {

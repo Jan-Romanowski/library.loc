@@ -7,7 +7,7 @@
                     rgba(0, 0, 0, 0.55),
                     rgba(0, 0, 0, 0.55)
             ),
-            url("/images/Chor/6.jpg");
+            url("/img/6.jpg");
             background-repeat: no-repeat, repeat !important;
             background-attachment: fixed !important;
             background-size: cover !important;
@@ -21,7 +21,7 @@
         </h1>
     </div>
 
-    <div class="container-fluid p-5" style="background-color: rgba(0,0,0, 0.5);">
+    <div class="container-fluid p-5" style="background-color: rgba(0,0,0, 0.5); min-height: 100vh;">
         <div class="container text-white row justify-content-center col-12 fs-4">
             <h1 class="text-center mb-5">O nas</h1>
             <p class="col-10">

@@ -10,6 +10,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="/textillate/jquery.lettering.js"></script>
     <script src="/textillate/jquery.textillate.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
     <style>
@@ -36,8 +39,8 @@
         <object class="m-0 p-0"
                 type="image/svg+xml"
                 height="55px;"
-                data="/images/Logo/logo.svg">
-            <img class="m-0 p-0" src="/images/Logo/logo.svg"/>
+                data="/img/logo.svg">
+            <img class="m-0 p-0" src="/img/logo.svg"/>
         </object>
 
         <a class="navbar-brand" href="/main/">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>

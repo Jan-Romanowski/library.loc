@@ -52,7 +52,7 @@ class QueriesController
 
 		User::isModerator();
 
-		$ac_type = GET::post('ac_type', '');
+		$ac_type = Get::post('ac_type', '');
 
 		if (Queries::transferQuery($id, $ac_type)) {
 			$_SESSION["msg"] = "Użytkownik został pomyślnie dodany do biblioteki";

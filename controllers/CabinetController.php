@@ -12,9 +12,9 @@ class CabinetController
 
 		if (isset($_POST['submit_pass'])) {
 
-			$old_pass = GET::post('old_pass', '');
-			$new_pass1 = GET::post('new_pass1', '');
-			$new_pass2 = GET::post('new_pass2', '');
+			$old_pass = Get::post('old_pass', '');
+			$new_pass1 = Get::post('new_pass1', '');
+			$new_pass2 = Get::post('new_pass2', '');
 
 			$errors_pass = false;
 
@@ -34,9 +34,9 @@ class CabinetController
 			}
 		} else if (isset($_POST['submit_data'])) {
 
-			$email = GET::post('mail', '');
-			$name = GET::post('name', '');
-			$surname = GET::post('surname', '');
+			$email = Get::post('mail', '');
+			$name = Get::post('name', '');
+			$surname = Get::post('surname', '');
 
 			$errors_data = false;
 

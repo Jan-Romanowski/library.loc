@@ -6,6 +6,9 @@
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="/js/javascript.js" type="text/javascript"></script>
     <script src="/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 </header>
@@ -15,8 +18,8 @@
         <object class="m-0 p-0"
                 type="image/svg+xml"
                 height="55px;"
-                data="/images/Logo/logo.svg">
-            <img class="m-0 p-0" src="/images/Logo/logo.svg"/>
+                data="/img/logo.svg">
+            <img class="m-0 p-0" src="/img/logo.svg"/>
         </object>
         <a class="navbar-brand d-inline-block text-truncate" href="#">Biblioteka Chóru Katedralnego</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

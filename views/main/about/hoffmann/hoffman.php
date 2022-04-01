@@ -15,7 +15,7 @@
     </style>
     <body class="main_body">
     <div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5"
-         style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%;">
+         style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
         <div class="container-fluid p-5">
             <div style="text-align: center">
                 <h2 class="mb-5">Ks. Alfred Jan Hoffman (1923 - 1994)</h2>
