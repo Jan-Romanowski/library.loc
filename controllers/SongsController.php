@@ -14,6 +14,7 @@ class SongsController
 
 		if ($id) {
 
+			$_SESSION['last_song'] = $id;
 			$songsItem = array();
 			$songsItem = Songs::getSongById($id);
 
@@ -28,6 +29,7 @@ class SongsController
 			$folderName = SongsController::getNameFolder($id);
 			$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
 			$dwnlpath = '/files/' . $folderName . '/' . $id;
+
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
 					while (false !== ($file = readdir($dh))) {
@@ -303,6 +305,7 @@ class SongsController
 					Songs::editSong($id, $name, $count_p, $author, $songType, $folder_name, $note);
 					$_SESSION["msg"] = "Dane zostały zaktualizowane.";
 					$_SESSION["stat"] = "alert-success";
+					header('Location: /songs/'.$id);
 				}
 			}
 
@@ -368,13 +371,13 @@ class SongsController
 
 		$folderName = self::getNameFolder($id_folder);
 		if (!is_dir(ROOT_WEB . '/files/')) {
-			mkdir(ROOT_WEB . '/files', 0750, true);
+			mkdir(ROOT_WEB . '/files', 0755, true);
 		}
 		if (!is_dir(ROOT_WEB . '/files/' . $folderName)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName, 0750, true);
+			mkdir(ROOT_WEB . '/files/' . $folderName, 0755, true);
 		}
 		if (!is_dir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder, 0750, true);
+			mkdir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder, 0755, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
@@ -392,6 +395,7 @@ class SongsController
 
 			move_uploaded_file($tmp, $target);
 			$_SESSION["msg"] = 'Plik został pomyślnie wgrany!';
+			$_SESSION["stat"] = "alert-success";
 			header("Location: /songs/" . $id_folder);
 //				}
 //			}
@@ -440,7 +444,7 @@ class SongsController
 		$min = 0;
 		$max = 100;
 		while (true) {
-			if ($min < $id && $id < $max) {
+			if ($min <= $id && $id < $max) {
 				return "0" . $min . ($min == 0 ? "00" : "");
 
 			} else {

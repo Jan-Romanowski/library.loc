@@ -4,6 +4,7 @@
 
     img{
         height: 200px;
+        width: 400px;
         animation: slidein 3s;
         border-radius: 10px;
         cursor: pointer;
@@ -46,7 +47,7 @@
 							}
                             ?>
 
-                            <img src="<?php echo $files; ?>" class="img-fluid rounded-start" alt="...">
+                            <img src="<?php echo $files; ?>" height="250px" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-12 col-sm-8 col-md-8 col-lg-7 col-xl-7">
                             <div class="card-body">
