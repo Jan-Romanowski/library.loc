@@ -18,7 +18,6 @@
 
                       <div class="card m-3">
                           <div class="row g-0">
-                              <div >
 
                                 <?php
 
@@ -36,10 +35,9 @@
                                 }
                                 ?>
 
-                                  <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" alt="...">
-                              </div>
-                              <div>
+                              <div class="col-sm-12 col-md-10 col-lg-8 col-xl-7">
                                   <div class="card-body">
+                                      <img src="<?php echo $files; ?>" class="img-fluid h-100 rounded-start" alt="...">
                                       <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
                                       <p class="card-text text-truncate" style="height: 100px"><?php echo $newsListItem['text']; ?></p>
                                       <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
