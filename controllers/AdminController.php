@@ -10,7 +10,7 @@ class AdminController
 	public function actionIndex()
 	{
 
-		User::isAdmin();
+		User::checkRights("admin");
 
 		require_once ROOT . '/views/admin/index.php';
 

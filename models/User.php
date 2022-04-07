@@ -285,7 +285,32 @@ class User
 		return $result->execute();
 	}
 
-	/**
+
+	/** Проверяет права, если прав нет - смерть
+	 * @param $rank
+	 * @return bool|void
+	 */
+	public static function checkRights($rank){
+		if (self::isLogin()) {
+			switch ($rank){
+				case 'user':
+					if(strcasecmp($_SESSION['ac_type'], "user"))
+						return true;
+					break;
+				case 'moder':
+					if(strcasecmp($_SESSION['ac_type'], "user") || strcasecmp($_SESSION['ac_type'], "moder"))
+						return true;
+				case 'admin':
+						return true;
+				default:
+					die("Zabroniono w dostępie, nie masz uprawnień.");
+					break;
+			}
+		}
+		die("Zabroniono w dostępie, nie masz uprawnień.");
+	}
+
+	/** Возвращает true или false в зависимости залогинен ты или нет
 	 * @return bool
 	 */
 	public static function isLogin()
@@ -295,8 +320,9 @@ class User
 			isset($_SESSION['ac_type'])) {
 			return true;
 		}
-		die("Zabroniono w dostępie. Musisz się zalogować.");
+		return false;
 	}
+
 
 	/**
 	 * @return bool
@@ -309,7 +335,7 @@ class User
 				return true;
 			}
 		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
+		return false;
 	}
 
 	/**
@@ -321,17 +347,9 @@ class User
 			if (strcasecmp($_SESSION['ac_type'], "admin") == 0)
 				return true;
 		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
+		return false;
 	}
 
-	public static function isUser()
-	{
-		if (self::isLogin()) {
-			if (strcasecmp($_SESSION['ac_type'], "user") == 0)
-				return true;
-		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
-	}
 
 	public static function checkRoot($root)
 	{
@@ -345,7 +363,6 @@ class User
 	 */
 	public static function auth($userData)
 	{
-
 		$_SESSION['user'] = $userData['id_account'];
 		$_SESSION['name'] = $userData['name'];
 		$_SESSION['surname'] = $userData['surname'];

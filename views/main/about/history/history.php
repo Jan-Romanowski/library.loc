@@ -16,15 +16,18 @@
         </style>
     </header>
     <body class="main_body">
-    <div class="container-fluid-sm text-light text-lg-start gx-5 m-0 pb-5"
-         style="background-color: rgba(1,1,1, 0.7); margin-top: 20px; width: 100%; min-height: 100vh;">
-        <div class="container-fluid p-5">
+    <div class='container-fluid text-white' style='background-color: rgba(1,1,1, 0.7); min-height: 100vh'>
+        <div class="container-fluid row gx-0 justify-content-center">
+            <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
+
             <div style="text-align: center;">
                 <h2 class="pt-2 mb-5">Chór w latach 1955 - 1994</h2>
             </div>
             <div class="container-fluid">
+                <div class="overflow-auto">
                 <img src="/img/chor1962.gif" width="500px" class="img mx-3" style="float: left;" alt='Chór'
                      title='Chór'>
+                </div>
 
                 <p>
                     Interesująca i niezwykle bogata historia chóru działającego przy
@@ -122,7 +125,9 @@
             </div>
 
             <div class="container-fluid" class="rounded mx-auto d-block" style="text-align: center;">
-                <img src="/img/hoffman3.jpeg" class="m-3">
+                <div class="overflow-auto">
+                    <img src="/img/hoffman3.jpeg" class="m-3">
+                </div>
             </div>
 
             <div class="container-fluid">
@@ -142,8 +147,8 @@
                     się nadal.
                 </p>
             </div>
+            </div>
         </div>
-    </div>
     </div>
     </body>
 

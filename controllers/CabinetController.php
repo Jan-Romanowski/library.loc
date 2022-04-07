@@ -8,7 +8,7 @@ class CabinetController
 	 */
 	function actionIndex()
 	{
-		User::isLogin();
+		User::checkRights("user");
 
 		if (isset($_POST['submit_pass'])) {
 

@@ -79,18 +79,21 @@
                                                class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                                                data-bs-parent="#accordionFlushExample">
 
-                                              <ol class="list-group list-group-numbered">
-																								<?php
-																								$songList = Folders::getSongsFromFolder($foldersListItem['id_folder']);
-																								foreach ($songList as $song) { ?>
-                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        <div class="ms-2 me-auto">
-                                                            <div class=""><?php echo "<a href='/songs/" . $song['id_song'] . "'>" . $song['name_song'] . "</a>"; ?></div>
-                                                            <p style="font-size: 82%"><?php echo $song['author'] ?></p>
-                                                        </div>
-                                                    </li>
+                                              <ul class="list-group">
+                                                    <?php
+                                                    $songList = Folders::getSongsFromFolder($foldersListItem['id_folder']);
+                                                    foreach ($songList as $song) { ?>
+                                                        <li class="list-group-item">
+                                                            <div class="ms-2 me-auto">
+
+                                                                <div class="">
+                                                                    <?php echo "<a href='/songs/" . $song['id_song'] . "'>" . $song['name_song'] . "</a>"; ?>
+                                                                    <p style="font-size: 82%"><?php echo $song['author'] ?></p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
 																								<?php } ?>
-                                              </ol>
+                                              </ul>
                                           </div>
 
                                       </div>

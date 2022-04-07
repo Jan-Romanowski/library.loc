@@ -9,6 +9,8 @@ class GalleryController{
 	public function actionIndex()
 	{
 
+		User::checkRights("moder");
+
 		$files = array();
 		$i = 0;
 
@@ -59,6 +61,8 @@ class GalleryController{
 	 */
 	public function actionTrips(){
 
+		User::checkRights("moder");
+
 		$files = array();
 		$i = 0;
 
@@ -93,6 +97,8 @@ class GalleryController{
 	 * @return bool
 	 */
 	public function actionConcerts(){
+
+		User::checkRights("moder");
 
 		$files = array();
 		$i = 0;
@@ -131,7 +137,7 @@ class GalleryController{
 	public function actionDeleteFileFromGallery($chapter, $filename)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$dir = ROOT . '/public_html/gallery/' . $chapter;
 		$pathFile = $dir . '/' . $filename;
@@ -159,7 +165,7 @@ class GalleryController{
 	 */
 	public function actionUploadPhoto()
 	{
-		User::isModerator();
+		User::checkRights("moder");
 
 		$chapter = Get::post('chapter', '');
 

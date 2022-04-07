@@ -8,7 +8,7 @@ class FoldersController
 	 */
 	public function actionView()
 	{
-		User::isLogin();
+		User::checkRights("user");
 
 		$foldersList = array();
 		$foldersList = Folders::getFolders();
@@ -22,7 +22,7 @@ class FoldersController
 	 */
 	public function actionNewFolder()
 	{
-		User::isModerator();
+		User::checkRights("moder");
 
 		$result = '';
 		$name_folder = '';
@@ -68,7 +68,7 @@ class FoldersController
 
 	public function actionDelete($id)
 	{
-		User::isModerator();
+		User::checkRights("moder");
 
 		$result = Folders::countSongsInFolder($id);
 

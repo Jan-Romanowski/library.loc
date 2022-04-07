@@ -11,13 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
+
 </header>
 
 <nav class="navbar navbar-expand-lg row navbar-dark bg-dark m-0 sticky-top">
     <div class="container-fluid col-sm-12 col-md-10 col-lg-8">
         <object class="m-0 p-0"
                 type="image/svg+xml"
-                height="55px;"
+                height="80px;"
                 data="/img/logo.svg">
             <img class="m-0 p-0" src="/img/logo.svg"/>
         </object>
@@ -28,6 +29,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
+              <?php if(User::isLogin()){ ?>
 							<?php if (User::checkRoot("admin") || User::checkRoot("moder")): ?><!-- FOR ADMIN AND MODERATOR -->
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/cabinet/">Ustawienia</a>
@@ -43,9 +45,12 @@
                                 class="badge bg-danger"><?php if (Queries::getCountQueries()) echo Queries::getCountQueries(); ?></span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/main/">Strona chóru</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/users/logout/">Wyloguj</a>
                 </li>
-							<?php else: ?> <!-- FOR USER -->
+							<?php elseif(User::checkRoot("user")): ?> <!-- FOR USER -->
                   <li class="nav-item">
                       <a class="nav-link" aria-current="page" href="/cabinet/">Ustawienia</a>
                   </li>
@@ -56,15 +61,26 @@
                       <a class="nav-link" href="/folders/">Teczki</a>
                   </li>
                   <li class="nav-item">
+                      <a class="nav-link" href="/main/">Strona chóru</a>
+                  </li>
+                  <li class="nav-item">
                       <a class="nav-link" href="/users/logout/">Wyloguj</a>
                   </li>
-							<?php endif; ?>
+
+                <?php endif;}else{ ?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/users/login/">Zaloguj</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/main/">Strona chóru</a>
+                  </li>
+             <?php } ?>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="row mt-5">
+<div class="row g-0 mt-5">
 	<?php if (isset($_SESSION["msg"]) && $_SESSION["msg"]): ?>
       <div class="container-fluid col-sm-12 col-md-10 col-lg-8">
           <div class="alert <?php echo $_SESSION["stat"]; ?> alert-dismissible fade show" role="alert">

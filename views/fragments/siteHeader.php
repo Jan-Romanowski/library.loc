@@ -34,11 +34,11 @@
     </style>
 </header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 p-0 sticky-top">
     <div class="container-fluid">
         <object class="m-0 p-0"
                 type="image/svg+xml"
-                height="55px;"
+                height="80px;"
                 data="/img/logo.svg">
             <img class="m-0 p-0" src="/img/logo.svg"/>
         </object>
@@ -57,7 +57,7 @@
                     <a id='menu__zarzad' class="nav-link" href="/main/members/">Zarząd Chóru</a>
                 </li>
                 <li class="nav-item">
-                    <a id='menu__biblioteka' class="nav-link" href="/users/login/">Biblioteka</a>
+                    <a id='menu__biblioteka' class="nav-link" href="/songs">Biblioteka</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a id='menu__chor' class="nav-link dropdown-toggle" href="?section=info" id="navbarDropdownMenuLink"

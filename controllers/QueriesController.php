@@ -9,7 +9,7 @@ class QueriesController
 	function actionQueriesView()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$queriesList = array();
 		$queriesList = Queries::getQueries();
@@ -26,7 +26,7 @@ class QueriesController
 	function actionDeleteQuery($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if ($id) {
 			if (Queries::deleteQuery($id)) {
@@ -50,7 +50,7 @@ class QueriesController
 	function actionTransferQuery($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$ac_type = Get::post('ac_type', '');
 

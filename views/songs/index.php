@@ -11,11 +11,14 @@
     </style>
 
     <div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh'>
-        <div class="container-fluid mt-5 mt-sm-2 row justify-content-center">
+        <div class="container-fluid mt-5 mt-sm-2 row gx-0 justify-content-center">
             <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
 
                 <h1 class="text-center m-3"><strong>Utwory</strong></h1>
-							<?php if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
+							<?php
+
+                            if(User::isLogin()){
+                            if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
                   <a href="/songs/newSong/" class="btn btn-outline-dark px-3 mb-3">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                            class="bi bi-file-earmark" viewBox="0 0 16 16">
@@ -23,7 +26,7 @@
                       </svg>
                       Nowy Utwór
                   </a>
-							<?php endif; ?>
+							<?php endif;} ?>
                 <div class="row align-items-start mb-3">
                     <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3 col-md-3 m-1">
                         <form action="/songs/applyFilters/" method="post">
@@ -34,7 +37,7 @@
                                 <input class="form-check-input kek" type="checkbox" role="switch" name="checkBoxJ"
                                        id="checkBoxJ"
                                        onchange="form.submit()"
-																	<?php if (ComFun::checked("oneVoise")) echo "checked"; ?>
+                                        <?php if (ComFun::checked("oneVoise")) echo "checked"; ?>
                                 >
                                 <label class="form-check-label" for="checkBoxJ">Utwory jednogłosowe</label>
                             </div>
@@ -42,14 +45,14 @@
                                 <input class="form-check-input" type="checkbox" role="switch" name="checkBoxW"
                                        id="checkBoxW"
                                        onchange="form.submit()"
-																	<?php if (ComFun::checked("multiVoise")) echo "checked"; ?>
+                                        <?php if (ComFun::checked("multiVoise")) echo "checked"; ?>
                                 >
                                 <label class="form-check-label" for="checkBoxW">Utwory wielogłosowe</label>
                             </div>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" name="actual" id="actual"
                                        onchange="form.submit()"
-																	<?php if (ComFun::checked("actual")) echo "checked"; ?>
+                                        <?php if (ComFun::checked("actual")) echo "checked"; ?>
                                 >
                                 <label class="form-check-label" for="actual">Tylko aktualne</label>
                             </div>
@@ -65,14 +68,14 @@
                                 Sortowanie według
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="/songs/priorityFilter-1">Nazwy utwora (A-z)</a></li>
-                                <li><a class="dropdown-item" href="/songs/priorityFilter-2">Nazwy utwora (z-A)</a></li>
-                                <li><a class="dropdown-item" href="/songs/priorityFilter-3">Autora (A-z)</a></li>
-                                <li><a class="dropdown-item" href="/songs/priorityFilter-4">Autora (z-A)</a></li>
-                                <li><a class="dropdown-item" href="/songs/priorityFilter-5">Numeru teczki (Rosnąco)</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/songs/priorityFilter-6">Numeru teczki (Malejąco)</a>
-                                </li>
+                                <li><a class="dropdown-item" href="/songs/priorityFilter-1">Tytuł utworu (A-z)</a></li>
+                                <li><a class="dropdown-item" href="/songs/priorityFilter-2">Tytuł utworu (z-A)</a></li>
+                                <li><a class="dropdown-item" href="/songs/priorityFilter-3">Kompozytor (A-z)</a></li>
+                                <li><a class="dropdown-item" href="/songs/priorityFilter-4">Kompozytor (z-A)</a></li>
+                                <?php if(User::isLogin()){ ?>
+                                <li><a class="dropdown-item" href="/songs/priorityFilter-5">Numeru teczki (Rosnąco)</a></li>
+                                <li><a class="dropdown-item" href="/songs/priorityFilter-6">Numeru teczki (Malejąco)</a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -99,7 +102,9 @@
                             <td></td>
                             <td>Nazwa utworu</td>
                             <td>Aktualne</td>
-                            <td>Teczka</td>
+                                <?php if(User::isLogin()){ ?>
+                                    <td>Teczka</td>
+                                <?php } ?>
                         </tr>
 											<?php
 											foreach ($songsList as $songsListItem): ?>
@@ -142,7 +147,10 @@
                                     </a>
 																<?php } ?>
                               </td>
+                                    <?php if(User::isLogin()){ ?>
                               <td><?php echo $songsListItem['name_folder'] ?></td>
+                                        <?php } ?>
+
                           </tr>
 											<?php endforeach; ?>
                     </table>

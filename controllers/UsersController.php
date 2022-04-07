@@ -114,7 +114,7 @@ class UsersController
 	public function actionView()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$userList = array();
 		$userList = User::getUsers();
@@ -146,7 +146,7 @@ class UsersController
 	public function actionChangeRights($id, $rights)
 	{
 
-		User::isAdmin();
+		User::checkRights("admin");
 
 		if ($id && $rights) {
 			if (User::changeRights($id, $rights)) {
@@ -165,7 +165,7 @@ class UsersController
 
 	public function actionDeleteUser($id)
 	{
-		User::isAdmin();
+		User::checkRights("admin");
 
 		if ($id) {
 			if (User::deleteUser($id)) {

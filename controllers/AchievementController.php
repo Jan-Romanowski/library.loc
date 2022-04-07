@@ -7,8 +7,7 @@ class AchievementController{
 	 */
 	public function actionNewItem()
 	{
-
-		User::isModerator();
+		User::checkRights("moder");
 
 		$text = '';
 
@@ -45,7 +44,7 @@ class AchievementController{
 	 */
 	public function actionIndex(){
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$achievementsList = array();
 		$achievementsList = Achievements::getAchievements();
@@ -76,7 +75,7 @@ class AchievementController{
 	 */
 	public function actionUploadPhoto($id){
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';
@@ -127,7 +126,7 @@ class AchievementController{
 	 */
 	public function actionDeleteAchievement($id){
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$dir = ROOT . '/public_html/achievements/' . $id;
 

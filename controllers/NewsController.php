@@ -9,7 +9,7 @@ class NewsController
 	public function actionIndex()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$newsList = array();
 		$newsList = News::getNewsList();
@@ -25,7 +25,7 @@ class NewsController
 	public function actionNewItem()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$header = '';
 		$text = '';
@@ -71,7 +71,7 @@ class NewsController
 	public function actionView($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if ($id) {
 
@@ -118,7 +118,7 @@ class NewsController
 	public function actionDelete($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$dir = ROOT . '/public_html/news/' . $id;
 
@@ -151,7 +151,7 @@ class NewsController
 	public function actionEditNews($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if ($id) {
 
@@ -191,7 +191,7 @@ class NewsController
 	public function actionUploadPhotoToNews($folder)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		//$folder = Get::post('folder', '');
 
