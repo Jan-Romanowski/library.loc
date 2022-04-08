@@ -6,13 +6,7 @@
             height: 230px;
             animation: slidein 3s;
             border-radius: 10px;
-            cursor: pointer;
             object-fit: cover;
-        }
-
-        img:hover {
-            transform: scale(1.1);
-            transition: all 0.8s;
         }
 
     </style>
@@ -27,57 +21,47 @@
                 </nav>
                 <h1 class="text-center mb-5">Galeria</h1>
 
-                <button type="button" class="btn btn-outline-dark m-3" data-bs-toggle="modal" data-bs-target="#static">
-                    Dodaj zdjęcie
-                </button>
-                <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                     aria-labelledby="staticBackdropL" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form action="/gallery/uploadPhoto/" method="post" class="" enctype="multipart/form-data"
-                                  style="margin-top: 30px;">
-                                <div class="container-fluid mb-3">
-                                    <h5 class="text-center">Nowe zdjęcie</h5>
-                                    <label for="formFile" class="form-label">Wgraj plik</label>
-                                    <input class="form-control" type="file" multiple accept=".png,.jpg,.jpeg"
-                                           aria-label="browser" name="filename" id="formFile">
-                                </div>
-                                <div class="container-fluid mb-5">
-                                    <label for="exampleInputText4" class="form-label">Kategoria</label>
-                                    <select class="form-select" name="chapter" aria-label="Default select example">
-                                        <option value="concerts" selected>Koncerty</option>
-                                        <option value="trips">Wyjazdy</option>
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success w-25">Wgraj zdjęcie</button>
-                                    <button type="button" class="btn btn-outline-secondary w-25"
-                                            data-bs-dismiss="modal">Confij
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <a href="/gallery/createFolder/" class="btn btn-outline-dark m-3">Nowy folder</a>
 
-                <div class="row justify-content-center">
-                    <div class="card col-4 m-4 pt-3" style="width: 18rem;">
-                        <a href="/gallery/concertsShow/">
-                            <img src="/img/koncert.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Koncerty</h5>
-                        </div>
-                    </div>
+                <div class="row g-1 justify-content-center">
 
-                    <div class="card col-4 m-4 pt-3" style="width: 18rem;">
-                        <a href="/gallery/tripsShow/">
-                            <img src="/img/wyhazd.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Wyjazdy</h5>
+                    <?php foreach ($galleryList as $galleryItem): ?>
+
+                        <div class="card col-4 m-4 pt-3" style="width: 18rem;" onclick=document.location="/gallery/folder/<?php echo $galleryItem['id']; ?>">
+                            <div class="card-header text-center">
+                                <?php if(Gallery::isFolderEmpty($galleryItem['id'])){ ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="200" fill="grey" class="bi bi-card-image" viewBox="0 0 16 16">
+                                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                        <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+                                    </svg>
+                                <?php }else{ ?>
+
+                                    <?php
+
+                                    $dir = ROOT.'/public_html/gallery/'.$galleryItem['id'];;
+
+                                    if (is_dir($dir)) {
+                                        if ($dh = opendir($dir)) {
+                                            while (false !== ($file = readdir($dh))) {
+                                                if ($file != "." && $file != "..") {
+                                                    $path = $dir . '/' . $file;
+                                                    $files = '/gallery/'.$galleryItem['id'].'/'.$file;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <img src="<?php echo $files; ?>" class="card-img-top" alt="...">
+                                <?php } ?>
+
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><?php echo $galleryItem['name'] ?></h5>
+                            </div>
                         </div>
-                    </div>
+
+                    <?php endforeach; ?>
 
                 </div>
             </div>

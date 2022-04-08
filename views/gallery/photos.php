@@ -2,7 +2,7 @@
 
 	<style>
 
-      img {
+      .img {
           height: 230px;
           animation: slidein 3s;
           border-radius: 10px;
@@ -10,7 +10,7 @@
           object-fit: cover;
       }
 
-      img:hover {
+      .img:hover {
           transform: scale(1.1);
           transition: all 0.8s;
       }
@@ -23,10 +23,10 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/admin/">Zarządzanie</a></li>
                         <li class="breadcrumb-item"><a href="/gallery/index/">Galeria</a></li>
-						<li class="breadcrumb-item active" aria-current="page"><?php echo $name; ?></li>
+						<li class="breadcrumb-item active" aria-current="page"><?php echo $galleryItem['name']; ?></li>
 					</ol>
 				</nav>
-				<h1 class="text-center mb-5"><?php echo $name; ?></h1>
+				<h1 class="text-center mb-5"><?php echo $galleryItem['name']; ?></h1>
 
                 <button type="button" class="btn btn-outline-dark m-3" data-bs-toggle="modal" data-bs-target="#static">
                     Dodaj zdjęcie
@@ -37,22 +37,16 @@
                         <div class="modal-content">
                             <form action="/gallery/uploadPhoto/" method="post" class="" enctype="multipart/form-data"
                                   style="margin-top: 30px;">
+                                <input type="text" name="id" value="<?php echo $galleryItem['id']; ?>" hidden>
                                 <div class="container-fluid mb-3">
                                     <h5 class="text-center">Nowe zdjęcie</h5>
                                     <label for="formFile" class="form-label">Wgraj plik</label>
                                     <input class="form-control" type="file" multiple accept=".png,.jpg,.jpeg"
                                            aria-label="browser" name="filename" id="formFile">
                                 </div>
-                                <div class="container-fluid mb-5">
-                                    <label for="exampleInputText4" class="form-label">Kategoria</label>
-                                    <select class="form-select" name="chapter" aria-label="Default select example">
-                                        <option value="concerts" selected>Koncerty</option>
-                                        <option value="trips">Wyjazdy</option>
-                                    </select>
-                                </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success w-25">Wgraj zdjęcie</button>
-                                    <button type="button" class="btn btn-outline-secondary w-25"
+                                    <button type="submit" class="btn btn-outline-success">Wgraj zdjęcie</button>
+                                    <button type="button" class="btn btn-outline-secondary"
                                             data-bs-dismiss="modal">Confij
                                     </button>
                                 </div>
@@ -60,15 +54,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row g-1 justify-content-center">
 
                     <?php
                     $i = 1;
                     foreach ($files as $filesItem):
 
                         ?>
-                        <div class="container col-sm-12 col-md-12 col-lg-6 mb-4">
-                            <?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename'], $filesItem['chapter']); ?>
+                        <div class="container col-sm-12 col-md-12 col-lg-6 mb-4 p-1">
+                            <?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename']); ?>
                         </div>
                             <?php
                             $i++;

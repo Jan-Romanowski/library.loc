@@ -66,11 +66,11 @@ class ComFun
 			return false;
 	}
 
-	static function crutch($link, $id, $filename, $chapter, $path = '/admin/deleteFileFromGallery')
+	static function crutch($link, $id, $filename, $path = '/gallery/deleteFileFromGallery')
 	{
 		echo
 			'
-				<div class="container border">
+				<div class="container-fluid border">
 				
 				   <button type="button" class="btn btn-outline-danger m-2 float-end" data-bs-toggle="modal" data-bs-target="#staticBackdropK' . $id . '">
 						Usunąć
@@ -89,7 +89,7 @@ class ComFun
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn btn-outline-danger w-25"
-											onclick=document.location="' . $path . '/' . $chapter . '/' . $filename . '">Tak
+											onclick=document.location="' . $path . '/' .$id. '/'. $filename . '/">Tak
 									</button>
 									<button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
 								</div>
@@ -97,7 +97,7 @@ class ComFun
 						</div>
 					</div>
 					
-					<img src="' . $link . '" data-bs-toggle="modal" data-bs-target="#exampleModal' . $id . '" class="custom_img card-img-top m-2" alt="...">
+					<img src="' . $link . '" data-bs-toggle="modal" data-bs-target="#exampleModal' . $id . '" class="card-img-top p-2" alt="...">
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal' . $id . '" tabindex="-1" style="background-color: rgba(0,0,0, 0.6) !important;" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-xl p-0 bg-transparent">
@@ -118,7 +118,7 @@ class ComFun
 			';
 	}
 
-	static function crutch_for_all($link, $id, $filename, $chapter)
+	static function crutch_for_all($link, $id, $filename)
 	{
 		echo
 			'

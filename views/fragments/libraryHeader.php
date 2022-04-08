@@ -22,7 +22,7 @@
                 data="/img/logo.svg">
             <img class="m-0 p-0" src="/img/logo.svg"/>
         </object>
-        <a class="navbar-brand d-inline-block text-truncate col-sm-4" href="#">Biblioteka Chóru Katedralnego</a>
+        <a class="navbar-brand d-inline-block text-truncate col-sm-4" href="#">Biblioteka Chóru</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

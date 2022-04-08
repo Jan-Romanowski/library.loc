@@ -3,7 +3,7 @@
     <div class='container-fluid text-white' style='background-color: rgba(1,1,1, 0.7); min-height: 100vh'>
         <div class="container-fluid row gx-0 justify-content-center">
             <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3 text-center">
-                <h1 class='contact__header mt-3'>Stowarzyszenie Chór Katedralny im. Ks. Alfreda Hoffmana <br>w Siedlcach</h1>
+                <h1 class='contact__header mt-3'>Stowarzyszenie Chór Katedralny im. ks. Alfreda Hoffmana <br>w Siedlcach</h1>
                 <h2>ul. Kochanowskiego 11, 08-110 Siedlce</h2>
                 <h3>chorkatedralny.siedlce@gmail.com</h3>
                 <h3>tel. +48 506 046 646</h3><br>

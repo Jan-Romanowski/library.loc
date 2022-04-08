@@ -291,23 +291,31 @@ class User
 	 * @return bool|void
 	 */
 	public static function checkRights($rank){
-		if (self::isLogin()) {
+		if (User::isLogin()) {
 			switch ($rank){
 				case 'user':
-					if(strcasecmp($_SESSION['ac_type'], "user"))
+					if(strcasecmp($_SESSION['ac_type'], "user") == 0)
 						return true;
 					break;
 				case 'moder':
-					if(strcasecmp($_SESSION['ac_type'], "user") || strcasecmp($_SESSION['ac_type'], "moder"))
+					if(strcasecmp($_SESSION['ac_type'], "user") == 0 || strcasecmp($_SESSION['ac_type'], "moder") == 0)
 						return true;
+					break;
 				case 'admin':
 						return true;
+						break;
 				default:
 					die("Zabroniono w dostępie, nie masz uprawnień.");
 					break;
 			}
 		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
+		else if(!User::isLogin()){
+			die("Zabroniono w dostępie, nie jesteś zalogowany");
+		}
+		else{
+			return false;
+		}
+
 	}
 
 	/** Возвращает true или false в зависимости залогинен ты или нет
@@ -315,9 +323,7 @@ class User
 	 */
 	public static function isLogin()
 	{
-		if (isset($_SESSION['user']) &&
-			$_SESSION['user'] != ' ' &&
-			isset($_SESSION['ac_type'])) {
+		if (isset($_SESSION['user']) || isset($_SESSION['ac_type'])) {
 			return true;
 		}
 		return false;

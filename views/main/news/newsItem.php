@@ -2,6 +2,10 @@
 	<body class="main_body">
 	<style>
 
+        img{
+            object-fit: contain;
+        }
+
         a{
             text-decoration: none;
         }

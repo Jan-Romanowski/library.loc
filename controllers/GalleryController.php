@@ -11,42 +11,15 @@ class GalleryController{
 
 		User::checkRights("moder");
 
-		$files = array();
-		$i = 0;
+		$galleryList = array();
+		$galleryList = Gallery::getFolders();
 
-		$dir = ROOT . '/public_html/gallery/trips';
+		if (!is_dir(ROOT_WEB . '/gallery'))
+			mkdir(ROOT_WEB . '/gallery', 0777, true);
 
-		if (!is_dir(ROOT_WEB . '/gallery/trips')) {
-			mkdir(ROOT_WEB . '/gallery/trips', 0750, true);
-		} else if (is_dir($dir)) {
-			if ($dh = opendir($dir)) {
-				while (false !== ($file = readdir($dh))) {
-					if ($file != "." && $file != "..") {
-						$path = $dir . '/' . $file;
-						$files[$i]['file'] = '/gallery/trips/' . $file;
-						$files[$i]['chapter'] = 'trips';
-						$files[$i]['filename'] = $file;
-						$i++;
-					}
-				}
-			}
-		}
-
-		$dir = ROOT . '/public_html/gallery/concerts';
-
-		if (!is_dir(ROOT_WEB . '/gallery/concerts')) {
-			mkdir(ROOT_WEB . '/gallery/concerts', 0750, true);
-		} else if (is_dir($dir)) {
-			if ($dh = opendir($dir)) {
-				while (false !== ($file = readdir($dh))) {
-					if ($file != "." && $file != "..") {
-						$path = $dir . '/' . $file;
-						$files[$i]['file'] = '/gallery/concerts/' . $file;
-						$files[$i]['chapter'] = 'concerts';
-						$files[$i]['filename'] = $file;
-						$i++;
-					}
-				}
+		foreach ($galleryList as $galleryItem) {
+			if (!is_dir(ROOT_WEB . '/gallery/' . $galleryItem['id'])) {
+				mkdir(ROOT_WEB . '/gallery/' . $galleryItem['id'], 0777, true);
 			}
 		}
 
@@ -54,6 +27,7 @@ class GalleryController{
 
 		return true;
 	}
+
 
 
 	/**
@@ -94,52 +68,16 @@ class GalleryController{
 
 
 	/**
-	 * @return bool
-	 */
-	public function actionConcerts(){
-
-		User::checkRights("moder");
-
-		$files = array();
-		$i = 0;
-
-		$dir = ROOT . '/public_html/gallery/concerts';
-		if (!is_dir(ROOT_WEB . '/gallery/concerts')) {
-			mkdir(ROOT_WEB . '/gallery/concerts', 0750, true);
-		} else if (is_dir($dir)) {
-			if ($dh = opendir($dir)) {
-				while (false !== ($file = readdir($dh))) {
-					if ($file != "." && $file != "..") {
-						$path = $dir . '/' . $file;
-						$files[$i]['file'] = '/gallery/concerts/' . $file;
-						$files[$i]['chapter'] = 'concerts';
-						$files[$i]['filename'] = $file;
-						$i++;
-					}
-				}
-			}
-		}
-
-		$name = 'Koncerty';
-
-		require_once ROOT . '/views/gallery/photos.php';
-
-		return true;
-
-	}
-
-
-	/**
 	 * @param $chapter
 	 * @param $filename
 	 * @return bool
 	 */
-	public function actionDeleteFileFromGallery($chapter, $filename)
+	public function actionDeleteFileFromGallery($id, $filename)
 	{
 
 		User::checkRights("moder");
 
-		$dir = ROOT . '/public_html/gallery/' . $chapter;
+		$dir = ROOT . '/public_html/gallery/' . $id;
 		$pathFile = $dir . '/' . $filename;
 
 		if (is_dir($dir)) {
@@ -150,7 +88,7 @@ class GalleryController{
 							unlink($pathFile);
 							$_SESSION["msg"] = "Zdjęcie zostało pomyślnie usunięte";
 							$_SESSION["stat"] = "alert-success";
-							header('Location: /gallery/index');
+							header('Location: /gallery/folder/' . $id .'/');
 						}
 					}
 				}
@@ -167,7 +105,7 @@ class GalleryController{
 	{
 		User::checkRights("moder");
 
-		$chapter = Get::post('chapter', '');
+		$id = Get::post('id', 0);
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';
@@ -176,26 +114,97 @@ class GalleryController{
 		}
 
 		if (!is_dir(ROOT_WEB . '/gallery/')) {
-			mkdir(ROOT_WEB . '/gallery', 0750, true);
+			mkdir(ROOT_WEB . '/gallery', 0777, true);
 		}
-		if (!is_dir(ROOT_WEB . '/gallery/' . $chapter)) {
-			mkdir(ROOT_WEB . '/gallery/' . $chapter, 0750, true);
+		if (!is_dir(ROOT_WEB . '/gallery/' . $id)) {
+			mkdir(ROOT_WEB . '/gallery/' . $id, 0777, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
 
 			$original_filename = strval($_FILES['filename']['name']);
 
-			$target = ROOT_WEB . '/gallery/' . $chapter . '/' . basename($original_filename);
+			$target = ROOT_WEB . '/gallery/' . $id . '/' . basename($original_filename);
 			$tmp = $_FILES['filename']['tmp_name'];
 
 			move_uploaded_file($tmp, $target);
+
 			$_SESSION["msg"] = 'Plik został pomyślnie wgrany!';
 			$_SESSION["stat"] = "alert-success";
 			header("Location: /gallery/index");
 
 		}
 		return true;
+	}
+
+	public function actionCreateFolder(){
+
+		User::checkRights("moder");
+
+		$name = '';
+
+		$result = false;
+
+		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
+
+			$name = Get::post('name', '');
+
+			$errors = false;
+
+			if (!Gallery::checkName($name))
+				$errors[] = 'Zakrótka nazwa foldera';
+
+			if ($errors == false) {
+				if(Gallery::addFolder($name)){
+					$_SESSION["msg"] = "Nowy folder został pomyślnie dodany do biblioteki.";
+					$_SESSION["stat"] = "alert-success";
+					header('Location: /gallery/index/');
+				}
+				else{
+					$_SESSION["msg"] = "Coś poszło nie tak..";
+					$_SESSION["stat"] = "alert-danger";
+				}
+			}
+		}
+
+		require_once(ROOT . '/views/gallery/galleryForm.php');
+
+		return true;
+	}
+
+
+	public function actionFolder($id){
+
+		$galleryItem = array();
+		$galleryItem = Gallery::getFolderById($id);
+
+		if(User::isLogin()){
+
+		}
+			$files = array();
+			$i = 0;
+
+			$dir = ROOT . '/public_html/gallery/' . $id;
+			$dwnlpath = '/gallery/' . $id;
+
+			if (is_dir($dir)) {
+				if ($dh = opendir($dir)) {
+					while (false !== ($file = readdir($dh))) {
+						if ($file != "." && $file != "..") {
+							$path = $dir . '/' . $file;
+							$files[$i]['file'] = '/gallery/'.$id. '/' . $file;
+							$files[$i]['filename'] = $file;
+							$i++;
+
+						}
+					}
+				}
+			}
+
+		require_once(ROOT . '/views/gallery/photos.php');
+
+		return true;
+
 	}
 
 

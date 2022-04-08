@@ -1,15 +1,18 @@
 <?php
 return array(
+
 	'achievement/newAchievements' => 'achievement/newItem',
 	'achievement/index' => 'achievement/index',
 	'achievement/uploadPhoto/([0-9]+)' => 'achievement/uploadPhoto/$1',
 	'achievement/deleteAchievement/([0-9]+)' => 'achievement/deleteAchievement/$1',
 
+	'gallery/folder/([0-9]+)' => 'gallery/folder/$1',
 	'gallery/tripsShow' => 'gallery/trips',
 	'gallery/concertsShow' => 'gallery/concerts',
 	'gallery/uploadPhoto' => 'gallery/uploadPhoto',
-	'gallery/deleteFileFromGallery/([A-z]+)/([\w+.(jpeg|jpg|png)])' => 'gallery/deleteFileFromGallery/$1/$2',
+	'gallery/deleteFileFromGallery/([0-9]+)/([\w+.(jpeg|jpg|png)])' => 'gallery/deleteFileFromGallery/$1/$2',
 	'gallery/index' => 'gallery/index',
+	'gallery/createFolder' => 'gallery/createFolder',
 
 	'admin' => 'admin/index',
 
@@ -50,9 +53,7 @@ return array(
 	'main/history' => 'main/history',
 	'main/achivments' => 'main/achivments',
 	'main/gallery' => 'main/gallery',
-	'main/koncerty' => 'main/koncerty',
-	'main/concerts' => 'main/concerts',
-	'main/trips' => 'main/trips',
+	'main/galleryFolder/([0-9]+)' => 'main/galleryFolder/$1',
 	'main/iza' => 'main/iza',
 	'main/news' => 'main/news',
 	'main/newsItem/([0-9]+)' => 'main/newsItem/$1',
