@@ -24,12 +24,12 @@
                 <h2 class="pt-2 mb-5">Chór w latach 1955 - 1994</h2>
             </div>
             <div class="container-fluid">
-                <div class="overflow-auto">
-                <img src="/img/chor1962.gif" width="500px" class="img mx-3" style="float: left;" alt='Chór'
+                <div class="overflow-auto text-center m-2">
+                <img src="/img/chor1962.gif" width="500px" class="img mx-3" alt='Chór'
                      title='Chór'>
                 </div>
 
-                <p>
+                <p align="justify">
                     Interesująca i niezwykle bogata historia chóru działającego przy
                     kościele p. w. Niepokalanego Poczęcia NMP w Siedlcach sięga lat dwudziestych
                     ubiegłego stulecia, w których działał Aleksander Gromek pierwszy organista

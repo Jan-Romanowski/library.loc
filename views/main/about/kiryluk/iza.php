@@ -16,13 +16,13 @@
         <div class="container-fluid row gx-0 justify-content-center">
             <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
 
-                <div style="text-align: center">
-                    <h2 class="mb-5">Dyrygent Izabela Kiryluk</h2>
+                <div class="text-center">
+                    <h2 class="pt-5 mb-5">Dyrygent Izabela Kiryluk</h2>
                 </div>
 
                 <div class="container-fluid">
                     <img src="/img/iza.jpg" width="300px" class="mx-3 float-sm-end">
-                    <p>
+                    <p align="justify">
                         Dyrygent, solistka, pedagog. Absolwentka Wydziału Dyrygentury Chóralnej, Edukacji Muzycznej i
                         Muzyki Kościelnej w Akademii Muzycznej im. I.J. Paderewskiego w klasie dyrygentury prof. Magdaleny
                         Wdowickiej-Mackiewicz, Absolwentka Prywatnego Policealnego Studium Sztuki Wokalnej w klasie śpiewu
@@ -34,7 +34,7 @@
                         Prezydenta Miasta Siedlce.
                     </p>
                     <hr>
-                    <p>
+                    <p align="justify">
                         Od 2015 roku pracuje w Zespole Szkół Muzycznych w Siedlcach oraz jako nauczyciel przedmiotu emisja
                         głosu w
                         Diecezjalnym Studium Muzyki Kościelnej w Siedlcach. Drugi dyrygent Chóru Katedralnego im. ks.
@@ -49,7 +49,7 @@
 
                 <div class="container-fluid">
                     <img class="mx-3" src="/img/4.jpg" width="230px" style=" float: left;">
-                    <p class="m-3">
+                    <p class="m-3" align="justify">
                         Jako solistka, chórzystka i dyrygentka brała udział w nagraniu płyt: „Muzyka w Katedrze Siedleckiej”
                         i „Kultura
                         muzyczna Katedry Siedleckiej. Ludzie i Muzyka”, Płyta Jubileuszowa z okazji XX-lecia PSEG i XV-lecia
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="container-fluid">
-                    <p>
+                    <p align="justify">
                         W ramach pracy dyrygenckiej z Chórem Katedralnym, Zespołem Kameralnym Chóru Katedralnego, Chórem PSM
                         I st. oraz
                         Zespołem wokalnym PSM II st. brała udział w festiwalach muzyki chóralnej i zdobyła następujące
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="container-fluid">
-                    <ul>
+                    <ul align="justify">
                         <div class="container-fluid">
                             <li>w roku 2015 Srebrny dyplom na X Festiwalu Muzyki Sakralnej Mater Misericordiae w Ząbkach z
                                 Chórem Katedralnym

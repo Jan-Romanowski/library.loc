@@ -434,7 +434,7 @@ class SongsController
 	 * @param $id
 	 * @return string
 	 */
-	function getNameFolder($id)
+	public static function getNameFolder($id)
 	{
 		$min = 0;
 		$max = 100;

@@ -12,6 +12,12 @@
 			<?php endif; ?>
     </div>
 
+    <style>
+        *{
+            font-weight: bold;
+        }
+    </style>
+
     <div class='container-fluid mt-xs-5 mt-md-3 mx-auto px-1' style='min-height: 100vh'>
         <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row g-1 justify-content-center">
             <div class="container col-sm-12 col-md-10 col-lg-8 pt-3 row g-1">

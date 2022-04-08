@@ -123,13 +123,24 @@
                                   </a>
                               </td>
                               <td>
-                                  <a href="/songs/<?php echo $songsListItem['id_song']; ?>"<?php if (isset($songsListItem) && $songsListItem['one_voice'] == 1) echo "style='color: #f3a123';" ?>><?php echo $songsListItem['name_song'] ?></a>
+                                  <a href="/songs/<?php echo $songsListItem['id_song']; ?>"
+                                    <?php
+                                    if(Songs::isFolderEmpty($songsListItem['id_song']) && User::isLogin() && ((User::checkRoot("moder") || User::checkRoot("admin"))))
+                                        echo "style='color: red'";
+                                    else if (isset($songsListItem) && $songsListItem['one_voice'] == 1)
+                                        echo "style='color: #f3a123'";
+                                    else
+                                        echo '';
+                                    ?>
+                                  >
+                                    <?php echo $songsListItem['name_song'] ?>
+                                  </a>
                                   <br>
                                   <p style="font-size: 82%"><?php echo $songsListItem['author'] ?></p>
                               </td>
-                              <!--                            <td>--><?php //echo $songsListItem['count'] ?><!--</td>-->
+                              <!--   <td>--><?php //echo $songsListItem['count'] ?><!--</td>-->
                               <td>
-																<?php if ($songsListItem['actual'] == 0) { ?>
+                                            <?php if ($songsListItem['actual'] == 0) { ?>
                                     <a class="<?php if (!User::checkRoot("moder") && !User::checkRoot("admin")) echo 'btn disabled'; ?>"
                                        href="/songs/changeActual/<?php echo $songsListItem['id_song']; ?>" <?php if (isset($songsListItem) && $songsListItem['one_voice'] == 1) echo "style='color: #f3a123';" ?>>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

@@ -266,4 +266,29 @@ class Songs
 
 	}
 
+	/**
+	 * @param $id
+	 * @return bool|null
+	 */
+	public static function isFolderEmpty($id)
+	{
+
+		$folderName = SongsController::getNameFolder($id);
+		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+
+	}
+
+
 }

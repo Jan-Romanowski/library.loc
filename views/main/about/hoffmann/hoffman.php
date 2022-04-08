@@ -17,9 +17,8 @@
     <div class='container-fluid text-white' style='background-color: rgba(1,1,1, 0.7); min-height: 100vh'>
         <div class="container-fluid row gx-0 justify-content-center">
             <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
-
-                <div style="text-align: center">
-                    <h2 class="mb-5">Ks. Alfred Jan Hoffman (1923 - 1994)</h2>
+                <div class="text-center mt-2">
+                    <h2 class="mt-sm-3 mt-md-4 mt-lg-5 mb-5">Ks. Alfred Jan Hoffman (1923 - 1994)</h2>
                 </div>
                 <div class="container-fluid">
                     <div class='hoffman_conteiner_first-image'>
@@ -123,7 +122,6 @@
                     <hr>
                     <img title='Alfred Jan Hoffman' src="/img/hoffman2.jpeg" class="img mx-3" style="float: right;">
                 </div>
-
                 <div class="container-fluid">
                     <p align="justify">
                         Największą jednak pasją, której poświęcił się bez reszty było prowadzenie Chóru
@@ -142,10 +140,9 @@
                         a szczególnie muzyki liturgicznej.
                     </p>
                 </div>
-
                 <div class="container-fluid">
-                    <div class="overflow-auto">
-                        <img title='Alfred Jan Hoffman' src="/img/hoffman4.gif" class="img mx-3" style="float: left;">
+                    <div class="overflow-auto text-center">
+                        <img title='Alfred Jan Hoffman' src="/img/hoffman4.gif" class="img m-3">
                     </div>
                     <p align="justify">
                         Ks. Hoffman jako dyrygent nie ograniczał się tylko do pracy muzycznej. Był on dla
