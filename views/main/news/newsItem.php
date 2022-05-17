@@ -20,9 +20,9 @@
         }
 
 	</style>
-	<div class="container-fluid text-light text-lg-start gx-5 m-0 pb-5" style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; margin-top: 20px; width: 100%;">
-		<div class="container-fluid row justify-content-center p-5">
-			<div class="container row justify-content-center">
+    <div class="container-fluid text-light text-lg-start pt-5 pb-3 px-sm-0 px-md-1 px-lg-3 px-xl-5" style="background-color: rgba(1,1,1, 0.7); min-height: 100vh; width: 100%;">
+        <div class="container-fluid row gx-sm-1 gx-md-2 gx-lg-3 gx-xl-5 m-0 justify-content-center">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-9 container-fluid mb-5">
 				<div class="container col-sm-12 col-md-12 col-lg-8">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -65,16 +65,16 @@
 
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Предыдущий</span>
+                            <span class="visually-hidden">Next</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Следующий</span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
                     </div>
 
-                    <div class="container-fluid">
-                        <div class="container-fluid pt-5">
+                    <div class="row g-1 justify-content-center p-sm-0 p-md-1 p-lg-2">
+                        <div class="container-fluid px-0 mx-0 pt-5">
                             <h5 class="text-center"><?php echo $newsItem['header']; ?></h5>
                             <p><?php echo $newsItem['text']; ?></p>
                             <h6 class="card-subtitle mb-2 text-muted mt-5"><?php echo $newsItem['date_news']; ?></h6>

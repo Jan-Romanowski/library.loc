@@ -46,9 +46,11 @@
                                 }
                             }
                             ?>
-                            <img src="<?php echo $files; ?>" height="250px" class="img-fluid rounded-start w-100 mb-3"  alt="...">
+                            <img src="<?php echo $files; ?>" height="250px" class="img rounded-start w-100 mb-3"  alt="...">
                             <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
                             <p class="card-text text-truncate" style="height: 100px"><?php echo $newsListItem['text']; ?></p>
+                        </div>
+                        <div class="card-footer">
                             <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
                             <p class="card-text"><small class="text-muted"><?php echo $newsListItem['date_news']; ?></small></p>
                             <a href="/main/newsItem/<?php echo $newsListItem['id_news']; ?>" class="btn btn-outline-info">Szczegóły</a>

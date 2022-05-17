@@ -66,7 +66,7 @@ class ComFun
 			return false;
 	}
 
-	static function crutch($link, $id, $filename, $path = '/gallery/deleteFileFromGallery')
+	static function crutchForNews($link, $id, $filename, $path = '/news/deleteFileFromNews')
 	{
 		echo
 			'
@@ -89,7 +89,7 @@ class ComFun
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn btn-outline-danger w-25"
-											onclick=document.location="' . $path . '/' .$id. '/'. $filename . '/">Tak
+											onclick=document.location="' . $path . '/' .$id. '/'. $filename . '">Tak
 									</button>
 									<button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
 								</div>
@@ -143,6 +143,24 @@ class ComFun
 				</div>
 		
 			';
+	}
+
+	static function countFilesInFolder($dir){
+
+		$count = 0;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$count++;
+					}
+				}
+			}
+		}
+
+		return $count;
+
 	}
 
 }

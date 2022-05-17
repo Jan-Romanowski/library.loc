@@ -366,13 +366,13 @@ class SongsController
 
 		$folderName = self::getNameFolder($id_folder);
 		if (!is_dir(ROOT_WEB . '/files/')) {
-			mkdir(ROOT_WEB . '/files', 0755, true);
+			mkdir(ROOT_WEB . '/files', 0777, true);
 		}
 		if (!is_dir(ROOT_WEB . '/files/' . $folderName)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName, 0755, true);
+			mkdir(ROOT_WEB . '/files/' . $folderName, 0777, true);
 		}
 		if (!is_dir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder, 0755, true);
+			mkdir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder, 0777, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
@@ -389,7 +389,7 @@ class SongsController
 			$tmp = $_FILES['filename']['tmp_name'][$key];
 
 			move_uploaded_file($tmp, $target);
-			$_SESSION["msg"] = 'Plik został pomyślnie wgrany!';
+			$_SESSION["msg"] = 'Pliki zostały pomyślnie wgrane!';
 			$_SESSION["stat"] = "alert-success";
 			//header("Location: /songs/" . $id_folder);
 				}

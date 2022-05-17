@@ -79,11 +79,11 @@ class NewsController
 			$newsItem = News::getNewsItemById($id);
 
 			if (!is_dir(ROOT_WEB . '/news/')) {
-				mkdir(ROOT_WEB . '/news', 0750, true);
+				mkdir(ROOT_WEB . '/news', 0777, true);
 			}
 
 			if (!is_dir(ROOT_WEB . '/news/' . $id)) {
-				mkdir(ROOT_WEB . '/news/' . $id, 0750, true);
+				mkdir(ROOT_WEB . '/news/' . $id, 0777, true);
 			}
 
 			$files = array();
@@ -179,11 +179,16 @@ class NewsController
 
 				if ($errors == false) {
 					$result = News::updateNews($id, $header, $text);
+
+					$_SESSION["msg"] = 'Dane zostały pomyślnie zmienionę.';
+					$_SESSION["stat"] = "alert-success";
 				}
 
 			}
 
 		}
+
+		require_once(ROOT . '/views/news/newsForm.php');
 
 		return true;
 	}
@@ -202,10 +207,10 @@ class NewsController
 		}
 
 		if (!is_dir(ROOT_WEB . '/news/')) {
-			mkdir(ROOT_WEB . '/news', 0750, true);
+			mkdir(ROOT_WEB . '/news', 0777, true);
 		}
 		if (!is_dir(ROOT_WEB . '/news/' . $folder)) {
-			mkdir(ROOT_WEB . '/news/' . $folder, 0750, true);
+			mkdir(ROOT_WEB . '/news/' . $folder, 0777, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
@@ -223,6 +228,29 @@ class NewsController
 		}
 		return true;
 
+	}
+
+
+	public function actionDeleteFileFromNews($id, $filename)
+	{
+
+		User::checkRights("moder");
+
+		$dir = ROOT . '/public_html/news/' . $id;
+
+		//echo 'Files: '.ComFun::countFilesInFolder($dir).' ////';
+
+		$pathFile = $dir . '/' . $filename;
+
+		unlink($pathFile);
+
+		$_SESSION["msg"] = "Zdjęcie zostało pomyślnie usunięte";
+		$_SESSION["stat"] = "alert-success";
+
+		header("Location: /news/view/" . $id);
+
+
+		return true;
 	}
 
 }

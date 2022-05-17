@@ -14,7 +14,6 @@ class Achievements{
                         FROM achievements 
                         ORDER BY id");
 
-
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 
 		$i = 0;

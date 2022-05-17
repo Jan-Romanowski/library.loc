@@ -43,7 +43,7 @@ class GalleryController{
 		$dir = ROOT . '/public_html/gallery/trips';
 
 		if (!is_dir(ROOT_WEB . '/gallery/trips')) {
-			mkdir(ROOT_WEB . '/gallery/trips', 0750, true);
+			mkdir(ROOT_WEB . '/gallery/trips', 0777, true);
 		} else if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {
 				while (false !== ($file = readdir($dh))) {

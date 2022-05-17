@@ -17,7 +17,7 @@
                         <p class="card-text"><?php echo $newsItem['text']; ?></p>
                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsItem['date_news']; ?></h6>
                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsItem['autor']; ?></h6>
-                        <a href="#" class="btn btn-outline-info">Edycja</a>
+                        <a href="/news/editNews/<?php echo $newsItem['id_news']; ?>" class="btn btn-outline-info">Edycja</a>
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop<?php echo $newsItem['id_news']; ?>">
                             Usunąć
@@ -86,7 +86,7 @@
 
                                 ?>
                               <div class="container col-sm-12 col-md-12 col-lg-6 mb-4">
-                                    <?php ComFun::crutch($filesItem['file'], $i, $filesItem['filename'], $path = '/news/' . $newsItem['id_news']); ?>
+                                    <?php ComFun::crutchForNews($filesItem['file'], $newsItem['id_news'], $filesItem['filename']); ?>
                               </div>
                                     <?php
                                     $i++;

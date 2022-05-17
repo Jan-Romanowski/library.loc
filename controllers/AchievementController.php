@@ -50,7 +50,7 @@ class AchievementController{
 		$achievementsList = Achievements::getAchievements();
 
 		if (!is_dir(ROOT_WEB . '/achievements/')) {
-			mkdir(ROOT_WEB . '/achievements', 0750, true);
+			mkdir(ROOT_WEB . '/achievements', 0777, true);
 		}
 
 		foreach ($achievementsList as $achievementsListItem):
@@ -58,7 +58,7 @@ class AchievementController{
 			$id = $achievementsListItem['id'];
 
 			if (!is_dir(ROOT_WEB . '/achievements/' . $id)) {
-				mkdir(ROOT_WEB . '/achievements/' . $id, 0750, true);
+				mkdir(ROOT_WEB . '/achievements/' . $id, 0777, true);
 			}
 
 			endforeach;
@@ -84,10 +84,10 @@ class AchievementController{
 		}
 
 		if (!is_dir(ROOT_WEB . '/achievements/')) {
-			mkdir(ROOT_WEB . '/achievements', 0750, true);
+			mkdir(ROOT_WEB . '/achievements', 0777, true);
 		}
 		if (!is_dir(ROOT_WEB . '/achievements/' . $id)) {
-			mkdir(ROOT_WEB . '/achievements/' . $id, 0750, true);
+			mkdir(ROOT_WEB . '/achievements/' . $id, 0777, true);
 		}
 
 		$dir = ROOT . '/public_html/achievements/' . $id;

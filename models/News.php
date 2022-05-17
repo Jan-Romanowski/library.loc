@@ -132,7 +132,7 @@ class News
 		$sql = "UPDATE news 
             SET 
                 header = '$header', 
-                text = '$text', 
+                text = '$text' 
             WHERE id_news = '$id'";
 
 		$result = $db->prepare($sql);
