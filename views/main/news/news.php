@@ -31,21 +31,28 @@
 
                 <div class="card bg-dark col-sm-12 col-md-11 col-lg-5 col-xl-4 mb-3 mx-sm-0 mx-md-0 mx-lg-2 mx-xl-3">
                         <div class="card-body">
-                            <?php
+                                <?php
 
-                            $dir = ROOT.'/public_html/news/'.$newsListItem['id_news'];;
+                                $dir = ROOT.'/public_html/news/'.$newsListItem['id_news'];;
 
-                            if (is_dir($dir)) {
-                                if ($dh = opendir($dir)) {
-                                    while (false !== ($file = readdir($dh))) {
-                                        if ($file != "." && $file != "..") {
-                                            $path = $dir . '/' . $file;
-                                            $files = '/news/'.$newsListItem['id_news'].'/'.$file;
+                                if (is_dir($dir)) {
+                                    if ($dh = opendir($dir)) {
+                                        while (false !== ($file = readdir($dh))) {
+                                            if ($file != "." && $file != "..") {
+                                                $path = $dir . '/' . $file;
+
+                                                $name = stristr($file, '.', true);
+
+                                                if(strcmp($name, 'top') == 0){
+                                                    $files = '/news/'.$newsListItem['id_news'].'/'.$file;
+                                                    break;
+                                                }
+
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            ?>
+                                ?>
                             <img src="<?php echo $files; ?>" height="250px" class="img rounded-start w-100 mb-3"  alt="...">
                             <h5 class="card-title"><?php echo $newsListItem['header']; ?></h5>
                             <p class="card-text text-truncate" style="height: 100px"><?php echo $newsListItem['text']; ?></p>

@@ -68,10 +68,21 @@ class ComFun
 
 	static function crutchForNews($link, $id, $filename, $path = '/news/deleteFileFromNews')
 	{
+		echo '<div class="container-fluid border">';
+
+		$name = stristr($filename, '.', true);
+
+		if(strcmp($name, 'top') == 0){
+			echo '<button type="button" class="btn btn-outline-secondary disabled m-2 float-start"
+							>Główne zdjęcie
+						</button>';
+		}else{
+			echo '<button type="button" class="btn btn-outline-success m-2 float-start"
+							onclick=document.location="/news/makePhotoAsMain/'. $id .'/'. $filename .'/">Zrobić jako główne
+						</button>';
+		}
 		echo
-			'
-				<div class="container-fluid border">
-				
+			'	 
 				   <button type="button" class="btn btn-outline-danger m-2 float-end" data-bs-toggle="modal" data-bs-target="#staticBackdropK' . $id . '">
 						Usunąć
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"

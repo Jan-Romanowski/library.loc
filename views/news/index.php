@@ -48,7 +48,14 @@
                                     while (false !== ($file = readdir($dh))) {
                                         if ($file != "." && $file != "..") {
                                             $path = $dir . '/' . $file;
-                                            $files = '/news/'.$newsListItem['id_news'].'/'.$file;
+
+                                            $name = stristr($file, '.', true);
+
+                                            if(strcmp($name, 'top') == 0){
+                                                $files = '/news/'.$newsListItem['id_news'].'/'.$file;
+                                                break;
+                                            }
+
                                         }
                                     }
                                 }

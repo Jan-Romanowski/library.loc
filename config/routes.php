@@ -59,6 +59,7 @@ return array(
 	'main/newsItem/([0-9]+)' => 'main/newsItem/$1',
 	'main' => 'main/mainPage',
 
+	'news/makePhotoAsMain/([0-9]+)/([\w+.(jpeg|jpg|png)])' => 'news/makePhotoAsMain/$1/$2',
 	'news/deleteFileFromNews/([0-9]+)/([\w+.(jpeg|jpg|png)])' => 'news/deleteFileFromNews/$1/$2',
 	'news/uploadPhotoToNews/([0-9]+)' => 'news/uploadPhotoToNews/$1',
 	'news/view/([0-9]+)' => 'news/view/$1',
