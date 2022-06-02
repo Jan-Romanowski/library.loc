@@ -250,9 +250,12 @@ class NewsController
 
 		User::checkRights("moder");
 
+		$filename = str_replace('%20', ' ', $filename);
+
 		$dir = ROOT . '/public_html/news/' . $id;
 
 		$pathFile = $dir . '/' . $filename;
+
 
 		unlink($pathFile);
 

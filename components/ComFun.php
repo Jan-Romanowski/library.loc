@@ -174,4 +174,20 @@ class ComFun
 
 	}
 
+	static function sendMail($to, $message, $subject){
+
+		$from = "system@chorkatedralnysiedlce.pl";
+
+		$subject = "=?utf-8?B?".base64_encode($subject)."?=";
+
+		$headers = "From: $from\r\nReply-to: $from\r\nContent-type:text/plain; charset=utf-8\r\n";
+
+		if(mail($to, $subject, $message, $headers)){
+			return true;
+		}
+
+		return false;
+
+	}
+
 }

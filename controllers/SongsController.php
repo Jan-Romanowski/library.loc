@@ -42,7 +42,12 @@ class SongsController
 						}
 					}
 				}
+
+				// Sort by filetype
+				array_multisort (array_column($files, 'filetype'), SORT_DESC, $files);
 			}
+
+
 
 			require_once(ROOT . '/views/songs/songsItem.php');
 
@@ -409,6 +414,8 @@ class SongsController
 		User::checkRights("moder");
 
 		$folderName = self::getNameFolder($id);
+
+		$filename = str_replace('%20', ' ', $filename);
 
 		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
 		$pathFile = $dir . '/' . $filename;

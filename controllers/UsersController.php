@@ -43,20 +43,37 @@ class UsersController
 			if (User::checkEmailExists($email))
 				$errors[] = 'Taki email już jest zajęty.';
 
+			if (Queries::isQueryExist($email))
+				$errors[] = 'Taki email już jest zajęty.';
+
 			if ($errors == false) {
-				if (User::register($name, $surname, $email, $pass1)) {
-					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.";
-					$_SESSION["stat"] = "alert-success";
-					header("Location: /users/login");
 
-					$name = '';
-					$surname = '';
-					$email = '';
-					$pass1 = '';
-					$pass2 = '';
+				if(!Queries::isQueryExist($email)) {
+					if (User::register($name, $surname, $email, $pass1)) {
 
-				} else {
-					$_SESSION["msg"] = "Nie udało się założyć konta.";
+						$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.";
+						$_SESSION["stat"] = "alert-success";
+
+						$subject = "Rejestracja w bibliotece Chóru Katedralnego im. ks. Alfreda Hoffmana";
+						$message = "Witaj, ".$name."! Złożyłeś(aś) wniosek o rejestrację w bibliotece Chóru Katedralnego im. ks. Alfreda Hoffmana w Siedlcach. Musisz poczekać na akceptację przez administratorów systemu. Po akceptacji dostaniesz maila. \n\n\n\nZdrówka\nAdministracja Systemu";
+
+						ComFun::sendMail($email, $message, $subject);
+
+						header("Location: /users/login");
+
+						$name = '';
+						$surname = '';
+						$email = '';
+						$pass1 = '';
+						$pass2 = '';
+
+					} else {
+						$_SESSION["msg"] = "Nie udało się założyć konta.";
+						$_SESSION["stat"] = "alert-danger";
+					}
+				}
+				else{
+					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora. ";
 					$_SESSION["stat"] = "alert-danger";
 				}
 			}
