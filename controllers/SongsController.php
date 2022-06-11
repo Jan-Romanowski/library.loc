@@ -47,8 +47,6 @@ class SongsController
 				array_multisort (array_column($files, 'filetype'), SORT_DESC, $files);
 			}
 
-
-
 			require_once(ROOT . '/views/songs/songsItem.php');
 
 			return true;

@@ -190,4 +190,23 @@ class ComFun
 
 	}
 
+	static function generateActual(){
+
+		$songList = array();
+		$songList = Songs::getActualSongs();
+
+		$text = "Cześć! Aktualne utwory w naszym repertuarze uległy zmianie. Proszę się nauczyć nowych utworów.\n\r";
+
+		foreach ($songList as $songListItem):
+
+			$text = $text.$songListItem['name_song']." - https://chorkatedralnysiedlce.pl/songs/".$songListItem['id_song']."\n";
+
+		endforeach;
+
+		$text = $text. "\n\nZdrówka\nAdministracja Systemu";
+
+		return $text;
+
+	}
+
 }

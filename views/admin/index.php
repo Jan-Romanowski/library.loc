@@ -65,6 +65,15 @@
                         </div>
                     </div>
 
+                    <div class="container col-sm-12 col-md-6 col-lg-4 p-3">
+                        <div class="card anim shadow rounded" style="height: 8rem;" onclick=document.location="/email/index/">
+                            <div class="card-body text-center">
+                                <br>
+                                Email System
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

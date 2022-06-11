@@ -1,6 +1,11 @@
 <?php
 return array(
 
+	'email/index' => 'email/index',
+	'email/([0-9]+)/([0-9]+)' => 'email/editTemplate/$1/$2',
+	'email/newTemplate/([0-9]+)' => 'email/newTemplate/$1',
+	'email/deleteTemplate/([0-9]+)' => 'email/deleteTemplate/$1',
+
 	'achievement/newAchievements' => 'achievement/newItem',
 	'achievement/index' => 'achievement/index',
 	'achievement/uploadPhoto/([0-9]+)' => 'achievement/uploadPhoto/$1',

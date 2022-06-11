@@ -291,4 +291,33 @@ class Songs
 	}
 
 
+	/**
+	 * @return array
+	 */
+	public static function getActualSongs(){
+
+		$db = Db::getConnection();
+
+		$result = $db->query("SELECT id_song, name_song, author, actual, folder.name_folder
+                                       FROM song 
+                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
+                                       WHERE actual = 1");
+
+
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+
+		$i = 0;
+		while ($row = $result->fetch()) {
+			$songsList[$i]['id_song'] = $row['id_song'];
+			$songsList[$i]['name_song'] = $row['name_song'];
+			$songsList[$i]['author'] = $row['author'];
+			$songsList[$i]['actual'] = $row['actual'];
+			$songsList[$i]['name_folder'] = $row['name_folder'];
+
+			$i++;
+		}
+		return $songsList;
+	}
+
+
 }
