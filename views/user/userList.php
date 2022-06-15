@@ -20,20 +20,19 @@
                         <td>Data rejestracji</td>
                         <td></td>
                     </tr>
-									<?php
-									foreach ($userList as $userListItem): ?>
+                            <?php
+                            foreach ($userList as $userListItem): ?>
                       <tr>
                           <td><?php echo $userListItem['email'] ?></td>
                           <td><?php echo $userListItem['name'] ?></td>
                           <td><?php echo $userListItem['surname'] ?></td>
-
                           <td>
                               <div class="dropdown">
                                   <a class="btn btn-outline-dark dropdown-toggle <?php if (!User::checkRoot('admin')) echo 'disabled'; ?>"
                                      href="#"
                                      role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                      aria-expanded="false">
-																		<?php echo ComFun::translateRights($userListItem['ac_type']); ?>
+                                    <?php echo ComFun::translateRights($userListItem['ac_type']); ?>
                                   </a>
                                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                       <li><a class="dropdown-item"

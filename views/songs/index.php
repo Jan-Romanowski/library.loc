@@ -85,8 +85,11 @@
                                 <strong>Wyszukiwarka</strong>
                             </div>
                             <div class="col-md-8 col-md-8 mb-3">
-                                <input type="text" name="word" class="form-control" placeholder="Szukaj*"
+                                <input type="text" id="srch" list="datalistOptions" name="word" class="form-control" placeholder="Szukaj*"
                                        value="<?php if (isset($_SESSION['word'])) echo $_SESSION['word']; ?>">
+                                <datalist id="datalistOptions" style="max-height: 100px;">
+                                    <option value="Kek"></option>
+                                </datalist>
                             </div>
                             <div class="col-md-4 col-md-2">
                                 <input type="submit" name="submit" class="btn btn-outline-dark px-5" value="Szukaj">
@@ -172,6 +175,38 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+
+    window.onload = () => {
+        let input = document.querySelector('#srch');
+        input.oninput = function (){
+            let value = this.value.trim();
+
+            console.log(value);
+
+            $.ajax({
+                method: "POST",
+                url: "ajax/getSongs",
+                data: { val: value }
+            })
+                .done(function( data ) {
+
+                    var person = JSON.parse(data);
+                    for (let i = 0; i < person.length; i++) {
+                        var dataList = document.querySelector("#datalistOptions");
+
+                        var opt = document.createElement("option");
+                        opt.value = person[i];
+
+                        dataList.appendChild(opt);
+                    }
+                });
+        };
+
+    };
+
+</script>
 
 
 <?php include(ROOT . '/views/fragments/footer.php');

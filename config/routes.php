@@ -1,6 +1,12 @@
 <?php
 return array(
 
+	'ajax/getSongs' => 'ajax/getSongs',
+
+	'chat/index' => 'chat/index',
+	'chat/refresh' => 'chat/refresh',
+	'ajax/getNewMessages' => 'ajax/getNewMessages',
+
 	'email/index' => 'email/index',
 	'email/([0-9]+)/([0-9]+)' => 'email/editTemplate/$1/$2',
 	'email/newTemplate/([0-9]+)' => 'email/newTemplate/$1',
