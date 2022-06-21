@@ -88,7 +88,6 @@
                                 <input type="text" id="srch" list="datalistOptions" name="word" class="form-control" placeholder="Szukaj*"
                                        value="<?php if (isset($_SESSION['word'])) echo $_SESSION['word']; ?>">
                                 <datalist id="datalistOptions" style="max-height: 100px;">
-                                    <option value="Kek"></option>
                                 </datalist>
                             </div>
                             <div class="col-md-4 col-md-2">
@@ -181,6 +180,13 @@
     window.onload = () => {
         let input = document.querySelector('#srch');
         input.oninput = function (){
+
+            var dataList = document.querySelector("#datalistOptions");
+
+            while (dataList.firstChild) {
+                dataList.removeChild(dataList.firstChild);
+            }
+
             let value = this.value.trim();
 
             console.log(value);

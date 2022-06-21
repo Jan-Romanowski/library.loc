@@ -100,16 +100,16 @@
                                     <div class="flex-grow-0 py-3 px-4 border-top">
 
 
-<!--                                        <form action="#" method="post">-->
-<!--                                            <div class="input-group">-->
-<!--                                                <input type="number" id="id_ac" hidden name="id_account" value="--><?php //echo $_SESSION['user']; ?><!--">-->
-<!--                                                <input type="text" class="form-control" id="mess" name="message" value="" placeholder="Napisz wiadomość">-->
-<!--                                                <input type="text" id="lastId" hidden value="--><?php //echo $lastId; ?><!--">-->
-<!--                                                <input type="submit" class="btn btn-outline-dark" name="submit" value="Wyślij">-->
-<!--                                            </div>-->
-<!--                                        </form>-->
+                                        <form action="#" method="post">
+                                            <div class="input-group">
+                                                <input type="number" id="id_ac" hidden name="id_account" value="<?php echo $_SESSION['user']; ?>">
+                                                <input type="text" class="form-control" id="mess" name="message" value="" placeholder="Napisz wiadomość">
+                                                <input type="text" id="lastId" hidden value="<?php echo $lastId; ?>">
+                                                <input type="submit" class="btn btn-outline-dark" name="submit" value="Wyślij">
+                                            </div>
+                                        </form>
 
-                                        <button id="ok">Click</button>
+<!--                                        <button id="ok">Click</button>-->
                                     </div>
                                 </div>
                         </div>

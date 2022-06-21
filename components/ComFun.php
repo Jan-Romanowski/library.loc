@@ -209,4 +209,54 @@ class ComFun
 
 	}
 
+	static function num_word($value, $words, $show = true)
+	{
+		$num = $value % 100;
+		if ($num > 19) {
+			$num = $num % 10;
+		}
+
+		$out = ($show) ?  $value . ' ' : '';
+		switch ($num) {
+			case 1:  $out .= $words[0]; break;
+			case 2:
+			case 3:
+			case 4:  $out .= $words[1]; break;
+			default: $out .= $words[2]; break;
+		}
+
+		return $out;
+	}
+
+	static function secToStr($secs)
+	{
+		$res = '';
+
+		$days = floor($secs / 86400);
+		$secs = $secs % 86400;
+		if($days>0){
+			$res .= self::num_word($days, array('dzień', 'dni', 'dni')) . ' ';
+		}
+		elseif($days < 1){
+			$hours = floor($secs / 3600);
+			$secs = $secs % 3600;
+			if($hours>0){
+				$res .= self::num_word($hours, array('godzina', 'godziny', 'godzin')) . ' ';
+			}
+			elseif($hours < 5){
+				$minutes = floor($secs / 60);
+				$secs = $secs % 60;
+				if($minutes>0){
+					$res .= self::num_word($minutes, array('minuta', 'minuty', 'minut')) . ' ';
+				}
+				elseif ($minutes<30){
+					$res .= self::num_word($secs, array('sekunda', 'sekundy', 'sekund'));
+				}
+			}
+
+		}
+
+		return $res;
+	}
+
 }

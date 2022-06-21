@@ -139,14 +139,15 @@ class User
 	/**
 	 * @return array
 	 */
-	public static function getUsers()
+	public static function getUsers($word)
 	{
 		$db = Db::getConnection();
 
 		$userList = array();
 
-		$result = $db->query("SELECT id_account, email, name, surname, ac_type, regist_date
+		$result = $db->query("SELECT id_account, email, name, surname, ac_type, last_online, regist_date
                                        FROM accounts 
+																		WHERE (name LIKE '%" . $word . "%' OR surname LIKE '%" . $word . "%' OR email LIKE '%" . $word . "%')
                              ");
 
 		$result->setFetchMode(PDO::FETCH_ASSOC);
@@ -158,6 +159,7 @@ class User
 			$userList[$i]['name'] = $row['name'];
 			$userList[$i]['surname'] = $row['surname'];
 			$userList[$i]['ac_type'] = $row['ac_type'];
+			$userList[$i]['last_online'] = $row['last_online'];
 			$userList[$i]['regist_date'] = $row['regist_date'];
 
 			$i++;
@@ -291,6 +293,7 @@ class User
 	 * @return bool|void
 	 */
 	public static function checkRights($rank){
+
 		if (User::isLogin()) {
 			switch ($rank){
 				case 'user':
@@ -391,6 +394,28 @@ class User
 		$result = $db->prepare($sql);
 
 		return $result->execute();
+	}
+
+
+	/**
+	 * @param $id
+	 * @return bool
+	 */
+	public static function refreshOnline($id){
+
+		$db = Db::getConnection();
+
+		$now = date("Y-m-d H:i:s");
+
+		$sql = "UPDATE accounts 
+            SET 
+                last_online = '$now'
+            WHERE id_account = '$id'";
+
+		$result = $db->prepare($sql);
+
+		return $result->execute();
+
 	}
 
 

@@ -133,8 +133,16 @@ class UsersController
 
 		User::checkRights("moder");
 
+		if (isset($_POST['submit'])) {
+			$word = Get::post('word', '');
+		}
+		else{
+			$word = '';
+		}
+
 		$userList = array();
-		$userList = User::getUsers();
+		$userList = User::getUsers($word);
+
 
 		require_once(ROOT . '/views/user/userList.php');
 

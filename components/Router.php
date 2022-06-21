@@ -52,6 +52,10 @@ class Router
 				$controllerObject = new $controllerName;
 				$result = call_user_func_array(array($controllerObject, $actionName), $parameters);
 
+				if(isset($_SESSION['user'])){
+					User::refreshOnline($_SESSION['user']);
+				}
+
 				if ($result != null) {
 					break;
 				}
