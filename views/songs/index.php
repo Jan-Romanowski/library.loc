@@ -18,7 +18,7 @@
 							<?php
 
                             if(User::isLogin()){
-                            if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
+                            if (User::checkRoot("admin")): ?>
                   <a href="/songs/newSong/" class="btn btn-outline-dark px-3 mb-3">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                            class="bi bi-file-earmark" viewBox="0 0 16 16">
@@ -98,25 +98,24 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class='table table-hover mx-auto p-3'>
+                    <table class='table table-striped table-hover mx-auto p-3'>
                         <tr class="bg-light">
                             <td>#</td>
                             <td></td>
                             <td>Nazwa utworu</td>
-                            <td>Aktualne</td>
+                            <td class="text-center">Aktualne</td>
                                 <?php if(User::isLogin()){ ?>
-                                    <td>Teczka</td>
+                                    <td class="text-center">Teczka</td>
                                 <?php } ?>
                         </tr>
-											<?php
-											foreach ($songsList as $songsListItem): ?>
-                          <tr class="h_anim"
-                              onclick="document.location = '/songs/<?php echo $songsListItem['id_song']; ?>';">
+                            <?php
+                            foreach ($songsList as $songsListItem): ?>
+                          <tr class="h_anim pb-0 mb-0" onclick="document.location = '/songs/<?php echo $songsListItem['id_song']; ?>';">
                               <td class=""><?php echo $songsListItem['id_song'] ?></td>
                               <td class="">
                                   <a href="/songs/<?php echo $songsListItem['id_song']; ?>"
                                      class="btn btn-outline-dark float-end">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" fill="currentColor"
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" fill="currentColor"
                                            class="bi bi-music-note-beamed" viewBox="0 0 16 16">
                                           <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
                                           <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
@@ -127,7 +126,7 @@
                               <td>
                                   <a href="/songs/<?php echo $songsListItem['id_song']; ?>"
                                     <?php
-                                    if(Songs::isFolderEmpty($songsListItem['id_song']) && User::isLogin() && ((User::checkRoot("moder") || User::checkRoot("admin"))))
+                                    if(Songs::isFolderEmpty($songsListItem['id_song']) && User::isLogin() && ((User::checkRoot("admin"))))
                                         echo "style='color: red'";
                                     else if (isset($songsListItem) && $songsListItem['one_voice'] == 1)
                                         echo "style='color: #f3a123'";
@@ -138,20 +137,20 @@
                                     <?php echo $songsListItem['name_song'] ?>
                                   </a>
                                   <br>
-                                  <p style="font-size: 82%"><?php echo $songsListItem['author'] ?></p>
+                                  <small style="font-size: 82%"><?php echo $songsListItem['author'] ?></small>
                               </td>
                               <!--   <td>--><?php //echo $songsListItem['count'] ?><!--</td>-->
-                              <td>
+                              <td class="text-center align-middle">
                                             <?php if ($songsListItem['actual'] == 0) { ?>
-                                    <a class="<?php if (!User::checkRoot("moder") && !User::checkRoot("admin")) echo 'btn disabled'; ?>"
+                                    <a class="<?php if (!User::checkRoot("admin")) echo 'btn disabled'; ?>"
                                        href="/songs/changeActual/<?php echo $songsListItem['id_song']; ?>" <?php if (isset($songsListItem) && $songsListItem['one_voice'] == 1) echo "style='color: #f3a123';" ?>>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                              fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                                             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
                                         </svg>
                                     </a>
-																<?php } else { ?>
-                                    <a class="<?php if (!User::checkRoot("moder") && !User::checkRoot("admin")) echo 'btn disabled'; ?>"
+                                            <?php } else { ?>
+                                    <a class="<?php if (!User::checkRoot("admin")) echo 'btn disabled'; ?>"
                                        href="/songs/changeActual/<?php echo $songsListItem['id_song']; ?>" <?php if (isset($songsListItem) && $songsListItem['one_voice'] == 1) echo "style='color: #f3a123';" ?>>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                              fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -161,7 +160,7 @@
 																<?php } ?>
                               </td>
                                     <?php if(User::isLogin()){ ?>
-                              <td><?php echo $songsListItem['name_folder'] ?></td>
+                                        <td class="text-center align-middle"><span class="badge <?php if($songsListItem['one_voice'] == 1) echo 'bg-warning'; else echo 'bg-primary' ?>"><?php echo $songsListItem['name_folder'] ?></span></td>
                                         <?php } ?>
 
                           </tr>

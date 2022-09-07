@@ -71,8 +71,6 @@ class NewsController
 	public function actionView($id)
 	{
 
-
-
 		User::checkRights("moder");
 
 		if ($id) {

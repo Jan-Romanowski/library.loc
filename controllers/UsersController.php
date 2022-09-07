@@ -44,7 +44,7 @@ class UsersController
 				$errors[] = 'Taki email już jest zajęty.';
 
 			if (Queries::isQueryExist($email))
-				$errors[] = 'Taki email już jest zajęty.';
+				$errors[] = 'Już złóżyłeś wniosek o rejestracje, musisz poczekać na akceptację administratora.';
 
 			if ($errors == false) {
 

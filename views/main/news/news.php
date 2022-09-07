@@ -65,8 +65,7 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
-                            <p class="card-text"><small class="text-muted"><?php echo $newsListItem['date_news']; ?></small></p>
-<!--                            <a href="/main/newsItem/--><?php //echo $newsListItem['id_news']; ?><!--" class="btn btn-outline-info">Szczegóły</a>-->
+                            <p class="card-text"><small class="text-muted"><?php echo date($newsListItem['date_news']); ?></small></p>
                         </div>
                     </div>
 

@@ -62,11 +62,9 @@
                                 $online = false;
                             }
                             else{
-                                $diff = 'Online (Teraz)';
+                                $diff = 'Online';
                                 $online = true;
                             }
-
-
                             ?>
                           <td style="color: <?php if($online){ echo '#3fd12c';}?> " data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $userListItem['id_account'];?>">
                             <?php echo $diff; ?>

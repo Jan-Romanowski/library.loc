@@ -1,5 +1,11 @@
 <?php include(ROOT . '/views/fragments/libraryHeader.php'); ?>
 
+<style>
+    .downloadLine:hover{
+        cursor: pointer !important;
+    }
+</style>
+
     <div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh'>
         <div class="container-fluid mt-5 mt-sm-2 row g-0 justify-content-center">
             <div class="container-fluid col-sm-12 col-md-10 col-lg-8 mb-3">
@@ -12,6 +18,7 @@
             </div>
             <div class="container col-sm-12 col-md-10 col-lg-8 mb-3 row">
                 <div class="container-fluid p-5 mt-4 border row g-0 bg-light col-12">
+
                     <div class="col-sm-12 col-md-12 col-lg-5">
                         <h1><?php echo $songsItem['name_song']; ?></h1><br>
                         <a href="#" class="btn btn-outline-dark p-5 mb-3">
@@ -23,25 +30,58 @@
                         </a>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-5">
+
+                        <table>
+                          <tr>
+                              <td>
+                                  Numer teczki
+                              </td>
+                              <td class="px-3">
+                                  <span class="badge bg-secondary"><?php echo $songsItem['id_song']; ?></span>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  Ilość partytur
+                              </td>
+                              <td class="px-3">
+                                  <span class="badge bg-secondary"><?php echo $songsItem['count_p']; ?>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  Autor
+                              </td>
+                              <td class="px-3">
+                                  <span class="badge bg-secondary"><?php echo $songsItem['author']; ?>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  Typ utworu
+                              </td>
+                              <td class="px-3">
+                                  <span class="badge bg-secondary"><?php echo $typeSong; ?></span>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  Teczka
+                              </td>
+                              <td class="px-3">
+                                  <span class="badge bg-secondary"><?php echo $songsItem['name_folder']; ?>
+                              </td>
+
+                          </tr>
+                      </table>
                         <p class="fs-4">
-													<?php if(User::isLogin()){ ?>
-                              Numer teczki: <?php echo $songsItem['id_song']; ?><br>
-
-                              Ilość partytur: <?php echo $songsItem['count_p']; ?><br>
-													<?php } ?>
-                            Autor: <?php echo $songsItem['author']; ?><br>
-                            Typ utworu: <?php echo $typeSong; ?><br>
-													<?php if(User::isLogin()){ ?>
-                              Teczka: <?php echo $songsItem['name_folder']; ?><br>
-													<?php } ?>
-
-													<?php if ($songsItem['note'] != '') {
-														echo 'Notatki: ' . $songsItem['name_folder'];
-													} ?>
+                                <?php if ($songsItem['note'] != '') {
+                                    echo 'Notatki: ' . $songsItem['note'];
+                                } ?>
                         </p>
 											<?php
 											if(User::isLogin()){
-												if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
+												if(User::checkRoot("admin")): ?>
                             <!--                        <button class="btn btn-outline-primary mb-1" data-bs-toggle="modal" data-bs-target="#numberForm">-->
                             <!--                            Zmiana numeru teczki-->
                             <!--                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill"-->
@@ -130,7 +170,7 @@
                             <?php
                             foreach ($files as $filesItem): ?>
                             <tr>
-                                <td>
+                                <td class="downloadLine" onclick="document.location='<?php echo $filesItem['dwnlpath']; ?>'">
                                     <?php
 
                                     $temp = '';
@@ -182,10 +222,10 @@
                                 }
                                 ?>
                                 </td>
-                                <td>
-                                    <a href="<?php echo $filesItem['dwnlpath'];?>" class="text-dark"><?php echo $filesItem['filename'];?></a>
+                                <td class="downloadLine align-middle" onclick="document.location='<?php echo $filesItem['dwnlpath']; ?>'">
+                                    <?php echo $filesItem['filename'];?>
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <div class="dropdown">
                                         <a class="text-dark" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -209,7 +249,7 @@
 
                       </table>
 
-										<?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
+										<?php if(User::checkRoot("admin")): ?>
                           <div class="container-fluid d-flex flex-column justify-content-center">
                               <div class="mb-3">
                                   <button type="button" class="btn btn-outline-dark m-3" data-bs-toggle="modal" data-bs-target="#static">
@@ -218,7 +258,7 @@
                                   <div class="modal fade" id="static" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropL" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered">
                                           <div class="modal-content">
-                                              <form action="uploadFile/<?php echo $songsItem['id_song']; ?>" method="post" class="" enctype="multipart/form-data" style="margin-top: 30px;">
+                                              <form action="uploadFile/<?php echo $songsItem['id_song']; ?>" method="post" class="p-3" enctype="multipart/form-data" style="margin-top: 30px;">
                                                   <div class="container-fluid mb-3">
                                                       <label for="formFile" class="form-label">Wgraj plik</label>
                                                       <input type="text" name="id_folder" value="<?php echo $songsItem['id_song']; ?>" hidden>

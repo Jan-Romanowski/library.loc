@@ -22,7 +22,7 @@ class FoldersController
 	 */
 	public function actionNewFolder()
 	{
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$result = '';
 		$name_folder = '';
@@ -68,7 +68,7 @@ class FoldersController
 
 	public function actionDelete($id)
 	{
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$result = Folders::countSongsInFolder($id);
 

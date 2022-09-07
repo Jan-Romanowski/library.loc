@@ -57,13 +57,13 @@
                   <li class="nav-item">
                       <a class="nav-link" aria-current="page" href="/cabinet/">Ustawienia</a>
                   </li>
-                      <li class="nav-item">
-                          <a class="nav-link" aria-current="page" href="/songs/">Utwory</a>
-                      </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/songs/">Utwory</a>
+                  </li>
 
-                      <li class="nav-item">
-                          <a class="nav-link" aria-current="page" href="/folders/">Teczki</a>
-                      </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/folders/">Teczki</a>
+                  </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/main/">Strona chóru</a>
                   </li>

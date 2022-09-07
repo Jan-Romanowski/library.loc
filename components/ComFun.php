@@ -234,29 +234,60 @@ class ComFun
 
 		$days = floor($secs / 86400);
 		$secs = $secs % 86400;
-		if($days>0){
-			$res .= self::num_word($days, array('dzień', 'dni', 'dni')) . ' ';
-		}
-		elseif($days < 1){
-			$hours = floor($secs / 3600);
-			$secs = $secs % 3600;
-			if($hours>0){
-				$res .= self::num_word($hours, array('godzina', 'godziny', 'godzin')) . ' ';
-			}
-			elseif($hours < 5){
-				$minutes = floor($secs / 60);
-				$secs = $secs % 60;
-				if($minutes>0){
-					$res .= self::num_word($minutes, array('minuta', 'minuty', 'minut')) . ' ';
-				}
-				elseif ($minutes<30){
-					$res .= self::num_word($secs, array('sekunda', 'sekundy', 'sekund'));
-				}
-			}
 
-		}
+		if($days>365){
+			$year = floor($days / 365);
 
+			$res .= self::num_word($year, array('rok', 'lata', 'lat')) . ' ';
+		}
+		else{
+			if($days>31){
+				$month = floor($days / 30);
+				$days = $days % 30;
+
+				$res .= self::num_word($month, array('miesiąc', 'miesięcy', 'miesięcy')) . ' ';
+			}
+			else{
+
+				if($days>7 && $days<30){
+
+					$weeks = floor($days / 7);
+					$days = $days % 7;
+
+					$res .= self::num_word($weeks, array('tydzień', 'tygodni', 'tygodni')) . ' ';
+				}
+				else{
+					if($days>0){
+						$res .= self::num_word($days, array('dzień', 'dni', 'dni')) . ' ';
+					}
+					else if($days < 1){
+						$hours = floor($secs / 3600);
+						$secs = $secs % 3600;
+						if($hours>0){
+							$res .= self::num_word($hours, array('godzina', 'godziny', 'godzin')) . ' ';
+						}
+						elseif($hours < 5){
+							$minutes = floor($secs / 60);
+							$secs = $secs % 60;
+							if($minutes>0){
+								$res .= self::num_word($minutes, array('minuta', 'minuty', 'minut')) . ' ';
+							}
+							elseif ($minutes<30){
+								$res .= self::num_word($secs, array('sekunda', 'sekundy', 'sekund'));
+							}
+						}
+					}
+				}
+			}
+		}
 		return $res;
+	}
+
+
+	static function translateDate($date){
+
+
+
 	}
 
 }

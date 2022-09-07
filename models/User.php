@@ -115,21 +115,18 @@ class User
 	public static function checkEmailExists($email)
 	{
 
-		if (isset($_SESSION["email"])) {
-			if (strcmp($email, $_SESSION["email"]) == 0)
-				return false;
-		}
-
 		$db = Db::getConnection();
 
-		$result = $db->query("SELECT COUNT(*) FROM accounts 
-                WHERE email = '$email'");
+		$result = $db->query("SELECT COUNT(*) as cnt FROM accounts 
+                								    WHERE email = '$email'");
 
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 
 		$row = $result->fetch();
 
-		if ($row == 1)
+		echo $row['cnt'];
+
+		if ($row['cnt'] > 0)
 			return true;
 		else {
 			return false;
@@ -147,7 +144,8 @@ class User
 
 		$result = $db->query("SELECT id_account, email, name, surname, ac_type, last_online, regist_date
                                        FROM accounts 
-																		WHERE (name LIKE '%" . $word . "%' OR surname LIKE '%" . $word . "%' OR email LIKE '%" . $word . "%')
+																		WHERE (name LIKE '%" . $word . "%' OR surname LIKE '%" . $word . "%')
+                             				ORDER BY last_online DESC;
                              ");
 
 		$result->setFetchMode(PDO::FETCH_ASSOC);
@@ -294,21 +292,26 @@ class User
 	 */
 	public static function checkRights($rank){
 
+		$neededRoot = $rank; // admin
+		$currentRoot = $_SESSION['ac_type']; // moderator
+
 		if (User::isLogin()) {
-			switch ($rank){
+			switch ($neededRoot){
 				case 'user':
-					if(strcasecmp($_SESSION['ac_type'], "user") == 0)
+					if(strcasecmp($currentRoot, "user") == 0 || strcasecmp($currentRoot, "moder") || strcasecmp($currentRoot, "admin"))
 						return true;
 					break;
 				case 'moder':
-					if(strcasecmp($_SESSION['ac_type'], "user") == 0 || strcasecmp($_SESSION['ac_type'], "moder") == 0)
+					if(strcasecmp($currentRoot, "admin") == 0 || strcasecmp($currentRoot, "moder") == 0)
 						return true;
 					break;
 				case 'admin':
+					if(strcasecmp($currentRoot, "admin") == 0)
 						return true;
 						break;
 				default:
 					die("Zabroniono w dostępie, nie masz uprawnień.");
+					return false;
 					break;
 			}
 		}
@@ -318,6 +321,8 @@ class User
 		else{
 			return false;
 		}
+
+		die("Zabroniono w dostępie, nie masz uprawnień.");
 
 	}
 
@@ -378,6 +383,7 @@ class User
 		$_SESSION['email'] = $userData['email'];
 		$_SESSION['ac_type'] = $userData['ac_type'];
 		$_SESSION["multiVoise"] = true;
+		$_SESSION["oneVoise"] = true;
 	}
 
 	/**

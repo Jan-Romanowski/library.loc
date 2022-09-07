@@ -7,7 +7,7 @@ class EmailController{
 	 */
 	public function actionIndex(){
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$templatesList = array();
 		$templatesList = Email::getTemplates();
@@ -24,7 +24,7 @@ class EmailController{
 	 */
 	public function actionNewTemplate($parameter){
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$header = ' ';
 		$text = ' ';
@@ -80,7 +80,7 @@ class EmailController{
 
 	public function actionEditTemplate($id, $parameter){
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$temp = true;
 
@@ -144,7 +144,7 @@ class EmailController{
 
 	public function actionDeleteTemplate($id){
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		if($id){
 			if(Email::deleteTemplateById($id)){

@@ -4,7 +4,7 @@
         <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
             <div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-8">
                 <h1 class="text-center mb-5"><strong>Teczki</strong></h1>
-							<?php if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
+							<?php if (User::checkRoot("admin")): ?>
                   <a href="/folders/newFolder" class="btn btn-outline-dark m-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                            class="bi bi-folder-plus" viewBox="0 0 16 16">
@@ -21,7 +21,7 @@
                           <div class="card m-2 shadow rounded">
                               <div class="card-body">
                                   <h5 class="card-title"><?php echo $foldersListItem['name_folder'] ?>
-																		<?php if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
+                                            <?php if (User::checkRoot("admin")): ?>
                                         <button type="button" class="btn float-end btn-outline-danger"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop<?php echo $foldersListItem['id_folder']; ?>">
@@ -92,7 +92,7 @@
                                                                 </div>
                                                             </div>
                                                         </li>
-																								<?php } ?>
+                                                        <?php } ?>
                                               </ul>
                                           </div>
 

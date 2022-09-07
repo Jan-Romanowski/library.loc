@@ -196,7 +196,7 @@ class SongsController
 	public function actionNewSong()
 	{
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$name = '';
 		$count_p = '';
@@ -259,7 +259,7 @@ class SongsController
 	public function actionEditSong($id)
 	{
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		if ($id) {
 
@@ -323,7 +323,7 @@ class SongsController
 	public function actionDelete($id)
 	{
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		if ($id) {
 
@@ -359,7 +359,7 @@ class SongsController
 	 */
 	public function actionUploadFile($id_folder)
 	{
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';
@@ -409,7 +409,7 @@ class SongsController
 	public function actionDeleteFile($id, $filename)
 	{
 
-		User::checkRights("moder");
+		User::checkRights("admin");
 
 		$folderName = self::getNameFolder($id);
 
@@ -463,14 +463,17 @@ class SongsController
 	{
 		User::checkRights("admin");
 
+		$songsItem = array();
+		$songsItem = Songs::getSongById($id);
+
 		if (Songs::getActualById($id) == 0) {
 			if (Songs::changeActual($id, 1)) {
-				$_SESSION["msg"] = "Utwór został pomyślnie dodany do aktualnych";
+				$_SESSION["msg"] = "Utwór (". $songsItem['name_song'] .") został pomyślnie dodany do aktualnych";
 				$_SESSION["stat"] = "alert-success";
 			}
 		} else {
 			if (Songs::changeActual($id, 0)) {
-				$_SESSION["msg"] = "Utwór został usunięty z aktualnych";
+				$_SESSION["msg"] = "Utwór (". $songsItem['name_song'] .") został usunięty z aktualnych";
 				$_SESSION["stat"] = "alert-success";
 			}
 		}
