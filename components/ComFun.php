@@ -190,6 +190,21 @@ class ComFun
 
 	}
 
+	static function generateActualList(){
+
+		$songList = array();
+		$songList = Songs::getActualSongs();
+
+		$text = "";
+
+		foreach ($songList as $songListItem):
+			$text = $text.$songListItem['name_song']." - ".$songListItem['author']."\n";
+		endforeach;
+
+		return $text;
+
+	}
+
 	static function generateActual(){
 
 		$songList = array();

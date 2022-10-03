@@ -78,5 +78,12 @@ return array(
 	'news/delete/([0-9]+)' => 'news/delete/$1',
 	'news/newItem' => 'news/newItem',
 	'news/index' => 'news/index',
+
+	'repertoire/index' => 'repertoire/index',
+	'repertoire/([0-9]+)/([0-9]+)' => 'repertoire/editRepertoire/$1/$2',
+	'repertoire/newRepertoire/([0-9]+)' => 'repertoire/newRepertoire/$1',
+	'repertoire/deleteRepertoire/([0-9]+)' => 'repertoire/deleteRepertoire/$1',
+
+
 	'' => 'main/mainPage',
 );

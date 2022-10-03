@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class='table table-striped table-hover mx-auto p-3'>
+                    <table class='table table-hover mx-auto p-3'>
                         <tr class="bg-light">
                             <td>#</td>
                             <td></td>

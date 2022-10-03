@@ -144,7 +144,7 @@
                                             </div>
                                             <div class="modal-body text-start">
                                                 <p>
-                                                    Napewno chcesz ten mail ? Uwaga, ten mail się wyśle do WSZYSTKICH użytkowników systemu.
+                                                    Napewno chcesz wysłać ten mail ? Uwaga, ten mail się wyśle do WSZYSTKICH użytkowników systemu.
                                                 </p>
                                             </div>
                                             <div class="modal-footer">
