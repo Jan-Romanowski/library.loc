@@ -51,6 +51,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php if(isset($temp)): ?>
                     <div class="mb-3">
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
                             Usunąć repertuar
@@ -77,6 +78,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
 
 					<div class="input-group mb-4">
 						<span class="input-group-text">Tekst</span>
@@ -86,7 +88,7 @@
 
 					<div class="mb-4">
 						<div class="container-fluid" style="text-align: center">
-							<input type="submit" name="submit" value="Dodaj" class="btn btn-outline-secondary w-25">
+							<input type="submit" name="submit" value="Zapisz" class="btn btn-outline-secondary w-25">
 						</div>
 					</div>
 				</form>

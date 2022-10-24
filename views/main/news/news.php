@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-footer">
                             <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
-                            <p class="card-text"><small class="text-muted"><?php echo date($newsListItem['date_news']); ?></small></p>
+                            <p class="card-text"><small class="text-muted"><?php ComFun::translateDate(date($newsListItem['date_news'])); ?></small></p>
                         </div>
                     </div>
 

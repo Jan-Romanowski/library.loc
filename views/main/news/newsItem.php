@@ -92,7 +92,7 @@
                         <div class="container-fluid px-0 mx-0 pt-5">
                             <h5 class="text-center"><?php echo $newsItem['header']; ?></h5>
                             <p><?php echo $newsItem['text']; ?></p>
-                            <h6 class="card-subtitle mb-2 text-muted mt-5"><?php echo $newsItem['date_news']; ?></h6>
+                            <h6 class="card-subtitle mb-2 text-muted mt-5"><?php ComFun::translateDate(date($newsItem['date_news'])); ?></h6>
                             <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsItem['autor']; ?></h6>
                         </div>
                     </div>

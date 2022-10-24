@@ -298,11 +298,40 @@ class ComFun
 		return $res;
 	}
 
+	static function num_word_month($value, $words, $show = true)
+	{
+		$num = $value % 100;
+		if ($num > 19) {
+			$num = $num % 10;
+		}
+
+		$out = ($show) ?  $value . ' ' : '';
+		switch ($num) {
+			case 1:  $out .= $words[0]; break;
+			case 2:
+			case 3:
+			case 4:  $out .= $words[1]; break;
+			default: $out .= $words[2]; break;
+		}
+
+		return $out;
+	}
+
 
 	static function translateDate($date){
 
+	$monthes = [1 => 'Stycznia', 2 => 'Lutego', 3 => 'Marca', 4 => 'Kwietnia', 5 => 'Maja', 6 => 'Czerwca',
+		7 => 'Lipca', 8 => 'Sierpnia', 9 => 'Września', 10 => 'Października', 11 => 'Listopada', 12 => 'Grudnia'];
 
+	$string = $date;
+	$year = mb_strcut($string,0, 4);
+	$monthId = (int) mb_strcut($string,5, 2);
+	$day = (int) mb_strcut($string,8, 2);
+
+	echo $day." ".$monthes[$monthId]." ".$year;
 
 	}
+
+
 
 }

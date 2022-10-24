@@ -21,6 +21,7 @@ public function actionNewRepertoire($parameter){
 
 	$header = ' ';
 	$text = ' ';
+	$author = $_SESSION['name'] . " " . $_SESSION['surname'];
 
 	switch ($parameter){
 		case '1':
@@ -58,6 +59,8 @@ public function actionNewRepertoire($parameter){
 
 		if ($errors == false) {
 			$result = Repertoire::setRepertoire($header, $text);
+			$result = News::setNewsItem($header, $text, $author, true);
+
 			$_SESSION["msg"] = 'Post został pomyslnie obuplikowany';
 			$_SESSION["stat"] = "alert-success";
 			header('Location: /repertoire/index/');
@@ -111,8 +114,6 @@ public function actionEditRepertoire($id, $parameter){
 
 		$header = Get::post('header', '');
 		$text = Get::post('text', '');
-
-
 
 		$search = ["\n"];
 		$replace = ["<br>"];

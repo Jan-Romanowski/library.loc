@@ -155,11 +155,7 @@ class UsersController
 	 */
 	public function actionLogout()
 	{
-		session_unset();
-		session_destroy();
-
-		header("Location: /users/login");
-
+		User::logout();
 		return true;
 	}
 

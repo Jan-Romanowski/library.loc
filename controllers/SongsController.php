@@ -26,8 +26,8 @@ class SongsController
 				$i = 0;
 
 				$folderName = SongsController::getNameFolder($id);
-				$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
-				$dwnlpath = '/files/' . $folderName . '/' . $id;
+				$dir = ROOT . '/files/' . $folderName . '/' . $id;
+				$downloadPath = '/files/' . $folderName . '/' . $id;
 
 				if (is_dir($dir)) {
 					if ($dh = opendir($dir)) {
@@ -35,8 +35,8 @@ class SongsController
 							if ($file != "." && $file != "..") {
 								$path = $dir . '/' . $file;
 								$files[$i]['filename'] = $file;
-								$files[$i]['dwnlpath'] = $dwnlpath . '/' . $file;
-								$files[$i]['filetype'] = pathinfo($dwnlpath . '/' . $file)['extension'];
+								$files[$i]['dwnlpath'] = $downloadPath . '/' . $file;
+								$files[$i]['filetype'] = pathinfo($downloadPath . '/' . $file)['extension'];
 								$i++;
 							}
 						}
@@ -329,7 +329,7 @@ class SongsController
 
 			$folderName = self::getNameFolder($id);
 
-			$dir = ROOT . '/public_html/files/' . $folderName.'/'.$id;
+			$dir = ROOT . '/files/' . $folderName.'/'.$id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -368,14 +368,15 @@ class SongsController
 		}
 
 		$folderName = self::getNameFolder($id_folder);
-		if (!is_dir(ROOT_WEB . '/files/')) {
-			mkdir(ROOT_WEB . '/files', 0777, true);
+
+		if (!is_dir(ROOT . '/files/')) {
+			mkdir(ROOT . '/files', 0777, true);
 		}
-		if (!is_dir(ROOT_WEB . '/files/' . $folderName)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName, 0777, true);
+		if (!is_dir(ROOT . '/files/' . $folderName)) {
+			mkdir(ROOT . '/files/' . $folderName, 0777, true);
 		}
-		if (!is_dir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder, 0777, true);
+		if (!is_dir(ROOT . '/files/' . $folderName . '/' . $id_folder)) {
+			mkdir(ROOT . '/files/' . $folderName . '/' . $id_folder, 0777, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
@@ -388,11 +389,11 @@ class SongsController
 
 			$original_filename = strval($_FILES['filename']['name'][$key]);
 
-			$target = ROOT_WEB . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
+			$target = ROOT . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
 			$tmp = $_FILES['filename']['tmp_name'][$key];
 
 			move_uploaded_file($tmp, $target);
-			$_SESSION["msg"] = 'Pliki zostały pomyślnie wgrane!';
+			$_SESSION["msg"] = "Plik został pomyślnie wgrany!";
 			$_SESSION["stat"] = "alert-success";
 			//header("Location: /songs/" . $id_folder);
 				}
@@ -415,7 +416,7 @@ class SongsController
 
 		$filename = str_replace('%20', ' ', $filename);
 
-		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
+		$dir = ROOT . '/files/' . $folderName . '/' . $id;
 		$pathFile = $dir . '/' . $filename;
 
 		if (is_dir($dir)) {

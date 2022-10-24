@@ -274,7 +274,7 @@ class Songs
 	{
 
 		$folderName = SongsController::getNameFolder($id);
-		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
+		$dir = ROOT . '/files/' . $folderName . '/' . $id;
 
 		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {

@@ -144,7 +144,7 @@
                                             </div>
                                         </p>
                                         <p>
-                                            <b class="mx-3">Data rejestracji:</b> <?php echo $userListItem['regist_date']; ?><br>
+                                            <b class="mx-3">Data rejestracji:</b> <?php ComFun::translateDate($userListItem['regist_date']); ?><br>
                                         </p>
                                         <p>
                                             <b class="mx-3">Ostatni Online:</b> <label style="color: <?php if($online){ echo '#3fd12c';}?> "><?php echo $diff; ?></label>

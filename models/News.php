@@ -57,7 +57,7 @@ class News
 	 * @param $autor
 	 * @return bool
 	 */
-	public static function setNewsItem($header, $text, $autor)
+	public static function setNewsItem($header, $text, $autor, $isRepertoire = false)
 	{
 		$db = Db::getConnection();
 
@@ -69,7 +69,22 @@ class News
 		$result->bindParam(':text', $text, PDO::PARAM_STR);
 		$result->bindParam(':author', $autor, PDO::PARAM_STR);
 
-		return $result->execute();
+		$back = $result->execute();
+
+		if($isRepertoire){
+			$nameFolder = $db->lastInsertId();
+
+			if (!is_dir(ROOT_WEB . '/news/')) {
+				mkdir(ROOT_WEB . '/news', 0777, true);
+			}
+
+			if (!is_dir(ROOT_WEB . '/news/' . $nameFolder)) {
+				mkdir(ROOT_WEB . '/news/' . $nameFolder, 0777, true);
+				copy(ROOT_WEB . '/img/piano.jpeg' , ROOT_WEB . '/news/' . $nameFolder .'/top.jpeg');
+			}
+		}
+
+		return $back;
 
 	}
 

@@ -170,7 +170,7 @@
                             <?php
                             foreach ($files as $filesItem): ?>
                             <tr>
-                                <td class="downloadLine" onclick="document.location='<?php echo $filesItem['dwnlpath']; ?>'">
+                                <td class="downloadLine">
                                     <?php
 
                                     $temp = '';
@@ -222,34 +222,23 @@
                                 }
                                 ?>
                                 </td>
-                                <td class="downloadLine align-middle" onclick="document.location='<?php echo $filesItem['dwnlpath']; ?>'">
+                                <td class="align-middle">
                                     <?php echo $filesItem['filename'];?>
                                 </td>
                                 <td class="align-middle">
-                                    <div class="dropdown">
-                                        <a class="text-dark" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                                            </svg>
-                                        </a>
-
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a class="dropdown-item" download="" href="<?php echo $filesItem['dwnlpath'];?>">Pobrać</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo $filesItem['dwnlpath'];?>">Otworzyć</a></li>
-																					<?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
-                                              <li><a class="dropdown-item" href="/songs/deleteFile/<?php echo $songsItem['id_song'].'/'.$filesItem['filename']; ?>">Usunąć</a></li>
-																					<?php endif; ?>
-
-                                        </ul>
-                                    </div>
+                                    <form action="/file/download/" method="post">
+                                        <input type="hidden" name="filePath" value="<?php echo $filesItem['dwnlpath'];?>">
+                                        <input class="btn btn-success" type="submit" name="download" value="Pobrać">
+                                        <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
+                                          <a class="btn btn-danger" href="/songs/deleteFile/<?php echo $songsItem['id_song'].'/'.$filesItem['filename']; ?>">Usunąć</a>
+                                        <?php endif; ?>
+                                    </form>
                                 </td>
                             </tr>
-												<?php endforeach;
-												?>
-
+                                    <?php endforeach;?>
                       </table>
 
-										<?php if(User::checkRoot("admin")): ?>
+                                <?php if(User::checkRoot("admin")): ?>
                           <div class="container-fluid d-flex flex-column justify-content-center">
                               <div class="mb-3">
                                   <button type="button" class="btn btn-outline-dark m-3" data-bs-toggle="modal" data-bs-target="#static">
@@ -274,9 +263,7 @@
                                   </div>
                               </div>
                           </div>
-										<?php endif; }else{?>
-
-
+                        <?php endif; }else{?>
                       <p>Dostęp do plików mają tylko zarejestrowane użytkownicy.</p>
                       <a class="btn btn-outline-success w-auto" href="/users/login/">Zaloguj</a>
 									<?php } ?>

@@ -67,7 +67,7 @@
                           </div>
                           <div class="card-footer">
                               <p class="card-text"><small class="text-muted"><?php echo $newsListItem['autor']; ?></small></p>
-                              <p class="card-text"><small class="text-muted"><?php echo $newsListItem['date_news']; ?></small></p>
+                              <p class="card-text"><small class="text-muted"><?php ComFun::translateDate(date($newsListItem['date_news'])); ?></small></p>
                               <a href="/news/view/<?php echo $newsListItem['id_news']; ?>"
                                  class="btn btn-outline-info">Szczegóły</a>
                               <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
@@ -109,15 +109,6 @@
                         $files = "";
                         endforeach; ?>
                 </div>
-
-
-
-
-
-
-
-
-
 
             </div>
         </div>

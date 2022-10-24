@@ -15,7 +15,7 @@
                     <div class="card-body p-5">
                         <h5 class="card-title"><?php echo $newsItem['header']; ?></h5>
                         <p class="card-text"><?php echo $newsItem['text']; ?></p>
-                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsItem['date_news']; ?></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php ComFun::translateDate(date($newsItem['date_news'])) ?></h6>
                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $newsItem['autor']; ?></h6>
                         <a href="/news/editNews/<?php echo $newsItem['id_news']; ?>" class="btn btn-outline-info">Edycja</a>
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"

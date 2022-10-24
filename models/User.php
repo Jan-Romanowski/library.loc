@@ -310,20 +310,27 @@ class User
 						return true;
 						break;
 				default:
-					die("Zabroniono w dostępie, nie masz uprawnień.");
+					self::logout();
+					$_SESSION["msg"] = 'Zabroniono w dostępie, nie masz uprawnień.';
+					$_SESSION["stat"] = "alert-danger";
+//					die("Zabroniono w dostępie, nie masz uprawnień.");
 					return false;
 					break;
 			}
 		}
 		else if(!User::isLogin()){
-			die("Zabroniono w dostępie, nie jesteś zalogowany");
+			self::logout();
+			$_SESSION["msg"] = 'Zabroniono w dostępie, nie masz uprawnień.';
+			$_SESSION["stat"] = "alert-danger";
+//			die("Zabroniono w dostępie, nie jesteś zalogowany");
 		}
 		else{
 			return false;
 		}
-
-		die("Zabroniono w dostępie, nie masz uprawnień.");
-
+		self::logout();
+		$_SESSION["msg"] = 'Zabroniono w dostępie, nie masz uprawnień.';
+		$_SESSION["stat"] = "alert-danger";
+//		die("Zabroniono w dostępie, nie masz uprawnień.");
 	}
 
 	/** Возвращает true или false в зависимости залогинен ты или нет
@@ -424,5 +431,13 @@ class User
 
 	}
 
+	public static function logout(){
+
+		session_unset();
+		session_destroy();
+
+		header("Location: /users/login");
+
+	}
 
 }

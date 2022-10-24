@@ -45,6 +45,7 @@
                         <div class="mb-3">
                             <div class="container-fluid" style="text-align: center">
                                 <a href="/users/register/">Załóż konto</a>
+															<?php phpinfo(); ?>
                             </div>
                         </div>
                         <div class="mb-3">

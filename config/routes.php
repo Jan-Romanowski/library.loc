@@ -84,6 +84,8 @@ return array(
 	'repertoire/newRepertoire/([0-9]+)' => 'repertoire/newRepertoire/$1',
 	'repertoire/deleteRepertoire/([0-9]+)' => 'repertoire/deleteRepertoire/$1',
 
+	'file/download' => 'file/download',
+	'file/openFile' => 'file/openFile',
 
 	'' => 'main/mainPage',
 );
