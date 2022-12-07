@@ -13,11 +13,7 @@
                       <div>
                         <?php
 
-<<<<<<< HEAD
                         $dir = ROOT.'/public_html/achievements/'.$achievementsListItem['id'];
-=======
-                        $dir = ROOT.'/public/achievements/'.$achievementsListItem['id'];
->>>>>>> JR-changes
 
                         if (is_dir($dir)) {
                             if ($dh = opendir($dir)) {

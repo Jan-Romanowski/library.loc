@@ -66,12 +66,23 @@ class ComFun
 			return false;
 	}
 
-	static function crutch($link, $id, $filename, $chapter, $path = '/admin/deleteFileFromGallery')
+	static function crutchForNews($link, $id, $filename, $path = '/news/deleteFileFromNews')
 	{
+		echo '<div class="container-fluid border">';
+
+		$name = stristr($filename, '.', true);
+
+		if(strcmp($name, 'top') == 0){
+			echo '<button type="button" class="btn btn-outline-secondary disabled m-2 float-start"
+							>Główne zdjęcie
+						</button>';
+		}else{
+			echo '<button type="button" class="btn btn-outline-success m-2 float-start"
+							onclick=document.location="/news/makePhotoAsMain/'. $id .'/'. $filename .'/">Zrobić jako główne
+						</button>';
+		}
 		echo
-			'
-				<div class="container border">
-				
+			'	 
 				   <button type="button" class="btn btn-outline-danger m-2 float-end" data-bs-toggle="modal" data-bs-target="#staticBackdropK' . $id . '">
 						Usunąć
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill"
@@ -89,7 +100,7 @@ class ComFun
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn btn-outline-danger w-25"
-											onclick=document.location="' . $path . '/' . $chapter . '/' . $filename . '">Tak
+											onclick=document.location="' . $path . '/' .$id. '/'. $filename . '">Tak
 									</button>
 									<button type="button" class="btn btn-outline-success w-25" data-bs-dismiss="modal">Nie</button>
 								</div>
@@ -97,7 +108,7 @@ class ComFun
 						</div>
 					</div>
 					
-					<img src="' . $link . '" data-bs-toggle="modal" data-bs-target="#exampleModal' . $id . '" class="custom_img card-img-top m-2" alt="...">
+					<img src="' . $link . '" data-bs-toggle="modal" data-bs-target="#exampleModal' . $id . '" class="card-img-top p-2" alt="...">
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal' . $id . '" tabindex="-1" style="background-color: rgba(0,0,0, 0.6) !important;" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-xl p-0 bg-transparent">
@@ -118,7 +129,7 @@ class ComFun
 			';
 	}
 
-	static function crutch_for_all($link, $id, $filename, $chapter)
+	static function crutch_for_all($link, $id, $filename)
 	{
 		echo
 			'
@@ -144,5 +155,183 @@ class ComFun
 		
 			';
 	}
+
+	static function countFilesInFolder($dir){
+
+		$count = 0;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$count++;
+					}
+				}
+			}
+		}
+
+		return $count;
+
+	}
+
+	static function sendMail($to, $message, $subject){
+
+		$from = "system@chorkatedralnysiedlce.pl";
+
+		$subject = "=?utf-8?B?".base64_encode($subject)."?=";
+
+		$headers = "From: $from\r\nReply-to: $from\r\nContent-type:text/plain; charset=utf-8\r\n";
+
+		if(mail($to, $subject, $message, $headers)){
+			return true;
+		}
+
+		return false;
+
+	}
+
+	static function generateActualList(){
+
+		$songList = array();
+		$songList = Songs::getActualSongs();
+
+		$text = "";
+
+		foreach ($songList as $songListItem):
+			$text = $text.$songListItem['name_song']." - ".$songListItem['author']."\n";
+		endforeach;
+
+		return $text;
+
+	}
+
+	static function generateActual(){
+
+		$songList = array();
+		$songList = Songs::getActualSongs();
+
+		$text = "Cześć! Aktualne utwory w naszym repertuarze uległy zmianie. Proszę się nauczyć nowych utworów.\n\r";
+
+		foreach ($songList as $songListItem):
+
+			$text = $text.$songListItem['name_song']." - https://chorkatedralnysiedlce.pl/songs/".$songListItem['id_song']."\n";
+
+		endforeach;
+
+		$text = $text. "\n\nZdrówka\nAdministracja Systemu";
+
+		return $text;
+
+	}
+
+	static function num_word($value, $words, $show = true)
+	{
+		$num = $value % 100;
+		if ($num > 19) {
+			$num = $num % 10;
+		}
+
+		$out = ($show) ?  $value . ' ' : '';
+		switch ($num) {
+			case 1:  $out .= $words[0]; break;
+			case 2:
+			case 3:
+			case 4:  $out .= $words[1]; break;
+			default: $out .= $words[2]; break;
+		}
+
+		return $out;
+	}
+
+	static function secToStr($secs)
+	{
+		$res = '';
+
+		$days = floor($secs / 86400);
+		$secs = $secs % 86400;
+
+		if($days>365){
+			$year = floor($days / 365);
+
+			$res .= self::num_word($year, array('rok', 'lata', 'lat')) . ' ';
+		}
+		else{
+			if($days>31){
+				$month = floor($days / 30);
+				$days = $days % 30;
+
+				$res .= self::num_word($month, array('miesiąc', 'miesięcy', 'miesięcy')) . ' ';
+			}
+			else{
+
+				if($days>7 && $days<30){
+
+					$weeks = floor($days / 7);
+					$days = $days % 7;
+
+					$res .= self::num_word($weeks, array('tydzień', 'tygodni', 'tygodni')) . ' ';
+				}
+				else{
+					if($days>0){
+						$res .= self::num_word($days, array('dzień', 'dni', 'dni')) . ' ';
+					}
+					else if($days < 1){
+						$hours = floor($secs / 3600);
+						$secs = $secs % 3600;
+						if($hours>0){
+							$res .= self::num_word($hours, array('godzina', 'godziny', 'godzin')) . ' ';
+						}
+						elseif($hours < 5){
+							$minutes = floor($secs / 60);
+							$secs = $secs % 60;
+							if($minutes>0){
+								$res .= self::num_word($minutes, array('minuta', 'minuty', 'minut')) . ' ';
+							}
+							elseif ($minutes<30){
+								$res .= self::num_word($secs, array('sekunda', 'sekundy', 'sekund'));
+							}
+						}
+					}
+				}
+			}
+		}
+		return $res;
+	}
+
+	static function num_word_month($value, $words, $show = true)
+	{
+		$num = $value % 100;
+		if ($num > 19) {
+			$num = $num % 10;
+		}
+
+		$out = ($show) ?  $value . ' ' : '';
+		switch ($num) {
+			case 1:  $out .= $words[0]; break;
+			case 2:
+			case 3:
+			case 4:  $out .= $words[1]; break;
+			default: $out .= $words[2]; break;
+		}
+
+		return $out;
+	}
+
+
+	static function translateDate($date){
+
+	$monthes = [1 => 'Stycznia', 2 => 'Lutego', 3 => 'Marca', 4 => 'Kwietnia', 5 => 'Maja', 6 => 'Czerwca',
+		7 => 'Lipca', 8 => 'Sierpnia', 9 => 'Września', 10 => 'Października', 11 => 'Listopada', 12 => 'Grudnia'];
+
+	$string = $date;
+	$year = mb_strcut($string,0, 4);
+	$monthId = (int) mb_strcut($string,5, 2);
+	$day = (int) mb_strcut($string,8, 2);
+
+	echo $day." ".$monthes[$monthId]." ".$year;
+
+	}
+
+
 
 }

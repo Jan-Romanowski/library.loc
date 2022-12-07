@@ -1,15 +1,29 @@
 <?php
 return array(
+
+	'ajax/getSongs' => 'ajax/getSongs',
+
+	'chat/index' => 'chat/index',
+	'chat/refresh' => 'chat/refresh',
+	'ajax/getNewMessages' => 'ajax/getNewMessages',
+
+	'email/index' => 'email/index',
+	'email/([0-9]+)/([0-9]+)' => 'email/editTemplate/$1/$2',
+	'email/newTemplate/([0-9]+)' => 'email/newTemplate/$1',
+	'email/deleteTemplate/([0-9]+)' => 'email/deleteTemplate/$1',
+
 	'achievement/newAchievements' => 'achievement/newItem',
 	'achievement/index' => 'achievement/index',
 	'achievement/uploadPhoto/([0-9]+)' => 'achievement/uploadPhoto/$1',
 	'achievement/deleteAchievement/([0-9]+)' => 'achievement/deleteAchievement/$1',
 
+	'gallery/folder/([0-9]+)' => 'gallery/folder/$1',
 	'gallery/tripsShow' => 'gallery/trips',
 	'gallery/concertsShow' => 'gallery/concerts',
 	'gallery/uploadPhoto' => 'gallery/uploadPhoto',
-	'gallery/deleteFileFromGallery/([A-z]+)/([\w+.(jpeg|jpg|png)])' => 'gallery/deleteFileFromGallery/$1/$2',
+	'gallery/deleteFileFromGallery/([0-9]+)/([\w+.(jpeg|jpg|png)])' => 'gallery/deleteFileFromGallery/$1/$2',
 	'gallery/index' => 'gallery/index',
+	'gallery/createFolder' => 'gallery/createFolder',
 
 	'admin' => 'admin/index',
 
@@ -50,18 +64,28 @@ return array(
 	'main/history' => 'main/history',
 	'main/achivments' => 'main/achivments',
 	'main/gallery' => 'main/gallery',
-	'main/koncerty' => 'main/koncerty',
-	'main/concerts' => 'main/concerts',
-	'main/trips' => 'main/trips',
+	'main/galleryFolder/([0-9]+)' => 'main/galleryFolder/$1',
 	'main/iza' => 'main/iza',
 	'main/news' => 'main/news',
 	'main/newsItem/([0-9]+)' => 'main/newsItem/$1',
 	'main' => 'main/mainPage',
 
+	'news/makePhotoAsMain/([0-9]+)/([\w+.(jpeg|jpg|png)])' => 'news/makePhotoAsMain/$1/$2',
+	'news/deleteFileFromNews/([0-9]+)/([\w+.(jpeg|jpg|png)])' => 'news/deleteFileFromNews/$1/$2',
 	'news/uploadPhotoToNews/([0-9]+)' => 'news/uploadPhotoToNews/$1',
 	'news/view/([0-9]+)' => 'news/view/$1',
+	'news/editNews/([0-9]+)' => 'news/editNews/$1',
 	'news/delete/([0-9]+)' => 'news/delete/$1',
 	'news/newItem' => 'news/newItem',
 	'news/index' => 'news/index',
+
+	'repertoire/index' => 'repertoire/index',
+	'repertoire/([0-9]+)/([0-9]+)' => 'repertoire/editRepertoire/$1/$2',
+	'repertoire/newRepertoire/([0-9]+)' => 'repertoire/newRepertoire/$1',
+	'repertoire/deleteRepertoire/([0-9]+)' => 'repertoire/deleteRepertoire/$1',
+
+	'file/download' => 'file/download',
+	'file/openFile' => 'file/openFile',
+
 	'' => 'main/mainPage',
 );

@@ -7,14 +7,13 @@ class AchievementController{
 	 */
 	public function actionNewItem()
 	{
-
-		User::isModerator();
+		User::checkRights("moder");
 
 		$text = '';
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$text = GET::post('text', '');
+			$text = Get::post('text', '');
 
 			$search = ["\n"];
 			$replace = ["<br>"];
@@ -45,13 +44,13 @@ class AchievementController{
 	 */
 	public function actionIndex(){
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$achievementsList = array();
 		$achievementsList = Achievements::getAchievements();
 
 		if (!is_dir(ROOT_WEB . '/achievements/')) {
-			mkdir(ROOT_WEB . '/achievements', 0750, true);
+			mkdir(ROOT_WEB . '/achievements', 0777, true);
 		}
 
 		foreach ($achievementsList as $achievementsListItem):
@@ -59,7 +58,7 @@ class AchievementController{
 			$id = $achievementsListItem['id'];
 
 			if (!is_dir(ROOT_WEB . '/achievements/' . $id)) {
-				mkdir(ROOT_WEB . '/achievements/' . $id, 0750, true);
+				mkdir(ROOT_WEB . '/achievements/' . $id, 0777, true);
 			}
 
 			endforeach;
@@ -76,7 +75,7 @@ class AchievementController{
 	 */
 	public function actionUploadPhoto($id){
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';
@@ -85,10 +84,10 @@ class AchievementController{
 		}
 
 		if (!is_dir(ROOT_WEB . '/achievements/')) {
-			mkdir(ROOT_WEB . '/achievements', 0750, true);
+			mkdir(ROOT_WEB . '/achievements', 0777, true);
 		}
 		if (!is_dir(ROOT_WEB . '/achievements/' . $id)) {
-			mkdir(ROOT_WEB . '/achievements/' . $id, 0750, true);
+			mkdir(ROOT_WEB . '/achievements/' . $id, 0777, true);
 		}
 
 		$dir = ROOT . '/public_html/achievements/' . $id;
@@ -127,7 +126,7 @@ class AchievementController{
 	 */
 	public function actionDeleteAchievement($id){
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$dir = ROOT . '/public_html/achievements/' . $id;
 

@@ -3,6 +3,24 @@
 class Queries
 {
 
+	public static function getQueryById($id){
+		$id = intval($id);
+
+		if ($id) {
+
+			$db = Db::getConnection();
+
+			$result = $db->query('
+            SELECT email, name
+            FROM queries 
+            WHERE id_query = ' . $id);
+			$result->setFetchMode(PDO::FETCH_ASSOC);
+
+			$query = $result->fetch();
+
+			return $query;
+		}
+	}
 	/**
 	 * @return array
 	 */
@@ -97,6 +115,25 @@ class Queries
 		} else {
 			return false;
 		}
+	}
+
+	public static function isQueryExist($email)
+	{
+		$db = Db::getConnection();
+
+		$result = $db->prepare("SELECT COUNT(*) as cnt
+										FROM queries
+										WHERE email = :email");
+
+		$result->bindParam(':email', $email, PDO::PARAM_STR);
+
+		$result->execute();
+
+		if ($result->fetchColumn() == 1)
+			return true;
+
+		else
+			return false;
 	}
 
 }

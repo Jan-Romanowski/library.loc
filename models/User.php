@@ -115,21 +115,18 @@ class User
 	public static function checkEmailExists($email)
 	{
 
-		if (isset($_SESSION["email"])) {
-			if (strcmp($email, $_SESSION["email"]) == 0)
-				return false;
-		}
-
 		$db = Db::getConnection();
 
-		$result = $db->query("SELECT COUNT(*) FROM accounts 
-                WHERE email = '$email'");
+		$result = $db->query("SELECT COUNT(*) as cnt FROM accounts 
+                								    WHERE email = '$email'");
 
 		$result->setFetchMode(PDO::FETCH_ASSOC);
 
 		$row = $result->fetch();
 
-		if ($row == 1)
+		echo $row['cnt'];
+
+		if ($row['cnt'] > 0)
 			return true;
 		else {
 			return false;
@@ -139,14 +136,16 @@ class User
 	/**
 	 * @return array
 	 */
-	public static function getUsers()
+	public static function getUsers($word)
 	{
 		$db = Db::getConnection();
 
 		$userList = array();
 
-		$result = $db->query("SELECT id_account, email, name, surname, ac_type, regist_date
+		$result = $db->query("SELECT id_account, email, name, surname, ac_type, last_online, regist_date
                                        FROM accounts 
+																		WHERE (name LIKE '%" . $word . "%' OR surname LIKE '%" . $word . "%')
+                             				ORDER BY last_online DESC;
                              ");
 
 		$result->setFetchMode(PDO::FETCH_ASSOC);
@@ -158,6 +157,7 @@ class User
 			$userList[$i]['name'] = $row['name'];
 			$userList[$i]['surname'] = $row['surname'];
 			$userList[$i]['ac_type'] = $row['ac_type'];
+			$userList[$i]['last_online'] = $row['last_online'];
 			$userList[$i]['regist_date'] = $row['regist_date'];
 
 			$i++;
@@ -285,18 +285,56 @@ class User
 		return $result->execute();
 	}
 
-	/**
+
+	/** Проверяет права, если прав нет - смерть
+	 * @param $rank
+	 * @return bool|void
+	 */
+	public static function checkRights($rank){
+
+		if (User::isLogin()) {
+
+			$neededRoot = $rank;
+			$currentRoot = $_SESSION['ac_type'];
+
+			switch ($neededRoot){
+				case 'user':
+					if(strcasecmp($currentRoot, "user") == 0 || strcasecmp($currentRoot, "moder") || strcasecmp($currentRoot, "admin"))
+						return true;
+					break;
+				case 'moder':
+					if(strcasecmp($currentRoot, "admin") == 0 || strcasecmp($currentRoot, "moder") == 0)
+						return true;
+					break;
+				case 'admin':
+					if(strcasecmp($currentRoot, "admin") == 0)
+						return true;
+						break;
+				default:
+					self::logout();
+					return false;
+			}
+		}
+		else if(!User::isLogin()){
+			self::logout();
+		}
+		else{
+			self::logout();
+		}
+		self::logout();
+	}
+
+	/** Возвращает true или false в зависимости залогинен ты или нет
 	 * @return bool
 	 */
 	public static function isLogin()
 	{
-		if (isset($_SESSION['user']) &&
-			$_SESSION['user'] != ' ' &&
-			isset($_SESSION['ac_type'])) {
+		if (isset($_SESSION['user']) || isset($_SESSION['ac_type'])) {
 			return true;
 		}
-		die("Zabroniono w dostępie. Musisz się zalogować.");
+		return false;
 	}
+
 
 	/**
 	 * @return bool
@@ -309,7 +347,7 @@ class User
 				return true;
 			}
 		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
+		return false;
 	}
 
 	/**
@@ -321,20 +359,15 @@ class User
 			if (strcasecmp($_SESSION['ac_type'], "admin") == 0)
 				return true;
 		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
+		return false;
 	}
 
-	public static function isUser()
-	{
-		if (self::isLogin()) {
-			if (strcasecmp($_SESSION['ac_type'], "user") == 0)
-				return true;
-		}
-		die("Zabroniono w dostępie, nie masz uprawnień.");
-	}
 
 	public static function checkRoot($root)
 	{
+		if(!self::isLogin()){
+			return false;
+		}
 		if (strcasecmp($_SESSION['ac_type'], $root) == 0)
 			return true;
 		return false;
@@ -345,13 +378,13 @@ class User
 	 */
 	public static function auth($userData)
 	{
-
 		$_SESSION['user'] = $userData['id_account'];
 		$_SESSION['name'] = $userData['name'];
 		$_SESSION['surname'] = $userData['surname'];
 		$_SESSION['email'] = $userData['email'];
 		$_SESSION['ac_type'] = $userData['ac_type'];
 		$_SESSION["multiVoise"] = true;
+		$_SESSION["oneVoise"] = true;
 	}
 
 	/**
@@ -370,5 +403,36 @@ class User
 		return $result->execute();
 	}
 
+
+	/**
+	 * @param $id
+	 * @return bool
+	 */
+	public static function refreshOnline($id){
+
+		$db = Db::getConnection();
+
+		$now = date("Y-m-d H:i:s");
+
+		$sql = "UPDATE accounts 
+            SET 
+                last_online = '$now'
+            WHERE id_account = '$id'";
+
+		$result = $db->prepare($sql);
+
+		return $result->execute();
+
+	}
+
+	public static function logout(){
+
+		session_unset();
+		session_destroy();
+		header("Location: /users/login");
+
+		exit();
+
+	}
 
 }

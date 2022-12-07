@@ -17,11 +17,11 @@ class UsersController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$name = GET::post('name', '');
-			$surname = GET::post('surname', '');
-			$email = GET::post('email', '');
-			$pass1 = GET::post('pass1', '');
-			$pass2 = GET::post('pass2', '');
+			$name = Get::post('name', '');
+			$surname = Get::post('surname', '');
+			$email = Get::post('email', '');
+			$pass1 = Get::post('pass1', '');
+			$pass2 = Get::post('pass2', '');
 
 			$errors = false;
 
@@ -43,20 +43,37 @@ class UsersController
 			if (User::checkEmailExists($email))
 				$errors[] = 'Taki email już jest zajęty.';
 
+			if (Queries::isQueryExist($email))
+				$errors[] = 'Już złóżyłeś wniosek o rejestracje, musisz poczekać na akceptację administratora.';
+
 			if ($errors == false) {
-				if (User::register($name, $surname, $email, $pass1)) {
-					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.";
-					$_SESSION["stat"] = "alert-success";
-					header("Location: /users/login");
 
-					$name = '';
-					$surname = '';
-					$email = '';
-					$pass1 = '';
-					$pass2 = '';
+				if(!Queries::isQueryExist($email)) {
+					if (User::register($name, $surname, $email, $pass1)) {
 
-				} else {
-					$_SESSION["msg"] = "Nie udało się założyć konta.";
+						$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora.";
+						$_SESSION["stat"] = "alert-success";
+
+						$subject = "Rejestracja w bibliotece Chóru Katedralnego im. ks. Alfreda Hoffmana";
+						$message = "Witaj, ".$name."! Złożyłeś(aś) wniosek o rejestrację w bibliotece Chóru Katedralnego im. ks. Alfreda Hoffmana w Siedlcach. Musisz poczekać na akceptację przez administratorów systemu. Po akceptacji dostaniesz maila. \n\n\n\nZdrówka\nAdministracja Systemu";
+
+						ComFun::sendMail($email, $message, $subject);
+
+						header("Location: /users/login");
+
+						$name = '';
+						$surname = '';
+						$email = '';
+						$pass1 = '';
+						$pass2 = '';
+
+					} else {
+						$_SESSION["msg"] = "Nie udało się założyć konta.";
+						$_SESSION["stat"] = "alert-danger";
+					}
+				}
+				else{
+					$_SESSION["msg"] = "Wniosek o rejestrację został złożony. Poczekaj na zaakceptowanie danych przez administratora. ";
 					$_SESSION["stat"] = "alert-danger";
 				}
 			}
@@ -80,8 +97,8 @@ class UsersController
 
 		if (isset($_POST['submit'])) {
 
-			$email = GET::post('email', '');
-			$pass = GET::post('pass', '');
+			$email = Get::post('email', '');
+			$pass = Get::post('pass', '');
 
 			$errors = false;
 
@@ -114,10 +131,18 @@ class UsersController
 	public function actionView()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
+
+		if (isset($_POST['submit'])) {
+			$word = Get::post('word', '');
+		}
+		else{
+			$word = '';
+		}
 
 		$userList = array();
-		$userList = User::getUsers();
+		$userList = User::getUsers($word);
+
 
 		require_once(ROOT . '/views/user/userList.php');
 
@@ -130,11 +155,7 @@ class UsersController
 	 */
 	public function actionLogout()
 	{
-		session_unset();
-		session_destroy();
-
-		header("Location: /users/login");
-
+		User::logout();
 		return true;
 	}
 
@@ -146,7 +167,7 @@ class UsersController
 	public function actionChangeRights($id, $rights)
 	{
 
-		User::isAdmin();
+		User::checkRights("admin");
 
 		if ($id && $rights) {
 			if (User::changeRights($id, $rights)) {
@@ -165,7 +186,7 @@ class UsersController
 
 	public function actionDeleteUser($id)
 	{
-		User::isAdmin();
+		User::checkRights("admin");
 
 		if ($id) {
 			if (User::deleteUser($id)) {

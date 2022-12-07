@@ -4,7 +4,7 @@
         <div class="container-fluid mt-5 pt-5 pt-sm-0 mt-sm-0 mx-auto row justify-content-center">
             <div class="container-fluid col-12 col-md-10 col-lg-8 col-xl-8">
                 <h1 class="text-center mb-5"><strong>Teczki</strong></h1>
-							<?php if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
+							<?php if (User::checkRoot("admin")): ?>
                   <a href="/folders/newFolder" class="btn btn-outline-dark m-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                            class="bi bi-folder-plus" viewBox="0 0 16 16">
@@ -21,7 +21,7 @@
                           <div class="card m-2 shadow rounded">
                               <div class="card-body">
                                   <h5 class="card-title"><?php echo $foldersListItem['name_folder'] ?>
-																		<?php if (User::checkRoot("moder") || User::checkRoot("admin")): ?>
+                                            <?php if (User::checkRoot("admin")): ?>
                                         <button type="button" class="btn float-end btn-outline-danger"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop<?php echo $foldersListItem['id_folder']; ?>">
@@ -79,18 +79,21 @@
                                                class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                                                data-bs-parent="#accordionFlushExample">
 
-                                              <ol class="list-group list-group-numbered">
-																								<?php
-																								$songList = Folders::getSongsFromFolder($foldersListItem['id_folder']);
-																								foreach ($songList as $song) { ?>
-                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        <div class="ms-2 me-auto">
-                                                            <div class=""><?php echo "<a href='/songs/" . $song['id_song'] . "'>" . $song['name_song'] . "</a>"; ?></div>
-                                                            <p style="font-size: 82%"><?php echo $song['author'] ?></p>
-                                                        </div>
-                                                    </li>
-																								<?php } ?>
-                                              </ol>
+                                              <ul class="list-group">
+                                                    <?php
+                                                    $songList = Folders::getSongsFromFolder($foldersListItem['id_folder']);
+                                                    foreach ($songList as $song) { ?>
+                                                        <li class="list-group-item">
+                                                            <div class="ms-2 me-auto">
+
+                                                                <div class="">
+                                                                    <?php echo "<a href='/songs/" . $song['id_song'] . "'>" . $song['name_song'] . "</a>"; ?>
+                                                                    <p style="font-size: 82%"><?php echo $song['author'] ?></p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <?php } ?>
+                                              </ul>
                                           </div>
 
                                       </div>

@@ -9,7 +9,7 @@ class NewsController
 	public function actionIndex()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$newsList = array();
 		$newsList = News::getNewsList();
@@ -25,7 +25,7 @@ class NewsController
 	public function actionNewItem()
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$header = '';
 		$text = '';
@@ -33,8 +33,8 @@ class NewsController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$header = GET::post('header', '');
-			$text = GET::post('text', '');
+			$header = Get::post('header', '');
+			$text = Get::post('text', '');
 
 			$search = ["\n"];
 			$replace = ["<br>"];
@@ -71,7 +71,7 @@ class NewsController
 	public function actionView($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if ($id) {
 
@@ -79,11 +79,11 @@ class NewsController
 			$newsItem = News::getNewsItemById($id);
 
 			if (!is_dir(ROOT_WEB . '/news/')) {
-				mkdir(ROOT_WEB . '/news', 0750, true);
+				mkdir(ROOT_WEB . '/news', 0777, true);
 			}
 
 			if (!is_dir(ROOT_WEB . '/news/' . $id)) {
-				mkdir(ROOT_WEB . '/news/' . $id, 0750, true);
+				mkdir(ROOT_WEB . '/news/' . $id, 0777, true);
 			}
 
 			$files = array();
@@ -118,7 +118,7 @@ class NewsController
 	public function actionDelete($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		$dir = ROOT . '/public_html/news/' . $id;
 
@@ -151,7 +151,7 @@ class NewsController
 	public function actionEditNews($id)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
 		if ($id) {
 
@@ -165,9 +165,9 @@ class NewsController
 
 			if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-				$header = GET::post('header', '');
-				$text = GET::post('text', '');
-				$author = GET::post('autor', '');
+				$header = Get::post('header', '');
+				$text = Get::post('text', '');
+				$author = Get::post('autor', '');
 
 				$errors = false;
 
@@ -179,11 +179,16 @@ class NewsController
 
 				if ($errors == false) {
 					$result = News::updateNews($id, $header, $text);
+
+					$_SESSION["msg"] = 'Dane zostały pomyślnie zmienionę.';
+					$_SESSION["stat"] = "alert-success";
 				}
 
 			}
 
 		}
+
+		require_once(ROOT . '/views/news/newsForm.php');
 
 		return true;
 	}
@@ -191,9 +196,9 @@ class NewsController
 	public function actionUploadPhotoToNews($folder)
 	{
 
-		User::isModerator();
+		User::checkRights("moder");
 
-		//$folder = GET::post('folder', '');
+		//$folder = Get::post('folder', '');
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';
@@ -202,17 +207,29 @@ class NewsController
 		}
 
 		if (!is_dir(ROOT_WEB . '/news/')) {
-			mkdir(ROOT_WEB . '/news', 0750, true);
+			mkdir(ROOT_WEB . '/news', 0777, true);
 		}
 		if (!is_dir(ROOT_WEB . '/news/' . $folder)) {
-			mkdir(ROOT_WEB . '/news/' . $folder, 0750, true);
+			mkdir(ROOT_WEB . '/news/' . $folder, 0777, true);
 		}
+
+		$dir = ROOT . '/public_html/news/' . $folder;
+		$countFiles = ComFun::countFilesInFolder($dir);
+		if($countFiles == 0){
+			$fileName = 'top';
+		}else{
+			$fileName = $countFiles + 1;
+		}
+
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
 
 			$original_filename = strval($_FILES['filename']['name']);
+			$extension = pathinfo($original_filename, PATHINFO_EXTENSION);
 
-			$target = ROOT_WEB . '/news/' . $folder . '/' . basename($original_filename);
+			$new_name = $fileName.'.'.$extension;
+
+			$target = ROOT_WEB . '/news/' . $folder . '/' . basename($new_name);
 			$tmp = $_FILES['filename']['tmp_name'];
 
 			move_uploaded_file($tmp, $target);
@@ -223,6 +240,124 @@ class NewsController
 		}
 		return true;
 
+	}
+
+
+	public function actionDeleteFileFromNews($id, $filename)
+	{
+
+		User::checkRights("moder");
+
+		$filename = str_replace('%20', ' ', $filename);
+
+		$dir = ROOT . '/public_html/news/' . $id;
+
+		$pathFile = $dir . '/' . $filename;
+
+
+		unlink($pathFile);
+
+		$_SESSION["msg"] = "Zdjęcie zostało pomyślnie usunięte";
+		$_SESSION["stat"] = "alert-success";
+
+		header("Location: /news/view/" . $id);
+
+
+		return true;
+	}
+
+	public function actionMakePhotoAsMain($id, $fileNameTop){
+
+		$dir = ROOT . '/public_html/news/' . $id;
+
+		$i = 0;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$path = $dir . '/' . $file;
+						$files[$i]['filename'] = $file;
+						$i++;
+					}
+				}
+			}
+		}
+
+		foreach ($files as $filesItem){
+
+			$name = stristr($filesItem['filename'], '.', true);
+
+			if(strcmp($name, 'top') == 0){
+				$source = ROOT . '/public_html/news/' . $id . '/' . $filesItem['filename'];
+				$extension = pathinfo($source, PATHINFO_EXTENSION);
+
+
+				$dir = ROOT . '/public_html/news/' . $id;
+				$countFiles = ComFun::countFilesInFolder($dir);
+				$fileName = $countFiles;
+
+				$destination = ROOT . '/public_html/news/' . $id . '/' . $fileName . '.' . $extension;
+
+				echo $destination;
+
+				rename ($source, $destination);
+				break;
+			}
+		}
+
+		$source = ROOT . '/public_html/news/' . $id . '/' . $fileNameTop;
+		$extension = pathinfo($source, PATHINFO_EXTENSION);
+		$destination = ROOT . '/public_html/news/' . $id . '/top.'.$extension;
+
+		rename ($source, $destination);
+
+		$_SESSION["msg"] = "Główne zdjęcie zostało pomyślnie zmienione. Żeby zmiany zaczęły obowiązywać trzeba odświerzyć
+		 cache strony (Ctrl + F5) Albo (Ctrl + Shift + R).";
+		$_SESSION["stat"] = "alert-success";
+
+
+		$dir = ROOT . '/public_html/news/' . $id;
+
+		$i = 0;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						$path = $dir . '/' . $file;
+						$files[$i]['filename'] = $file;
+						$i++;
+					}
+				}
+			}
+		}
+
+		$i = 1;
+
+		foreach ($files as $filesItem){
+			$name = stristr($filesItem['filename'], '.', true);
+
+			if(strcmp($name, 'top') != 0){
+
+				$source = ROOT . '/public_html/news/' . $id . '/' . $filesItem['filename'];
+				$extension = pathinfo($source, PATHINFO_EXTENSION);
+
+				$fileName = $i;
+
+				$destination = ROOT . '/public_html/news/' . $id . '/' . $fileName . '.' . $extension;
+
+				echo $destination;
+
+				rename ($source, $destination);
+
+				$i++;
+			}
+		}
+
+		header("Location: /news/view/" . $id);
+
+		return true;
 	}
 
 }

@@ -1,5 +1,11 @@
 <?php include(ROOT . '/views/fragments/siteHeader.php'); ?>
 
+    <style>
+        *{
+            font-weight: bold;
+        }
+    </style>
+
     <div class="container pt-5">
         <form method="post" action="#">
             <h2 class="mb-5 mt-5 text-center">Załóż Konto</h2>
@@ -46,13 +52,18 @@
                 </div>
                 <div class="mb-3 col-sm-12 col-md-12 col-lg-8 col-xl-7">
                     <div class="container-fluid" style="text-align: center">
-                        <input type="submit" class="btn btn-outline-dark" name="submit" w-25"
-                        value="Zarejestruj"></input>
+                        <input type="submit" class="btn btn-outline-dark" name="submit"
+                        value="Zarejestruj">
                     </div>
                 </div>
             </div>
 
         </form>
     </div>
+
+    <script>
+        $('#menu__biblioteka').addClass('active');
+    </script>
+
 
 <?php include(ROOT . '/views/fragments/footer.php');

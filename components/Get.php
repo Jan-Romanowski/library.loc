@@ -40,6 +40,7 @@ class Get
 				break;
 			case self::TYPE_STR:
 				$data = get::escape($data);
+				break;
 			case self::TYPE_TRIM_STR:
 				$data = trim(get::escape($data));
 				break;

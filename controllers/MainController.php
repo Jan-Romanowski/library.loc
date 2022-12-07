@@ -147,85 +147,48 @@ class MainController
 	public function actionGallery()
 	{
 
+		$galleryList = array();
+		$galleryList = Gallery::getFolders();
+
 		require_once ROOT . '/views/main/about/gallery/gallery.php';
 
 		return true;
 
 	}
 
-	public function actionWyjazdy()
-	{
+	public function actionGalleryFolder($id){
 
-		require_once ROOT . '/views/main/wyjazdy.php';
+		$galleryItem = array();
+		$galleryItem = Gallery::getFolderById($id);
 
-		return true;
+		if(User::isLogin()){
 
-	}
-
-	public function actionConcerts()
-	{
-
+		}
 		$files = array();
 		$i = 0;
 
-		$dir = ROOT . '/public_html/gallery/concerts';
-		if (!is_dir(ROOT_WEB . '/gallery/concerts')) {
-			mkdir(ROOT_WEB . '/gallery/concerts', 0750, true);
-		} else if (is_dir($dir)) {
+		$dir = ROOT . '/public_html/gallery/' . $id;
+		$dwnlpath = '/gallery/' . $id;
+
+		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {
 				while (false !== ($file = readdir($dh))) {
 					if ($file != "." && $file != "..") {
 						$path = $dir . '/' . $file;
-						$files[$i]['file'] = '/gallery/concerts/' . $file;
-						$files[$i]['chapter'] = 'concerts';
+						$files[$i]['file'] = '/gallery/'.$id. '/' . $file;
 						$files[$i]['filename'] = $file;
 						$i++;
+
 					}
 				}
 			}
 		}
 
-		require_once ROOT . '/views/main/about/gallery/concerts.php';
+		require_once(ROOT . '/views/main/about/gallery/folder.php');
 
 		return true;
 
 	}
 
-	public function actionTrips()
-	{
-
-		$files = array();
-		$i = 0;
-
-		$dir = ROOT . '/public_html/gallery/trips';
-		if (!is_dir(ROOT_WEB . '/gallery/trips')) {
-			mkdir(ROOT_WEB . '/gallery/trips', 0750, true);
-		} else if (is_dir($dir)) {
-			if ($dh = opendir($dir)) {
-				while (false !== ($file = readdir($dh))) {
-					if ($file != "." && $file != "..") {
-						$path = $dir . '/' . $file;
-						$files[$i]['file'] = '/gallery/trips/' . $file;
-						$files[$i]['chapter'] = 'trips';
-						$files[$i]['filename'] = $file;
-						$i++;
-					}
-				}
-			}
-		}
-
-		require_once ROOT . '/views/main/about/gallery/trips.php';
-
-		return true;
-	}
-
-	public function actionKoncerty()
-	{
-
-		require_once ROOT . '/views/main/koncerty.php';
-
-		return true;
-
-	}
 
 }

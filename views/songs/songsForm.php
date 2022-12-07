@@ -15,13 +15,13 @@
 
                     <div class="container mt-3 pt-3 border mb-3">
                         <h2 class="mb-4 text-center"><?php echo $message; ?></h2>
-											<?php if (isset($errors) && is_array($errors)): ?>
+                            <?php if (isset($errors) && is_array($errors)): ?>
                           <ul>
-														<?php foreach ($errors as $error): ?>
+                                <?php foreach ($errors as $error): ?>
                                 <li style="color: red;"> - <?php echo $error; ?></li>
-														<?php endforeach; ?>
+                                <?php endforeach; ?>
                           </ul>
-											<?php endif; ?>
+                            <?php endif; ?>
                         <div class="mb-3">
                             <label for="exampleInputText1" class="form-label">Nazwa utworu</label>
                             <input type="text" required class="form-control" name="song_name"

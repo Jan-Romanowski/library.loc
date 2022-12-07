@@ -18,7 +18,7 @@ class Songs
 			$db = Db::getConnection();
 
 			$result = $db->query('
-            SELECT id_song, name_song, count_p, author, one_voice, song.id_folder, folder.name_folder, actual, song.note 
+            SELECT id_song, name_song, count_p, author, one_voice, song.id_folder, folder.name_folder, actual, song.note, views 
             FROM song 
               LEFT JOIN folder ON song.id_folder = folder.id_folder 
             WHERE id_song = ' . $id);
@@ -37,7 +37,7 @@ class Songs
 	 * @param int $count
 	 * @return array
 	 */
-	public static function getSongsList($word, $parameter, $oneVoise, $multiVoise, $page = 1, $actual, $count = self::SHOW_BY_DEFAULT)
+	public static function getSongsList($word, $parameter, $oneVoise, $multiVoise, $actual, $page = 1, $count = self::SHOW_BY_DEFAULT)
 	{
 		$db = Db::getConnection();
 
@@ -62,10 +62,10 @@ class Songs
 		} else
 			$act = "";
 
-		$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, actual, folder.name_folder
-                                       FROM song 
-                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
-                                       WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')"
+		$result = $db->query("SELECT id_song, name_song, count_p, author, one_voice, actual, views, folder.name_folder
+																	 	FROM song 
+																	  LEFT JOIN folder ON song.id_folder = folder.id_folder
+																		WHERE (name_song LIKE '%" . $word . "%' OR author LIKE '%" . $word . "%')"
 			. $voises . "
                                        " . $act . "
                                        ORDER BY " . $parameter . " 
@@ -83,6 +83,7 @@ class Songs
 			$songsList[$i]['author'] = $row['author'];
 			$songsList[$i]['one_voice'] = $row['one_voice'];
 			$songsList[$i]['actual'] = $row['actual'];
+			$songsList[$i]['views'] = $row['views'];
 			$songsList[$i]['name_folder'] = $row['name_folder'];
 
 			$i++;
@@ -265,5 +266,74 @@ class Songs
 		return $result->execute();
 
 	}
+
+	/**
+	 * @param $id
+	 * @return bool|null
+	 */
+	public static function isFolderEmpty($id)
+	{
+
+		$folderName = SongsController::getNameFolder($id);
+		$dir = ROOT . '/files/' . $folderName . '/' . $id;
+
+		if (is_dir($dir)) {
+			if ($dh = opendir($dir)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public static function getActualSongs(){
+
+		$db = Db::getConnection();
+
+		$result = $db->query("SELECT id_song, name_song, author, actual, folder.name_folder
+                                       FROM song 
+                                       LEFT JOIN folder ON song.id_folder = folder.id_folder
+                                       WHERE actual = 1");
+
+
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+
+		$i = 0;
+		while ($row = $result->fetch()) {
+			$songsList[$i]['id_song'] = $row['id_song'];
+			$songsList[$i]['name_song'] = $row['name_song'];
+			$songsList[$i]['author'] = $row['author'];
+			$songsList[$i]['actual'] = $row['actual'];
+			$songsList[$i]['name_folder'] = $row['name_folder'];
+
+			$i++;
+		}
+		return $songsList;
+	}
+
+	public static function refreshViewSong($id){
+
+		$db = Db::getConnection();
+
+		$sql = "UPDATE song 
+            SET 
+                views = views + 1
+            WHERE id_song = '$id'";
+
+		$result = $db->prepare($sql);
+
+		return $result->execute();
+
+	}
+
 
 }

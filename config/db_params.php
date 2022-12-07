@@ -2,7 +2,7 @@
 
 return array(
 	'host' => 'localhost',
-	'dbname' => 'library',
-	'user' => 'library',
-	'password' => '99Library19',
+	'dbname' => 'u194588569_library',
+	'user' => 'u194588569_library',
+	'password' => 'u194588569_library',
 );

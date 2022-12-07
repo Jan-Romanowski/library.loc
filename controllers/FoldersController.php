@@ -8,7 +8,7 @@ class FoldersController
 	 */
 	public function actionView()
 	{
-		User::isLogin();
+		User::checkRights("user");
 
 		$foldersList = array();
 		$foldersList = Folders::getFolders();
@@ -22,7 +22,7 @@ class FoldersController
 	 */
 	public function actionNewFolder()
 	{
-		User::isModerator();
+		User::checkRights("admin");
 
 		$result = '';
 		$name_folder = '';
@@ -30,8 +30,8 @@ class FoldersController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$name_folder = GET::post('name_folder', '');
-			$note = GET::post('note', '');
+			$name_folder = Get::post('name_folder', '');
+			$note = Get::post('note', '');
 
 			$errors = false;
 
@@ -68,7 +68,7 @@ class FoldersController
 
 	public function actionDelete($id)
 	{
-		User::isModerator();
+		User::checkRights("admin");
 
 		$result = Folders::countSongsInFolder($id);
 

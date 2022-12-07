@@ -10,10 +10,9 @@ class SongsController
 	public function actionIndex($id)
 	{
 
-		User::isLogin();
-
 		if ($id) {
 
+			$_SESSION['last_song'] = $id;
 			$songsItem = array();
 			$songsItem = Songs::getSongById($id);
 
@@ -22,25 +21,33 @@ class SongsController
 			else
 				$typeSong = 'Jednogłosowy';
 
-			$files = array();
-			$i = 0;
+			if(User::isLogin()){
+				$files = array();
+				$i = 0;
 
-			$folderName = SongsController::getNameFolder($id);
-			$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
-			$dwnlpath = '/files/' . $folderName . '/' . $id;
-			if (is_dir($dir)) {
-				if ($dh = opendir($dir)) {
-					while (false !== ($file = readdir($dh))) {
-						if ($file != "." && $file != "..") {
-							$path = $dir . '/' . $file;
-							$files[$i]['filename'] = $file;
-							$files[$i]['dwnlpath'] = $dwnlpath . '/' . $file;
-							$files[$i]['filetype'] = pathinfo($dwnlpath . '/' . $file)['extension'];
-							$i++;
+				$folderName = SongsController::getNameFolder($id);
+				$dir = ROOT . '/files/' . $folderName . '/' . $id;
+				$downloadPath = '/files/' . $folderName . '/' . $id;
+
+				if (is_dir($dir)) {
+					if ($dh = opendir($dir)) {
+						while (false !== ($file = readdir($dh))) {
+							if ($file != "." && $file != "..") {
+								$path = $dir . '/' . $file;
+								$files[$i]['filename'] = $file;
+								$files[$i]['dwnlpath'] = $downloadPath . '/' . $file;
+								$files[$i]['filetype'] = pathinfo($downloadPath . '/' . $file)['extension'];
+								$i++;
+							}
 						}
 					}
 				}
+
+				// Sort by filetype
+				array_multisort (array_column($files, 'filetype'), SORT_DESC, $files);
 			}
+
+			Songs::refreshViewSong($id);
 
 			require_once(ROOT . '/views/songs/songsItem.php');
 
@@ -54,8 +61,6 @@ class SongsController
 	public function actionSearch()
 	{
 
-		User::isLogin();
-
 		$word = $_POST['word'];
 
 		$_SESSION['word'] = $word;
@@ -67,8 +72,6 @@ class SongsController
 
 	public function actionPriorityFilter($parameter = 'id_song')
 	{
-
-		User::isLogin();
 
 		if (0 < $parameter && $parameter < 7) {
 			switch ($parameter) {
@@ -114,8 +117,6 @@ class SongsController
 	public function actionApplyFilters()
 	{
 
-		User::isLogin();
-
 		if (isset($_POST['checkBoxJ']) &&
 			$_POST['checkBoxJ'] != '') {
 			$_SESSION["oneVoise"] = true;
@@ -150,7 +151,8 @@ class SongsController
 	public function actionView($page = 1)
 	{
 
-		User::isLogin();
+		if (!isset($_SESSION['multiVoise']))
+			$_SESSION['multiVoise'] = true;
 
 		if (!isset($_SESSION['Sorting']))    // Сортировка
 			$parameter = 'id_song';
@@ -178,7 +180,7 @@ class SongsController
 			$actual = $_SESSION['actual'];
 
 		$songsList = array();
-		$songsList = Songs::getSongsList($filter, $parameter, $oneVoise, $multiVoise, $page, $actual);
+		$songsList = Songs::getSongsList($filter, $parameter, $oneVoise, $multiVoise, $actual, $page);
 
 		$total = Songs::getTotalSongs($filter, $oneVoise, $multiVoise, $actual);
 
@@ -196,7 +198,7 @@ class SongsController
 	public function actionNewSong()
 	{
 
-		User::isModerator();
+		User::checkRights("admin");
 
 		$name = '';
 		$count_p = '';
@@ -208,11 +210,11 @@ class SongsController
 
 		if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-			$name = GET::post('song_name', '');
-			$count_p = GET::post('count_p', 0);
-			$author = GET::post('autor', '');
-			$folder = GET::post('folders', '');
-			$note = GET::post('notatki', '');
+			$name = Get::post('song_name', '');
+			$count_p = Get::post('count_p', 0);
+			$author = Get::post('autor', '');
+			$folder = Get::post('folders', '');
+			$note = Get::post('notatki', '');
 
 			if (isset($_POST['typeSong']) && $_POST['typeSong'] == 'one')
 				$songType = 1;
@@ -259,7 +261,7 @@ class SongsController
 	public function actionEditSong($id)
 	{
 
-		User::isModerator();
+		User::checkRights("admin");
 
 		if ($id) {
 
@@ -278,10 +280,10 @@ class SongsController
 
 			if (isset($_POST['submit']) && !empty($_POST['submit'])) {
 
-				$name = GET::post('song_name', '');
-				$count_p = GET::post('count_p', '');
-				$author = GET::post('autor', '');
-				$folder_name = GET::post('folders', '');
+				$name = Get::post('song_name', '');
+				$count_p = Get::post('count_p', '');
+				$author = Get::post('autor', '');
+				$folder_name = Get::post('folders', '');
 
 				if (isset($_POST['typeSong']) && $_POST['typeSong'] == 'one')
 					$songType = 1;
@@ -303,6 +305,7 @@ class SongsController
 					Songs::editSong($id, $name, $count_p, $author, $songType, $folder_name, $note);
 					$_SESSION["msg"] = "Dane zostały zaktualizowane.";
 					$_SESSION["stat"] = "alert-success";
+					header('Location: /songs/'.$id);
 				}
 			}
 
@@ -322,13 +325,13 @@ class SongsController
 	public function actionDelete($id)
 	{
 
-		User::isModerator();
+		User::checkRights("admin");
 
 		if ($id) {
 
 			$folderName = self::getNameFolder($id);
 
-			$dir = ROOT . '/public_html/files/' . $folderName.'/'.$id;
+			$dir = ROOT . '/files/' . $folderName.'/'.$id;
 
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
@@ -358,7 +361,7 @@ class SongsController
 	 */
 	public function actionUploadFile($id_folder)
 	{
-		User::isModerator();
+		User::checkRights("admin");
 
 		if (!isset($_FILES["filename"]) || $_FILES["filename"]["error"] != 0) {
 			$_SESSION["msg"] = 'Nie znaleziono pliku!';
@@ -367,34 +370,36 @@ class SongsController
 		}
 
 		$folderName = self::getNameFolder($id_folder);
-		if (!is_dir(ROOT_WEB . '/files/')) {
-			mkdir(ROOT_WEB . '/files', 0750, true);
+
+		if (!is_dir(ROOT . '/files/')) {
+			mkdir(ROOT . '/files', 0777, true);
 		}
-		if (!is_dir(ROOT_WEB . '/files/' . $folderName)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName, 0750, true);
+		if (!is_dir(ROOT . '/files/' . $folderName)) {
+			mkdir(ROOT . '/files/' . $folderName, 0777, true);
 		}
-		if (!is_dir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder)) {
-			mkdir(ROOT_WEB . '/files/' . $folderName . '/' . $id_folder, 0750, true);
+		if (!is_dir(ROOT . '/files/' . $folderName . '/' . $id_folder)) {
+			mkdir(ROOT . '/files/' . $folderName . '/' . $id_folder, 0777, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
-//			$total_files = count($_FILES['filename']['name']);
 
-//			for ($key = 0; $key < $total_files; $key++) {
+			$total_files = count($_FILES['filename']['name']);
 
-//				if (isset($_FILES['filename']['name'][$key])
-//					&& $_FILES['filename']['size'][$key] > 0) {
+			for ($key = 0; $key < $total_files; $key++) {
 
-			$original_filename = strval($_FILES['filename']['name']);
+				if (isset($_FILES['filename']['name'][$key]) && $_FILES['filename']['size'][$key] > 0) {
 
-			$target = ROOT_WEB . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
-			$tmp = $_FILES['filename']['tmp_name'];
+			$original_filename = strval($_FILES['filename']['name'][$key]);
+
+			$target = ROOT . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
+			$tmp = $_FILES['filename']['tmp_name'][$key];
 
 			move_uploaded_file($tmp, $target);
-			$_SESSION["msg"] = 'Plik został pomyślnie wgrany!';
-			header("Location: /songs/" . $id_folder);
-//				}
-//			}
+			$_SESSION["msg"] = "Plik został pomyślnie wgrany!";
+			$_SESSION["stat"] = "alert-success";
+			//header("Location: /songs/" . $id_folder);
+				}
+			}
 		}
 		return true;
 	}
@@ -407,11 +412,13 @@ class SongsController
 	public function actionDeleteFile($id, $filename)
 	{
 
-		User::isModerator();
+		User::checkRights("admin");
 
 		$folderName = self::getNameFolder($id);
 
-		$dir = ROOT . '/public_html/files/' . $folderName . '/' . $id;
+		$filename = str_replace('%20', ' ', $filename);
+
+		$dir = ROOT . '/files/' . $folderName . '/' . $id;
 		$pathFile = $dir . '/' . $filename;
 
 		if (is_dir($dir)) {
@@ -435,12 +442,12 @@ class SongsController
 	 * @param $id
 	 * @return string
 	 */
-	function getNameFolder($id)
+	public static function getNameFolder($id)
 	{
 		$min = 0;
 		$max = 100;
 		while (true) {
-			if ($min < $id && $id < $max) {
+			if ($min <= $id && $id < $max) {
 				return "0" . $min . ($min == 0 ? "00" : "");
 
 			} else {
@@ -457,16 +464,19 @@ class SongsController
 	 */
 	public function actionChangeActual($id)
 	{
-		User::isModerator();
+		User::checkRights("admin");
+
+		$songsItem = array();
+		$songsItem = Songs::getSongById($id);
 
 		if (Songs::getActualById($id) == 0) {
 			if (Songs::changeActual($id, 1)) {
-				$_SESSION["msg"] = "Utwór został pomyślnie dodany do aktualnych";
+				$_SESSION["msg"] = "Utwór (". $songsItem['name_song'] .") został pomyślnie dodany do aktualnych";
 				$_SESSION["stat"] = "alert-success";
 			}
 		} else {
 			if (Songs::changeActual($id, 0)) {
-				$_SESSION["msg"] = "Utwór został usunięty z aktualnych";
+				$_SESSION["msg"] = "Utwór (". $songsItem['name_song'] .") został usunięty z aktualnych";
 				$_SESSION["stat"] = "alert-success";
 			}
 		}

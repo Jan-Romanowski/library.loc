@@ -21,12 +21,12 @@
 									<?php endif; ?>
                     <div class="mb-3">
                         <label for="exampleInputText1" class="form-label">Nagłówek</label>
-                        <input type="text" required class="form-control" name="header" value="">
+                        <input type="text" required class="form-control" name="header" value="<?php echo $header; ?>">
                     </div>
                     <div class="input-group mb-4">
                         <span class="input-group-text">Tekst</span>
                         <textarea class="form-control" name="text" style="min-height: 200px;"
-                                  aria-label="Notatki"></textarea>
+                                  aria-label="Notatki"><?php echo $text; ?></textarea>
                     </div>
 
                     <div class="mb-4">

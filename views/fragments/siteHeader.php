@@ -10,6 +10,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="/textillate/jquery.lettering.js"></script>
     <script src="/textillate/jquery.textillate.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
     <style>
@@ -31,21 +34,16 @@
     </style>
 </header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark m-0 p-0 sticky-top">
     <div class="container-fluid">
         <object class="m-0 p-0"
                 type="image/svg+xml"
-                height="55px;"
-<<<<<<< HEAD:views/fragments/siteHeader.php
+                height="80px;"
                 data="/img/logo.svg">
             <img class="m-0 p-0" src="/img/logo.svg"/>
-=======
-                data="/images/Logo/logo.svg">
-            <img class="m-0 p-0" src="/images/Logo/logo.svg"/>
->>>>>>> JR-changes:views/headers/main_header.php
         </object>
 
-        <a class="navbar-brand" href="/main/">Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</a>
+        <a class="navbar-brand text-truncate w-auto" href="/main/">Chór Katedralny</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,7 +57,7 @@
                     <a id='menu__zarzad' class="nav-link" href="/main/members/">Zarząd Chóru</a>
                 </li>
                 <li class="nav-item">
-                    <a id='menu__biblioteka' class="nav-link" href="/users/login/">Biblioteka</a>
+                    <a id='menu__biblioteka' class="nav-link" href="/songs">Biblioteka</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a id='menu__chor' class="nav-link dropdown-toggle" href="?section=info" id="navbarDropdownMenuLink"
@@ -73,9 +71,9 @@
                         </li>
                         <li><a id='menu__chor__history' class="dropdown-item" href="/main/history/">Historia chóru</a>
                         </li>
-                        <li><a id='menu__chor__history' class="dropdown-item" href="/main/achivments/">Osiągnięcia</a>
+                        <li><a id='menu__chor__history' class="dropdown-item disabled" href="/main/achivments/">Osiągnięcia</a>
                         </li>
-                        <li><a id='menu__chor__history' class="dropdown-item" href="/main/gallery/">Galeria</a></li>
+                        <li><a id='menu__chor__history' class="dropdown-item disabled" href="/main/gallery/">Galeria</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
