@@ -10,6 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Player -->
+
+    <script src="/wimpy/wimpy.js"></script>
+<!-- <link rel="stylesheet" href="/wimpy/wimpy.css"> -->
+
+
     <title>Chór Katedralny im. Ks. Alfreda Hoffmana w Siedlcach</title>
 
 </header>

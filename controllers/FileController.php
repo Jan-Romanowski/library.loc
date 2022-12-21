@@ -45,7 +45,7 @@ class FileController{
 		User::checkRights("user");
 
 		$filePath = ROOT . $_POST['filePath'];
-		$fileName = strrchr(filePath, '/');
+		$fileName = strrchr($filePath, '/');
 		
 
 		$file_extension = strtolower(substr(strrchr($filePath,"."),1));
@@ -57,8 +57,8 @@ class FileController{
 		switch($file_extension)
 		{
 			case "pdf": $ctype="application/pdf"; break;
-			case "mp3": $ctype="audio/mp3"; break;
-			case "wav": $ctype="audio/wav"; break;
+			// case "mp3": $ctype="audio/mp3"; break;
+			// case "wav": $ctype="audio/wav"; break;
 			
 			default: $ctype="application/force-download";
 
@@ -81,8 +81,15 @@ class FileController{
 		header("Content-Type: $ctype");
 		header("Content-Disposition: inline; filename=$fileName");
 		header("Content-Transfer-Encoding: binary");
+		
+
+
 		readfile("$filePath");
 		exit();
+
+	}
+
+	public function actionPlay(){
 
 	}
 

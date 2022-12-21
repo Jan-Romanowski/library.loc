@@ -1,10 +1,16 @@
 <?php include(ROOT . '/views/fragments/libraryHeader.php'); ?>
 
+
+
+
+
 <style>
     .downloadLine:hover{
         cursor: pointer !important;
     }
 </style>
+
+<body>
 
     <div class='container-fluid mt-xs-5 mt-md-3' style='min-height: 100vh'>
         <div class="container-fluid mt-5 mt-sm-2 row g-0 justify-content-center">
@@ -167,7 +173,35 @@
 
                     <h2>Pliki</h2>
 
-									<?php if(User::isLogin()){ ?>
+                    <?php
+
+                    if(User::isLogin()){
+
+                        ?><h4>Midi</h4><?php
+                        
+                                ?><script>
+                                var myPlayer = new wimpyPlayer({
+                                    media : "<?php
+                                        foreach($audioFiles as $audioFilesItem){
+                                        echo $audioFilesItem['dwnlpath'].' | '; 
+                                        }
+                                        ?>",
+                                    skin : "/wimpy/wimpy.skins/itunesesc.tsv",
+                                    startUpText : "Midi",
+                                    
+                                    // width : 700,
+                                    // height : 300
+                                });
+                                </script><?php
+                        
+                        
+                    }
+
+                    
+                    ?>
+
+                
+					<?php if(User::isLogin()){ ?>
                     <div class="table-responsive">
                       <table class='table table-hover mt-3 mx-auto p-3'>
                           <tr class="bg-light">
@@ -177,8 +211,13 @@
                           </tr>
 
                             <?php
-                            foreach ($files as $filesItem): ?>
+
+                            $merge = array_merge($files, $audioFiles);
+
+                            foreach ($merge as $filesItem): 
+                            ?>
                             <tr>
+
                                 <td class="downloadLine align-middle">
                                     <?php
 
@@ -236,18 +275,31 @@
                                 </td>
                                 <td class="">
                                     <div class="row gx-0 justify-content-evenly">
+                                    <?php if(strcmp(strtoupper($filesItem['filetype']), 'PDF') == 0){ ?>
                                         <div class="col-12 col-sm-12 col-md-10 col-lg-4 my-1 my-lg-0 mx-0 px-1">
                                             <form action="/file/download/" style="display: inline" class="mx-0 px-0 w-100" method="post">
                                                 <input type="hidden" name="filePath" value="<?php echo $filesItem['dwnlpath'];?>">
                                                 <input class="btn btn-success w-100" type="submit" name="download" value="Pobrać">
                                             </form>
                                         </div>
+                                        <?php }
+                                        
+                                        else{ ?>
                                         <div class="col-12 col-sm-12 col-md-10 col-lg-4 my-1 my-lg-0 mx-0 px-1">
-                                            <form action="/file/openFile/" style="display: inline" class="mx-0 px-0 w-100" method="post">
-                                                <input type="hidden" name="filePath" value="<?php echo $filesItem['dwnlpath'];?>">
-                                                <input class="btn btn-success w-100" type="submit" name="open" value="Otworzyć">
-                                            </form>
+                                            <a class='btn btn-success w-100' download href='<?php echo $filesItem['dwnlpath'];?>'>Pobrać</a>
                                         </div>
+                                        <?php }
+                                        
+                                        
+                                        ?>
+                                        <?php if(strcmp(strtoupper($filesItem['filetype']), 'PDF') == 0){ ?>
+                                            <div class="col-12 col-sm-12 col-md-10 col-lg-4 my-1 my-lg-0 mx-0 px-1">
+                                                <form action="/file/openFile/" style="display: inline" class="mx-0 px-0 w-100" method="post">
+                                                    <input type="hidden" name="filePath" value="<?php echo $filesItem['dwnlpath'];?>">
+                                                    <input class="btn btn-success w-100" type="submit" name="open" value="Otworzyć">
+                                                </form>
+                                            </div>
+                                            <?php } ?>
                                         <div class="col-12 col-sm-12 col-md-10 col-lg-4 my-1 my-lg-0 mx-0 px-1">
                                             <?php if(User::checkRoot("moder") || User::checkRoot("admin")): ?>
                                               <a class="btn btn-danger w-100"  href="/songs/deleteFile/<?php echo $songsItem['id_song'].'/'.$filesItem['filename']; ?>">Usunąć</a>
@@ -295,5 +347,7 @@
             </div>
         </div>
     </div>
+
+    </body>
 
 <?php include(ROOT . '/views/fragments/footer.php');

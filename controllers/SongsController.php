@@ -12,6 +12,49 @@ class SongsController
 
 		if ($id) {
 
+		$folderName = self::getNameFolder($id);
+
+		//folder for audio
+		if (!is_dir(ROOT . '/public_html/audio/')) {
+			mkdir(ROOT . '/public_html/audio', 0777, true);
+		}
+		if (!is_dir(ROOT . '/public_html/audio/' . $folderName)) {
+			mkdir(ROOT . '/public_html/audio/' . $folderName, 0777, true);
+		}
+		if (!is_dir(ROOT . '/public_html/audio/' . $folderName . '/' . $id)) {
+			mkdir(ROOT . '/public_html/audio/' . $folderName . '/' . $id, 0777, true);
+		}
+
+		$destination = ROOT . '/public_html/audio/' . $folderName . '/' . $id;
+
+		$files = array();
+		$i = 0;
+
+		$folderName = SongsController::getNameFolder($id);
+		$source = ROOT . '/files/' . $folderName . '/' . $id;
+		$downloadPath = '/files/' . $folderName . '/' . $id;
+
+		if (is_dir($source)) {
+			if ($dh = opendir($source)) {
+				while (false !== ($file = readdir($dh))) {
+					if ($file != "." && $file != "..") {
+
+						$type = mb_strtoupper(pathinfo($downloadPath . '/' . $file)['extension']);
+
+						if(strcmp($type, 'WAV') == 0 || strcmp($type, 'MP3') == 0 ){
+							rename(ROOT . $downloadPath . '/' . $file, $destination.'/'.$file);
+						}
+						// $path = $source . '/' . $file;
+						// $files[$i]['filename'] = $file;
+						// $files[$i]['dwnlpath'] = $downloadPath . '/' . $file;
+						// $files[$i]['fullpath'] = ROOT . $downloadPath . '/' . $file;
+						// $files[$i]['filetype'] = pathinfo($downloadPath . '/' . $file)['extension'];
+						// $i++;
+					}
+				}
+			}
+		}
+
 			$_SESSION['last_song'] = $id;
 			$songsItem = array();
 			$songsItem = Songs::getSongById($id);
@@ -22,6 +65,7 @@ class SongsController
 				$typeSong = 'Jednogłosowy';
 
 			if(User::isLogin()){
+				// PDF
 				$files = array();
 				$i = 0;
 
@@ -36,6 +80,7 @@ class SongsController
 								$path = $dir . '/' . $file;
 								$files[$i]['filename'] = $file;
 								$files[$i]['dwnlpath'] = $downloadPath . '/' . $file;
+								$files[$i]['fullpath'] = ROOT . $downloadPath . '/' . $file;
 								$files[$i]['filetype'] = pathinfo($downloadPath . '/' . $file)['extension'];
 								$i++;
 							}
@@ -45,6 +90,32 @@ class SongsController
 
 				// Sort by filetype
 				array_multisort (array_column($files, 'filetype'), SORT_DESC, $files);
+
+				// AUDIO
+				$audioFiles = array();
+				$i = 0;
+
+				$folderName = SongsController::getNameFolder($id);
+				$dir = ROOT . '/public_html/audio/' . $folderName . '/' . $id;
+				$downloadPath = '/audio/' . $folderName . '/' . $id;
+
+				if (is_dir($dir)) {
+					if ($dh = opendir($dir)) {
+						while (false !== ($file = readdir($dh))) {
+							if ($file != "." && $file != "..") {
+								$path = $dir . '/' . $file;
+								$audioFiles[$i]['filename'] = $file;
+								$audioFiles[$i]['dwnlpath'] = $downloadPath . '/' . $file;
+								$audioFiles[$i]['fullpath'] = ROOT . $downloadPath . '/' . $file;
+								$audioFiles[$i]['filetype'] = pathinfo($downloadPath . '/' . $file)['extension'];
+								$i++;
+							}
+						}
+					}
+				}
+
+				// Sort by filetype
+				array_multisort (array_column($audioFiles, 'filetype'), SORT_DESC, $audioFiles);
 			}
 
 			Songs::refreshViewSong($id);
@@ -371,6 +442,7 @@ class SongsController
 
 		$folderName = self::getNameFolder($id_folder);
 
+		// folder for pdf's
 		if (!is_dir(ROOT . '/files/')) {
 			mkdir(ROOT . '/files', 0777, true);
 		}
@@ -379,6 +451,17 @@ class SongsController
 		}
 		if (!is_dir(ROOT . '/files/' . $folderName . '/' . $id_folder)) {
 			mkdir(ROOT . '/files/' . $folderName . '/' . $id_folder, 0777, true);
+		}
+
+		//folder for audio
+		if (!is_dir(ROOT . '/public_html/audio/')) {
+			mkdir(ROOT . '/public_html/audio', 0777, true);
+		}
+		if (!is_dir(ROOT . '/public_html/audio/' . $folderName)) {
+			mkdir(ROOT . '/public_html/audio/' . $folderName, 0777, true);
+		}
+		if (!is_dir(ROOT . '/public_html/audio/' . $folderName . '/' . $id_folder)) {
+			mkdir(ROOT . '/public_html/audio/' . $folderName . '/' . $id_folder, 0777, true);
 		}
 
 		if (isset($_FILES['filename']['name']) && $_FILES['filename']['size']) {
@@ -391,7 +474,13 @@ class SongsController
 
 			$original_filename = strval($_FILES['filename']['name'][$key]);
 
-			$target = ROOT . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
+			if(mb_strtoupper(substr(strrchr($original_filename, '.'), 1)) == 'WAV' || mb_strtoupper(substr(strrchr($original_filename, '.'), 1)) == 'MP3'){
+				$target = ROOT . '/public_html/audio/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
+			}
+			else{
+				$target = ROOT . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
+			}
+			// $target = ROOT . '/files/' . $folderName . '/' . $id_folder . '/' . basename($original_filename);
 			$tmp = $_FILES['filename']['tmp_name'][$key];
 
 			move_uploaded_file($tmp, $target);
@@ -418,8 +507,18 @@ class SongsController
 
 		$filename = str_replace('%20', ' ', $filename);
 
-		$dir = ROOT . '/files/' . $folderName . '/' . $id;
+		if(mb_strtoupper(substr(strrchr($filename, '.'), 1)) == 'PDF'){
+			$dir = ROOT . '/files/' . $folderName . '/' . $id;
+		}
+		else{
+			$dir = ROOT . '/public_html/audio/' . $folderName . '/' . $id;
+		}
+
+		// $dir = ROOT . '/files/' . $folderName . '/' . $id;
 		$pathFile = $dir . '/' . $filename;
+
+		// print_r($pathFile);
+		// exit();
 
 		if (is_dir($dir)) {
 			if ($dh = opendir($dir)) {
