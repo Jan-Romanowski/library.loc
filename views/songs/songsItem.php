@@ -177,9 +177,13 @@
 
                     if(User::isLogin()){
 
-                        ?><h4>Midi</h4><?php
+                        ?><h4>Midi</h4>
+                        <div class="container-fluid .d-md-none .d-lg-block p-5 mt-4 border row g-1 bg-light col-12 mb-5" id="MyTarget"><?php
                         
                                 ?><script>
+
+                                const windowOuterWidth = window.outerWidth;
+                                if(windowOuterWidth>600){
                                 var myPlayer = new wimpyPlayer({
                                     media : "<?php
                                         foreach($audioFiles as $audioFilesItem){
@@ -192,7 +196,10 @@
                                     // width : 700,
                                     // height : 300
                                 });
-                                </script><?php
+                            }
+                                </script>
+                                
+                                </div><?php
                         
                         
                     }

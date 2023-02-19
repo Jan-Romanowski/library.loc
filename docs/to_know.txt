@@ -1,6 +1,0 @@
-No root user for db:
-	CREATE USER 'library'@'localhost' IDENTIFIED BY 'library';
-	GRANT ALL PRIVILEGES ON library . * TO 'library'@'localhost';
-
-All db changes through upgrade.php, to have same db version.
-In terminal go to db folder and run - ./update.php
